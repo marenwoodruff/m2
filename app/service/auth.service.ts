@@ -1,8 +1,8 @@
 import {Injectable} from 'angular2/core';
 
-Injectable()
+@Injectable()
 
-export class AuthService {
+export class AuthorizationService {
   constructor() {
 
   }

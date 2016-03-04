@@ -1,9 +1,11 @@
 import {Injectable} from 'angular2/core';
+import {Http} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
 
-Injectable()
+@Injectable()
 
 export class EventService {
-  constructor() {
+  constructor(private http: Http) {
 
   }
 }
