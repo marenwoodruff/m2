@@ -1,9 +1,11 @@
 import {Injectable} from 'angular2/core';
 
-@Injectable()
+export module Matrix.MyMatrix {
 
-export class CredentialService {
-  constructor() {
+    @Injectable()
+    export class CredentialService {
+        constructor() {
 
-  }
+        }
+    }
 }
