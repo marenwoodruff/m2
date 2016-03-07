@@ -22,3 +22,25 @@ To get the SPH Mobile App running on your local system, please perform the follo
     * Make sure that your device is selected and the build message says `Succeeded`
     * Press the `Play` button on the top-left
     * You should see the app download to your device and then launch.
+
+
+  #### Directions to Update Repository
+  To update the master repository, perform the following:
+
+* Set Up
+  * Fork master repo into personal profile
+  * `git remote add origin <repo location>`
+  * `git remote add upstream <main repo location>`
+* Updating
+  * `git fetch upstream`
+  * `git merge upstream/master` (Fix conflicts)
+  * `git push origin master`
+  * Create `pull request` updating master repository
+
+#### Ionic View
+Ionic view is a downloadable application on Android and iOS that allows for the testing of Ionic applications without the need of the Apple or Play Stores.
+
+* Check out the Deploy from Scratch tutorial to get started: http://docs.ionic.io/docs/deploy-from-scratch
+* Check out the usage guide: http://docs.ionic.io/docs/deploy-usage
+
+NOTE: Ionic 2 is still in beta and the deploy documentation hasn't been updated to reflect the beta builds.
