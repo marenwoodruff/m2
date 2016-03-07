@@ -1,9 +1,11 @@
 import {Injectable} from 'angular2/core';
 
-@Injectable()
+export module Matrix.MyMatrix {
 
-export class StorageService {
-  constructor() {
+    @Injectable()
+    export class StorageService {
+        constructor() {
 
-  }
+        }
+    }
 }

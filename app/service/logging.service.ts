@@ -1,9 +1,11 @@
 import {Injectable} from 'angular2/core';
 
-@Injectable()
+export module Matrix.MyMatrix {
 
-export class LoggingService {
-  Log(message: string, object?: any) {
-		console.log(message, object);
-	}
+    @Injectable()
+    export class LoggingService {
+        Log(message:string, object?:any) {
+            console.log(message, object);
+        }
+    }
 }
