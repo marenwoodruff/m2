@@ -4,7 +4,7 @@ To get the SPH Mobile App running on your local system, please perform the follo
 * Installation
     * `git clone <repo location>` (Copy repo to local system)
     *  `cd <repo name>` (Enter repo folder)
-    *  `npm install -g ionic@beta` (Install Ionic 2)
+    *  `sudo npm install -g ionic@beta` (Install Ionic 2)
     *  `sudo npm install -g cordova` (Installs Cordova)
     *  `npm install` (Install dependencies)
 * Running on Web Browser
