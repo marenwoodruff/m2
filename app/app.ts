@@ -1,7 +1,7 @@
 import {App, IonicApp, Platform} from 'ionic-angular';
 import {ViewOnePage} from './pages/view-one/view-one';
 import {ViewTwoPage} from './pages/view-two/view-two';
-import {SurveyComponent} from './pages/survey/survey.component';
+import {SurveyPage} from './pages/survey/survey.page';
 
 
 @App({
@@ -19,7 +19,7 @@ class MyApp {
     this.pages = [
       { title: 'View One', component: ViewOnePage },
       { title: 'View Two', component: ViewTwoPage },
-      { title: 'Survey',   component: SurveyComponent }
+      { title: 'Survey', component: SurveyPage }
     ];
 
   }
