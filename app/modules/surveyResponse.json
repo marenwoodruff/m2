@@ -1,0 +1,71 @@
+{
+    user: {
+        name: "Isaac",
+        id: 898989,
+    },
+    surveyId: 287182928,
+    responses: [
+        {
+            questionIdNumber: 23,
+            answers: [
+                {
+                    value: 1,
+                    display: "Ask him if he needs you to call someone",
+                }
+            ]
+        },
+        {
+            questionIdNumber: 19,
+            answers: [
+                {
+                    value: 0,
+                    display: "Would you do a survey like this again?",
+                }
+            ]
+        },
+        {
+            questionIdNumber: 44,
+            answers: [
+                {
+                    value: 2,
+                    display: "Reason with them",
+                }
+            ]
+        },
+        {
+            questionIdNumber: 2,
+            answers: [
+                {
+                    value: 2,
+                    display: "Online",
+                },
+                {
+                    value: 3,
+                    display: "Saw an ad in the paper",
+                },
+                {
+                    value: 4,
+                    display: "Another conference",
+                }
+            ]
+        },
+        {
+            questionIdNumber: 67,
+            answers: [
+                {
+                    value: 0,
+                    display: "Free beer",
+                }
+            ]
+        },
+        {
+            questionIdNumber: 12,
+            answers: [
+                {
+                    value: 1,
+                    display: "Where in the world is Carmen Sandiego?",
+                }
+            ]
+        }
+    ]
+}
