@@ -1,14 +1,17 @@
-export module Matrix.MyMatrix {
+//<reference path="./response.ts" />
+//<reference path="./user.ts" />
+
+module Matrix.MyMatrix {
 
     export class SurveyResponse {
-        user:User{};
+        user:User;
         surveyId:number;
-        responses:response[];
+        responses:Response[];
 
-        constructor(user?:object, surveyId?:number, responses?:response[]) {
+        constructor(user?:User, surveyId?:number, responses?:Response[]) {
             this.user = user;
             this.surveyId = surveyId;
-            responses = responses;
+            this.responses = responses;
         }
     }
 }
