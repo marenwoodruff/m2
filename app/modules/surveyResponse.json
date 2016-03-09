@@ -6,8 +6,8 @@
     surveyId: 287182928,
     responses: [
         {
-            questionIdNumber: 23,
-            answers: [
+            questionId: 23,
+            selections: [
                 {
                     value: 1,
                     display: "Ask him if he needs you to call someone",
@@ -15,8 +15,8 @@
             ]
         },
         {
-            questionIdNumber: 19,
-            answers: [
+            questionId: 19,
+            selections: [
                 {
                     value: 0,
                     display: "Would you do a survey like this again?",
@@ -24,8 +24,8 @@
             ]
         },
         {
-            questionIdNumber: 44,
-            answers: [
+            questionId: 44,
+            selections: [
                 {
                     value: 2,
                     display: "Reason with them",
@@ -33,8 +33,8 @@
             ]
         },
         {
-            questionIdNumber: 2,
-            answers: [
+            questionId: 2,
+            selections: [
                 {
                     value: 2,
                     display: "Online",
@@ -50,8 +50,8 @@
             ]
         },
         {
-            questionIdNumber: 67,
-            answers: [
+            questionId: 67,
+            selections: [
                 {
                     value: 0,
                     display: "Free beer",
@@ -59,8 +59,8 @@
             ]
         },
         {
-            questionIdNumber: 12,
-            answers: [
+            questionId: 12,
+            selections: [
                 {
                     value: 1,
                     display: "Where in the world is Carmen Sandiego?",
