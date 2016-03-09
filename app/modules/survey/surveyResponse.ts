@@ -1,6 +1,9 @@
 //<reference path="./response.ts" />
 //<reference path="./user.ts" />
 
+import {User} from "./../user";
+import {Response} from "./response";
+
 module Matrix.MyMatrix {
 
     export class SurveyResponse {
