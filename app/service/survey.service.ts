@@ -1,41 +1,33 @@
 import {Injectable, EventEmitter} from 'angular2/core';
 import {Http} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
+import {Question} from '../modules/survey/question';
+import {Survey} from "../modules/survey/survey";
+import {SurveyProgress} from "../modules/survey/surveyProgress";
 
 @Injectable()
 export class SurveyService {
 
+    surveys:EventEmitter<Survey[]>;
+    surveryQuestions:EventEmitter<Question[]>
+
     constructor(private http:Http) {
     };
 
-    surveys:EventEmitter<Survey[]>;
-    //TODO:  Change the type to Survey type
 
-    getSurveys = (id?: number): void => {
-        //TODO: change return type to array of Survey
+    getSurveys = (id?:number):void => {};
 
-        return null;
-    };
-    
-    getSurveyResponses = (id:number, userId?:number):any => {
-        //TODO: change return type to array of Question[]
+    getSurveyResponses = (id:number, userId?:number):void => {};
 
+    saveSurveyProgress = (survery:Survey):boolean => {
         return null;
     };
 
-    saveSurveyProgress = (id:any):boolean => {
+    getSurveyProgress = (id:any):SurveyProgress => {
         return null;
     };
 
-    getSurveyProgress = (id:any):any =>{
-        //TODO: change return type to SurveyProgress
-
-        return null;
-
-    };
-
-    saveSurvey = (survey:any):boolean => {
-        //TODO: change survey param type to Survey type
+    saveSurvey = (survey:Survey):boolean => {
         return null;
     };
 }
