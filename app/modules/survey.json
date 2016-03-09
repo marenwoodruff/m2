@@ -3,7 +3,7 @@
     id: 287182928,
     questions: [
          {
-            questionIdNumber: 23,
+            questionId: 23,
             text: "What do you do with a drunken sailor, early in the morning?",
             answer: {
                 type: "radial",
@@ -32,10 +32,10 @@
             }
         },
         {
-            questionIdNumber: 44,
+            questionId: 44,
             text: "Bad boys bad boys, watcha gonna do when they come for you?",
             answer: {
-                type: "radial",
+                type: "radio",
                 options: [
                     {
                         selected: false,
@@ -61,7 +61,7 @@
             }
         },
         {
-            questionIdNumber: 12,
+            questionId: 12,
             text: "Where in the world is Carmen Sandiego?",
             answer: {
                 type: "radial",
@@ -90,7 +90,7 @@
             }
         },
         {
-            questionIdNumber: 19,
+            questionId: 19,
             text: "Would you do a survey like this again?",
             answer: {
                 type: "yesOrNo",
@@ -115,7 +115,7 @@
             }
         },
         {
-            questionIdNumber: 67,
+            questionId: 67,
             text: "What could we do to improve the experience?",
             answer: {
                 type: "textBox",
@@ -128,7 +128,7 @@
             }
         },
         {
-            questionIdNumber: 2,
+            questionId: 2,
             text: "How did you hear about us?",
             answer: {
                 type: "checkAny",
