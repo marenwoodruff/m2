@@ -8,11 +8,5 @@ import {Matrix} from '../../modules/components/survey/survey.component';
   directives: [Matrix.MyMatrix.SurveyComponent]
 })
 
-export class SurveyPage implements OnInit {
-
-  ngOnInit() {
-    console.log(Matrix);
-  }
-
-}
+export class SurveyPage { }
   
