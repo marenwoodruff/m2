@@ -1,15 +1,6 @@
-import {Page, OnInit} from 'ionic-angular';
-import { user, survey, surveyResponse } from '../../modules/mockdata';
+import {Page} from 'ionic-angular';
 
 @Page({
   templateUrl: 'build/pages/view-one/view-one.html'
 })
-export class ViewOnePage implements OnInit {
-
-    ngOnInit() {
-        console.log(user);
-        console.dir(survey);
-        console.dir(surveyResponse);
-    }
-
-}
+export class ViewOnePage { }

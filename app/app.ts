@@ -1,10 +1,13 @@
 import {App, IonicApp, Platform} from 'ionic-angular';
 import {ViewOnePage} from './pages/view-one/view-one';
 import {ViewTwoPage} from './pages/view-two/view-two';
+import {SurveyPage} from './pages/survey/survey.page';
+import {SurveyService} from './service/survey.service';
 
 
 @App({
   templateUrl: 'build/app.html',
+  providers: [SurveyService],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
@@ -18,6 +21,7 @@ class MyApp {
     this.pages = [
       { title: 'View One', component: ViewOnePage },
       { title: 'View Two', component: ViewTwoPage },
+      { title: 'Survey', component: SurveyPage }
     ];
 
   }
