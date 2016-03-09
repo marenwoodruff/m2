@@ -1,4 +1,5 @@
-import {Page, OnInit} from 'ionic-angular';
+import {Page} from 'ionic-angular';
+import {OnInit} from 'angular2/core';
 import { user, survey, surveyResponse } from '../../modules/mockdata';
 
 @Page({
