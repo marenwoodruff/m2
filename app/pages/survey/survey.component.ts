@@ -1,11 +1,11 @@
 import {Page} from 'ionic-angular';
 
-import {QuestionDirective} from '../../directives/question.directive';
+export module Matrix.MyMatrix {
 
+  @Page({
+    templateUrl: 'build/pages/survey/survey.component.html',
+  })
 
-@Page({
-  templateUrl: 'build/pages/survey/survey.component.html',
-  directives: [QuestionDirective],
-})
-
-export class SurveyComponent { }
+  export class SurveyComponent { }
+  
+}
