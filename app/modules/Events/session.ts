@@ -1,15 +1,14 @@
 /**
  * Created by Abbey on 3/9/2016.
  */
-
-import Speaker from "./app/modules/speaker";
-import Location from "./app/modules/location";
+import {Speaker} from './speaker';
+import {SessionLocation} from "./location";
 
 
 export class Session {
     Id:number;
     name:number;
     speakers:Speaker[];
-    location:Location;
+    location:SessionLocation;
     time:Date;
 }

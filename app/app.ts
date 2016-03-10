@@ -3,52 +3,55 @@ import {ViewOnePage} from './pages/view-one/view-one';
 import {ViewTwoPage} from './pages/view-two/view-two';
 import {SurveyPage} from './pages/survey/survey.page';
 import {SurveyService} from './service/survey.service';
+import {EventsPage} from './pages/events/events.page';
+import {EventService} from "./service/event.service";
 
 
 @App({
-  templateUrl: 'build/app.html',
-  providers: [SurveyService],
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/
+    templateUrl: 'build/app.html',
+    providers: [SurveyService, EventService],
+    config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-  rootPage: any = ViewOnePage;
-  pages: Array<{title: string, component: any}>
+    rootPage:any = EventsPage;
+    pages:Array<{title: string, component: any}>;
 
-  constructor(private app: IonicApp, private platform: Platform) {
-    this.initializeApp();
+    constructor(private app:IonicApp, private platform:Platform) {
+        this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'View One', component: ViewOnePage },
-      { title: 'View Two', component: ViewTwoPage },
-      { title: 'Survey', component: SurveyPage }
-    ];
+        // used for an example of ngFor and navigation
+        this.pages = [
+            {title: 'View One', component: ViewOnePage},
+            {title: 'View Two', component: ViewTwoPage},
+            {title: 'Survey', component: SurveyPage},
+            {title: 'Events', component: EventsPage},
+        ];
 
-  }
+    }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // The platform is now ready. Note: if this callback fails to fire, follow
-      // the Troubleshooting guide for a number of possible solutions:
-      //
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      //
-      // First, let's hide the keyboard accessory bar (only works natively) since
-      // that's a better default:
-      //
-      // Keyboard.setAccessoryBarVisible(false);
-      //
-      // For example, we might change the StatusBar color. This one below is
-      // good for dark backgrounds and light text:
-      // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
-    });
-  }
+    initializeApp() {
+        this.platform.ready().then(() => {
+            // The platform is now ready. Note: if this callback fails to fire, follow
+            // the Troubleshooting guide for a number of possible solutions:
+            //
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            //
+            // First, let's hide the keyboard accessory bar (only works natively) since
+            // that's a better default:
+            //
+            // Keyboard.setAccessoryBarVisible(false);
+            //
+            // For example, we might change the StatusBar color. This one below is
+            // good for dark backgrounds and light text:
+            // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
+        });
+    }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    let nav = this.app.getComponent('nav');
-    nav.setRoot(page.component);
-  }
+    openPage(page) {
+        // Reset the content nav to have just this page
+        // we wouldn't want the back button to show in this scenario
+        let nav = this.app.getComponent('nav');
+        nav.setRoot(page.component);
+    }
 }
