@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Agile Conference",
+    "starts": "6/15/2016",
+    "ends": "6/19/2016",
+    "sessions": [
+      {
+        "Id": 12,
+        "name": "Agile Manifesto",
+        "speakers": [
+          {
+            "id": 14,
+            "firstName": "Abbey",
+            "lastName": "Gwayambadde"
+          }
+        ],
+        "location": {
+          "building": "Main",
+          "Room": "3200"
+        },
+        "time": "6-19-2016T09:45:00"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Angular 2 Launch and Learn",
+    "starts": "3/29/2016",
+    "ends": "3/29/2016",
+    "sessions": [
+      {
+        "Id": 14,
+        "name": "@Decorators made easy",
+        "speakers": [
+          {
+            "id": 26,
+            "firstName": "Abbey",
+            "lastName": "Gwayambadde"
+          }
+        ],
+        "location": {
+          "building": "Main",
+          "Room": "Phoenix"
+        },
+        "time": "3-29-2016T12:00:00"
+      },
+      {
+        "Id": 17,
+        "name": "Components vs Directives",
+        "speakers": [
+          {
+            "id": 18,
+            "firstName": "Abbey",
+            "lastName": "Gwayambadde"
+          }
+        ],
+        "location": {
+          "building": "Main",
+          "Room": "Great Hall"
+        },
+        "time": "3-29-2016T13:00:00"
+      }
+    ]
+  }
+]
