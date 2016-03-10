@@ -1,69 +1,69 @@
 {
-    user: {
-        name: "Isaac",
-        id: 898989,
+    "user": {
+        "name": "Isaac",
+        "id": "898989",
     },
-    surveyId: 287182928,
-    responses: [
+    "surveyId": "287182928",
+    "responses": [
         {
-            questionId: 23,
-            selections: [
+            "questionId": "23",
+            "selections": [
                 {
-                    value: 1,
-                    display: "Ask him if he needs you to call someone",
+                    "value": "1",
+                    "display": "Ask him if he needs you to call someone",
                 }
             ]
         },
         {
-            questionId: 19,
-            selections: [
+            "questionId": "19",
+            "selections": [
                 {
-                    value: 0,
-                    display: "Would you do a survey like this again?",
+                    "value": "0",
+                    "display": "Would you do a survey like this again?",
                 }
             ]
         },
         {
-            questionId: 44,
-            selections: [
+            "questionId": "44",
+            "selections": [
                 {
-                    value: 2,
-                    display: "Reason with them",
+                    "value": "2",
+                    "display": "Reason with them",
                 }
             ]
         },
         {
-            questionId: 2,
-            selections: [
+            "questionId": "2",
+            "selections": [
                 {
-                    value: 2,
-                    display: "Online",
+                    "value": "2",
+                    "display": "Online",
                 },
                 {
-                    value: 3,
-                    display: "Saw an ad in the paper",
+                    "value": "3",
+                    "display": "Saw an ad in the paper",
                 },
                 {
-                    value: 4,
-                    display: "Another conference",
+                    "value": "4",
+                    "display": "Another conference",
                 }
             ]
         },
         {
-            questionId: 67,
-            selections: [
+            "questionId": "67",
+            "selections": [
                 {
-                    value: 0,
-                    display: "Free beer",
+                    "value": "0",
+                    "display": "Free beer",
                 }
             ]
         },
         {
-            questionId: 12,
-            selections: [
+            "questionId": "12",
+            "selections": [
                 {
-                    value: 1,
-                    display: "Where in the world is Carmen Sandiego?",
+                    "value": "1",
+                    "display": "Where in the world is Carmen Sandiego?",
                 }
             ]
         }
