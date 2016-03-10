@@ -1,6 +1,5 @@
 import {Page} from 'ionic-angular';
 import {OnInit} from 'angular2/core';
-
 import {Matrix} from '../../modules/components/survey/survey.component';
 
 @Page({
@@ -9,4 +8,3 @@ import {Matrix} from '../../modules/components/survey/survey.component';
 })
 
 export class SurveyPage { }
-  
