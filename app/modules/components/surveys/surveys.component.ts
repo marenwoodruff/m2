@@ -16,5 +16,5 @@ export class SurveysComponent {
   constructor(surveyService:SurveyService) {
     this._surveyApi = surveyService;
   }
-  
+
 }
