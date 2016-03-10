@@ -9,7 +9,7 @@ import {EventService} from "./service/event.service";
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, EventService],
+    providers: [SurveyService],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
