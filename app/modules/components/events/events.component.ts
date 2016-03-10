@@ -8,7 +8,8 @@ import {EventService} from "../../../service/event.service";
 @Component({
     selector: 'events',
     templateUrl: 'build/modules/components/events/events.component.html',
-    directives: [EventComponent]
+    directives: [EventComponent],
+    providers:[EventService]
 })
 
 export class EventsComponent implements OnInit, OnDestroy {
