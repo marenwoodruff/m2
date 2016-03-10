@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-
+import {Survey} from '../../survey/survey';
 import {QuestionComponent} from '../question/question.component';
 import {AnswerComponent} from '../answer/answer.component';
 
@@ -10,5 +10,7 @@ import {AnswerComponent} from '../answer/answer.component';
   directives: [QuestionComponent, AnswerComponent]
 })
 
-export class SurveyComponent { }
+export class SurveyComponent { 
+  survey: Survey;
+}
 
