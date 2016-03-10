@@ -4,6 +4,7 @@ export class Event {
 
     id:number;
     name:number;
+    image:string;
     description:string;
     starts:Date;
     ends:Date;
