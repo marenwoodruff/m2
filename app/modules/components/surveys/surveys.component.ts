@@ -30,7 +30,7 @@ export class SurveysComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this._surveyApi.surveys.unsubscribe();
   }
 
 }
