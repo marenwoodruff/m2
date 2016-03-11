@@ -13,8 +13,8 @@ export class SurveyService {
 
     private _api:Http;
     surveys:EventEmitter<Survey[]> = new EventEmitter();
-    surveryQuestions:EventEmitter<Question[]> = new EventEmitter();
-    surveryProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
+    surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
+    surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
 
     constructor(private http:Http) {
       this._api = http;
@@ -22,18 +22,19 @@ export class SurveyService {
 
     public getSurveys(id?:number):void {
       this._api.get("build/assets/survey.json")
-          .map(res => <Survey[]> res.json())
-          .subscribe(
-              surveys =>this.surveys.emit(surveys),
-              err => console.log(err),
-              () => console.log('Surveys retrieval is completed'));
+        .map(res => <Survey[]>res.json())
+        .subscribe(
+        surveys => this.surveys.emit(surveys),
+        err => console.log('error: ', err),
+        () => console.log('Surveys retrieval is completed')
+      );
     };
 
     public getSurveyResponses(id:number, userId?:number):void {
       this._api.get("build/assets/surveyResponse.json")
           .map(res => <Question[]> res.json())
           .subscribe(
-              surveryQuestions =>this.surveryQuestions.emit(surveryQuestions),
+              surveyQuestions =>this.surveyQuestions.emit(surveyQuestions),
               err => console.log(err),
               () => console.log('Survey Questions retrieval is completed'));
     };
