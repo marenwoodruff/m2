@@ -43,7 +43,7 @@ export class SurveyService {
         return null;
     };
 
-    public getSurveyProgress(id: any):void {
+    public getSurveyProgress(id:any):void {
       this._api.get("build/assets/surveyResponse.json")
           .map(res => <SurveyProgress[]> res.json())
           .subscribe(
