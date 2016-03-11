@@ -1,6 +1,5 @@
 import {Page} from 'ionic-angular';
 import {OnInit} from 'angular2/core';
-
 import {SurveysComponent} from '../../modules/components/surveys/surveys.component';
 
 @Page({
@@ -9,4 +8,3 @@ import {SurveysComponent} from '../../modules/components/surveys/surveys.compone
 })
 
 export class SurveyPage { }
-  
