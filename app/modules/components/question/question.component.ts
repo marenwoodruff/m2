@@ -5,7 +5,8 @@ import {AnswerComponent} from '../answer/answer.component';
 @Component({
   selector: 'question',
   templateUrl: 'build/modules/components/question/question.component.html',
-  directives: [AnswerComponent]
+  directives: [AnswerComponent],
+  inputs: ['question']
 })
 
 export class QuestionComponent { 
