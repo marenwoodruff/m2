@@ -43,11 +43,11 @@ export class SurveyService {
         return null;
     };
 
-    public getSurveyProgress(id:any):SurveyProgress {
+    public getSurveyProgress(id: any):void {
       this._api.get("build/assets/surveyResponse.json")
           .map(res => <SurveyProgress[]> res.json())
           .subscribe(
-              surveryProgress =>this.surveryProgress.emit(surveryProgress),
+              surveyProgress =>this.surveyProgress.emit(surveyProgress),
               err => console.log(err),
               () => console.log('Survey Progress retrieval is completed'));
     };
