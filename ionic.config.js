@@ -18,13 +18,19 @@ module.exports = {
       src: ['node_modules/ionic-angular/fonts/**/*.+(ttf|woff|woff2)'],
       dest: "www/build/fonts"
     },
+    json : {
+      src: ['app/**/*.json'],
+      dest: "www/build"
+    },
     watch: {
       sass: ['app/**/*.scss'],
       html: ['app/**/*.html'],
+      json: ['app/**/*.json'],
       livereload: [
         'www/build/**/*.html',
         'www/build/**/*.js',
-        'www/build/**/*.css'
+        'www/build/**/*.css',
+        'www/build/**/*.json'
       ]
     }
   },
