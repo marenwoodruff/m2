@@ -22,8 +22,8 @@ export class SurveysComponent implements OnInit, OnDestroy {
   ngOnInit():any {
     this._surveyApi.surveys.subscribe(
       surveys => this.surveys = surveys,
-      err => console.log('EventsComponent events subscribe error:', err),
-      () => console.log('finished subscribing to events')
+      err => console.log('SurveysComponent subscribe error:', err),
+      () =>  console.log('finished subscribing to surveys')
     );
 
     this._surveyApi.getSurveys();

@@ -43,14 +43,14 @@ export class SurveyService {
         return null;
     };
 
-    // public getSurveyProgress(id:any):SurveyProgress {
-      // this._api.get("build/assets/surveyResponse.json")
-      //     .map(res => <SurveyProgress[]> res.json())
-      //     .subscribe(
-      //         surveryProgress =>this.surveryProgress.emit(surveryProgress),
-      //         err => console.log(err),
-      //         () => console.log('Survey Progress retrieval is completed'));
-    // };
+    public getSurveyProgress(id:any):SurveyProgress {
+      this._api.get("build/assets/surveyResponse.json")
+          .map(res => <SurveyProgress[]> res.json())
+          .subscribe(
+              surveryProgress =>this.surveryProgress.emit(surveryProgress),
+              err => console.log(err),
+              () => console.log('Survey Progress retrieval is completed'));
+    };
 
     saveSurvey(survey:Survey):boolean {
         return null;
