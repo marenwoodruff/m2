@@ -18,12 +18,15 @@ var IONIC_DIR = "node_modules/ionic-angular/"
  * watch
  * Build the app and watch for source file changes.
  ******************************************************************************/
-gulp.task('watch', ['sass', 'copy.fonts', 'copy.html'], function(done) {
+gulp.task('watch', ['sass', 'copy.fonts', 'copy.html', 'copy.json'], function(done) {
   watch('www/app/**/*.scss', function(){
     gulp.start('sass');
   });
   watch('www/app/**/*.html', function(){
     gulp.start('copy.html');
+  });
+  watch('www/app/**/*.json', function(){
+    gulp.start('copy.json');
   });
   bundle(true, done);
 });
@@ -33,7 +36,7 @@ gulp.task('watch', ['sass', 'copy.fonts', 'copy.html'], function(done) {
  * build
  * Build the app once, without watching for source file changes.
  ******************************************************************************/
-gulp.task('build', ['sass', 'copy.fonts', 'copy.html'], function(done) {
+gulp.task('build', ['sass', 'copy.fonts', 'copy.html', 'copy.json'], function(done) {
   bundle(false, done);
 });
 
@@ -87,6 +90,15 @@ gulp.task('copy.fonts', function() {
  ******************************************************************************/
 gulp.task('copy.html', function(){
   return gulp.src('app/**/*.html')
+    .pipe(gulp.dest('www/build'));
+});
+
+/******************************************************************************
+ * copy.json
+ * Copy json files to build directory.
+ ******************************************************************************/
+gulp.task('copy.json', function(){
+  return gulp.src('app/**/*.json')
     .pipe(gulp.dest('www/build'));
 });
 
