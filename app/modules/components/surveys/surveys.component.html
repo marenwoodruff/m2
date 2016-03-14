@@ -2,9 +2,5 @@
   <ion-list-header>
     Surveys
   </ion-list-header>
-  <ion-item *ngFor="#survey of surveys">
-    {{survey.name}}
-  </ion-item>
+  <survey *ngFor="#survey of surveys" [survey]="survey"></survey>
 </ion-list>
-
-<!-- <survey *ngFor="#survey of surveys" [survey]="survey"></survey> -->
