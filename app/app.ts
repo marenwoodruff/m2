@@ -23,7 +23,7 @@ class MyApp {
         this.pages = [
             {title: 'View One', component: ViewOnePage},
             {title: 'View Two', component: ViewTwoPage},
-            {title: 'Survey', component: SurveyPage},
+            {title: 'Surveys', component: SurveyPage},
             {title: 'Events', component: EventsPage},
         ];
 
