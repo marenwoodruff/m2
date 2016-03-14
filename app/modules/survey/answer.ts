@@ -9,5 +9,3 @@ export class Answer {
         this.options = options;
     }
 }
-
-
