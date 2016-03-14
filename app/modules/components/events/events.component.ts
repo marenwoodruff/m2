@@ -3,7 +3,7 @@
  */
 import {Component,OnInit,OnDestroy} from 'angular2/core';
 import {List} from 'ionic-angular';
-import {EventComponent} from "./event.component";
+import {EventComponent} from "./eventListItem.component";
 import {EventService} from "../../../service/event.service";
 
 @Component({

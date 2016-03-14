@@ -6,8 +6,8 @@ import {Event} from '../../events/event';
 import {Item} from 'ionic-angular';
 
 @Component({
-    selector: "event",
-    templateUrl: 'build/modules/components/events/event.component.html',
+    selector: "eventListItem",
+    templateUrl: 'build/modules/components/events/eventListItem.component.html',
     directives: [Item],
     inputs:['event']
 })
