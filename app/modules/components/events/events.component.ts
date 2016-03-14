@@ -24,7 +24,7 @@ export class EventsComponent implements OnInit, OnDestroy {
 
     ngOnInit():any {
         this._eventsApi.events.subscribe(
-            events =>this.events = events,
+            events => this.events = events,
             err => console.log("EventsComponent events subscribe error: ", err),
             () => console.log("Finished subscribing to events")
         );
