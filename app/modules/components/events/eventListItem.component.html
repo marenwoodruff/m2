@@ -4,5 +4,5 @@
     </ion-thumbnail>
     <h2>{{event.name}}</h2>
     <p>{{event.description}}</p>
-    <button clear item-right>View</button>
+    <button (click)="viewEvent(event)" clear item-right>View</button>
 </ion-item>
