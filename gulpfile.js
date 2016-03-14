@@ -98,7 +98,7 @@ gulp.task('copy.html', function(){
  * Copy assets files to build directory.
  ******************************************************************************/
 gulp.task('copy.assets', function(){
-  return gulp.src('app/assets/*.*')
+  return gulp.src('app/assets/**/*.*')
     .pipe(gulp.dest('www/build/assets'));
 });
 
