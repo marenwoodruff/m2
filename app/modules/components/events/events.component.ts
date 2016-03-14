@@ -3,13 +3,13 @@
  */
 import {Component,OnInit,OnDestroy} from 'angular2/core';
 import {List} from 'ionic-angular';
-import {EventComponent} from "./event.component";
+import {EventListItemComponent} from "./eventListItem.component";
 import {EventService} from "../../../service/event.service";
 
 @Component({
     selector: 'events',
     templateUrl: 'build/modules/components/events/events.component.html',
-    directives: [List, EventComponent],
+    directives: [List, EventListItemComponent],
     providers:[EventService]
 })
 
