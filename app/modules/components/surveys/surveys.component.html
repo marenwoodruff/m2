@@ -1,2 +1,10 @@
-<h1>SURVEYS</h1>
-<survey *ngFor="#survey of surveys" [survey]="survey"></survey>
+<ion-list>
+  <ion-list-header>
+    Surveys
+  </ion-list-header>
+  <ion-item *ngFor="#survey of surveys">
+    {{survey.name}}
+  </ion-item>
+</ion-list>
+
+<!-- <survey *ngFor="#survey of surveys" [survey]="survey"></survey> -->

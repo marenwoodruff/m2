@@ -1,4 +1,5 @@
 import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {List, Item} from 'ionic-angular';
 import {SurveyComponent} from '../survey/survey.component';
 import {SurveyService} from '../../../service/survey.service';
 import {Survey} from '../../survey/survey';
@@ -6,7 +7,7 @@ import {Survey} from '../../survey/survey';
 @Component({
   selector: 'surveys',
   templateUrl: 'build/modules/components/surveys/surveys.component.html',
-  directives: [SurveyComponent],
+  directives: [List, Item, SurveyComponent],
   providers: [SurveyService]
 })
 
