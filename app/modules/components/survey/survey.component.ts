@@ -9,7 +9,6 @@ import {QuestionComponent} from '../question/question.component';
   inputs:['survey']
 })
 
-export class SurveyComponent { 
+export class SurveyComponent {
   survey: Survey;
 }
-
