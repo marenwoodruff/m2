@@ -3,14 +3,23 @@
  */
 import {Component} from 'angular2/core';
 import {Event} from '../../events/event';
-import {Item} from 'ionic-angular';
+import {EventPage} from '../../../pages/event/event.page';
+import {Item, NavController} from 'ionic-angular';
 
 @Component({
     selector: "eventListItem",
     templateUrl: 'build/modules/components/events/eventListItem.component.html',
-    directives: [Item],
+    directives: [Item, EventPage],
     inputs:['event']
 })
-export class EventComponent{
+export class EventListItemComponent{
     event:Event;
+    navController: NavController;
+
+    constructor(navController: NavController){
+      this.navController = navController;
+    }
+    viewEvent(event) {
+      this.navController.push(EventPage, { event });
+    }
 }
