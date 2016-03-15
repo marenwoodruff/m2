@@ -9,7 +9,6 @@ import {Item, Label, Checkbox} from 'ionic-angular';
   inputs: ['answer']
 })
 
-export class AnswerComponent { 
+export class AnswerComponent {
   answer: Answer;
 }
-
