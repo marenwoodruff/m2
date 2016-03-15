@@ -10,11 +10,8 @@ export class EventComponent implements OnInit{
   event:Event;
   visible: boolean = false;
 
-  constructor() {
-
-  }
   ngOnInit():any{
-
+    console.log('hi');
   }
   toggleSessions() {
     this.visible = !this.visible;

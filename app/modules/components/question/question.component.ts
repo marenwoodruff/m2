@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {Page, NavParams, IONIC_DIRECTIVES} from 'ionic-angular';
+import {Page, NavParams} from 'ionic-angular';
 import {Question} from '../../survey/question';
 import {AnswerComponent} from '../answer/answer.component';
 
@@ -18,7 +18,7 @@ import {AnswerComponent} from '../answer/answer.component';
 export class QuestionComponent { 
   question: Question;
   params: NavParams;
-  questions: any;
+  questions: Question;
 
   constructor(params: NavParams) {
     this.params = params;
