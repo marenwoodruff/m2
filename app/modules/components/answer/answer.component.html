@@ -7,6 +7,8 @@
   <ion-list *ngSwitchWhen="'radio'" radio-group>
     <radio-button [answer]="answer"></radio-button>
   </ion-list>
-  <p *ngSwitchWhen="'textBox'">textbox</p>
+  <div *ngSwitchWhen="'textBox'">
+    <textbox></textbox>
+  </div>
   <p *ngSwitchWhen="'checkBox'">checkbox</p>
 </div>
