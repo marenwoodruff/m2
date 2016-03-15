@@ -3,11 +3,12 @@ import {Answer} from '../../survey/answer';
 import {Item, Label, RadioGroup} from 'ionic-angular';
 import {RadioButtonComponent} from '../radio-button/radio-button.component';
 import {TextboxComponent} from '../textbox/textbox.component';
+import {CheckboxComponent} from '../checkbox/checkbox.component';
 
 @Component({
   selector: 'answer',
   templateUrl: 'build/modules/components/answer/answer.component.html',
-  directives: [Item, Label, RadioGroup, RadioButtonComponent, TextboxComponent],
+  directives: [Item, Label, RadioGroup, RadioButtonComponent, TextboxComponent, CheckboxComponent],
   inputs: ['answer']
 })
 
