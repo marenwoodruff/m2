@@ -10,5 +10,7 @@
   <div *ngSwitchWhen="'textBox'">
     <textbox></textbox>
   </div>
-  <p *ngSwitchWhen="'checkBox'">checkbox</p>
+  <ion-list *ngSwitchWhen="'checkBox'">
+    <checkbox [answer]="answer"></checkbox>
+  </ion-list>
 </div>
