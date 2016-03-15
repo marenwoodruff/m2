@@ -1,2 +1,6 @@
-<h1>SURVEYS</h1>
-<survey *ngFor="#survey of surveys" [survey]="survey"></survey>
+<ion-list>
+  <ion-list-header>
+    Surveys
+  </ion-list-header>
+  <survey *ngFor="#survey of surveys" [survey]="survey"></survey>
+</ion-list>
