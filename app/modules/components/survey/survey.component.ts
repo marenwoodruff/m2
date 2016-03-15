@@ -14,9 +14,8 @@ export class SurveyComponent {
   survey: Survey;
   nav: any;
 
-  constructor(nav: NavController) { 
+  constructor(nav: NavController) {
     this.nav = nav;
-    console.log(this.nav);
   }
 
   viewSurvey(survey) {
