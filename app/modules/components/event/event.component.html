@@ -1,12 +1,22 @@
 <div>
-  <h2>{{event.name}}</h2>
-  <h5>{{event.starts}} - {{event.ends}}</h5>
-  <img src="{{event.image}}" alt="{{event.name}}"/>
-  <p>{{event.description}}</p>
-  <h5 (click)="toggleSessions()">Sessions</h5>
-  <ion-list *ngIf="visible">
-    <ion-item class="item-accordion" *ngFor="#session of event.sessions">
-      {{session.name}}
-    </ion-item>
-  </ion-list>
+  <h2 class="center">{{event.name}}</h2>
+  <h5 class="center">{{event.starts}} - {{event.ends}}</h5>
+  <ion-row style="justify-content: center;">
+    <ion-col width-75>
+      <img src="{{event.image}}" alt="{{event.name}}"/>
+    </ion-col>
+  </ion-row>
+  <p class="center">{{event.description}}</p>
+  <ion-item-group>
+    <ion-item-divider light>Sessions</ion-item-divider>
+      <ion-item (click)="goToSession(session)"  *ngFor="#session of event.sessions">
+        {{session.name}}
+      </ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider light>Surveys</ion-item-divider>
+      <ion-item *ngFor="#survey of surveys">
+        {{survey.name}}
+      </ion-item>
+  </ion-item-group>
 </div>

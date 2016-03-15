@@ -14,7 +14,7 @@ export class SurveyDescriptionComponent {
   survey: Survey;
   nav: NavController;
 
-  constructor(nav: NavController) { 
+  constructor(nav: NavController) {
     this.nav = nav;
   }
 
