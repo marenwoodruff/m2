@@ -1,8 +1,3 @@
-<!-- <ion-item *ngFor="#a of answer.options">
-  <ion-label>{{a.value}}</ion-label>
-  <ion-checkbox checked="false"></ion-checkbox>
-</ion-item> -->
-
 <div [ngSwitch]="answer.type">
   <ion-list *ngSwitchWhen="'radio'" radio-group>
     <radio-button [answer]="answer"></radio-button>
