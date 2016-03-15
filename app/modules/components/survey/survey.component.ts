@@ -6,17 +6,16 @@ import {QuestionComponent} from '../question/question.component';
 @Component({
   selector: 'survey',
   templateUrl: 'build/modules/components/survey/survey.component.html',
-  directives: [Item],
+  directives: [Item, QuestionComponent],
   inputs:['survey']
 })
 
 export class SurveyComponent {
   survey: Survey;
-  nav: any;
+  nav: NavController;
 
   constructor(nav: NavController) { 
     this.nav = nav;
-    console.log(this.nav);
   }
 
   viewSurvey(survey) {
