@@ -2,6 +2,7 @@ import {App, IonicApp, Platform} from 'ionic-angular';
 import {SurveyPage} from './pages/survey/survey.page';
 import {SurveyService} from './service/survey.service';
 import {EventsPage} from './pages/events/events.page';
+import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
 
 
@@ -21,6 +22,7 @@ class MyApp {
         this.pages = [
             {title: 'Surveys', component: SurveyPage},
             {title: 'Events', component: EventsPage},
+            {title: 'Twitter', component: TwitterPage},
         ];
 
     }
