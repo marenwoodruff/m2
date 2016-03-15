@@ -23,4 +23,3 @@ export class EventService {
                 () => console.log('Events retrieval is completed'));
     };
 }
-
