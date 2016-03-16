@@ -1,6 +1,8 @@
 import {Component} from 'angular2/core';
 import {Item, Label, Checkbox} from 'ionic-angular';
 import {Answer} from '../../survey/answer';
+import {Response} from '../../survey/response';
+import {Option} from '../../survey/option';
 
 @Component({
   selector: 'checkbox',
@@ -11,4 +13,9 @@ import {Answer} from '../../survey/answer';
 
 export class CheckboxComponent {
   answer: Answer;
+  response: Response;
+
+  getValue(id: number, res: Option) {
+    console.log('questionId:', id, ' response:', res);
+  }
 }

@@ -3,7 +3,7 @@ import {FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
 import {Item, Label, RadioButton} from 'ionic-angular';
 import {Answer} from '../../survey/answer';
 import {Response} from '../../survey/response';
-import {Selection} from '../../survey/selection';
+import {Option} from '../../survey/option';
 
 @Component({
   selector: 'radio-button',
@@ -15,12 +15,9 @@ import {Selection} from '../../survey/selection';
 export class RadioButtonComponent {
   answer: Answer;
   response: Response;
-  selection: Selection;
 
-  getValue(id: number, res: string) {
-    console.log('value:', id, ' display:', res);
-    let response = new Response();
-    console.log(response);
+  getValue(id: number, res: Option) {
+    console.log('questionId:', id, ' response:', res);
   }
 }
 
