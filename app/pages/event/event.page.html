@@ -27,9 +27,9 @@
     </div>
     <ion-list *ngSwitchWhen="'sessions'">
   <ion-card *ngFor="#session of event.sessions">
-    <!-- <img src="img/nin-live.png"/> -->
     <ion-card-content>
       <ion-card-title>{{session.name}}</ion-card-title>
+      <p>{{session.time | amDateFormat:"dddd, MMMM Do YYYY, h:mm:ss a"}}</p>
       <p>{{session.description}}</p>
     </ion-card-content>
   </ion-card>

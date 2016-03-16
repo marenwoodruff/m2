@@ -5,11 +5,13 @@ import {SurveysComponent} from '../../modules/components/surveys/surveys.compone
 import {SurveyService} from '../../service/survey.service';
 import {Survey} from '../../modules/survey/survey';
 import {Event} from '../../modules/events/event';
+import {DateFormatPipe} from 'angular2-moment';
 
 @Page({
     templateUrl: 'build/pages/event/event.page.html',
     directives: [EventComponent, SurveysComponent],
-    providers:[SurveyService]
+    providers:[SurveyService],
+    pipes: [DateFormatPipe]
 })
 
 export class EventPage implements OnInit, OnDestroy{
