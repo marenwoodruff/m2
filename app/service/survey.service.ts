@@ -25,12 +25,15 @@ export class SurveyService {
       this.storage = new Storage(LocalStorage, {name: 'responses'});
     };
 
-    public getSurveys(eventId?:number):void {
+    public getSurveys(id?:number, eventId?:number):void {
       this._api.get("build/assets/survey.json")
         .map(res => <Survey[]>res.json())
         .subscribe(
-        surveys => {surveys = eventId ? surveys.filter(s => s.eventId === eventId) : surveys;
-        this.surveys.emit(surveys)},
+        surveys => {
+          surveys = eventId ? surveys.filter(s => s.eventId === eventId) : surveys;
+          surveys = id ? surveys.filter(s => s.id === id) : surveys;
+          this.surveys.emit(surveys)
+        },
         err => console.log('error: ', err),
         () => console.log('Surveys retrieval is completed')
       )

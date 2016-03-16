@@ -1,6 +1,7 @@
-import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {Component, OnInit, OnDestroy, Input} from 'angular2/core';
 import {List, Item} from 'ionic-angular';
 import {SurveyDescriptionComponent} from '../survey-description/survey-description.component';
+
 import {SurveyService} from '../../service/survey.service';
 import {Survey} from '../../models/survey/survey';
 
@@ -8,30 +9,7 @@ import {Survey} from '../../models/survey/survey';
   selector: 'surveys',
   templateUrl: 'build/modules/components/surveys/surveys.component.html',
   directives: [List, Item, SurveyDescriptionComponent],
-  providers: [SurveyService]
+  inputs:['surveys']
 })
 
-export class SurveysComponent implements OnInit, OnDestroy {
-
-  private _surveyApi: SurveyService;
-  public surveys: Survey[];
-
-  constructor(surveyService:SurveyService) {
-    this._surveyApi = surveyService;
-  }
-
-  ngOnInit():any {
-    this._surveyApi.surveys.subscribe(
-      surveys => this.surveys = surveys,
-      err => console.log('SurveysComponent subscribe error:', err),
-      () =>  console.log('finished subscribing to surveys')
-    );
-
-    this._surveyApi.getSurveys();
-  }
-
-  ngOnDestroy() {
-    this._surveyApi.surveys.unsubscribe();
-  }
-
-}
+export class SurveysComponent {}
