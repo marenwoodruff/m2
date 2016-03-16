@@ -26,9 +26,13 @@
       <event [event]="event"></event>
     </div>
     <ion-list *ngSwitchWhen="'sessions'">
-      <ion-item *ngFor="#session of event.sessions">
-        <h2>{{session.name}}</h2>
-      </ion-item>
+  <ion-card *ngFor="#session of event.sessions">
+    <!-- <img src="img/nin-live.png"/> -->
+    <ion-card-content>
+      <ion-card-title>{{session.name}}</ion-card-title>
+      <p>{{session.description}}</p>
+    </ion-card-content>
+  </ion-card>
     </ion-list>
     <div *ngSwitchWhen="'surveys'">
       <surveys *ngIf="surveys" [surveys]='surveys'></surveys>
