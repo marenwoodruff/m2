@@ -32,7 +32,6 @@ export class EventComponent implements OnInit, OnDestroy{
     );
 
     this._surveyApi.getSurveys(this.event.id);
-
   }
   ngOnDestroy() {
     this._surveyApi.surveys.unsubscribe();
