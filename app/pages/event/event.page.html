@@ -3,60 +3,35 @@
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Event Info</ion-title>
+    <ion-title>{{event.name}}</ion-title>
 </ion-navbar>
 
-    <ion-toolbar>
-      <ion-segment [(ngModel)]="page" >
-        <ion-segment-button value="overview">
-          Overview
-        </ion-segment-button>
-        <ion-segment-button value="sessions">
-          Sessions
-        </ion-segment-button>
-        <ion-segment-button value="surveys">
-          Surveys
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
+<ion-toolbar>
+  <ion-segment [(ngModel)]="page" >
+    <ion-segment-button value="overview">
+      Overview
+    </ion-segment-button>
+    <ion-segment-button value="sessions">
+      Sessions
+    </ion-segment-button>
+    <ion-segment-button value="surveys">
+      Surveys
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
 
-    <ion-content>
-
-      <div [ngSwitch]="page">
-        <div *ngSwitchWhen="'overview'">
-          <event [event]="event"></event>
-        </div>
-
-        <ion-list *ngSwitchWhen="'sessions'">
-          <ion-item>
-            <h2>Luna</h2>
-          </ion-item>
-          <ion-item>
-            <h2>Milo</h2>
-          </ion-item>
-          <ion-item>
-            <h2>Bandit</h2>
-          </ion-item>
-          <ion-item>
-            <h2>Nala</h2>
-          </ion-item>
-        </ion-list>
-
-        <ion-list *ngSwitchWhen="'surveys'">
-          <ion-item>
-            <h2>Daffy</h2>
-          </ion-item>
-          <ion-item>
-            <h2>Huey</h2>
-          </ion-item>
-          <ion-item>
-            <h2>Dewey</h2>
-          </ion-item>
-          <ion-item>
-            <h2>Louie</h2>
-          </ion-item>
-        </ion-list>
-      </div>
-
-
-    </ion-content>
+<ion-content>
+  <div [ngSwitch]="page">
+    <div *ngSwitchWhen="'overview'">
+      <event [event]="event"></event>
+    </div>
+    <ion-list *ngSwitchWhen="'sessions'">
+      <ion-item *ngFor="#session of event.sessions">
+        <h2>{{session.name}}</h2>
+      </ion-item>
+    </ion-list>
+    <div *ngSwitchWhen="'surveys'">
+      <surveys *ngIf="surveys" [surveys]='surveys'></surveys>
+    </div>
+  </div>
+</ion-content>
