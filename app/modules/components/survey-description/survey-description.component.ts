@@ -1,18 +1,18 @@
 import {Component} from 'angular2/core';
 import {Item, NavController} from 'ionic-angular';
 import {Survey} from '../../survey/survey';
-import {QuestionComponent} from '../question/question.component';
+import {SurveyPage} from '../../../pages/survey/survey.page';
 
 @Component({
-  selector: 'survey',
-  templateUrl: 'build/modules/components/survey/survey.component.html',
+  selector: 'survey-description',
+  templateUrl: 'build/modules/components/survey-description/survey-description.component.html',
   directives: [Item],
   inputs:['survey']
 })
 
-export class SurveyComponent {
+export class SurveyDescriptionComponent {
   survey: Survey;
-  nav: any;
+  nav: NavController;
 
   constructor(nav: NavController) {
     this.nav = nav;
@@ -20,7 +20,7 @@ export class SurveyComponent {
 
   viewSurvey(survey) {
     console.log(survey);
-    this.nav.push(QuestionComponent, {
+    this.nav.push(SurveyPage, {
       question: survey
     });
   }
