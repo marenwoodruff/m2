@@ -15,7 +15,7 @@ import {Event} from '../../events/event';
 export class SessionComponent implements OnInit, OnDestroy{
   event:Event;
   private _surveyApi: SurveyService;
-  public survey: Survey;
+  public surveys: Survey[];
   navController: NavController;
 
   constructor(surveyService:SurveyService, navController: NavController) {
@@ -23,13 +23,13 @@ export class SessionComponent implements OnInit, OnDestroy{
     this.navController = navController;
   }
   ngOnInit():any{
-    this._surveyApi.survey.subscribe(
-      survey => {this.survey = survey; console.log(survey)},
+    this._surveyApi.surveys.subscribe(
+      surveys => this.surveys = surveys,
       err => console.log('SurveysComponent subscribe error:', err),
       () =>  console.log('finished subscribing to surveys')
     );
 
-    this._surveyApi.getSurvey(287182928);
+    this._surveyApi.getSurveys(287182928);
 
   }
   ngOnDestroy() {

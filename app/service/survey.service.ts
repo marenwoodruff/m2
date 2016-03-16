@@ -12,7 +12,6 @@ import {SurveyProgress} from "../modules/survey/surveyProgress";
 export class SurveyService {
 
     private _api:Http;
-    survey:EventEmitter<Survey> = new EventEmitter();
     surveys:EventEmitter<Survey[]> = new EventEmitter();
     surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
     surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
@@ -21,26 +20,17 @@ export class SurveyService {
       this._api = http;
     };
 
-    public getSurveys(eventId?:number):void {
+    public getSurveys(id?:number, eventId?:number):void {
       this._api.get("build/assets/survey.json")
         .map(res => <Survey[]>res.json())
         .subscribe(
         surveys => {
           surveys = eventId ? surveys.filter(s => s.eventId === eventId) : surveys;
+          surveys = id ? surveys.filter(s => s.id === id) : surveys;
           this.surveys.emit(surveys)
         },
         err => console.log('error: ', err),
         () => console.log('Surveys retrieval is completed')
-      )
-    };
-
-    public getSurvey(id?:number):void {
-      this._api.get("build/assets/survey.json")
-        .map(res => <Survey>res.json().find(s => s.id === id))
-        .subscribe(
-        survey => this.survey.emit(survey),
-        err => console.log('error: ', err),
-        () => console.log('Survey retrieval is completed')
       )
     };
 

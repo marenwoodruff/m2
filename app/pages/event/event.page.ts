@@ -8,6 +8,8 @@ import {NavParams} from 'ionic-angular';
 export class EventPage {
   params: NavParams;
   event: Event;
+  page: string = "overview";
+
   constructor(navParams: NavParams) {
     this.params = navParams;
     this.event = this.params.get('event');
