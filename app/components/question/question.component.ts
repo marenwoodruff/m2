@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {Page, NavParams} from 'ionic-angular';
-import {Question} from '../../survey/question';
+import {Question} from '../../models/survey/question';
 import {AnswerComponent} from '../answer/answer.component';
 
 @Component({
@@ -11,10 +11,6 @@ import {AnswerComponent} from '../answer/answer.component';
 })
 
 
-export class QuestionComponent { 
+export class QuestionComponent {
   question: Question;
 }
-  
-
-
-

@@ -1,8 +1,8 @@
 import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {List, Item} from 'ionic-angular';
 import {SurveyDescriptionComponent} from '../survey-description/survey-description.component';
-import {SurveyService} from '../../../service/survey.service';
-import {Survey} from '../../survey/survey';
+import {SurveyService} from '../../service/survey.service';
+import {Survey} from '../../models/survey/survey';
 
 @Component({
   selector: 'surveys',
@@ -11,7 +11,7 @@ import {Survey} from '../../survey/survey';
   providers: [SurveyService]
 })
 
-export class SurveysComponent implements OnInit, OnDestroy { 
+export class SurveysComponent implements OnInit, OnDestroy {
 
   private _surveyApi: SurveyService;
   public surveys: Survey[];

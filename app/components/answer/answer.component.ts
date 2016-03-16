@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {Answer} from '../../survey/answer';
+import {Answer} from '../../models/survey/answer';
 import {Item, Label, RadioGroup, RadioButton} from 'ionic-angular';
 import {RadioButtonComponent} from '../radio-button/radio-button.component';
 import {TextboxComponent} from '../textbox/textbox.component';

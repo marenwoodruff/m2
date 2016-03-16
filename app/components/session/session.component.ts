@@ -1,7 +1,7 @@
 import {Component, Input} from 'angular2/core';
 import {List, Item} from 'ionic-angular';
-import {Survey} from '../../survey/survey';
-import {Event} from '../../events/event';
+import {Survey} from '../../models/survey/survey';
+import {Event} from '../../models/events/event';
 
 @Component({
   selector: 'session',

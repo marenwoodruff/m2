@@ -2,8 +2,8 @@
  * Created by Abbey on 3/10/2016.
  */
 import {Component} from 'angular2/core';
-import {Event} from '../../events/event';
-import {EventPage} from '../../../pages/event/event.page';
+import {Event} from '../../models/events/event';
+import {EventPage} from '../../pages/event/event.page';
 import {Item, NavController} from 'ionic-angular';
 
 @Component({

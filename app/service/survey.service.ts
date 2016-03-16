@@ -5,11 +5,11 @@ import {Storage, LocalStorage} from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import {Question} from '../modules/survey/question';
-import {Survey} from "../modules/survey/survey";
+import {Question} from '../models/survey/question';
+import {Survey} from "../models/survey/survey";
 
-import {SurveyProgress} from "../modules/survey/surveyProgress";
-import {SurveyResponse} from "../modules/survey/surveyResponse";
+import {SurveyProgress} from "../models/survey/surveyProgress";
+import {SurveyResponse} from "../models/survey/surveyResponse";
 
 @Injectable()
 export class SurveyService {
