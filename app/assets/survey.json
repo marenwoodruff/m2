@@ -12,23 +12,28 @@
                         "options": [
                             {
                                 "selected": false,
-                                "value": "Make him a bloody Mary"
+                                "value": 1,
+                                "display": "Make him a bloody Mary"
                             },
                             {
                                 "selected": true,
-                                "value": "Ask him if he needs you to call someone"
+                                "value": 2,
+                                "display": "Ask him if he needs you to call someone"
                             },
                             {
                                 "selected": false,
-                                "value": "Tell him the police are on the way"
+                                "value": 3,
+                                "display": "Tell him the police are on the way"
                             },
                             {
                                 "selected": false,
-                                "value": "Pour a bucket of water on him"
+                                "value": 4,
+                                "display": "Pour a bucket of water on him"
                             },
                             {
                                 "selected": false,
-                                "value": "Tell him it's not his fault"
+                                "value": 5,
+                                "display": "Tell him it's not his fault"
                             }
                         ]
                     }
@@ -41,23 +46,28 @@
                         "options": [
                             {
                                 "selected": false,
-                                "value": "No moddy no mix na min ay"
+                                "value": 1,
+                                "display": "No moddy no mix na min ay"
                             },
                             {
                                 "selected": false,
-                                "value": "Run, you did it"
+                                "value": 2,
+                                "display": "Run, you did it"
                             },
                             {
                                 "selected": true,
-                                "value": "Reason with them"
+                                "value": 3,
+                                "display": "Reason with them"
                             },
                             {
                                 "selected": false,
-                                "value": "Reason with them... with money"
+                                "value": 4,
+                                "display": "Reason with them... with money"
                             },
                             {
                                 "selected": false,
-                                "value": "Go out guns-a-blazing"
+                                "value": 5,
+                                "display": "Go out guns-a-blazing"
                             }
                         ]
                     }
@@ -70,23 +80,28 @@
                     "options": [
                         {
                             "selected": false,
-                            "value": "San Diego"
+                            "value": 1,
+                            "display": "San Diego"
                         },
                         {
                             "selected": true,
-                            "value": "Nashville"
+                            "value": 2,
+                            "display": "Nashville"
                         },
                         {
                             "selected": false,
-                            "value": "New York"
+                            "value": 3,
+                            "display": "New York"
                         },
                         {
                             "selected": false,
-                            "value": "Carolina"
+                            "value": 4,
+                            "display": "Carolina"
                         },
                         {
                             "selected": false,
-                            "value": "Liverpool"
+                            "value": 5,
+                            "display": "Liverpool"
                         }
                     ]
                 }
@@ -99,19 +114,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "yes"
+                            "value": 1,
+                            "display": "yes"
                         },
                         {
                             "selected": false,
-                            "value": "no"
+                            "value": 2,
+                            "display": "no"
                         },
                         {
                             "selected": false,
-                            "value": "maybe"
+                            "value": 3,
+                            "display": "maybe"
                         },
                         {
                             "selected": false,
-                            "value": "I don't know"
+                            "value": 4,
+                            "display": "I don't know"
                         }
                     ]
                 }
@@ -131,23 +150,28 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "From a friend"
+                            "value": 1,
+                            "display": "From a friend"
                         },
                         {
                             "selected": false,
-                            "value": "Online"
+                            "value": 2,
+                            "display": "Online"
                         },
                         {
                             "selected": false,
-                            "value": "Saw an ad in the paper"
+                            "value": 3,
+                            "display": "Saw an ad in the paper"
                         },
                         {
                             "selected": false,
-                            "value": "Another conference"
+                            "value": 4,
+                            "display": "Another conference"
                         },
                         {
                             "selected": false,
-                            "value": "other"
+                            "value": 5,
+                            "display": "other"
                         }
                     ]
                 }
@@ -167,19 +191,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -192,19 +220,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -217,19 +249,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -242,19 +278,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -267,19 +307,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -292,19 +336,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -317,19 +365,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -342,19 +394,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -367,19 +423,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
@@ -392,19 +452,23 @@
                     "options": [
                         {
                             "selected": true,
-                            "value": "Excellent"
+                            "value": 1,
+                            "display": "Excellent"
                         },
                         {
                             "selected": false,
-                            "value" : "Good"
+                            "value": 2,
+                            "display" : "Good"
                         },
                         {
                             "selected": false,
-                            "value" : "Fair"
+                            "value": 3,
+                            "display" : "Fair"
                         },
                         {
                             "selected": false,
-                            "value" : "Poor"
+                            "value": 4,
+                            "display" : "Poor"
                         }
                     ]
                 }
