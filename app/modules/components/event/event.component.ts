@@ -19,7 +19,7 @@ export class EventComponent implements OnInit, OnDestroy{
   private _surveyApi: SurveyService;
   public surveys: Survey[];
   navController: NavController;
-
+  pet: string = "puppies";
   constructor(surveyService:SurveyService, navController: NavController) {
     this._surveyApi = surveyService;
     this.navController = navController;
@@ -31,7 +31,7 @@ export class EventComponent implements OnInit, OnDestroy{
       () =>  console.log('finished subscribing to surveys')
     );
 
-    this._surveyApi.getSurveys(this.event.id);
+    this._surveyApi.getSurveys(null, this.event.id);
 
   }
   ngOnDestroy() {
