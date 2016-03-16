@@ -3,7 +3,11 @@
   <ion-radio [checked]="a.selected" [value]="a.value.length" (click)="getValue(a)"></ion-radio>
 </ion-item> -->
 
-<ion-item *ngFor="#a of answer.options">
-  <input name="answer.type" type="radio" [value]="a.value.length" [checked]="a.selected"/>
+<ion-item *ngFor="#a of answer.answer.options">
+  <input name="a.answer.type" 
+         type="radio" 
+         [value]="answer.questionId" 
+         [checked]="a.selected"
+         (click)="getValue(answer.questionId, a.value)"/>
   <label>{{a.value}}</label>
 </ion-item>

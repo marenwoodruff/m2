@@ -1,4 +1,4 @@
-<div [ngSwitch]="answer.type">
+<div [ngSwitch]="answer.answer.type">
   <ion-list *ngSwitchWhen="'radio'" radio-group>
     <form>
       <radio-button [answer]="answer"></radio-button>
