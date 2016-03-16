@@ -6,7 +6,7 @@
   </ion-list>
   <div *ngSwitchWhen="'textBox'">
     <form>
-      <textbox></textbox>
+      <textbox [answer]="answer"></textbox>
     </form>
   </div>
   <ion-list *ngSwitchWhen="'checkBox'">

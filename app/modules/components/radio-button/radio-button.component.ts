@@ -4,6 +4,7 @@ import {Item, Label, RadioButton} from 'ionic-angular';
 import {Answer} from '../../survey/answer';
 import {Response} from '../../survey/response';
 import {Option} from '../../survey/option';
+import {Selection} from '../../survey/selection';
 
 @Component({
   selector: 'radio-button',
@@ -15,9 +16,12 @@ import {Option} from '../../survey/option';
 export class RadioButtonComponent {
   answer: Answer;
   response: Response;
+  selection: Selection[];
 
-  getValue(id: number, res: Option) {
-    console.log('questionId:', id, ' response:', res);
+  getValue(id: number, res: any) {
+    let selection = new Selection(res.value, res.display);
+    let response = new Response(id, [selection]);
+    return response;
   }
 }
 
