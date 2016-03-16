@@ -4,7 +4,7 @@
 import {Component,OnInit,OnDestroy} from 'angular2/core';
 import {List} from 'ionic-angular';
 import {EventListItemComponent} from "./eventListItem.component";
-import {EventService} from "../../../service/event.service";
+import {EventService} from "../../service/event.service";
 
 @Component({
     selector: 'events',

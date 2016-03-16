@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {Item, NavController} from 'ionic-angular';
-import {Survey} from '../../survey/survey';
-import {SurveyPage} from '../../../pages/survey/survey.page';
+import {Survey} from '../../models/survey/survey';
+import {SurveyPage} from '../../pages/survey/survey.page';
 
 @Component({
   selector: 'survey-description',

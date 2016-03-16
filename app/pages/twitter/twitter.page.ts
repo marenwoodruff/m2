@@ -1,5 +1,5 @@
 import {Page} from 'ionic-angular';
-import {TwitterComponent} from '../../modules/components/twitter/twitter.component';
+import {TwitterComponent} from '../../components/twitter/twitter.component';
 
 @Page({
   templateUrl: 'build/pages/twitter/twitter.page.html',

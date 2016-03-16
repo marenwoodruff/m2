@@ -1,9 +1,9 @@
 import {Component, OnInit, OnDestroy, Input} from 'angular2/core';
-import {SurveyService} from '../../../service/survey.service';
+import {SurveyService} from '../../service/survey.service';
 import {List, Item, NavController} from 'ionic-angular';
-import {SessionPage} from '../../../pages/session/session.page';
-import {Survey} from '../../survey/survey';
-import {Event} from '../../events/event';
+import {SessionPage} from '../../pages/session/session.page';
+import {Survey} from '../../models/survey/survey';
+import {Event} from '../../models/events/event';
 
 
 @Component({

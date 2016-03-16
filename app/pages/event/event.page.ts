@@ -1,5 +1,5 @@
 import {Page} from 'ionic-angular';
-import {EventComponent} from '../../modules/components/event/event.component';
+import {EventComponent} from '../../components/event/event.component';
 import {NavParams} from 'ionic-angular';
 
 @Page({

@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
 import {Item, Label, RadioButton} from 'ionic-angular';
-import {Answer} from '../../survey/answer';
+import {Answer} from '../../models/survey/answer';
 
 @Component({
   selector: 'radio-button',
@@ -17,4 +17,3 @@ export class RadioButtonComponent {
     console.log(val);
   }
 }
-

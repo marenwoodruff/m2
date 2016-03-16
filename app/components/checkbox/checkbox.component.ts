@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {Item, Label, Checkbox} from 'ionic-angular';
-import {Answer} from '../../survey/answer';
+import {Answer} from '../../models/survey/answer';
 
 @Component({
   selector: 'checkbox',
