@@ -139,7 +139,14 @@
                 "questionId": 67,
                 "text": "What could we do to improve the experience?",
                 "answer": {
-                    "type": "textBox"
+                    "type": "textBox",
+                    "options": [
+                        {
+                            "selected": false,
+                            "value": null,
+                            "display": null
+                        }
+                    ]
                 }
             },
             {
@@ -477,42 +484,84 @@
                 "questionId": 11,
                 "text": "What did you like most about the seminar?",
                 "answer": {
-                    "type": "textBox"
+                    "type": "textBox",
+                    "options": [
+                        {
+                            "selected": false,
+                            "value": null,
+                            "display": null
+                        }
+                    ]
                 }
             },
             {
                 "questionId": 12,
                 "text": "What can MATRIX do to improve the seminar?",
                 "answer": {
-                    "type": "textBox"
+                    "type": "textBox",
+                    "options": [
+                        {
+                            "selected": false,
+                            "value": null,
+                            "display": null
+                        }
+                    ]
                 }
             },
             {
                 "questionId": 13,
                 "text": "Where are you n adopting Agile at your current company?",
                 "answer": {
-                    "type": "textBox"
+                    "type": "textBox",
+                    "options": [
+                        {
+                            "selected": false,
+                            "value": null,
+                            "display": null
+                        }
+                    ]
                 }
             },
             {
                 "questionId": 14,
                 "text": "If you have adopted Agile, what has your experience been so far?",
                 "answer": {
-                    "type": "textBox"
+                    "type": "textBox",
+                    "options": [
+                        {
+                            "selected": false,
+                            "value": null,
+                            "display": null
+                        }
+                    ]
                 }
             },
             {
                 "questionId": 15,
                 "text": "Are you interested in a more in-depth discussion regarding Agile/Agile Consulting Services with one fo MATRIX's Agilel Consultants?",
                 "answer": {
-                    "type": "textBox"
+                    "type": "textBox",
+                    "options": [
+                        {
+                            "selected": false,
+                            "value": null,
+                            "display": null
+                        }
+                    ]
                 }
             },
             {
                 "questionId": 16,
                 "text": "What seminars would you like MATRIX to offer?",
                 "answer": {
-                    "type": "textBox"
+                    "type": "textBox",
+                    "options": [
+                        {
+                            "selected": false,
+                            "value": null,
+                            "display": null
+                        }
+                    ]
                 }
             }
         ]
