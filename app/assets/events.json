@@ -6,6 +6,12 @@
     "description": "Dude, lets get angular description",
     "starts": "6/15/2016",
     "ends": "6/19/2016",
+    "location": {
+      "address": "1234 Main St",
+      "city": "New York",
+      "state": "New York",
+      "telephone": "123.333.4433"
+    },
     "sessions": [
       {
         "Id": 12,
@@ -18,12 +24,13 @@
             "image": "https://avatars2.githubusercontent.com/u/1043835?v=3&s=120"
           }
         ],
-        "location": {
+        "sessionLocation": {
           "building": "Main",
           "Room": "3200"
         },
         "time": "2016-06-17T17:49:27-04:00",
-        "description": "Bro do you even Agile?"
+        "overview": "Bro do you even Agile?",
+        "targetAudience": "People who want to know how to agile"
       }
     ]
   },
@@ -34,6 +41,12 @@
     "description": "Angular 2 is so so cool description",
     "starts": "3/29/2016",
     "ends": "3/29/2016",
+    "location": {
+      "address": "1234 Main St",
+      "city": "New York",
+      "state": "New York",
+      "telephone": "123.333.4433"
+    },
     "sessions": [
       {
         "Id": 14,
@@ -46,12 +59,13 @@
             "image": "https://avatars2.githubusercontent.com/u/1043835?v=3&s=120"
           }
         ],
-        "location": {
+        "sessionLocation": {
           "building": "Main",
           "Room": "Phoenix"
         },
         "time": "2016-03-29T17:49:27-04:00",
-        "description": "Decorators are so cool! Learn how to decorate your home with this awesome session from Abbey!"
+        "overview": "Decorators are so cool! Learn how to decorate your home with this awesome session from Abbey!",
+        "targetAudience": "Angular newbies and aficionados"
       },
       {
         "Id": 17,
@@ -64,12 +78,48 @@
             "image": "https://avatars2.githubusercontent.com/u/1043835?v=3&s=120"
           }
         ],
-        "location": {
+        "sessionLocation": {
           "building": "Main",
           "Room": "Great Hall"
         },
         "time": "2016-03-29T17:49:27-05:00",
-        "description": "Components are better, come to this session to find out why."
+        "overview": "Components are better, come to this session to find out why.",
+        "targetAudience": "People who don't know a thing about dem directives"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "LeaderShip's Critical Role in an Agile Transformation",
+    "image": "http://www.matrixres.com/media/2429/rtp_mar24_tall.jpg",
+    "description": "Agile | Lunch 'n Learn | Free",
+    "starts": "03.24.2016",
+    "ends": "03.24.2016",
+    "location": {
+      "address": "1000 Abernathy Road Suite 500 - Glenn Memorial Room Atlanta, GA 30328",
+      "city": "Atlanta",
+      "state": "Georgia",
+      "telephone": "800.627.3533"
+    },
+    "sessions": [
+      {
+        "Id": 12,
+        "name": "Agile Manifesto",
+        "speakers": [
+          {
+            "id": 14,
+            "firstName": "Joshua",
+            "lastName": "Jack",
+            "image": "http://www.matrixres.com/media/1332/joshuajack.png"
+          }
+        ],
+        "sessionLocation": {
+          "building": "MATRIX Atlanta Office",
+          "Room": "5th Floor"
+        },
+        "time": "2016-03-24T11:00:00-04:00",
+        "overview": "With the right preparation and coaching, Agile transformations can be tremendously valuable to organizations.  While studies show that Senior management support is the single largest contributor to success, only pockets of management typically enter an Agile adoption informed. This group consists of the Executives and various Senior managers who lead Business or IT resources and will be significantly affected by the move to Agile.This session is designed to raise awareness and set expectations for the various areas of management about to embark on an Agile transformation.  Whether your organization is actively preparing for an Agile transformation, or still in the decision-making phase, this session will help you evaluate your Agile readiness and give you the topics your organization needs to discuss in order to be successful",
+        "targetAudience": "This session is geared towards C-level executives, Organization leaders, Senior Business management, Product management, IT management, or any sponsor of an Agile transformation"
       }
     ]
   }

@@ -1,4 +1,5 @@
 import {Session} from "./session";
+import {Location} from './location';
 
 export class Event {
 
@@ -8,6 +9,6 @@ export class Event {
     description:string;
     starts:Date;
     ends:Date;
-    sesions:Session[]
-
+    sessions:Session[];
+    location: Location;
 }
