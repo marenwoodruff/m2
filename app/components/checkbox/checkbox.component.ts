@@ -7,7 +7,7 @@ import {Option} from '../../models/survey/option';
 
 @Component({
   selector: 'checkbox',
-  templateUrl: 'build/modules/components/checkbox/checkbox.component.html',
+  templateUrl: 'build/components/checkbox/checkbox.component.html',
   directives: [Item, Label, Checkbox],
   inputs: ['answer']
 })
