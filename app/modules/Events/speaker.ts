@@ -5,5 +5,6 @@
 export class Speaker {
     id:number;
     firstName:string;
-    lastName:string
+    lastName:string;
+    image:string;
 }
