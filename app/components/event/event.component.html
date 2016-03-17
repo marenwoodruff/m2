@@ -1,5 +1,6 @@
 <h2 class="center">{{event.name}}</h2>
-<h5 class="center">{{event.starts}} - {{event.ends}}</h5>
+<h5 *ngIf="event.starts === event.ends" class="center">{{event.starts}}</h5>
+<h5 *ngIf="event.starts !== event.ends" class="center">{{event.starts}} - {{event.ends}}</h5>
 <ion-row style="justify-content: center;">
   <ion-col width-75>
     <img src="{{event.image}}" alt="{{event.name}}"/>
