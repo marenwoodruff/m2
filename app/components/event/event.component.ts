@@ -6,7 +6,7 @@ import {Event} from '../../models/events/event';
 
 @Component({
   selector: 'event',
-  templateUrl: 'build/modules/components/event/event.component.html',
+  templateUrl: 'build/components/event/event.component.html',
   inputs:['event'],
   directives: [List, Item],
 })

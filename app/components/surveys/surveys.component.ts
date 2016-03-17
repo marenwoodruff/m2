@@ -7,7 +7,7 @@ import {Survey} from '../../models/survey/survey';
 
 @Component({
   selector: 'surveys',
-  templateUrl: 'build/modules/components/surveys/surveys.component.html',
+  templateUrl: 'build/components/surveys/surveys.component.html',
   directives: [List, Item, SurveyDescriptionComponent],
   inputs:['surveys']
 })
