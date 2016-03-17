@@ -1,569 +1,449 @@
-[
-    {
-        "name": "Conference Survey",
-        "id": 287182928,
-        "eventId": 2,
-        "questions": [
-                {
-                    "questionId": 23,
-                    "text": "What do you do with a drunken sailor, early in the morning?",
-                    "answer": {
-                        "type": "radio",
-                        "options": [
-                            {
-                                "selected": false,
-                                "value": 1,
-                                "display": "Make him a bloody Mary"
-                            },
-                            {
-                                "selected": true,
-                                "value": 2,
-                                "display": "Ask him if he needs you to call someone"
-                            },
-                            {
-                                "selected": false,
-                                "value": 3,
-                                "display": "Tell him the police are on the way"
-                            },
-                            {
-                                "selected": false,
-                                "value": 4,
-                                "display": "Pour a bucket of water on him"
-                            },
-                            {
-                                "selected": false,
-                                "value": 5,
-                                "display": "Tell him it's not his fault"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "questionId": 44,
-                    "text": "Bad boys bad boys, watcha gonna do when they come for you?",
-                    "answer": {
-                        "type": "radio",
-                        "options": [
-                            {
-                                "selected": false,
-                                "value": 1,
-                                "display": "No moddy no mix na min ay"
-                            },
-                            {
-                                "selected": false,
-                                "value": 2,
-                                "display": "Run, you did it"
-                            },
-                            {
-                                "selected": true,
-                                "value": 3,
-                                "display": "Reason with them"
-                            },
-                            {
-                                "selected": false,
-                                "value": 4,
-                                "display": "Reason with them... with money"
-                            },
-                            {
-                                "selected": false,
-                                "value": 5,
-                                "display": "Go out guns-a-blazing"
-                            }
-                        ]
-                    }
-                },
-            {
-                "questionId": 12,
-                "text": "Where in the world is Carmen Sandiego?",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": false,
-                            "value": 1,
-                            "display": "San Diego"
-                        },
-                        {
-                            "selected": true,
-                            "value": 2,
-                            "display": "Nashville"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display": "New York"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display": "Carolina"
-                        },
-                        {
-                            "selected": false,
-                            "value": 5,
-                            "display": "Liverpool"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 19,
-                "text": "Would you do a survey like this again?",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "yes"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display": "no"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display": "maybe"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display": "I don't know"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 67,
-                "text": "What could we do to improve the experience?",
-                "answer": {
-                    "type": "textBox",
-                    "options": [
-                        {
-                            "selected": false,
-                            "value": null,
-                            "display": null
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 2,
-                "text": "How did you hear about us?",
-                "answer": {
-                    "type": "checkBox",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "From a friend"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display": "Online"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display": "Saw an ad in the paper"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display": "Another conference"
-                        },
-                        {
-                            "selected": false,
-                            "value": 5,
-                            "display": "other"
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "name": "Leadership's Critical Role in an Agile Transformation",
-        "id": 2,
-        "eventId": 1,
-        "questions": [
-            {
-                "questionId": 1,
-                "text": "The length of the seminar was appropriate for the material presented.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 2,
-                "text": "The depth of information presented was appropriate.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 3,
-                "text": "The materials provided for this seminar were helpful.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 4,
-                "text": "The seminar was worthwhile in terms of relevance and practical application.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 5,
-                "text": "The instructor(s) was knowledgeable of subject matter.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 6,
-                "text": "The instructor(s) was well organized and prepared.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 7,
-                "text": "The instructor(s) was able to present the material effectively.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 8,
-                "text": "The instructor(s) was able to answer questions in a clear concise manner.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 9,
-                "text": "The seminar met my expectations.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 10,
-                "text": "The seminar was beneficial for my professional growth.",
-                "answer": {
-                    "type": "radio",
-                    "options": [
-                        {
-                            "selected": true,
-                            "value": 1,
-                            "display": "Excellent"
-                        },
-                        {
-                            "selected": false,
-                            "value": 2,
-                            "display" : "Good"
-                        },
-                        {
-                            "selected": false,
-                            "value": 3,
-                            "display" : "Fair"
-                        },
-                        {
-                            "selected": false,
-                            "value": 4,
-                            "display" : "Poor"
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 11,
-                "text": "What did you like most about the seminar?",
-                "answer": {
-                    "type": "textBox",
-                    "options": [
-                        {
-                            "selected": false,
-                            "value": null,
-                            "display": null
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 12,
-                "text": "What can MATRIX do to improve the seminar?",
-                "answer": {
-                    "type": "textBox",
-                    "options": [
-                        {
-                            "selected": false,
-                            "value": null,
-                            "display": null
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 13,
-                "text": "Where are you n adopting Agile at your current company?",
-                "answer": {
-                    "type": "textBox",
-                    "options": [
-                        {
-                            "selected": false,
-                            "value": null,
-                            "display": null
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 14,
-                "text": "If you have adopted Agile, what has your experience been so far?",
-                "answer": {
-                    "type": "textBox",
-                    "options": [
-                        {
-                            "selected": false,
-                            "value": null,
-                            "display": null
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 15,
-                "text": "Are you interested in a more in-depth discussion regarding Agile/Agile Consulting Services with one fo MATRIX's Agilel Consultants?",
-                "answer": {
-                    "type": "textBox",
-                    "options": [
-                        {
-                            "selected": false,
-                            "value": null,
-                            "display": null
-                        }
-                    ]
-                }
-            },
-            {
-                "questionId": 16,
-                "text": "What seminars would you like MATRIX to offer?",
-                "answer": {
-                    "type": "textBox",
-                    "options": [
-                        {
-                            "selected": false,
-                            "value": null,
-                            "display": null
-                        }
-                    ]
-                }
-            }
-        ]
-    }
-]
+[{
+    "name": "Conference Survey",
+    "id": 287182928,
+    "eventId": 2,
+    "questions": [{
+        "questionId": 23,
+        "text": "What do you do with a drunken sailor, early in the morning?",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Make him a bloody Mary"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Ask him if he needs you to call someone"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Tell him the police are on the way"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Pour a bucket of water on him"
+            }, {
+                "selected": false,
+                "value": 5,
+                "display": "Tell him it's not his fault"
+            }]
+        }
+    }, {
+        "questionId": 44,
+        "text": "Bad boys bad boys, watcha gonna do when they come for you?",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "No moddy no mix na min ay"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Run, you did it"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Reason with them"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Reason with them... with money"
+            }, {
+                "selected": false,
+                "value": 5,
+                "display": "Go out guns-a-blazing"
+            }]
+        }
+    }, {
+        "questionId": 12,
+        "text": "Where in the world is Carmen Sandiego?",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "San Diego"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Nashville"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "New York"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Carolina"
+            }, {
+                "selected": false,
+                "value": 5,
+                "display": "Liverpool"
+            }]
+        }
+    }, {
+        "questionId": 19,
+        "text": "Would you do a survey like this again?",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "yes"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "no"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "maybe"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "I don't know"
+            }]
+        }
+    }, {
+        "questionId": 67,
+        "text": "What could we do to improve the experience?",
+        "answer": {
+            "type": "textBox",
+            "options": [{
+                "selected": false,
+                "value": null,
+                "display": null
+            }]
+        }
+    }, {
+        "questionId": 2,
+        "text": "How did you hear about us?",
+        "answer": {
+            "type": "checkBox",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "From a friend"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Online"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Saw an ad in the paper"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Another conference"
+            }, {
+                "selected": false,
+                "value": 5,
+                "display": "other"
+            }]
+        }
+    }]
+}, {
+    "name": "Leadership's Critical Role in an Agile Transformation",
+    "id": 2,
+    "eventId": 1,
+    "questions": [{
+        "questionId": 1,
+        "text": "The length of the seminar was appropriate for the material presented.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 2,
+        "text": "The depth of information presented was appropriate.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 3,
+        "text": "The materials provided for this seminar were helpful.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 4,
+        "text": "The seminar was worthwhile in terms of relevance and practical application.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 5,
+        "text": "The instructor(s) was knowledgeable of subject matter.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 6,
+        "text": "The instructor(s) was well organized and prepared.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 7,
+        "text": "The instructor(s) was able to present the material effectively.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 8,
+        "text": "The instructor(s) was able to answer questions in a clear concise manner.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 9,
+        "text": "The seminar met my expectations.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 10,
+        "text": "The seminar was beneficial for my professional growth.",
+        "answer": {
+            "type": "radio",
+            "options": [{
+                "selected": false,
+                "value": 1,
+                "display": "Excellent"
+            }, {
+                "selected": false,
+                "value": 2,
+                "display": "Good"
+            }, {
+                "selected": false,
+                "value": 3,
+                "display": "Fair"
+            }, {
+                "selected": false,
+                "value": 4,
+                "display": "Poor"
+            }]
+        }
+    }, {
+        "questionId": 11,
+        "text": "What did you like most about the seminar?",
+        "answer": {
+            "type": "textBox",
+            "options": [{
+                "selected": false,
+                "value": null,
+                "display": null
+            }]
+        }
+    }, {
+        "questionId": 12,
+        "text": "What can MATRIX do to improve the seminar?",
+        "answer": {
+            "type": "textBox",
+            "options": [{
+                "selected": false,
+                "value": null,
+                "display": null
+            }]
+        }
+    }, {
+        "questionId": 13,
+        "text": "Where are you n adopting Agile at your current company?",
+        "answer": {
+            "type": "textBox",
+            "options": [{
+                "selected": false,
+                "value": null,
+                "display": null
+            }]
+        }
+    }, {
+        "questionId": 14,
+        "text": "If you have adopted Agile, what has your experience been so far?",
+        "answer": {
+            "type": "textBox",
+            "options": [{
+                "selected": false,
+                "value": null,
+                "display": null
+            }]
+        }
+    }, {
+        "questionId": 15,
+        "text": "Are you interested in a more in-depth discussion regarding Agile/Agile Consulting Services with one fo MATRIX's Agilel Consultants?",
+        "answer": {
+            "type": "textBox",
+            "options": [{
+                "selected": false,
+                "value": null,
+                "display": null
+            }]
+        }
+    }, {
+        "questionId": 16,
+        "text": "What seminars would you like MATRIX to offer?",
+        "answer": {
+            "type": "textBox",
+            "options": [{
+                "selected": false,
+                "value": null,
+                "display": null
+            }]
+        }
+    }]
+}]
