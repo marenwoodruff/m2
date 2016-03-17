@@ -5,7 +5,7 @@ import {SurveyPage} from '../../pages/survey/survey.page';
 
 @Component({
   selector: 'survey-description',
-  templateUrl: 'build/modules/components/survey-description/survey-description.component.html',
+  templateUrl: 'build/components/survey-description/survey-description.component.html',
   directives: [Item],
   inputs:['survey']
 })
