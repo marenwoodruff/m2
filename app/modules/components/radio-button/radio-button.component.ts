@@ -19,9 +19,17 @@ export class RadioButtonComponent {
   selection: Selection[];
 
   getValue(id: number, res: any) {
-    let selection = new Selection(res.value, res.display);
-    let response = new Response(id, [selection]);
-    return response;
+    if (res.selected) {
+      res.selected = false
+    } else {
+      res.selected = true;
+    }
+
+    // let selection = new Selection(res.value, res.display);
+    // let response = new Response(id, [selection]);
+    // return response;
+    // res.selected = true;
+    console.log(res);
   }
 }
 
