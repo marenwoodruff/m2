@@ -3,12 +3,12 @@ import {List, Item} from 'ionic-angular';
 import {DateFormatPipe} from 'angular2-moment';
 
 @Component({
-  selector: 'sessions',
-  templateUrl: 'build/components/sessions/sessions.component.html',
+  selector: 'session',
+  templateUrl: 'build/components/session/session.component.html',
   directives: [List, Item],
-  inputs: ['sessions'],
+  inputs: ['session'],
   pipes: [DateFormatPipe]
 })
 
 
-export class SessionsComponent {}
+export class SessionComponent {}

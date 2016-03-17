@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-card-content>
+    <h5><strong>{{session.time | amDateFormat:"dddd, MMMM Do YYYY, h:mm:ss a"}}</strong></h5>
+    <p>{{session.overview}}</p>
+    <ion-list>
+      <ion-list-header>
+        Speakers
+      </ion-list-header>
+      <ion-item *ngFor="#speaker of session.speakers">
+        <ion-avatar item-left>
+          <img src="{{speaker.image}}">
+        </ion-avatar>
+        <h2>{{speaker.firstName}} {{speaker.lastName}}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
