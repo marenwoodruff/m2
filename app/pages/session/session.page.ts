@@ -1,10 +1,8 @@
 import {Page} from 'ionic-angular';
-import {Session} from '../../modules/events/session';
-import {SessionComponent} from '../../modules/components/session/session.component';
+import {Session} from '../../models/events/session';
 import {NavParams} from 'ionic-angular';
 @Page({
     templateUrl: 'build/pages/session/session.page.html',
-    directives: [SessionComponent]
 })
 export class SessionPage {
   params: NavParams;
