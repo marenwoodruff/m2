@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Item, Label, Checkbox} from 'ionic-angular';
 import {Answer} from '../../survey/answer';
 import {Response} from '../../survey/response';
+import {Selection} from '../../survey/selection';
 import {Option} from '../../survey/option';
 
 @Component({
@@ -13,9 +14,11 @@ import {Option} from '../../survey/option';
 
 export class CheckboxComponent {
   answer: Answer;
+  selection: Selection[];
+  id: number;
   response: Response;
 
-  getValue(id: number, res: Option) {
-    console.log('questionId:', id, ' response:', res);
+  getValue(res: Option) {
+    console.log('response:', res);
   }
 }
