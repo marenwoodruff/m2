@@ -21,7 +21,8 @@
           "building": "Main",
           "Room": "3200"
         },
-        "time": "6-19-2016T09:45:00"
+        "time": "6-19-2016T09:45:00",
+        "description": "Bro do you even Agile?"
       }
     ]
   },
@@ -47,7 +48,8 @@
           "building": "Main",
           "Room": "Phoenix"
         },
-        "time": "3-29-2016T12:00:00"
+        "time": "3-29-2016T12:00:00",
+        "description": "Decorators are so cool! Learn how to decorate your home with this awesome session from Abbey!"
       },
       {
         "Id": 17,
@@ -63,7 +65,8 @@
           "building": "Main",
           "Room": "Great Hall"
         },
-        "time": "3-29-2016T13:00:00"
+        "time": "3-29-2016T13:00:00",
+        "description": "Components are better, come to this session to find out why."
       }
     ]
   }

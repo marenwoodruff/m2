@@ -1,7 +1,7 @@
 import {Question} from "./question";
 
 export class Survey {
-    Id:number;
+    id:number;
     eventId:number;
     name:string;
     questions:Question[];

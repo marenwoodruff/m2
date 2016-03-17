@@ -11,4 +11,5 @@ export class Session {
     speakers:Speaker[];
     location:SessionLocation;
     time:Date;
+    description:string;
 }
