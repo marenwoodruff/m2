@@ -20,7 +20,7 @@ export class TwitterService {
       let secret = "6vMzyJkVk7Z7SgAC0r6jcl8r6YUqafHbYtIJ16bRkowHAI8pNz";
 
       let bearerRequest = btoa(key + ':' + secret);
-      console.log(bearerRequest);
+      console.log(bearerRequest)
 
       let headers = new Headers();
       headers.append("Authorization", "Basic " + bearerRequest);
