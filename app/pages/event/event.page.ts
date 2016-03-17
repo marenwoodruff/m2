@@ -1,11 +1,11 @@
 import {Page, NavParams} from 'ionic-angular';
 import {OnInit, OnDestroy} from 'angular2/core';
-import {EventComponent} from '../../modules/components/event/event.component';
-import {SurveysComponent} from '../../modules/components/surveys/surveys.component';
+import {EventComponent} from '../../components/event/event.component';
+import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {SurveyService} from '../../service/survey.service';
-import {Survey} from '../../modules/survey/survey';
-import {Event} from '../../modules/events/event';
 import {DateFormatPipe} from 'angular2-moment';
+import {Survey} from '../../models/survey/survey';
+import {Event} from '../../models/events/event';
 
 @Page({
     templateUrl: 'build/pages/event/event.page.html',
