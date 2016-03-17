@@ -19,7 +19,6 @@ export class SurveyDescriptionComponent {
   }
 
   viewSurvey(survey) {
-    console.log(survey);
     this.nav.push(SurveyPage, {
       question: survey
     });

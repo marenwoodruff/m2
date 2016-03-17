@@ -17,6 +17,5 @@ export class SurveyPage{
   constructor(params: NavParams) {
     this.params = params;
     this.questions = this.params.get('question');
-    console.log(this.questions);
   }
 }
