@@ -8,7 +8,7 @@ import {Item, NavController} from 'ionic-angular';
 
 @Component({
     selector: "eventListItem",
-    templateUrl: 'build/modules/components/events/eventListItem.component.html',
+    templateUrl: 'build/components/events/eventListItem.component.html',
     directives: [Item, EventPage],
     inputs:['event']
 })

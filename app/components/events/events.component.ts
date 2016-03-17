@@ -8,7 +8,7 @@ import {EventService} from "../../service/event.service";
 
 @Component({
     selector: 'events',
-    templateUrl: 'build/modules/components/events/events.component.html',
+    templateUrl: 'build/components/events/events.component.html',
     directives: [List, EventListItemComponent],
     providers:[EventService]
 })

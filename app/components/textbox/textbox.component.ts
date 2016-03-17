@@ -4,7 +4,7 @@ import {Answer} from '../../models/survey/answer';
 
 @Component({
   selector: 'textbox',
-  templateUrl: 'build/modules/components/textbox/textbox.component.html',
+  templateUrl: 'build/components/textbox/textbox.component.html',
   directives: [Item, Label, TextArea],
 })
 
