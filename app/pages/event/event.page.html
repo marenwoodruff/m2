@@ -24,9 +24,10 @@
   <div [ngSwitch]="page">
     <div *ngSwitchWhen="'overview'">
       <event [event]="event"></event>
-      <session *ngIf="event.sessions.length === 1" [session]="event.sessions[0]"></session>
     </div>
-    <sessions *ngSwitchWhen="'sessions'" [sessions]="event.sessions"></sessions>
+    <div *ngSwitchWhen="'sessions'" >
+      <sessions [sessions]="event.sessions"></sessions>
+    </div>
     <div *ngSwitchWhen="'surveys'">
       <surveys *ngIf="surveys" [surveys]='surveys'></surveys>
     </div>
