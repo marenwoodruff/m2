@@ -3,7 +3,7 @@ import {TwitterService} from '../../service/twitter.service';
 
 @Component({
   selector: 'twitter',
-  templateUrl: 'build/modules/components/twitter/twitter.component.html',
+  templateUrl: 'build/components/twitter/twitter.component.html',
   providers: [TwitterService]
 })
 
