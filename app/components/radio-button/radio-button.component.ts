@@ -8,7 +8,7 @@ import {Selection} from '../../models/survey/selection';
 
 @Component({
   selector: 'radio-button',
-  templateUrl: 'build/modules/components/radio-button/radio-button.component.html',
+  templateUrl: 'build/components/radio-button/radio-button.component.html',
   directives: [FORM_DIRECTIVES, Item, Label, RadioButton],
   inputs: ['answer'],
 })

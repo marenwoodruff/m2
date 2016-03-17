@@ -7,7 +7,7 @@ import {Answer} from '../../models/survey/answer';
 
 @Component({
   selector: 'answer',
-  templateUrl: 'build/modules/components/answer/answer.component.html',
+  templateUrl: 'build/components/answer/answer.component.html',
   directives: [Item, Label, RadioGroup, RadioButton, RadioButtonComponent, TextboxComponent, CheckboxComponent],
   inputs: ['answer']
 })
