@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 import {Page, NavParams} from 'ionic-angular';
-import {Question} from '../../modules/survey/question';
-import {Survey} from '../../modules/survey/survey';
-import {QuestionComponent} from '../../modules/components/question/question.component';
+import {Question} from '../../models/survey/question';
+import {QuestionComponent} from '../../components/question/question.component';
+import {Survey} from '../../models/survey/survey';
 
 @Page({
   templateUrl: 'build/pages/survey/survey.page.html',

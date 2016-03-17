@@ -1,8 +1,8 @@
 import {Page} from 'ionic-angular';
+import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {OnInit, OnDestroy} from 'angular2/core';
-import {SurveysComponent} from '../../modules/components/surveys/surveys.component';
 import {SurveyService} from '../../service/survey.service';
-import {Survey} from '../../modules/survey/survey';
+import {Survey} from '../../models/survey/survey';
 
 @Page({
   templateUrl: 'build/pages/surveys/surveys.page.html',
