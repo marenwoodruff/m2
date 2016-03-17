@@ -27,10 +27,21 @@
     </div>
     <ion-list *ngSwitchWhen="'sessions'">
   <ion-card *ngFor="#session of event.sessions">
-    <!-- <img src="img/nin-live.png"/> -->
     <ion-card-content>
       <ion-card-title>{{session.name}}</ion-card-title>
-      <p>{{session.description}}</p>
+      <h5><strong>{{session.time | amDateFormat:"dddd, MMMM Do YYYY, h:mm:ss a"}}</strong></h5>
+      <p>{{session.overview}}</p>
+      <ion-list>
+        <ion-list-header>
+          Speakers
+        </ion-list-header>
+        <ion-item *ngFor="#speaker of session.speakers">
+          <ion-avatar item-left>
+            <img src="{{speaker.image}}">
+          </ion-avatar>
+          <h2>{{speaker.firstName}} {{speaker.lastName}}</h2>
+        </ion-item>
+      </ion-list>
     </ion-card-content>
   </ion-card>
     </ion-list>
