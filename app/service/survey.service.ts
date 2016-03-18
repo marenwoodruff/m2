@@ -9,7 +9,6 @@ import {Question} from '../models/survey/question';
 import {Survey} from "../models/survey/survey";
 
 import {SurveyProgress} from "../models/survey/surveyProgress";
-import {SurveyResponse} from "../models/survey/surveyResponse";
 
 @Injectable()
 export class SurveyService {
@@ -48,7 +47,7 @@ export class SurveyService {
               () => console.log('Survey Questions retrieval is completed'));
     };
 
-    public saveSurveyProgress(res: SurveyResponse):void {
+    public saveSurveyProgress(res: any):void {
       let data = JSON.stringify(res);
       this.storage.set('responses', data);
     };
