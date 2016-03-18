@@ -4,12 +4,13 @@ import {List, Item, NavController} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {Event} from '../../models/events/event';
 import {SessionComponent} from '../session/session.component';
+import {EventLocationComponent} from '../event-location/event-location.component';
 
 @Component({
   selector: 'event',
   templateUrl: 'build/components/event/event.component.html',
   inputs:['event'],
-  directives: [List, Item, SessionComponent],
+  directives: [List, Item, SessionComponent, EventLocationComponent],
 })
 
 export class EventComponent{}
