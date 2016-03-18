@@ -1,9 +1,9 @@
-import {Component, OnInit} from 'angular2/core';
-import {Answer} from '../../models/survey/answer';
+import {Component} from 'angular2/core';
 import {Item, Label, RadioGroup, RadioButton} from 'ionic-angular';
 import {RadioButtonComponent} from '../radio-button/radio-button.component';
 import {TextboxComponent} from '../textbox/textbox.component';
 import {CheckboxComponent} from '../checkbox/checkbox.component';
+import {Answer} from '../../models/survey/answer';
 
 @Component({
   selector: 'answer',
@@ -13,12 +13,6 @@ import {CheckboxComponent} from '../checkbox/checkbox.component';
 })
 
 
-export class AnswerComponent implements OnInit {
+export class AnswerComponent { 
   answer: Answer;
-
-  ngOnInit() {
-    console.log(this.answer);
-  }
-
-
 }

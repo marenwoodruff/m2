@@ -13,7 +13,17 @@ import {Answer} from '../../models/survey/answer';
 export class RadioButtonComponent {
   answer: Answer;
 
-  getValue(val) {
-    console.log(val);
+  getValue(id: number, res: any) {
+    let choices = this.answer.answer.options;
+
+    choices.forEach(function(c) {
+      if (c.value === res.value) {
+        c.selected = true;
+      } else {
+        c.selected = false;
+      }
+
+      return c;
+    });
   }
 }

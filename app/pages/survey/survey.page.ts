@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Page, NavParams} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 import {QuestionComponent} from '../../components/question/question.component';
+import {Survey} from '../../models/survey/survey';
 
 @Page({
   templateUrl: 'build/pages/survey/survey.page.html',
@@ -10,13 +11,12 @@ import {QuestionComponent} from '../../components/question/question.component';
 
 
 export class SurveyPage{
-  question: Question;
   params: NavParams;
-  questions: Question;
+  survey: Survey;
 
   constructor(params: NavParams) {
     this.params = params;
-    this.questions = this.params.get('question');
-    console.log(this.questions);
+    this.survey = this.params.get('question');
+    console.log('survey:', this.survey);
   }
 }

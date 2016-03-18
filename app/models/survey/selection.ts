@@ -1,8 +1,8 @@
 export class Selection {
-    value:number;
+    value:any;
     display:string;
 
-    constructor(value?:number, display?:string) {
+    constructor(value?:any, display?:string) {
         this.value = value;
         this.display = display;
     }
