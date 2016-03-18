@@ -7,6 +7,7 @@
     "starts": "6/15/2016",
     "ends": "6/19/2016",
     "location": {
+      "name": "Madison Square Garden",
       "address": "1234 Main St",
       "city": "New York",
       "state": "New York",
@@ -44,6 +45,7 @@
     "starts": "3/29/2016",
     "ends": "3/29/2016",
     "location": {
+      "name": "CBS Studios",
       "address": "1234 Main St",
       "city": "New York",
       "state": "New York",
@@ -101,6 +103,7 @@
     "starts": "03.24.2016",
     "ends": "03.24.2016",
     "location": {
+      "name": "MATRIX ATLANTA OFFICE",
       "address": "1000 Abernathy Road Suite 500 - Glenn Memorial Room",
       "zip": "30338",
       "city": "Atlanta",
@@ -138,6 +141,7 @@
     "starts": "03.30.2016",
     "ends": "03.30.2016",
     "location": {
+      "name": "MATRIX Atlanta Office - 5th Floor",
       "address": "4019 Boulevard Center Drive",
       "zip": "32207",
       "city": "Jacksonville",
@@ -175,6 +179,7 @@
       "starts": "3/16/2016",
       "ends": "3/17/2016",
       "location": {
+        "name": "Georgia Tech Conference Center",
         "address": "800 Spring Street NW",
         "city": "Atlanta",
         "state": "Georgia",
