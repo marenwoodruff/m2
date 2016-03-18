@@ -7,7 +7,8 @@ export class Session {
     name:number;
     speakers:Speaker[];
     sessionLocation:SessionLocation;
-    time:Date;
+    startTime:Date;
+    endTime:Date;
     overview:string;
     targetAudience:string;
 }
