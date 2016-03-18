@@ -1,3 +1,5 @@
+import {Selection} from './selection';
+
 export class Response {
     questionId:number;
     selections:Selection[];
