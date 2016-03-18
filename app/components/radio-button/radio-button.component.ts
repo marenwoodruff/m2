@@ -14,10 +14,16 @@ export class RadioButtonComponent {
   answer: Answer;
 
   getValue(id: number, res: any) {
-    if (res.selected) {
-      res.selected = false
-    } else {
-      res.selected = true;
-    }
+    let choices = this.answer.answer.options;
+
+    choices.forEach(function(c) {
+      if (c.value === res.value) {
+        c.selected = true;
+      } else {
+        c.selected = false;
+      }
+
+      return c;
+    });
   }
 }
