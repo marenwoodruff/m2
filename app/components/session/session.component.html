@@ -1,7 +1,18 @@
+<h6 class="center matrixBlueFont"><strong>Time: {{session.startTime | amDateFormat:"h:mm:ss a"}} - {{session.endTime | amDateFormat:"h:mm:ss a"}}</strong></h6>
+<ion-card>
+  <ion-card-header>Overview</ion-card-header>
+  <ion-card-content>
+    <p>{{session.overview}}</p>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+  <ion-card-header>Target Audience</ion-card-header>
+  <ion-card-content>
+    <p>{{session.targetAudience}}</p>
+  </ion-card-content>
+</ion-card>
 <ion-card>
   <ion-card-content>
-    <h5><strong>{{session.time | amDateFormat:"dddd, MMMM Do YYYY, h:mm:ss a"}}</strong></h5>
-    <p>{{session.overview}}</p>
     <ion-list>
       <ion-list-header>
         Speakers

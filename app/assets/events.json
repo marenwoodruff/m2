@@ -28,7 +28,8 @@
           "building": "Main",
           "Room": "3200"
         },
-        "time": "2016-06-17T17:49:27-04:00",
+        "startTime": "2016-06-17T17:49:27-04:00",
+        "endTime": "2016-06-17T17:49:27-04:00",
         "overview": "Bro do you even Agile?",
         "targetAudience": "People who want to know how to agile"
       }
@@ -63,7 +64,8 @@
           "building": "Main",
           "Room": "Phoenix"
         },
-        "time": "2016-03-29T17:49:27-04:00",
+        "startTime": "2016-03-29T17:49:27-04:00",
+        "endTime": "2016-03-29T17:49:27-04:00",
         "overview": "Decorators are so cool! Learn how to decorate your home with this awesome session from Abbey!",
         "targetAudience": "Angular newbies and aficionados"
       },
@@ -82,7 +84,8 @@
           "building": "Main",
           "Room": "Great Hall"
         },
-        "time": "2016-03-29T17:49:27-05:00",
+        "startTime": "2016-03-29T17:49:27-05:00",
+        "endTime": "2016-03-29T17:49:27-05:00",
         "overview": "Components are better, come to this session to find out why.",
         "targetAudience": "People who don't know a thing about dem directives"
       }
@@ -103,11 +106,11 @@
     },
     "sessions": [
       {
-        "Id": 12,
+        "Id": 13,
         "name": "LeaderShip's Critical Role in an Agile Transformation",
         "speakers": [
           {
-            "id": 14,
+            "id": 18,
             "firstName": "Joshua",
             "lastName": "Jack",
             "image": "http://www.matrixres.com/media/1332/joshuajack.png"
@@ -117,10 +120,123 @@
           "building": "MATRIX Atlanta Office",
           "Room": "5th Floor"
         },
-        "time": "2016-03-24T11:00:00-04:00",
+        "startTime": "2016-03-30T11:00:00-04:00",
+        "endTime": "2016-03-30T13:00:00-04:00",
         "overview": "With the right preparation and coaching, Agile transformations can be tremendously valuable to organizations.  While studies show that Senior management support is the single largest contributor to success, only pockets of management typically enter an Agile adoption informed. This group consists of the Executives and various Senior managers who lead Business or IT resources and will be significantly affected by the move to Agile.This session is designed to raise awareness and set expectations for the various areas of management about to embark on an Agile transformation.  Whether your organization is actively preparing for an Agile transformation, or still in the decision-making phase, this session will help you evaluate your Agile readiness and give you the topics your organization needs to discuss in order to be successful",
         "targetAudience": "This session is geared towards C-level executives, Organization leaders, Senior Business management, Product management, IT management, or any sponsor of an Agile transformation"
       }
     ]
-  }
+  },
+  {
+    "id": 4,
+    "name": "Mixed Company: Successfully Applying Multiple Agile Frameworks in Your Organization",
+    "image": "http://www.matrixres.com/media/2459/jax_mar30_tall.jpg",
+    "description": "Agile | Lunch 'n Learn | Free",
+    "starts": "03.30.2016",
+    "ends": "03.30.2016",
+    "location": {
+      "address": "4019 Boulevard Center Drive Jacksonville, FL 32207",
+      "city": "Jacksonville",
+      "state": "Florida",
+      "telephone": "904.627.3533"
+    },
+    "sessions": [
+      {
+        "Id": 12,
+        "name": "Mixed Company: Successfully Applying Multiple Agile Frameworks in Your Organization",
+        "speakers": [
+          {
+            "id": 14,
+            "firstName": "Robert",
+            "lastName": "Woods",
+            "image": "http://www.matrixres.com/media/1337/robertwoods.png"
+          }
+        ],
+        "sessionLocation": {
+          "building": "Schultz Center",
+          "Room": ""
+        },
+        "startTime": "2016-03-30T11:00:00-04:00",
+        "endTime": "2016-03-30T13:00:00-04:00",
+        "overview": "You've chosen an Agile framework but why does it seem as if everyone is doing it differently? What impact will this have on your Agile adoption? Won't this cause conflict and misunderstanding across the teams and leadership? As an organization begins the process of applying Agile they often realize that one single framework may not fit every scenario within the organization. Participants in this session will begin by experiencing this difference (in a simulation you can take home). As a group, we will identify when there is a need to make a change, discuss why it’s OK to make the change and review real-world scenarios that you may be experiencing right now which cry out for more than one way of “skinning the cat”!",
+        "targetAudience": "This session is primarily geared towards Project Managers, Product Owners, Business Analysts, Scrum Masters, PMO Directors, Dev and Quality Leads, and Dev and Business Directors and VPs."
+      }
+    ]
+  },
+  {
+      "id": 5,
+      "name": "The Great Wide Open",
+      "image": "https://pbs.twimg.com/profile_images/686596784018321408/Vp8AsJor_400x400.png",
+      "description": "A TECHNICAL CONFERENCE EXPLORING OPEN TECH AND THE OPEN WEB IN THE ENTERPRISE",
+      "starts": "3/16/2016",
+      "ends": "3/17/2016",
+      "location": {
+        "address": "800 Spring Street NW, Atlanta, GA  30308",
+        "city": "Atlanta",
+        "state": "Georgia",
+        "telephone": "123.333.4433"
+      },
+      "sessions": [
+        {
+          "Id": 16,
+          "name": "Developing the Developer",
+          "speakers": [
+            {
+              "id": 15,
+              "firstName": "Matt",
+              "lastName": "Trask",
+              "image": "http://greatwideopen.org/wp-content/uploads/2016/01/matt_trask.jpg"
+            }
+          ],
+          "sessionLocation": {
+            "building": "Georgia Tech Conference Center",
+            "Room": "3200"
+          },
+          "startTime": "2016-03-16T11:30:27-04:00",
+          "endTime": "2016-03-16T12:15:27-04:00",
+          "overview": "Spending time reading books is a great way to develop your career as a developer, but what are the other ways out there. Mentoring, Open Source and involving yourself in the conversation on Twitter, IRC and user groups will push you out of your comfort zone, and help you grow in ways a book could not do. In this talk, we will look at ways to help a developer, at any level, grow in an organic way. By opening the avenue of finding a mentor/mentee, looking at some awesome open source projects and playing an active role on mailing lists and group discussions, developers can find ways to grow that are challenging yet very rewarding",
+          "targetAudience": "Developers"
+        },
+        {
+          "Id": 17,
+          "name": "You don't know Node.js",
+          "speakers": [
+            {
+              "id": 16,
+              "firstName": "Azat",
+              "lastName": "Mardan",
+              "image": "http://greatwideopen.org/wp-content/uploads/2016/01/azat_mardan.jpeg"
+            }
+          ],
+          "sessionLocation": {
+            "building": "Georgia Tech Conference Center",
+            "Room": "3200"
+          },
+          "startTime": "2016-03-17T14:00:27-04:00",
+          "endTime": "2016-03-17T14:50:27-04:00",
+          "overview": "This talk will give a sneak peak of the most interesting and powerful Node.js features. Node.js is quickly capturing the programming world not just in web, but in IoT, drones, robots and embedded systems.",
+          "targetAudience": "Node developers"
+        },
+        {
+          "Id": 18,
+          "name": "OMG HOW DO I START AN OPEN SOURCE PROJECT??",
+          "speakers": [
+            {
+              "id": 17,
+              "firstName": "Don",
+              "lastName": "Schenck",
+              "image": "http://greatwideopen.org/wp-content/uploads/2016/01/don_schenck.jpg"
+            }
+          ],
+          "sessionLocation": {
+            "building": "Georgia Tech Conference Center",
+            "Room": "3200"
+          },
+          "startTime": "2016-03-16T15:30:27-04:00",
+          "endTime": "2016-06-16T16:15:27-04:00",
+          "overview": "You know how to code, how to contribute at work. You may have experience contributing to an open source project, where things are a bit, shall we say, “different”. But how in the world do you get an open source project off the ground? Where do you even start? Write code and push it to Github? Is that it? Short answer: No. While pushing code to Github may be all that’s technically needed, there are some social conventions, tools, formats and other issues you’ll need to conquer if you want your open source project to really soar. I know, because I went through that pain recently. Join me as I recount the steps, mistakes, re-do’s and learning necessary to get PoshStack (an open source PowerShell module) started as a viable open source project. If you have an idea for an open source project, but don’t know how or where to start, you don’t want to miss this session.",
+          "targetAudience": "Developers"
+        }
+      ]
+    }
 ]
