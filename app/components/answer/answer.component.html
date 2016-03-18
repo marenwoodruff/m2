@@ -1,11 +1,17 @@
-<div [ngSwitch]="answer.type">
+<div [ngSwitch]="answer.answer.type">
   <ion-list *ngSwitchWhen="'radio'" radio-group>
-    <radio-button [answer]="answer"></radio-button>
+    <form>
+      <radio-button [answer]="answer"></radio-button>
+    </form>
   </ion-list>
   <div *ngSwitchWhen="'textBox'">
-    <textbox></textbox>
+    <form>
+      <textbox [answer]="answer"></textbox>
+    </form>
   </div>
   <ion-list *ngSwitchWhen="'checkBox'">
-    <checkbox [answer]="answer"></checkbox>
+    <form>
+      <checkbox [answer]="answer"></checkbox>
+    </form>
   </ion-list>
 </div>

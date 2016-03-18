@@ -1,10 +1,12 @@
 export class Option {
     selected:boolean;
-    value:string;
+    value:any;
+    display: string;
 
-    constructor(selected?:boolean, value?:string) {
+    constructor(selected?:boolean, value?:any, display?:string) {
         this.selected = selected;
         this.value = value;
+        this.display = display;
     }
 }
 
