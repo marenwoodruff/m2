@@ -17,3 +17,4 @@
 </ion-row>
 <p class="center matrixBlueFont"><string>{{event.description}}</string></p>
 <session *ngIf="event.sessions.length === 1" [session]="event.sessions[0]"></session>
+<event-location [location]="event.location"></event-location>
