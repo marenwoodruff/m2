@@ -1,8 +1,19 @@
 <h2 class="center">{{event.name}}</h2>
-<h5 class="center">{{event.starts}} - {{event.ends}}</h5>
+<h5 *ngIf="event.starts === event.ends" class="center">
+    {{event.starts}} | {{event.location.city}}, {{event.location.state}}
+</h5>
+<div *ngIf="event.starts !== event.ends" class="center">
+  <h5>
+    {{event.starts}} - {{event.ends}}
+  </h5>
+  <h5>
+    {{event.location.city}}, {{event.location.state}}
+  </h5>
+</div>
 <ion-row style="justify-content: center;">
   <ion-col width-75>
     <img src="{{event.image}}" alt="{{event.name}}"/>
   </ion-col>
 </ion-row>
 <p class="center matrixBlueFont"><string>{{event.description}}</string></p>
+<session *ngIf="event.sessions.length === 1" [session]="event.sessions[0]"></session>
