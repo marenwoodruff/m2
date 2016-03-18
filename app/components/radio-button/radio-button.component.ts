@@ -13,17 +13,16 @@ import {Question} from '../../models/survey/question';
 export class RadioButtonComponent {
   question: Question;
 
-  getValue(id: number, res: any) {
+  getValue(option: any) {
 
     let choices = this.question.answer.options;
 
     choices.forEach(function(choice) {
-      if (choice.value === res.value) {
+      if (choice.value === option.value) {
         choice.selected = true;
       } else {
         choice.selected = false;
       }
-
       return choice;
     });
   }
