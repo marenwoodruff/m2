@@ -29,7 +29,10 @@
       <sessions [sessions]="event.sessions"></sessions>
     </div>
     <div *ngSwitchWhen="'surveys'">
-      <surveys *ngIf="surveys" [surveys]='surveys'></surveys>
+      <surveys *ngIf="surveys.length >= 1" [surveys]='surveys'></surveys>
+      <p *ngIf="!surveys.length >= 1" class="center" style="padding: 10vmin" >
+        There are no surveys for this event.
+      </p>
     </div>
   </div>
 </ion-content>
