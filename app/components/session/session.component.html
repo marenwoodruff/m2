@@ -1,0 +1,30 @@
+<h6 class="center matrixBlueFont"><strong>Time: {{session.startTime | amDateFormat:"h:mm a"}} - {{session.endTime | amDateFormat:"h:mm a"}}</strong></h6>
+
+<ion-card>
+  <ion-card-header>Overview</ion-card-header>
+  <ion-card-content>
+    <p>{{session.overview}}</p>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+  <ion-card-header>Target Audience</ion-card-header>
+  <ion-card-content>
+    <p>{{session.targetAudience}}</p>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-content>
+    <ion-list>
+      <ion-list-header>
+        Speakers
+      </ion-list-header>
+      <ion-item *ngFor="#speaker of session.speakers">
+        <ion-avatar item-left>
+          <img src="{{speaker.image}}">
+        </ion-avatar>
+        <h2>{{speaker.firstName}} {{speaker.lastName}}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
