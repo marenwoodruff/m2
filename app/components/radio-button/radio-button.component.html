@@ -6,7 +6,7 @@
 <ion-item *ngFor="#a of answer.answer.options" (click)="getValue(answer.questionId, a)">
   <input name="a.answer.type" 
          type="radio" 
-         [value]="answer.value" 
+         [value]="a.value" 
          [checked]="a.selected"/>
   <label>{{a.display}}</label>
 </ion-item>

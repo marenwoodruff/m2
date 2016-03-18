@@ -1,4 +1,6 @@
-<ion-item *ngFor="#a of answer.answer.options">
-  <ion-textarea [(ngModel)]="value" placeholder="type response here"></ion-textarea>
-</ion-item>
-<button (click)="getValue(answer.questionId, value)" light>save response</button>
+<div *ngFor="#a of answer.answer.options">
+  <ion-item>
+      <ion-textarea [(ngModel)]="a.value" placeholder="type response here"></ion-textarea>
+  </ion-item>
+  <button (click)="getValue(a, a.value)" small dark outline>save response</button>
+</div>

@@ -16,9 +16,11 @@ export class TextboxComponent {
   response: Response;
   selection: Selection;
 
-  getValue(id: number, val: string) {
+  getValue(id: any, val: string) {
     let selection = new Selection(val);
     let response = new Response(id, [selection]);
+    id.value = val;
+    console.log(id, val);
   }
 }
 

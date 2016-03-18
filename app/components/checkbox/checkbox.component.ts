@@ -19,7 +19,11 @@ export class CheckboxComponent {
   response: Response;
 
   getValue(res: Option) {
-    console.log('response:', res);
+    if (res.selected) {
+      res.selected = false;
+    } else {
+      res.selected = true;
+    }
   }
 }
 
