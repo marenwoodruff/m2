@@ -2,7 +2,7 @@
   <ion-card *ngFor="#session of sessions">
     <ion-card-content>
       <ion-card-title>{{session.name}}</ion-card-title>
-      <h5><strong>{{session.time | amDateFormat:"dddd, MMMM Do YYYY, h:mm:ss a"}}</strong></h5>
+      <h5><strong>{{session.time | amDateFormat:"dddd, MMMM Do YYYY, h:mm a"}}</strong></h5>
       <p class="sessions">{{session.overview}}</p>
       <!-- <ion-list>
         <ion-list-header>
@@ -19,7 +19,7 @@
         <ion-icon name="create"></ion-icon>
         Register
       </button>
-      <button outline item-right>
+      <button (click)="goToSession(session, location)" outline item-right>
         More Info
         <ion-icon name="information-circle"></ion-icon>
       </button>

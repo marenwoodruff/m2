@@ -1,0 +1,12 @@
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Session Info</ion-title>
+</ion-navbar>
+
+<ion-content>
+  <h2 class="center">{{session.name}}</h2>
+  <h5 class="center">| {{location.city}}, {{location.state}}</h5>
+  <session [session]="session"></session>
+</ion-content>

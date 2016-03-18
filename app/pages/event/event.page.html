@@ -26,7 +26,7 @@
       <event [event]="event"></event>
     </div>
     <div *ngSwitchWhen="'sessions'" >
-      <sessions [sessions]="event.sessions"></sessions>
+      <sessions [sessions]="event.sessions" [location]="event.location"></sessions>
     </div>
     <div *ngSwitchWhen="'surveys'">
       <surveys *ngIf="surveys.length >= 1" [surveys]='surveys'></surveys>
