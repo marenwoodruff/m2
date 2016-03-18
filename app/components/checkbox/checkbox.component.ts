@@ -12,13 +12,12 @@ import {Option} from '../../models/survey/option';
 
 export class CheckboxComponent {
   question: Question;
-  id: number;
 
-  getValue(res: Option) {
-    if (res.selected) {
-      res.selected = false;
+  getValue(option: Option) {
+    if (option.selected) {
+      option.selected = false;
     } else {
-      res.selected = true;
+      option.selected = true;
     }
   }
 }

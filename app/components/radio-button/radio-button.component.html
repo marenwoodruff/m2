@@ -1,4 +1,4 @@
-<ion-item *ngFor="#answer of question.answer.options" (click)="getValue(answer.questionId, answer)">
+<ion-item *ngFor="#answer of question.answer.options" (click)="getValue(answer)">
   <input name="question.answer.type" 
          type="radio"
          [value]="answer.value"
