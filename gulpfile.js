@@ -18,12 +18,15 @@ var IONIC_DIR = "node_modules/ionic-angular/"
  * watch
  * Build the app and watch for source file changes.
  ******************************************************************************/
-gulp.task('watch', ['sass', 'copy.fonts', 'copy.html'], function(done) {
+gulp.task('watch', ['sass', 'copy.fonts', 'copy.html', 'copy.assets'], function(done) {
   watch('www/app/**/*.scss', function(){
     gulp.start('sass');
   });
   watch('www/app/**/*.html', function(){
     gulp.start('copy.html');
+  });
+  watch('www/app/assets/*.*', function(){
+    gulp.start('copy.assets');
   });
   bundle(true, done);
 });
@@ -33,7 +36,7 @@ gulp.task('watch', ['sass', 'copy.fonts', 'copy.html'], function(done) {
  * build
  * Build the app once, without watching for source file changes.
  ******************************************************************************/
-gulp.task('build', ['sass', 'copy.fonts', 'copy.html'], function(done) {
+gulp.task('build', ['sass', 'copy.fonts', 'copy.html', 'copy.assets'], function(done) {
   bundle(false, done);
 });
 
@@ -88,6 +91,15 @@ gulp.task('copy.fonts', function() {
 gulp.task('copy.html', function(){
   return gulp.src('app/**/*.html')
     .pipe(gulp.dest('www/build'));
+});
+
+/******************************************************************************
+ * copy.assets
+ * Copy assets files to build directory.
+ ******************************************************************************/
+gulp.task('copy.assets', function(){
+  return gulp.src('app/assets/*.*')
+    .pipe(gulp.dest('www/build/assets'));
 });
 
 
