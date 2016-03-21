@@ -11,9 +11,14 @@ import {Question} from '../../models/survey/question';
 
 export class TextboxComponent {
   question: Question;
+  buttonText: string = 'save response';
 
-  getValue(answer: string) {
-    // going to need this for saving survey
+  getValue(answer: any) {
+    if (answer.value != null) {
+      this.buttonText = 'saved';
+    } else {
+      this.buttonText = 'save response';
+    }
   }
 }
 
