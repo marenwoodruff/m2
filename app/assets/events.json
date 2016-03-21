@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1,
+    "name": "Agile Conference",
+    "image": "https://cdn1.iconfinder.com/data/icons/agile/500/agile_agile-02-512.png",
+    "description": "Dude, lets get angular description",
+    "starts": "6/15/2016",
+    "ends": "6/19/2016",
+    "sessions": [
+      {
+        "Id": 12,
+        "name": "Agile Manifesto",
+        "speakers": [
+          {
+            "id": 14,
+            "firstName": "Abbey",
+            "lastName": "Gwayambadde"
+          }
+        ],
+        "location": {
+          "building": "Main",
+          "Room": "3200"
+        },
+        "time": "6-19-2016T09:45:00"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Angular 2 Launch and Learn",
+    "image": "http://smashingboxes.com/media/W1siZiIsIjIwMTUvMTAvMjAvMTAvNDEvNDgvOTE5L2FuZ3VsYXJfMi4wLnBuZyJdXQ/angular%202.0.png?sha=c182c65bfad4aa24",
+    "description": "Angular 2 is so so cool description",
+    "starts": "3/29/2016",
+    "ends": "3/29/2016",
+    "sessions": [
+      {
+        "Id": 14,
+        "name": "@Decorators made easy",
+        "speakers": [
+          {
+            "id": 26,
+            "firstName": "Abbey",
+            "lastName": "Gwayambadde"
+          }
+        ],
+        "location": {
+          "building": "Main",
+          "Room": "Phoenix"
+        },
+        "time": "3-29-2016T12:00:00"
+      },
+      {
+        "Id": 17,
+        "name": "Components vs Directives",
+        "speakers": [
+          {
+            "id": 18,
+            "firstName": "Abbey",
+            "lastName": "Gwayambadde"
+          }
+        ],
+        "location": {
+          "building": "Main",
+          "Room": "Great Hall"
+        },
+        "time": "3-29-2016T13:00:00"
+      }
+    ]
+  }
+]

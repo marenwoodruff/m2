@@ -1,1 +1,8 @@
-<h1>question component</h1>
+<ion-card *ngFor="#q of question">
+  <ion-card-header>
+    {{q.text}}
+  </ion-card-header>
+  <ion-card-content>
+    <answer [answer]="q.answer"></answer>
+  </ion-card-content>
+</ion-card>
