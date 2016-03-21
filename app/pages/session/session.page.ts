@@ -3,11 +3,12 @@ import {Session} from '../../models/events/session';
 import {Location} from '../../models/events/location';
 import {NavParams} from 'ionic-angular';
 import {SessionComponent} from '../../components/session/session.component';
+import {EventLocationComponent} from '../../components/event-location/event-location.component';
 import {DateFormatPipe} from 'angular2-moment';
 
 @Page({
     templateUrl: 'build/pages/session/session.page.html',
-    directives: [SessionComponent],
+    directives: [SessionComponent, EventLocationComponent],
     pipes: [DateFormatPipe]
 })
 
