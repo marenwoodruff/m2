@@ -28,7 +28,8 @@ export class StorageService {
           this.surveyQuestions.emit(data);
           console.log(JSON.stringify(data.res));
         }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
+          console.log(error);
+          // console.log("ERROR -> " + JSON.stringify(error.err));
         });
     }
     public getSurveyProgress(id:any):void {

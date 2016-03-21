@@ -15,6 +15,7 @@
   Save Survey
 </button>
 <button 
+       [hidden]="true"
        type="submit"
        [disabled]="!saved"
        (click)="onSubmit(question)">
