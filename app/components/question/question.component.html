@@ -1,17 +1,22 @@
 <h2 padding>{{question.name}}</h2>
-<form
-      [ngFormModel] = "surveyForm"
-      (ngSubmit)="onSubmit(surveyForm)">
+<form>
   <ion-card *ngFor="#question of question.questions">
     <ion-card-header>
       {{question.text}}
     </ion-card-header>
     <ion-card-content>
-      <answer [answers]="question"></answer>
+      <answer 
+        [answers]="question"></answer>
     </ion-card-content>
   </ion-card>
-  <button type="submit"
-          [disabled]="!surveyForm.valid">
-    Submit Survey
-  </button>  
 </form>
+<button
+       (click)="saveProgress(question)">
+  Save Survey
+</button>
+<button 
+       type="submit"
+       [disabled]="true"
+       (click)="onSubmit(question)">
+  Submit Survey
+</button>  
