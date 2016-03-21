@@ -34,11 +34,13 @@ export class SurveyService {
     };
 
     public submitSurvey(survey:Survey):void {
-      let surveyAnswers = JSON.stringify(survey.questions);
-      this._api.post("build/assets/surveyComplete.json", surveyAnswers)
-      .subscribe(
-        err => console.log(err),
-        () => console.log('Survey has been submitted'));
+      let surveyAnswers = JSON.stringify(survey); //change back to survey.questions
+      this._api.post("build/assets/surveyResponse.json", surveyAnswers)
+        .subscribe(
+          res => console.log(res),
+          err => console.log(err),
+          () => console.log('Survey has been submitted')
+        );
     };
 
     // public getSurveyResponses(id:number, userId?:number):void {
