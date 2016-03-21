@@ -7,6 +7,12 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
-@import "../pages/view-one/view-one";
+@import "../components/event/event.component";
+@import "../components/sessions/sessions.component";
 
-@import "../pages/view-two/view-two";
+.center {
+  text-align: center;
+}
+.matrixBlueFont {
+  color: #005AA3;
+}
