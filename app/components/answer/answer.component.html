@@ -1,5 +1,5 @@
 <div [ngSwitch]="answers.answer.type">
-  <form>
+<!--   <form> -->
     <ion-list *ngSwitchWhen="'radio'">
         <radio-button [question]="answers"></radio-button>
     </ion-list>
@@ -9,5 +9,5 @@
     <ion-list *ngSwitchWhen="'checkBox'">
       <checkbox [question]="answers"></checkbox>
     </ion-list>
-  </form>
+<!--   </form> -->
 </div>
