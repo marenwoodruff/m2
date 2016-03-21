@@ -1,5 +1,5 @@
 <ion-item *ngFor="#answer of question.answer.options" (click)="getValue(answer)">
-  <input name="question.answer.type" 
+  <input [name]="question.questionId" 
          type="radio"
          [value]="answer.value"
          [checked]="answer.selected"/>

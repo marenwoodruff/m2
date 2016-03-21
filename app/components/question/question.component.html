@@ -1,13 +1,14 @@
-
 <h2 padding>{{question.name}}</h2>
-<ion-card *ngFor="#question of question.questions">
-  <ion-card-header>
-    {{question.text}}
-  </ion-card-header>
-  <ion-card-content>
-    <answer [answers]="question"></answer>
-  </ion-card-content>
-</ion-card>
-<button block dark>
-  Submit Survey
-</button>
+<form>
+  <ion-card *ngFor="#question of question.questions">
+    <ion-card-header>
+      {{question.text}}
+    </ion-card-header>
+    <ion-card-content>
+      <answer [answers]="question"></answer>
+    </ion-card-content>
+  </ion-card>
+  <button block dark>
+    Submit Survey
+  </button>  
+</form>
