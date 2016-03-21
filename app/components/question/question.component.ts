@@ -13,9 +13,12 @@ import {AnswerComponent} from '../answer/answer.component';
 
 export class QuestionComponent {
   question: Question;
+  saved: boolean = false;
 
   saveProgress(survey) {
     console.log('saving', survey);
+    this.saved = true;
+    return this.saved;
   }
 
   onSubmit(survey) {
