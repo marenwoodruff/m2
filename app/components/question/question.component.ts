@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {FormBuilder, Validators} from 'angular2/common';
 import {Page, NavParams, Button} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 import {AnswerComponent} from '../answer/answer.component';
@@ -13,4 +14,17 @@ import {AnswerComponent} from '../answer/answer.component';
 
 export class QuestionComponent {
   question: Question;
+  surveyForm: any;
+
+  constructor(form: FormBuilder) {
+    this.surveyForm = form.group({
+      radio: ['', Validators.required],
+      textBox: ['', Validators.required],
+      checkBox: ['', Validators.required]
+    });
+  }
+
+  onSubmit(value) {
+    console.log(value);
+  }
 }

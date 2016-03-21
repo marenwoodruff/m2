@@ -1,4 +1,6 @@
 <ion-item *ngFor="#answer of question.answer.options">
   <ion-label>{{answer.display}}</ion-label>
-  <ion-checkbox [checked]="answer.selected" (click)="getValue(answer)"></ion-checkbox>
+  <ion-checkbox [checked]="answer.selected" 
+                (click)="getValue(answer)"
+                required></ion-checkbox>
 </ion-item>

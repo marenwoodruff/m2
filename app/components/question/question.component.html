@@ -1,5 +1,7 @@
 <h2 padding>{{question.name}}</h2>
-<form>
+<form
+      [ngFormModel] = "surveyForm"
+      (ngSubmit)="onSubmit(surveyForm)">
   <ion-card *ngFor="#question of question.questions">
     <ion-card-header>
       {{question.text}}
@@ -8,7 +10,8 @@
       <answer [answers]="question"></answer>
     </ion-card-content>
   </ion-card>
-  <button block dark>
+  <button type="submit"
+          [disabled]="!surveyForm.valid">
     Submit Survey
   </button>  
 </form>
