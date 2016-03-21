@@ -32,7 +32,7 @@ export class StorageService {
         });
     }
     public getSurveyProgress(id:any):void {
-      this.storage.query('SELECT * FROM SurveyResponse')
+      this.storage.get(id)
         .then((data) => {
           this.surveyProgress.emit(data);
           console.log("Data: " + data);
