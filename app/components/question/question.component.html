@@ -16,7 +16,7 @@
 </button>
 <button 
        type="submit"
-       [disabled]="true"
+       [disabled]="!saved"
        (click)="onSubmit(question)">
   Submit Survey
 </button>  
