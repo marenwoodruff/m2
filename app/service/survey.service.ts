@@ -1,6 +1,5 @@
 import {Injectable, EventEmitter} from 'angular2/core';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
-import {Storage, LocalStorage} from 'ionic-angular';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -14,14 +13,10 @@ import {SurveyProgress} from "../models/survey/surveyProgress";
 export class SurveyService {
 
     private _api:Http;
-    private storage: Storage;
     surveys:EventEmitter<Survey[]> = new EventEmitter();
-    surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
-    surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
-
+      
     constructor(private http:Http) {
       this._api = http;
-      this.storage = new Storage(LocalStorage, {name: 'responses'});
     };
 
     public getSurveys(id?:number, eventId?:number):void {
@@ -38,29 +33,30 @@ export class SurveyService {
       )
     };
 
-    public getSurveyResponses(id:number, userId?:number):void {
-      this._api.get("build/assets/surveyResponse.json")
-          .map(res => <Question[]> res.json())
-          .subscribe(
-              surveyQuestions =>this.surveyQuestions.emit(surveyQuestions),
-              err => console.log(err),
-              () => console.log('Survey Questions retrieval is completed'));
-    };
-
-    public saveSurveyProgress(res: any):void {
-      let data = JSON.stringify(res);
-      this.storage.set('responses', data);
-    };
-
-    public getSurveyProgress(id:any):void {
-      this.storage.get('responses');
-    };
-
     public submitSurvey(survey:Survey):void {
-      let surveyAnswers = this.storage.get('responses');
+      let surveyAnswers = JSON.stringify(survey.questions);
       this._api.post("build/assets/surveyComplete.json", surveyAnswers)
-        .subscribe(
-          err => console.log(err),
-          () => console.log('Survey has been submitted'));
+      .subscribe(
+        err => console.log(err),
+        () => console.log('Survey has been submitted'));
     };
+
+    // public getSurveyResponses(id:number, userId?:number):void {
+    //   this._api.get("build/assets/surveyResponse.json")
+    //       .map(res => <Question[]> res.json())
+    //       .subscribe(
+    //           surveyQuestions =>this.surveyQuestions.emit(surveyQuestions),
+    //           err => console.log(err),
+    //           () => console.log('Survey Questions retrieval is completed'));
+    // };
+    //
+    // public saveSurveyProgress(res: SurveyResponse):void {
+    //   let data = res;
+    //
+    // };
+    //
+    // public getSurveyProgress(id:any):void {
+    //   this.storage.get('responses');
+    // };
+
 }

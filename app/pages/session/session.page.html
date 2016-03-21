@@ -8,5 +8,6 @@
 <ion-content>
   <h2 class="center">{{session.name}}</h2>
   <h5 class="center">{{session.startTime | amDateFormat:"MM.DD.YYYY"}} | {{location.city}}, {{location.state}}</h5>
+  <event-location [location]="location"></event-location>
   <session [session]="session"></session>
 </ion-content>
