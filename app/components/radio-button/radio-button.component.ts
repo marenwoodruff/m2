@@ -1,12 +1,11 @@
 import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
 import {Item, Label, RadioButton} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 
 @Component({
   selector: 'radio-button',
   templateUrl: 'build/components/radio-button/radio-button.component.html',
-  directives: [FORM_DIRECTIVES, Item, Label, RadioButton],
+  directives: [Item, Label, RadioButton],
   inputs: ['question'],
 })
 
