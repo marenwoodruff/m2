@@ -1,9 +1,8 @@
 import {App, IonicApp, Platform} from 'ionic-angular';
-import {ViewOnePage} from './pages/view-one/view-one';
-import {ViewTwoPage} from './pages/view-two/view-two';
-import {SurveyPage} from './pages/survey/survey.page';
+import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {EventsPage} from './pages/events/events.page';
+import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
 
 
@@ -21,10 +20,9 @@ class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
-            {title: 'View One', component: ViewOnePage},
-            {title: 'View Two', component: ViewTwoPage},
-            {title: 'Survey', component: SurveyPage},
+            {title: 'Surveys', component: SurveysPage},
             {title: 'Events', component: EventsPage},
+            {title: 'Twitter', component: TwitterPage},
         ];
 
     }

@@ -1,10 +1,22 @@
-import {Page} from 'ionic-angular';
-import {OnInit} from 'angular2/core';
-import {SurveysComponent} from '../../modules/components/surveys/surveys.component';
+import {Component} from 'angular2/core';
+import {Page, NavParams} from 'ionic-angular';
+import {Question} from '../../models/survey/question';
+import {QuestionComponent} from '../../components/question/question.component';
+import {Survey} from '../../models/survey/survey';
 
 @Page({
   templateUrl: 'build/pages/survey/survey.page.html',
-  directives: [SurveysComponent]
+  directives: [QuestionComponent]
 })
 
-export class SurveyPage { }
+
+export class SurveyPage{
+  params: NavParams;
+  survey: Survey;
+
+  constructor(params: NavParams) {
+    this.params = params;
+    this.survey = this.params.get('question');
+    console.log('survey:', this.survey);
+  }
+}
