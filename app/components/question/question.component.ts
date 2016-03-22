@@ -18,7 +18,6 @@ export class QuestionComponent {
   private _surveyApi: SurveyService
   private _storageApi: StorageService;
   question: Question;
-  saved: boolean = false;
 
   constructor(surveyService: SurveyService, storageService: StorageService) {
     this._surveyApi = surveyService;
