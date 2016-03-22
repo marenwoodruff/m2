@@ -26,9 +26,7 @@ export class QuestionComponent {
   }
 
   saveProgress(survey) {
-    this.saved = true;
     this._storageApi.saveSurveyProgress(survey);
-    return this.saved;
   }
 
   onSubmit(survey) {
