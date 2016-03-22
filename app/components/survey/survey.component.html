@@ -6,6 +6,26 @@
       {{question.text}}
     </ion-card-header>
     <ion-card-content>
+      <div [ngSwitch]="question.answer.type">
+        <ion-list *ngSwitchWhen="'radio'">
+          <ion-item *ngFor="#option of question.answer.options">
+            <input 
+                  type="radio"
+                  [name]="question.questionId"
+                  [value]="option.value"
+                  [checked]="option.selected"/>
+            <label>
+              {{option.display}}
+            </label>
+          </ion-item>
+        </ion-list>
+        <ion-list *ngSwitchWhen="'textBox'">
+          text box
+        </ion-list>
+        <ion-list *ngSwitchWhen="'checkBox'">
+          checkbox
+        </ion-list>
+      </div>
       <!-- answers go here -->
     </ion-card-content>
   </ion-card>
