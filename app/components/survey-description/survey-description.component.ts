@@ -20,7 +20,7 @@ export class SurveyDescriptionComponent {
 
   viewSurvey(survey) {
     this.nav.push(SurveyPage, {
-      question: survey
+      survey: survey
     });
   }
 

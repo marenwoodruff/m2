@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {Page, NavParams, Button} from 'ionic-angular';
+import {Button} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 import {AnswerComponent} from '../answer/answer.component';
 import {SurveyService} from '../../service/survey.service';
