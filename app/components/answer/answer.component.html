@@ -1,13 +1,11 @@
 <div [ngSwitch]="answers.answer.type">
-<!--   <form> -->
-    <ion-list *ngSwitchWhen="'radio'">
-        <radio-button [question]="answers"></radio-button>
-    </ion-list>
-    <div *ngSwitchWhen="'textBox'">
-      <textbox [question]="answers"></textbox>
-    </div>
-    <ion-list *ngSwitchWhen="'checkBox'">
-      <checkbox [question]="answers"></checkbox>
-    </ion-list>
-<!--   </form> -->
+  <ion-list *ngSwitchWhen="'radio'">
+      <radio-button [question]="answers"></radio-button>
+  </ion-list>
+  <div *ngSwitchWhen="'textBox'">
+    <textbox [question]="answers"></textbox>
+  </div>
+  <ion-list *ngSwitchWhen="'checkBox'">
+    <checkbox [question]="answers"></checkbox>
+  </ion-list>
 </div>
