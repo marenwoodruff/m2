@@ -1,0 +1,17 @@
+<h2 padding>{{survey.name}}</h2>
+
+<form>
+  <ion-card *ngFor="#question of survey.questions">
+    <ion-card-header>
+      {{question.text}}
+    </ion-card-header>
+    <ion-card-content>
+      <!-- answers go here -->
+    </ion-card-content>
+  </ion-card>
+</form>
+
+<button (click)="saveProgress(survey)">
+  Save
+</button>
+
