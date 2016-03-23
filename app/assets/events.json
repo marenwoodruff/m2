@@ -14,6 +14,7 @@
       "zip": "23344",
       "telephone": "123.333.4433"
     },
+    "url": "",
     "sessions": [
       {
         "Id": 12,
@@ -52,6 +53,7 @@
       "zip": "23344",
       "telephone": "123.333.4433"
     },
+    "url": "",
     "sessions": [
       {
         "Id": 14,
@@ -110,6 +112,7 @@
       "state": "Georgia",
       "telephone": "800.627.3533"
     },
+    "url": "",
     "sessions": [
       {
         "Id": 13,
@@ -148,6 +151,7 @@
       "state": "Florida",
       "telephone": "904.627.3533"
     },
+    "url": "",
     "sessions": [
       {
         "Id": 12,
@@ -186,6 +190,7 @@
         "zip": "30308",
         "telephone": "123.333.4433"
       },
+      "url": "",
       "sessions": [
         {
           "Id": 16,
