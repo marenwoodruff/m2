@@ -6,8 +6,3 @@ export class Location {
   telephone:string;
   zip:string;
 }
-
-export class SessionLocation {
-    building:string;
-    Room:string;
-}
