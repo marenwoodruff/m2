@@ -20,10 +20,20 @@
           </ion-item>
         </ion-list>
         <ion-list *ngSwitchWhen="'textBox'">
-          text box
+          <ion-item *ngFor="#option of question.answer.options">
+            <ion-textarea
+                         [(ngModel)]="option.value"
+                         placeholder="type response here"></ion-textarea>
+          </ion-item>
         </ion-list>
         <ion-list *ngSwitchWhen="'checkBox'">
-          checkbox
+          <ion-item *ngFor="#option of question.answer.options">
+            <ion-label>
+              {{option.display}}
+            </ion-label>
+            <ion-checkbox
+                         [checked]="option.selected"></ion-checkbox>
+          </ion-item>
         </ion-list>
       </div>
       <!-- answers go here -->
