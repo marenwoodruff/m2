@@ -1,6 +1,7 @@
 <h2 padding>{{survey.name}}</h2>
 
-<form>
+<form [ngFormModel]="surveyForm"
+      (ngSubmit)="onSubmit(survey)">
   <ion-card *ngFor="#question of survey.questions">
     <ion-card-header>
       {{question.text}}
@@ -14,7 +15,8 @@
                   type="radio"
                   [name]="question.questionId"
                   [value]="option.value"
-                  [checked]="option.selected"/>
+                  [checked]="option.selected"
+                  ngControl="radio"/>
             <label>
               {{option.display}}
             </label>
@@ -24,7 +26,8 @@
           <ion-item *ngFor="#option of question.answer.options">
             <ion-textarea
                          [(ngModel)]="option.value"
-                         placeholder="type response here"></ion-textarea>
+                         placeholder="type response here"
+                         ngControl="textBox"></ion-textarea>
           </ion-item>
         </ion-list>
         <ion-list *ngSwitchWhen="'checkBox'">
@@ -33,16 +36,21 @@
               {{option.display}}
             </ion-label>
             <ion-checkbox
-                         [checked]="option.selected"></ion-checkbox>
+                         [value]="option.value"
+                         [(ngModel)]="option.selected"
+                         (click)="checkOption(option)"
+                         ngControl="checkBox"></ion-checkbox>
           </ion-item>
         </ion-list>
       </div>
       <!-- answers go here -->
     </ion-card-content>
   </ion-card>
+  <button
+         [disabled]="!surveyForm.valid">
+    Save
+  </button>
 </form>
 
-<button (click)="saveProgress(survey)">
-  Save
-</button>
 
+<!--          (click)="saveProgress(survey)" -->
