@@ -12,6 +12,19 @@ import {Survey} from '../../models/survey/survey';
 export class SurveyComponent {
   survey: Survey
 
+  selectOption(options, option) {
+
+    options.forEach(function(opt) {
+      if (opt.value === option.value) {
+        opt.selected = true;
+      } else {
+        opt.selected = false;
+      }
+      return opt;
+    });
+
+  }
+
   saveProgress(survey) {
     console.log(survey);
   }
