@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES, FormBuilder, Validators, AbstractControl, ControlGroup} from 'angular2/common';
+import {FORM_DIRECTIVES, FormBuilder, Validators, AbstractControl, ControlGroup, NgFormControl} from 'angular2/common';
 import {Button, Item, Label, TextArea, Checkbox} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 
@@ -21,12 +21,11 @@ export class SurveyComponent {
     this.surveyForm = builder.group({
       'radio': ['', Validators.required],
       'textBox': ['', Validators.minLength(5)],
-      'checkBox': ['', Validators.required]
+      // 'checkBox': ['', Validators.required]
     });
-
     this.radio = this.surveyForm.controls['radio'];
     this.textBox = this.surveyForm.controls['textBox'];
-    this.checkBox = this.surveyForm.controls['checkBox'];
+    // this.checkBox = this.surveyForm.controls['checkBox'];
   }
 
   selectOption(options, option) {
@@ -38,6 +37,11 @@ export class SurveyComponent {
       }
       return opt;
     });
+    console.log(this.surveyForm.valid);
+  }
+
+  textChange() {
+    console.log(this.surveyForm.valid);
   }
 
   checkOption(option) {
@@ -47,6 +51,7 @@ export class SurveyComponent {
       option.selected = true;
     }
     console.log(option);
+    console.log(this.surveyForm.valid);
     return option.selected;
   }
 

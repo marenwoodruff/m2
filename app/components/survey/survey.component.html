@@ -16,7 +16,7 @@
                   [name]="question.questionId"
                   [value]="option.value"
                   [checked]="option.selected"
-                  ngControl="radio"/>
+                  [ngFormControl]="radio"/>
             <label>
               {{option.display}}
             </label>
@@ -26,8 +26,10 @@
           <ion-item *ngFor="#option of question.answer.options">
             <ion-textarea
                          [(ngModel)]="option.value"
+                         (change)="textChange()"
+                         [value]="option.value"
                          placeholder="type response here"
-                         ngControl="textBox"></ion-textarea>
+                         [ngFormControl]="textBox"></ion-textarea>
           </ion-item>
         </ion-list>
         <ion-list *ngSwitchWhen="'checkBox'">
@@ -38,8 +40,7 @@
             <ion-checkbox
                          [value]="option.value"
                          [(ngModel)]="option.selected"
-                         (click)="checkOption(option)"
-                         ngControl="checkBox"></ion-checkbox>
+                         (click)="checkOption(option)"></ion-checkbox>
           </ion-item>
         </ion-list>
       </div>
