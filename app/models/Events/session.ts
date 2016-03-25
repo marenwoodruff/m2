@@ -1,5 +1,5 @@
 import {Speaker} from './speaker';
-import {SessionLocation} from "./location";
+import {SessionLocation} from "./sessionLocation";
 
 
 export class Session {

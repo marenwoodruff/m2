@@ -2,20 +2,9 @@
   <ion-card *ngFor="#session of sessions">
     <ion-card-content>
       <ion-card-title>{{session.name}}</ion-card-title>
-      <h5><strong>{{session.time | amDateFormat:"dddd, MMMM Do YYYY, h:mm a"}}</strong></h5>
+      <h5><strong>{{session.startTime | amDateFormat:"dddd, MMMM Do YYYY, h:mm a"}}</strong></h5>
       <p class="sessions">{{session.overview}}</p>
-      <!-- <ion-list>
-        <ion-list-header>
-          Speakers
-        </ion-list-header>
-        <ion-item *ngFor="#speaker of session.speakers">
-          <ion-avatar item-left>
-            <img src="{{speaker.image}}">
-          </ion-avatar>
-          <h2>{{speaker.firstName}} {{speaker.lastName}}</h2>
-        </ion-item>
-      </ion-list> -->
-      <button outline item-left>
+      <button (click)="goToRegistration(session)" outline item-left>
         <ion-icon name="create"></ion-icon>
         Register
       </button>
