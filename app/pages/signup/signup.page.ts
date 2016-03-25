@@ -1,6 +1,6 @@
 import {Page, NavController} from 'ionic-angular';
 import {Inject} from 'angular2/core';
-import {SignupEmailPage} from '../signupEmail/signUpEmail.page';
+import {SignupEmailPage} from '../signupEmail/signupEmail.page';
 
 @Page({
   templateUrl: 'build/pages/signup/signup.page.html'
