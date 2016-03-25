@@ -4,7 +4,7 @@ import {SurveyService} from './service/survey.service';
 import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
-
+import {LoginPage} from './pages/login/login.page';
 
 @App({
     templateUrl: 'build/app.html',
