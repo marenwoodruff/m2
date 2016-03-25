@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     watch = require('gulp-watch'),
+    flatten = require('gulp-flatten'),
     del = require('del');
 
 
@@ -79,8 +80,9 @@ gulp.task('sass', function(){
  * Copy Ionic font files to build directory.
  ******************************************************************************/
 gulp.task('copy.fonts', function() {
-  return gulp.src(IONIC_DIR + 'fonts/**/*.+(ttf|woff|woff2)')
-    .pipe(gulp.dest('www/build/fonts'));
+  return gulp.src('node_modules/**/fonts/**/*.+(ttf|woff|woff2|svg|eot)')
+    .pipe(flatten({ includeParents: -1} ))
+    .pipe(gulp.dest('www/build'));
 });
 
 
