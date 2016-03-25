@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {Item, NavController} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
-import {SurveyPage} from '../../pages/survey/survey.page';
+import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
 
 @Component({
   selector: 'survey-description',
@@ -19,7 +19,7 @@ export class SurveyDescriptionComponent {
   }
 
   viewSurvey(survey) {
-    this.nav.push(SurveyPage, {
+    this.nav.push(BeginSurveyPage, {
       survey: survey
     });
   }
