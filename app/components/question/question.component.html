@@ -1,23 +1,9 @@
-<h2 padding>{{question.name}}</h2>
-<form>
-  <ion-card *ngFor="#question of question.questions">
-    <ion-card-header>
-      {{question.text}}
-    </ion-card-header>
-    <ion-card-content>
-      <answer 
-        [answers]="question"></answer>
-    </ion-card-content>
-  </ion-card>
-</form>
-<button
-       (click)="saveProgress(question)">
-  Save Survey
-</button>
-<button 
-       [hidden]="true"
-       type="submit"
-       [disabled]="!saved"
-       (click)="onSubmit(question)">
-  Submit Survey
-</button>  
+<ion-card>
+  <ion-card-header>
+    {{currentQuestion.text}}
+  </ion-card-header>
+  <ion-card-content *ngFor="#option of currentQuestion.answer.options">
+    {{option.display}}
+  </ion-card-content>
+</ion-card>
+
