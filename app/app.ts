@@ -12,7 +12,7 @@ import {SignupPage} from './pages/signup/signup.page';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-    rootPage:any = SignupPage;
+    rootPage:any = EventsPage;
     pages:Array<{title: string, component: any}>;
 
     constructor(private app:IonicApp, private platform:Platform) {
