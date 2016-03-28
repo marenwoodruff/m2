@@ -5,7 +5,7 @@ import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
 import {Storage, SqlStorage} from 'ionic-angular';
-
+import {LoginPage} from './pages/login/login.page';
 
 @App({
     templateUrl: 'build/app.html',

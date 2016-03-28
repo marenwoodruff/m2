@@ -10,9 +10,13 @@
     {{event.location.city}}, {{event.location.state}}
   </h5>
 </div>
-<ion-row style="justify-content: center;">
-  <ion-col width-75>
-    <img src="{{event.image}}" alt="{{event.name}}"/>
+<ion-row>
+  <ion-col width-10>
+  </ion-col>
+  <ion-col width-80>
+    <img class="center-event-image" src="{{event.image}}" alt="{{event.name}}"/>
+  </ion-col>
+  <ion-col width-10>
   </ion-col>
 </ion-row>
 <p class="center matrixBlueFont"><string>{{event.description}}</string></p>
