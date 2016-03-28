@@ -1,7 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
-import {Button, NavController, NavParams} from 'ionic-angular';
+import {Button, List, Item, NavController, NavParams} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
-import {AnswerComponent} from '../answer/answer.component';
 import {SurveyService} from '../../service/survey.service';
 import {Survey} from '../../models/survey/survey';
 import {StorageService} from '../../service/storage.service';
@@ -10,7 +9,7 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
 @Component({
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
-  directives: [Button, AnswerComponent],
+  directives: [Button, List, Item],
   providers: [SurveyService, StorageService],
   inputs: ['questions']
 })
@@ -38,6 +37,8 @@ export class QuestionComponent implements OnInit {
       this.disabled = false;
       this.enabled = true;
     }
+
+    console.log(this.currentQuestion.answer);
 
     return this.currentQuestion;
   }
