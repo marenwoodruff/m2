@@ -3,10 +3,25 @@
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Events</ion-title>
+    <ion-title>My MATRIX</ion-title>
 </ion-navbar>
-
-
-<ion-content padding class="survey-container">
-    <events></events>
+<ion-row class="event-segments">
+  <button round>My Events</button>
+  <button round>Past Events</button>
+  <button round>My Surveys</button>
+</ion-row>
+<ion-row class="month-filters" center>
+  <ion-col width-45>
+    <ion-icon class="icon-chevron-left"></ion-icon>
+    <span class="event-month">Month</span>
+    <ion-icon class="icon-chevron-right"></ion-icon>
+  </ion-col>
+  <ion-col width-45>
+  </ion-col>
+  <ion-col width-10>
+    <ion-icon name="search" end></ion-icon>
+  </ion-col>
+</ion-row>
+<ion-content padding class="events-container">
+  <events [events]="events"></events>
 </ion-content>
