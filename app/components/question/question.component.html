@@ -6,4 +6,8 @@
     {{option.display}}
   </ion-card-content>
 </ion-card>
+<button clear (click)="previousQuestion()" *ngIf="enabled">Previous</button>
+<button light clear (click)="previousQuestion()" *ngIf="disabled">Previous</button>
+<button clear (click)="skipQuestion()">Skip</button>
+<button clear (click)="nextQuestion()">Next</button>
 
