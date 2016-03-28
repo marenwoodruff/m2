@@ -16,20 +16,19 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
 
 
 export class QuestionComponent implements OnInit {
-  private _surveyApi: SurveyService;
-  private _storageApi: StorageService;
   questions: Question[];
   survey: Survey;
-  nav: NavController;
   params: NavParams;
   currentQuestion: Question;
   questionIndex: number = 0;
   questionsLength: number;
   enabled: boolean = false;
   disabled: boolean = true;
-  clear: "clear";
 
-  ngOnInit() {
+  constructor(private surveyService: SurveyService, private storageService: StorageService, private nav: NavController) {
+  }
+
+  public ngOnInit(): void {
     this.currentQuestion = this.questions[this.questionIndex];
     this.questionsLength = this.questions.length;
 
@@ -37,23 +36,13 @@ export class QuestionComponent implements OnInit {
       this.disabled = false;
       this.enabled = true;
     }
-
-    console.log(this.currentQuestion.answer);
-
-    return this.currentQuestion;
   }
 
-  constructor(surveyService: SurveyService, storageService: StorageService, nav: NavController) {
-    this._surveyApi = surveyService;
-    this._storageApi = storageService;
-    this.nav = nav;
+  private saveProgress(survey): void {
+    this.storageService.saveSurveyProgress(survey);
   }
 
-  saveProgress(survey) {
-    this._storageApi.saveSurveyProgress(survey);
-  }
-
-  skipQuestion() {
+  private skipQuestion(): void {
     if (this.questionIndex >= this.questionsLength) {
     } else {
       this.questionIndex = this.questionIndex + 1;
@@ -61,7 +50,7 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  nextQuestion() {
+  private nextQuestion(): void {
     if (this.questionIndex === this.questionsLength - 1) {
       this.nav.push(SurveyCompletedPage, {
         survey: this.survey
@@ -80,7 +69,7 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  previousQuestion() {
+  private previousQuestion(): void {
     if (this.questionIndex > 0) {
       this.questionIndex = this.questionIndex - 1;
       this.currentQuestion = this.questions[this.questionIndex];
@@ -98,7 +87,7 @@ export class QuestionComponent implements OnInit {
 
   }
 
-  onSubmit(survey) {
+  private onSubmit(survey): void {
     console.log('submitting', survey);
   }
 }
