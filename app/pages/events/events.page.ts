@@ -1,15 +1,13 @@
-/**
- * Created by Abbey on 3/10/2016.
- */
 import {Page} from 'ionic-angular';
+import {NgClass} from 'angular2/common';
 import {EventsComponent} from '../../components/events/events.component';
 import {EventService} from "../../service/event.service";
 
 
 @Page({
     templateUrl: 'build/pages/events/events.page.html',
-    directives: [EventsComponent],
-    providers:[EventService],
+    directives: [EventsComponent, NgClass],
+    providers:[EventService]
 })
 export class EventsPage {
     private _eventsApi:EventService;
