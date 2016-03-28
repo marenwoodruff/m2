@@ -14,13 +14,7 @@ export class StorageService {
   private storage: Storage;
 
     constructor() {
-      this.storage = new Storage(SqlStorage, {name: 'SurveyResponse'});
-      this.storage.query('CREATE TABLE IF NOT EXISTS SurveyResponse (id INTEGER PRIMARY KEY AUTOINCREMENT, surveyId TEXT, responses TEXT)')
-        .then((data) => {
-          console.log("TABLE CREATED -> " + JSON.stringify(data.res));
-        }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
-        });
+
     }
     public saveSurveyProgress(survey: Survey):void {
       this.storage.query(`INSERT INTO SurveyResponse (surveyId, responses) VALUES (${survey.id}, ${survey.questions})`)
