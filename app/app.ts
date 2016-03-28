@@ -5,6 +5,7 @@ import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
 import {SignupPage} from './pages/signup/signup.page';
+import {LoginPage} from './pages/login/login.page';
 
 @App({
     templateUrl: 'build/app.html',
@@ -12,7 +13,7 @@ import {SignupPage} from './pages/signup/signup.page';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-    rootPage:any = EventsPage;
+    rootPage:any = LoginPage;
     pages:Array<{title: string, component: any}>;
 
     constructor(private app:IonicApp, private platform:Platform) {

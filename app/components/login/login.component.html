@@ -1,0 +1,93 @@
+<ion-content padding class="login" primary>
+
+  <ion-row style="margin-top: 12vh; margin-bottom: 4vh;">
+    <ion-col width-20>
+    </ion-col>
+    <ion-col width-60>
+      <img style="width: 60vw" src="build/assets/images/MyMATRIX.png" alt="my matrix" />
+    </ion-col>
+    <ion-col width-20>
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Username or Email</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <button class="social-button" block>
+      Sign in
+    </button>
+  </ion-row>
+
+  <ion-row style="margin-top: 10px;">
+    <ion-col class="center">
+      OR SIGN IN WITH
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-row>
+        <button class="linkedin-button social-button" block>
+          <ion-col>
+            <ion-icon class="icon-linkedin"></ion-icon>
+          </ion-col>
+          <ion-col>
+            <span *ngIf="login">Connect with</span> LinkedIn
+          </ion-col>
+        </button>
+      </ion-row>
+    </ion-col>
+    <ion-col>
+      <ion-row>
+        <button class="twitter-button social-button" block>
+          <ion-col>
+            <ion-icon class="icon-twitter"></ion-icon>
+          </ion-col>
+          <ion-col>
+            <span *ngIf="login">Connect with</span> Twitter
+          </ion-col>
+        </button>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <!-- <ion-row class="login-page-buttons">
+    <button class="social-button" outline>
+        Sign up with Email
+    </button>
+  </ion-row>
+
+  <ion-row style="height: 15vh">
+    <ion-col>
+      <p class="center login-text">Already have an account?</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="disclaimer" baseline>
+    <ion-col>
+      <p class="center login-text">By Signing up you agree to the</p>
+      <p class="center login-text"><span class="disclaimer-link">Terms of Service</span> and <span class="disclaimer-link">Privacy Policy</span></p>
+    </ion-col>
+  </ion-row> -->
+  <ion-row>
+  </ion-row>
+
+  <ion-row class="forgot-password">
+    <ion-col>
+      <p class="center">
+        Forgot username or password?
+      </p>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
