@@ -10,28 +10,24 @@ import {SurveyPage} from '../survey/survey.page';
 })
 
 export class BeginSurveyPage {
-  nav: NavController
-  params: NavParams;
   survey: Survey;
   surveyTime: String;
 
-  constructor(nav: NavController, params: NavParams) {
-    this.nav = nav;
-    this.params = params;
+  constructor(private nav: NavController, private params: NavParams) {
     this.survey = this.params.get('survey');
   }
 
-  ngOnInit() {
+  private ngOnInit(): void {
     let
       length = this.survey.questions.length,
-      surveyMinTime = Math.floor(length * 0.75),
-      surveyMaxTime = length * 1;
+      surveyMinTime = Math.floor(length * 0.30),
+      surveyMaxTime = length * 0.50;
 
     this.surveyTime = (`${surveyMinTime} - ${surveyMaxTime} mins`);
     console.log(this.surveyTime);
   }
 
-  viewSurvey(survey) {
+  private viewSurvey(survey): void {
     this.nav.push(SurveyPage, {
       survey: survey
     });
