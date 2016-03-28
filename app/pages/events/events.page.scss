@@ -6,6 +6,10 @@
   button {
     box-shadow: none;
   }
+  .active {
+    background-color: map-get($colors, light);
+    color: #3D3D3D;
+  }
 }
 .events-container {
   scroll-content {

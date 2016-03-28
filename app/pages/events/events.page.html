@@ -6,9 +6,24 @@
     <ion-title>My MATRIX</ion-title>
 </ion-navbar>
 <ion-row class="event-segments">
-  <button (click)="filterEvents('myEvents')" round>My Events</button>
-  <button (click)="filterEvents('pastEvents')" round>Past Events</button>
-  <button (click)="filterEvents('mySurveys')" round>My Surveys</button>
+  <button
+    [ngClass]="{active: page === 'myEvents'}"
+    (click)="filterEvents('myEvents')"
+    round>
+    My Events
+  </button>
+  <button
+    [ngClass]="{active: page === 'pastEvents'}"
+    (click)="filterEvents('pastEvents')"
+    round>
+    Past Events
+  </button>
+  <button
+    [ngClass]="{active: page === 'mySurveys'}"
+    (click)="filterEvents('mySurveys')"
+    round>
+    My Surveys
+  </button>
 </ion-row>
 <ion-row class="month-filters" center>
   <ion-col width-45>
@@ -23,5 +38,16 @@
   </ion-col>
 </ion-row>
 <ion-content padding class="events-container">
-  <events [events]="events"></events>
+  <div [ngSwitch]="page">
+    <div *ngSwitchDefault>
+      <events [events]="events"></events>
+    </div>
+    <div *ngSwitchWhen="'myEvents'">
+      <events [events]=""></events>
+    </div>
+    <div *ngSwitchWhen="'pastEvents'">
+    </div>
+    <div *ngSwitchWhen="'mySurveys'">
+    </div>
+  </div>
 </ion-content>
