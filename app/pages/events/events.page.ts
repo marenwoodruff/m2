@@ -14,6 +14,7 @@ import {EventService} from "../../service/event.service";
 export class EventsPage {
     private _eventsApi:EventService;
     public events:Event[];
+    page: string;
 
     constructor(eventService:EventService) {
         this._eventsApi = eventService;
@@ -30,5 +31,10 @@ export class EventsPage {
 
     ngOnDestroy():any {
         this._eventsApi.events.unsubscribe();
+    }
+
+    filterEvents(p:string) {
+      this.page = p;
+      console.log(this.page);
     }
   }

@@ -6,9 +6,9 @@
     <ion-title>My MATRIX</ion-title>
 </ion-navbar>
 <ion-row class="event-segments">
-  <button round>My Events</button>
-  <button round>Past Events</button>
-  <button round>My Surveys</button>
+  <button (click)="filterEvents('myEvents')" round>My Events</button>
+  <button (click)="filterEvents('pastEvents')" round>Past Events</button>
+  <button (click)="filterEvents('mySurveys')" round>My Surveys</button>
 </ion-row>
 <ion-row class="month-filters" center>
   <ion-col width-45>
