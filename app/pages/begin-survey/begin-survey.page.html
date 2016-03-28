@@ -1,10 +1,12 @@
-<ion-navbar *navbar>
+<ion-navbar *navbar class="surveyNavbar">
   <button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-title>Survey</ion-title>
+  <ion-title></ion-title>
 </ion-navbar>
-
+<ion-content>
+  {{survey.name}}
+</ion-content>
 <ion-content>
   <button (click)="viewSurvey(survey)">Begin Survey</button>
 </ion-content>
