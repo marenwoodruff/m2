@@ -9,10 +9,10 @@ import {Answer} from '../../models/survey/answer';
   selector: 'answer',
   templateUrl: 'build/components/answer/answer.component.html',
   directives: [Item, Label, RadioButtonComponent, TextboxComponent, CheckboxComponent],
-  inputs: ['answers']
+  inputs: ['answer']
 })
 
 
 export class AnswerComponent { 
-  answers: Answer;
+  answer: Answer;
 }
