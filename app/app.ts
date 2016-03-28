@@ -6,6 +6,7 @@ import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
 import {SignupPage} from './pages/signup/signup.page';
 import {LoginPage} from './pages/login/login.page';
+import {SignupEmailPage} from './pages/signupEmail/signupEmail.page';
 
 @App({
     templateUrl: 'build/app.html',
@@ -13,7 +14,7 @@ import {LoginPage} from './pages/login/login.page';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-    rootPage:any = LoginPage;
+    rootPage:any = SignupEmailPage;
     pages:Array<{title: string, component: any}>;
 
     constructor(private app:IonicApp, private platform:Platform) {
@@ -21,8 +22,8 @@ class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
+            {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'Surveys', component: SurveysPage},
-            {title: 'Events', component: EventsPage},
             {title: 'Twitter', component: TwitterPage},
         ];
 
