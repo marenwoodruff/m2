@@ -8,19 +8,19 @@
 <ion-row class="event-segments">
   <button
     [ngClass]="{active: page === 'myEvents'}"
-    (click)="filterEvents('myEvents')"
+    (click)="changePage('myEvents')"
     round>
     My Events
   </button>
   <button
-    [ngClass]="{active: page === 'pastEvents'}"
-    (click)="filterEvents('pastEvents')"
+    [ngClass]="{active: page === 'upcomingEvents'}"
+    (click)="changePage('upcomingEvents')"
     round>
-    Past Events
+    Upcoming Events
   </button>
   <button
     [ngClass]="{active: page === 'mySurveys'}"
-    (click)="filterEvents('mySurveys')"
+    (click)="changePage('mySurveys')"
     round>
     My Surveys
   </button>
@@ -43,11 +43,19 @@
       <events [events]="events"></events>
     </div>
     <div *ngSwitchWhen="'myEvents'">
-      <events [events]=""></events>
+      <events *ngIf="userEvents.length > 1" [events]="userEvents"></events>
+      <p *ngIf="userEvents.length === 0" class="center" style="padding: 10vmin" >
+        You have no saved events
+      </p>
     </div>
-    <div *ngSwitchWhen="'pastEvents'">
+    <div *ngSwitchWhen="'upcomingEvents'">
+      <events [events]="upcomingEvents"></events>
     </div>
     <div *ngSwitchWhen="'mySurveys'">
+      <surveys *ngIf="userSurveys.length > 1" [surveys]='userSurveys'></surveys>
+      <p *ngIf="userSurveys.length === 0" class="center" style="padding: 10vmin" >
+        You have no saved surveys
+      </p>
     </div>
   </div>
 </ion-content>
