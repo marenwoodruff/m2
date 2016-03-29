@@ -1,11 +1,20 @@
 <ion-row class="month-filters" center>
-  <ion-col width-45>
+  <ion-col>
     <ion-icon class="icon-chevron-left"></ion-icon>
     <span class="event-month">Month</span>
     <ion-icon class="icon-chevron-right"></ion-icon>
   </ion-col>
   <ion-col>
-    <ion-searchbar [(ngModel)]="searchQuery" (input)="getEvents($event)"></ion-searchbar>
+    <ion-searchbar
+      class="event-search"
+      [ngClass]="{eventSearchActive: eventSearchActive}"
+      [(ngModel)]="searchQuery"
+      (input)="getEvents($event)"
+      (focus)="eventSearchActive = true"
+      (blur)="eventSearchActive = false"
+      placeholder=" "
+      hideCancelButton="true"
+      ></ion-searchbar>
   </ion-col>
 </ion-row>
 <ion-list class="events-list">
