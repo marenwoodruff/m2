@@ -41,7 +41,7 @@ export class SurveyComponent {
   }
 
   textChange() {
-    console.log(this.surveyForm.valid);
+    console.log('valid: ', this.surveyForm.valid);
   }
 
   checkOption(option) {

@@ -31,6 +31,7 @@ export class BeginSurveyPage {
     this.nav.push(SurveyPage, {
       survey: survey
     });
+    console.log(survey);
   }
 
 }

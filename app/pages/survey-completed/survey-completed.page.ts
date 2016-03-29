@@ -22,6 +22,7 @@ export class SurveyCompletedPage {
 
   navigateHomepage() {
     this.nav.setRoot(EventsPage);
+    console.log('hi');
   }
 
 }
