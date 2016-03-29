@@ -1,39 +1,46 @@
-<ion-card>
-  <ion-card-header>
-    {{currentQuestion.text}}
-  </ion-card-header>
-  <ion-card-content>
-    <ion-list>
-      <div [ngSwitch]="currentQuestion.answer.type">
-        <ion-list *ngSwitchWhen="'radio'" radio-group>
-          <ion-item *ngFor="#option of currentQuestion.answer.options">
-            <ion-label>{{option.display}}</ion-label>
-            <ion-radio
-                      (click)="changeSelection(option)" 
-                      [value]="option.value"
-                      [checked]="option.selected"
-                      [name]="currentQuestion.questionId"></ion-radio>
-          </ion-item>
-        </ion-list>
-        <ion-list *ngSwitchWhen="'textBox'">
-          <ion-item *ngFor="#option of currentQuestion.answer.options">
-            <textarea [(ngModel)]="option.value" 
-                    placeholder="type response here"></textarea>
-          </ion-item>
-        </ion-list>
-        <ion-list *ngSwitchWhen="'checkBox'">
-          <ion-item *ngFor="#option of currentQuestion.answer.options">
-            <ion-label>{{option.display}}</ion-label>
-            <ion-checkbox
-                         [value]="option.value"></ion-checkbox>
-          </ion-item>
-        </ion-list>
-      </div>
+<div class="question-text">
+  {{currentQuestion.text}}
+</div>
+<ion-list>
+  <div [ngSwitch]="currentQuestion.answer.type">
+    <ion-list *ngSwitchWhen="'radio'" radio-group>
+      <ion-item *ngFor="#option of currentQuestion.answer.options" [class.selected]="option.selected">
+        <ion-label>
+          <span>
+            {{option.display}}
+          </span>
+          </ion-label>
+        <ion-radio
+                  (click)="changeSelection(option)" 
+                  [value]="option.value"
+                  [checked]="option.selected"
+                  [name]="currentQuestion.questionId"
+                  matrixblue></ion-radio>
+      </ion-item>
     </ion-list>
-  </ion-card-content>
-</ion-card>
-<button clear (click)="previousQuestion()" *ngIf="enabled">Previous</button>
-<button light clear (click)="previousQuestion()" *ngIf="disabled">Previous</button>
-<button clear (click)="skipQuestion()">Skip</button>
-<button clear (click)="nextQuestion()">Next</button>
+    <ion-list *ngSwitchWhen="'textBox'">
+      <ion-item *ngFor="#option of currentQuestion.answer.options">
+        <textarea [(ngModel)]="option.value" 
+                placeholder="type response here"></textarea>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchWhen="'checkBox'">
+      <ion-item *ngFor="#option of currentQuestion.answer.options">
+        <ion-label>{{option.display}}</ion-label>
+        <ion-checkbox
+                     [value]="option.value"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-list>
+<ion-row class="question-buttons">
+  <ion-col width-20>
+    <ion-icon name="arrow-back"></ion-icon>
+  </ion-col>  
+  <button clear (click)="previousQuestion()" *ngIf="enabled">Previous</button>
+  <button light clear (click)="previousQuestion()" *ngIf="disabled">Previous</button>
+  <button clear (click)="skipQuestion()">Skip</button>
+  <button clear (click)="nextQuestion()">Next</button>
+  <ion-icon name="arrow-forward"></ion-icon>  
+</ion-row>
 

@@ -1,0 +1,29 @@
+$gray-background: #e8eeee;
+
+.question-text {
+  text-align: center;
+  font-size: 1.25em;
+  padding: 1.25em;
+}
+
+.item {
+  padding-left: 0;
+  font-size: 1.35em;
+
+  span {
+    padding-left: 1em;
+  }
+}
+
+.selected {
+  font-weight: bold;
+  background-color: $gray-background;
+}
+
+.item-radio-checked ion-label {
+  color: #1064b1; 
+}
+
+.question-buttons {
+  background-color: $gray-background;
+}
