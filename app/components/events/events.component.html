@@ -1,3 +1,13 @@
+<ion-row class="month-filters" center>
+  <ion-col width-45>
+    <ion-icon class="icon-chevron-left"></ion-icon>
+    <span class="event-month">Month</span>
+    <ion-icon class="icon-chevron-right"></ion-icon>
+  </ion-col>
+  <ion-col>
+    <ion-searchbar [(ngModel)]="searchQuery" (input)="getEvents($event)"></ion-searchbar>
+  </ion-col>
+</ion-row>
 <ion-list class="events-list">
-  <eventListItem *ngFor="#event of events" [event]="event"></eventListItem>
+  <eventListItem *ngFor="#event of eventsSearch" [event]="event"></eventListItem>
 </ion-list>
