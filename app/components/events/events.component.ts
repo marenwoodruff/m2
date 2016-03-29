@@ -1,38 +1,51 @@
-/**
- * Created by Abbey on 3/10/2016.
- */
-import {Component,OnInit,OnDestroy} from 'angular2/core';
-import {List} from 'ionic-angular';
+import {Component, OnChanges, Input} from 'angular2/core';
+import {NgClass} from 'angular2/common';
+import {List, Button, Searchbar, Icon} from 'ionic-angular';
 import {EventListItemComponent} from "./eventListItem.component";
 import {EventService} from "../../service/event.service";
+import {Event} from '../../models/events/event';
 
 @Component({
     selector: 'events',
     templateUrl: 'build/components/events/events.component.html',
-    directives: [List, EventListItemComponent],
+    directives: [List, EventListItemComponent, Button, Searchbar, Icon, NgClass],
+    inputs:['events'],
     providers:[EventService]
 })
 
-export class EventsComponent implements OnInit, OnDestroy {
+export class EventsComponent implements OnChanges{
+  private _eventsApi:EventService;
+  searchQuery: string = '';
+  eventsSearch:Event[];
+  @Input() events;
 
-    private _eventsApi:EventService;
-    public events:Event[];
+  constructor(eventService:EventService) {
+    this._eventsApi = eventService;
 
-    constructor(eventService:EventService) {
-        this._eventsApi = eventService;
+  }
+  ngOnChanges(){
+    this.initializeItems();
+  }
+
+  initializeItems() {
+    this.eventsSearch = this.events;
+  }
+
+  getEvents(searchBar) {
+    this.initializeItems();
+
+    var q = searchBar.value;
+
+    if (q.trim() == '') {
+      return;
     }
 
-    ngOnInit():any {
-        this._eventsApi.events.subscribe(
-            events => this.events = events,
-            err => console.log("EventsComponent events subscribe error: ", err),
-            () => console.log("Finished subscribing to events")
-        );
-        this._eventsApi.getEvents();
-    }
-
-    ngOnDestroy():any {
-        this._eventsApi.events.unsubscribe();
-    }
+    this.eventsSearch = this.eventsSearch.filter((v) => {
+      if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    })
+  }
 
 }

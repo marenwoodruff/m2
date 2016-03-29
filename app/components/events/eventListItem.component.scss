@@ -1,0 +1,18 @@
+.events-list {
+  ion-item {
+    border-top: 1px solid #DBDBDB;
+  }
+  .item-inner{
+    border-bottom: none;
+  }
+  .event-title{
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  ion-thumbnail img {
+      max-width: 9rem;
+      max-height: 9rem;
+  }
+
+}
