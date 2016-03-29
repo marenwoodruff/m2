@@ -1,16 +1,15 @@
-/**
- * Created by Abbey on 3/10/2016.
- */
 import {Component} from 'angular2/core';
 import {Event} from '../../models/events/event';
 import {EventPage} from '../../pages/event/event.page';
 import {Item, NavController, Button} from 'ionic-angular';
+import {DateFormatPipe} from 'angular2-moment';
 
 @Component({
     selector: "eventListItem",
     templateUrl: 'build/components/events/eventListItem.component.html',
     directives: [Item, EventPage, Button],
-    inputs:['event']
+    inputs:['event'],
+    pipes:[DateFormatPipe]
 })
 export class EventListItemComponent{
     event:Event;

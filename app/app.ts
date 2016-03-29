@@ -4,7 +4,6 @@ import {SurveyService} from './service/survey.service';
 import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
-import {LoginPage} from './pages/login/login.page';
 
 @App({
     templateUrl: 'build/app.html',
@@ -20,8 +19,8 @@ class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
+            {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'Surveys', component: SurveysPage},
-            {title: 'Events', component: EventsPage},
             {title: 'Twitter', component: TwitterPage},
         ];
 
