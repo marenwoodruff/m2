@@ -21,8 +21,8 @@ export class SurveyCompletedPage {
   }
 
   navigateHomepage() {
-    this.nav.setRoot(EventsPage);
-    console.log('hi');
+    // this.nav.setRoot(EventsPage);
+    console.log('go home');
   }
 
 }

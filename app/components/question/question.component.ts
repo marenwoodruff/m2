@@ -4,6 +4,7 @@ import {Question} from '../../models/survey/question';
 import {Survey} from '../../models/survey/survey';
 import {AnswerComponent} from '../answer/answer.component';
 import {StorageService} from '../../service/storage.service';
+import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
 
 @Component({
   selector: 'question',
@@ -61,7 +62,7 @@ export class QuestionComponent implements OnInit {
   private nextQuestion(): void {
     if (this.questionIndex === this.questionsLength - 1) {
       this.nav.push(SurveyCompletedPage, {
-        survey: this.survey
+        survey: this.questions
       });
     } else {
       this.questionIndex = this.questionIndex + 1;
