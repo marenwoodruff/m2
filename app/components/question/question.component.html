@@ -1,26 +1,10 @@
-<ion-card>
+
+<h2 padding>{{question.name}}</h2>
+<ion-card *ngFor="#question of question.questions">
   <ion-card-header>
-    {{currentQuestion.text}}
+    {{question.text}}
   </ion-card-header>
-  <ion-card-content *ngFor="#option of currentQuestion.answer.options">
-    <div [ngSwitch]="currentQuestion.answer.type">
-      <ion-list *ngSwitchWhen="'radio'">
-          RADIO
-          {{option.display}}
-      </ion-list>
-      <div *ngSwitchWhen="'textBox'">
-        TEXTBOX
-        {{option.display}}
-      </div>
-      <ion-list *ngSwitchWhen="'checkBox'">
-        CHECKBOX
-        {{option.display}}
-      </ion-list>
-    </div>
+  <ion-card-content>
+    <answer [answer]="question"></answer>
   </ion-card-content>
 </ion-card>
-<button clear (click)="previousQuestion()" *ngIf="enabled">Previous</button>
-<button light clear (click)="previousQuestion()" *ngIf="disabled">Previous</button>
-<button clear (click)="skipQuestion()">Skip</button>
-<button clear (click)="nextQuestion()">Next</button>
-
