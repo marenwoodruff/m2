@@ -1,8 +1,8 @@
-<ion-item>
+<ion-item (click)="viewEvent(event)">
     <ion-thumbnail item-left>
         <img class="center-event-image" src="{{event.image}}" alt="{{event.name}}"/>
     </ion-thumbnail>
-    <h2 class="sessions">{{event.name}}</h2>
-    <p class="sessions">{{event.description}}</p>
-    <button (click)="viewEvent(event)" clear item-right>View</button>
+    <h2 class="sessions event-title">{{event.name}}</h2>
+    <p class="sessions">{{event.starts | amDateFormat:"MMMM Do YYYY"}}</p>
+    <p class="sessions">{{event.location.city}}, {{event.location.state}}</p>
 </ion-item>

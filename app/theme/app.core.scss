@@ -7,10 +7,15 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
+@import "./app.fontAwesome";
+@import "../components/events/eventListItem.component";
+@import "../components/events/events.component";
 @import "../components/event/event.component";
 @import "../components/sessions/sessions.component";
-@import "../pages/login/login.page";
-@import "./app.fontAwesome";
+@import "../components/signup/signup.component";
+@import "../components/login/login.component";
+@import "../pages/signup/signup.page";
+@import "../pages/events/events.page";
 
 .center {
   text-align: center;

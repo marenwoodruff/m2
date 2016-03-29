@@ -1,0 +1,36 @@
+@import '../../theme/app.variables';
+
+.event-segments {
+
+  background-color: map-get($colors, primary);;
+  button {
+    box-shadow: none;
+  }
+  .active {
+    background-color: map-get($colors, light);
+    color: #3D3D3D;
+  }
+}
+.events-container {
+  scroll-content {
+    padding: 0;
+  }
+}
+
+.month-filters {
+  height: 10vh;
+  background-color: map-get($colors, light);
+  font-size: 2.2rem;
+  font-weight: lighter;
+  border-bottom: 1px solid #DBDBDB;
+  .event-month {
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+  }
+  ion-icon {
+    margin-top: 5px;
+    vertical-align: middle;
+  }
+
+}
