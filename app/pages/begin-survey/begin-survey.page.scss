@@ -1,3 +1,33 @@
-.surveyNavbar {
-  background-color: transparent;
+.main-container {
+  padding: 1rem;
+  font-size: 20px;
+  color: grey;
+}
+
+.toolbar[transparent] .toolbar-title, .toolbar[transparent] .bar-button-default {
+  color: grey;
+}
+
+.beginSurveyButton {
+  border-radius: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.surveyTime {
+  padding: 8px 16px;
+  border: 2px solid grey;
+  border-radius: 25px;
+}
+
+.conferenceName {
+  font-size: 30px;
+}
+
+.beginSurveyRows {
+  padding: 2rem 0;
 }
