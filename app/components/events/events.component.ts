@@ -17,8 +17,9 @@ import * as moment from 'moment';
 export class EventsComponent implements OnChanges{
   searchQuery: string = '';
   eventsSearch:Event[];
-  month:any;
-  months:any = [];
+  eventSearchActive:boolean;
+  month:string;
+  months:string[] = [];
   currentMonthIndex:number = 0;
   @Input() events;
 
@@ -26,16 +27,16 @@ export class EventsComponent implements OnChanges{
 
   }
 
-
-  ngOnChanges(){
+  ngOnChanges():void{
     if (this.events) {
-      let months:any = [];
+      let months:string[] = [];
       this.events.forEach((event) => {
-       const month = moment(event.starts).format('YYYY-MM');
-        if(!months.includes(month)) {
+       const month:string = moment(event.starts).format('YYYY-MM');
+        if(months.indexOf(month) === -1) {
           months.push(month);
         }
      });
+
      months.forEach((month) => {
        if (this.months.length === 0) {
          this.months.push(month);
@@ -48,13 +49,12 @@ export class EventsComponent implements OnChanges{
        }
      });
      this.months[this.currentMonthIndex];
+     this.initializeItems();
     }
-
-    this.initializeItems();
 
   }
 
-  initializeItems() {
+  private initializeItems():void {
     if (this.events) {
       this.eventsSearch = this.events.filter((event) => {
         return moment(event.starts).isSame(this.month, 'month');
@@ -62,27 +62,27 @@ export class EventsComponent implements OnChanges{
     }
   }
 
-  addMonth() {
+  private addMonth():void {
+    this.searchEvents(this.searchQuery);
     this.month = this.months[this.currentMonthIndex + 1];
     this.initializeItems();
   }
 
-  subtractMonth() {
+  private subtractMonth():void{
+    this.searchEvents(this.searchQuery);
     this.month = this.months[this.currentMonthIndex -1];
     this.initializeItems();
   }
 
-  searchEvents(searchBar) {
+  private searchEvents(search:string):boolean {
     this.initializeItems();
 
-    var q = searchBar.value;
-
-    if (q.trim() == '') {
+    if (search.trim() == '') {
       return;
     }
 
-    this.eventsSearch = this.eventsSearch.filter((v) => {
-      if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+    this.eventsSearch = this.eventsSearch.filter((event) => {
+      if (event.name.toLowerCase().indexOf(search.toLowerCase()) > -1) {
         return true;
       }
       return false;
