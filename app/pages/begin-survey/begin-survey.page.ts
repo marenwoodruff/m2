@@ -3,6 +3,7 @@ import {Page} from 'ionic-angular';
 import {NavController, NavParams, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {SurveyPage} from '../survey/survey.page';
+import {SurveyCompletedPage} from '../survey-completed/survey-completed.page';
 
 @Page({
   templateUrl: 'build/pages/begin-survey/begin-survey.page.html',
@@ -18,6 +19,9 @@ export class BeginSurveyPage {
   }
 
   private ngOnInit(): void {
+    this.nav.push(SurveyCompletedPage, {
+      survey: this.survey
+    });
     let
       length = this.survey.questions.length,
       surveyMinTime = Math.floor(length * 0.30),
