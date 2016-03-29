@@ -1,5 +1,4 @@
 import {App, IonicApp, Platform} from 'ionic-angular';
-import {FORM_PROVIDERS} from 'angular2/common';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {EventsPage} from './pages/events/events.page';
@@ -9,7 +8,7 @@ import {LoginPage} from './pages/login/login.page';
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [FORM_PROVIDERS, SurveyService],
+    providers: [SurveyService],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
