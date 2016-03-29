@@ -1,12 +1,8 @@
-<!-- <ion-item *ngFor="#a of answer.options">
-  <ion-label>{{a.value}}</ion-label>
-  <ion-radio [checked]="a.selected" [value]="a.value.length" (click)="getValue(a)"></ion-radio>
-</ion-item> -->
-
-<ion-item *ngFor="#a of answer.answer.options" (click)="getValue(answer.questionId, a)">
-  <input name="a.answer.type" 
+<ion-item *ngFor="#answer of question.answer.options" (click)="getValue(answer)">
+  <input 
+         [name]="question.questionId" 
          type="radio"
-         [value]="a.value"
-         [checked]="a.selected"/>
-  <label>{{a.display}}</label>
+         [value]="answer.value"
+         [checked]="answer.selected"/>
+  <label>{{answer.display}}</label>
 </ion-item>
