@@ -1,26 +1,24 @@
 import {Component} from 'angular2/core';
-import {Item, Label, TextArea} from 'ionic-angular';
-import {Answer} from '../../models/survey/answer';
-import {Response} from '../../models/survey/response';
-import {Selection} from '../../models/survey/selection';
+import {Item, Label, TextArea, Button} from 'ionic-angular';
+import {Question} from '../../models/survey/question';
 
 @Component({
   selector: 'textbox',
   templateUrl: 'build/components/textbox/textbox.component.html',
-  directives: [Item, Label, TextArea],
-  inputs: ['answer']
+  directives: [Item, Label, TextArea, Button],
+  inputs: ['question']
 })
 
 export class TextboxComponent {
-  answer: Answer;
-  response: Response;
-  selection: Selection;
+  question: Question;
+  buttonText: string = 'save response';
 
-  getValue(id: any, val: string) {
-    let selection = new Selection(val);
-    let response = new Response(id, [selection]);
-    id.value = val;
-    console.log(id, val);
+  getValue(answer: any) {
+    if (answer.value != null) {
+      this.buttonText = 'saved';
+    } else {
+      this.buttonText = 'save response';
+    }
   }
 }
 

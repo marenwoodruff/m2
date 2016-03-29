@@ -17,12 +17,15 @@ export class StorageService {
 
     }
     public saveSurveyProgress(survey: Survey):void {
-      this.storage.query(`INSERT INTO SurveyResponse (surveyId, responses) VALUES (${survey.id}, ${survey.questions})`)
+      let id = JSON.stringify(survey.id);
+      let questions = JSON.stringify(survey.questions);
+      this.storage.query(`INSERT INTO SurveyResponse (surveyId, responses) VALUES (${id}, ${questions})`)
         .then((data) => {
           this.surveyQuestions.emit(data);
           console.log(JSON.stringify(data.res));
         }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
+          console.log(error);
+          // console.log("ERROR -> " + JSON.stringify(error.err));
         });
     }
     public getSurveyProgress(id:any):void {
