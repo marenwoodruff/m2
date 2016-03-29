@@ -27,7 +27,6 @@ export class EventsComponent implements OnChanges{
     this.initializeItems();
   }
 
-
   initializeItems() {
     this.eventsSearch = this.events;
   }
@@ -48,7 +47,5 @@ export class EventsComponent implements OnChanges{
       return false;
     })
   }
-  searchFocused() {
-    console.log('focusued!');
-  }
+
 }
