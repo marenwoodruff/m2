@@ -1,15 +1,19 @@
 <ion-row class="month-filters" center>
   <ion-col>
-    <ion-icon class="icon-chevron-left"></ion-icon>
-    <span class="event-month">Month</span>
-    <ion-icon class="icon-chevron-right"></ion-icon>
+    <ion-icon
+      class="icon-chevron-left"
+      (click)="subtractMonth()"></ion-icon>
+    <span class="event-month">{{month | amDateFormat:"MMMM"}}</span>
+    <ion-icon
+      class="icon-chevron-right"
+      (click)="addMonth()"></ion-icon>
   </ion-col>
   <ion-col>
     <ion-searchbar
       class="event-search"
       [ngClass]="{eventSearchActive: eventSearchActive}"
       [(ngModel)]="searchQuery"
-      (input)="getEvents($event)"
+      (input)="searchEvents($event)"
       (focus)="eventSearchActive = true"
       (blur)="eventSearchActive = false"
       placeholder=" "
