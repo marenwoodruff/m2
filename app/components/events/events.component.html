@@ -13,9 +13,9 @@
       class="event-search"
       [ngClass]="{eventSearchActive: eventSearchActive}"
       [(ngModel)]="searchQuery"
-      (input)="searchEvents($event)"
+      (input)="searchEvents($event.value)"
       (focus)="eventSearchActive = true"
-      (blur)="eventSearchActive = false"
+      (blur)="eventSearchActive = searchQuery ? true : false"
       placeholder=" "
       hideCancelButton="true"
       ></ion-searchbar>
