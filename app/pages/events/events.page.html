@@ -1,12 +1,49 @@
 
-<ion-navbar *navbar>
+<ion-navbar *navbar primary>
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Events</ion-title>
+    <ion-title>My MATRIX</ion-title>
 </ion-navbar>
-
-
-<ion-content padding class="survey-container">
-    <events></events>
+<ion-row class="event-segments">
+  <button
+    [ngClass]="{active: page === 'myEvents'}"
+    (click)="changePage('myEvents')"
+    round>
+    My Events
+  </button>
+  <button
+    [ngClass]="{active: page === 'upcomingEvents'}"
+    (click)="changePage('upcomingEvents')"
+    round>
+    Upcoming Events
+  </button>
+  <button
+    [ngClass]="{active: page === 'mySurveys'}"
+    (click)="changePage('mySurveys')"
+    round>
+    My Surveys
+  </button>
+</ion-row>
+<ion-content padding class="events-container">
+  <div [ngSwitch]="page">
+    <div *ngSwitchDefault>
+      <events [events]="events"></events>
+    </div>
+    <div *ngSwitchWhen="'myEvents'">
+      <events *ngIf="userEvents.length > 1" [events]="userEvents"></events>
+      <p *ngIf="userEvents.length === 0" class="center" style="padding: 10vmin" >
+        You have no saved events
+      </p>
+    </div>
+    <div *ngSwitchWhen="'upcomingEvents'">
+      <events [events]="upcomingEvents"></events>
+    </div>
+    <div *ngSwitchWhen="'mySurveys'">
+      <surveys *ngIf="userSurveys.length > 1" [surveys]='userSurveys'></surveys>
+      <p *ngIf="userSurveys.length === 0" class="center" style="padding: 10vmin" >
+        You have no saved surveys
+      </p>
+    </div>
+  </div>
 </ion-content>

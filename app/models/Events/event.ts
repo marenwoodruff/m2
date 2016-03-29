@@ -4,7 +4,7 @@ import {Location} from './location';
 export class Event {
 
     id:number;
-    name:number;
+    name:string;
     image:string;
     description:string;
     starts:Date;
