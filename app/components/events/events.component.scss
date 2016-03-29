@@ -1,1 +1,26 @@
+@import '../../theme/app.variables';
+.event-search {
+  background-color: map-get($colors, light);
+  border-bottom: none;
+  border-top: none;
+  input {
+    background-color: map-get($colors, light);
+    box-shadow: none;
+  }
+  .searchbar-search-icon {
+    transition: all 400ms linear;
+    left: inherit;
+    right: 0;
+  }
+}
 
+.eventSearchActive {
+  input {
+    background-color: white;
+  }
+  .searchbar-search-icon {
+    left: 16px;
+    transition: all 400ms linear;
+  }
+
+}

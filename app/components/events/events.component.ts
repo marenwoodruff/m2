@@ -1,4 +1,5 @@
 import {Component, OnChanges, Input} from 'angular2/core';
+import {NgClass} from 'angular2/common';
 import {List, Button, Searchbar, Icon} from 'ionic-angular';
 import {EventListItemComponent} from "./eventListItem.component";
 import {EventService} from "../../service/event.service";
@@ -7,7 +8,7 @@ import {Event} from '../../models/events/event';
 @Component({
     selector: 'events',
     templateUrl: 'build/components/events/events.component.html',
-    directives: [List, EventListItemComponent, Button, Searchbar, Icon],
+    directives: [List, EventListItemComponent, Button, Searchbar, Icon, NgClass],
     inputs:['events'],
     providers:[EventService]
 })
@@ -46,5 +47,8 @@ export class EventsComponent implements OnChanges{
       }
       return false;
     })
+  }
+  searchFocused() {
+    console.log('focusued!');
   }
 }
