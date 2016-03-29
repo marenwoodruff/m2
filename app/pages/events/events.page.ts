@@ -22,24 +22,23 @@ export class EventsPage implements OnInit, OnDestroy{
     userSurveys:Survey[] = [];
 
     constructor(eventService:EventService) {
-        this._eventsApi = eventService;
+      this._eventsApi = eventService;
     }
 
     ngOnInit():any {
-        this._eventsApi.events.subscribe(
-            events => {
-              this.events = events
-              this.getUpcomingEvents(events);
-              console.log(this.events);
-            },
-            err => console.log("EventsComponent events subscribe error: ", err),
-            () => console.log("Finished subscribing to events")
-        );
-        this._eventsApi.getEvents();
+      this._eventsApi.events.subscribe(
+          events => {
+            this.events = events
+            this.getUpcomingEvents(events);
+          },
+          err => console.log("EventsComponent events subscribe error: ", err),
+          () => console.log("Finished subscribing to events")
+      );
+      this._eventsApi.getEvents();
     }
 
     ngOnDestroy():any {
-        this._eventsApi.events.unsubscribe();
+      this._eventsApi.events.unsubscribe();
     }
 
     getUpcomingEvents(events:Event[]) {
@@ -48,9 +47,8 @@ export class EventsPage implements OnInit, OnDestroy{
       });
     }
 
-    changePage(p:string) {
-      this.page = p;
-      console.log(this.page);
+    changePage(page:string) {
+      this.page = (this.page === page) ? null : page;
     }
 
   }
