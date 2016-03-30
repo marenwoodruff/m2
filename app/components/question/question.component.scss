@@ -3,13 +3,22 @@ $gray-background: #f6fafb;
 .question-text {
   font-size: 1.2em;
   padding: 0 1em;
-  min-height: 19%;
-  max-height: 19%;
+  min-height: 20%;
+  max-height: 20%;
 }
 
 .answer-container {
-  min-height: 35.5%;
-  max-height: 35.5%;
+  min-height: 36%;
+  max-height: 36%;
+
+  .textarea-label {
+    padding: 0 0.3em;
+  }
+
+  ion-textarea {
+    padding: 1em;
+    height: 100%;
+  }
 }
 
 .item {
