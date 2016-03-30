@@ -33,7 +33,7 @@ export class EventPage implements OnInit, OnDestroy{
       () =>  console.log('finished subscribing to surveys')
     );
 
-    this._surveyApi.getSurveys(null, this.event.id);
+    // this._surveyApi.getSurveys(null, this.event.id);
 
   }
   ngOnDestroy() {

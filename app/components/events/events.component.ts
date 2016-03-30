@@ -31,7 +31,7 @@ export class EventsComponent implements OnChanges{
     if (this.events) {
       let months:string[] = [];
       this.events.forEach((event) => {
-       const month:string = moment(event.starts).format('YYYY-MM');
+       const month:string = moment.unix(event.startDate).format('YYYY-MM');
         if(months.indexOf(month) === -1) {
           months.push(month);
         }
@@ -48,7 +48,7 @@ export class EventsComponent implements OnChanges{
          }
        }
      });
-     this.months[this.currentMonthIndex];
+     this.month = this.months[this.currentMonthIndex];
      this.initializeItems();
     }
 
@@ -57,21 +57,30 @@ export class EventsComponent implements OnChanges{
   private initializeItems():void {
     if (this.events) {
       this.eventsSearch = this.events.filter((event) => {
-        return moment(event.starts).isSame(this.month, 'month');
+        return moment.unix(event.startDate).isSame(this.month, 'month');
       });
     }
   }
 
   private addMonth():void {
     this.searchEvents(this.searchQuery);
-    this.month = this.months[this.currentMonthIndex + 1];
-    this.initializeItems();
+    const nextMonthIndex = this.currentMonthIndex + 1;
+    if (nextMonthIndex < this.months.length){
+      this.month = this.months[nextMonthIndex];
+      this.currentMonthIndex = nextMonthIndex;
+      this.initializeItems();
+    }
+
   }
 
   private subtractMonth():void{
     this.searchEvents(this.searchQuery);
-    this.month = this.months[this.currentMonthIndex -1];
-    this.initializeItems();
+    const nextMonthIndex = this.currentMonthIndex - 1;
+    if (nextMonthIndex >= 0){
+      this.month = this.months[nextMonthIndex];
+      this.currentMonthIndex = nextMonthIndex;
+      this.initializeItems();
+    }
   }
 
   private searchEvents(search:string):boolean {
@@ -82,7 +91,7 @@ export class EventsComponent implements OnChanges{
     }
 
     this.eventsSearch = this.eventsSearch.filter((event) => {
-      if (event.name.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+      if (event.title.toLowerCase().indexOf(search.toLowerCase()) > -1) {
         return true;
       }
       return false;
