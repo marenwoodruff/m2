@@ -7,6 +7,11 @@ $gray-background: #f6fafb;
   max-height: 20%;
 }
 
+.md ion-list {
+  min-height: 39%;
+  max-height: 39%;
+}
+
 .answer-container {
   min-height: 36%;
   max-height: 36%;
@@ -25,13 +30,14 @@ $gray-background: #f6fafb;
   padding-left: 0;
   font-size: 1.3em;
 
-  ion-label {
-  }
-
   span {
     padding-left: 1em;
     padding: 1.5em;
   }
+}
+
+.item.checkbox-item {
+  padding-left: 0.25em;
 }
 
 .selected {

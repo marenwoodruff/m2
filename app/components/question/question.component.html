@@ -25,10 +25,12 @@
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchWhen="'checkBox'">
-      <ion-item *ngFor="#option of currentQuestion.answer.options">
+      <ion-item class="checkbox-item" *ngFor="#option of currentQuestion.answer.options">
         <ion-label>{{option.display}}</ion-label>
         <ion-checkbox
-                     [value]="option.value"></ion-checkbox>
+                     [value]="option.value"
+                     [checked]="option.selected"
+                     [(ngModel)]="option.selected"></ion-checkbox>
       </ion-item>
     </ion-list>
   </div>
