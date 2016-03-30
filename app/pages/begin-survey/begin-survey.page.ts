@@ -19,9 +19,6 @@ export class BeginSurveyPage {
   }
 
   private ngOnInit(): void {
-    this.nav.push(SurveyCompletedPage, {
-      survey: this.survey
-    });
     let
       length = this.survey.questions.length,
       surveyMinTime = Math.floor(length * 0.30),
