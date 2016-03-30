@@ -9,7 +9,7 @@ import {SurveyPage} from '../survey/survey.page';
   directives: [Button]
 })
 
-export class BeginSurveyPage {
+export class BeginSurveyPage implements OnInit {
   survey: Survey;
   surveyTime: String;
 
@@ -17,7 +17,7 @@ export class BeginSurveyPage {
     this.survey = this.params.get('survey');
   }
 
-  private ngOnInit(): void {
+  public ngOnInit(): void {
     let
       length = this.survey.questions.length,
       surveyMinTime = Math.floor(length * 0.30),
@@ -31,7 +31,6 @@ export class BeginSurveyPage {
     this.nav.push(SurveyPage, {
       survey: survey
     });
-    console.log(survey);
   }
 
 }

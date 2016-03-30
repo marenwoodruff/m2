@@ -1,5 +1,5 @@
 import {Page} from 'ionic-angular';
-import {OnInit, OnDestroy} from 'angular2/core';
+import {OnInit, OnDestroy, forwardRef} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {EventsComponent} from '../../components/events/events.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
@@ -10,10 +10,10 @@ import {Event} from '../../models/events/event';
 
 @Page({
     templateUrl: 'build/pages/events/events.page.html',
-    directives: [EventsComponent, SurveysComponent, NgClass],
+    directives: [EventsComponent, forwardRef(() => SurveysComponent), NgClass],
     providers:[EventService]
 })
-export class EventsPage implements OnInit, OnDestroy{
+export class EventsPage implements OnInit, OnDestroy {
     private _eventsApi:EventService;
     public events:any;
     public upcomingEvents:Event[];
@@ -52,3 +52,4 @@ export class EventsPage implements OnInit, OnDestroy{
     }
 
   }
+  

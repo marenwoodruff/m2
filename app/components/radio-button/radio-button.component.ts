@@ -11,8 +11,8 @@ import {Answer} from '../../models/survey/answer';
 })
 
 export class RadioButtonComponent {
-  answer: Answer;
-
+  answer: any;
+  
   getValue(id: number, res: any) {
     let choices = this.answer.answer.options;
 
