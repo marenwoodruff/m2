@@ -1,15 +1,13 @@
 import {App, IonicApp, Platform} from 'ionic-angular';
-import {FORM_PROVIDERS} from 'angular2/common';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
-import {LoginPage} from './pages/login/login.page';
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [FORM_PROVIDERS, SurveyService],
+    providers: [SurveyService],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
@@ -21,8 +19,8 @@ class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
+            {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'Surveys', component: SurveysPage},
-            {title: 'Events', component: EventsPage},
             {title: 'Twitter', component: TwitterPage},
         ];
 

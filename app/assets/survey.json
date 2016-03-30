@@ -112,7 +112,7 @@
         "answer": {
             "type": "textBox",
             "options": [{
-                "selected": null,
+                "selected": false,
                 "value": null,
                 "display": null
             }]
@@ -385,7 +385,7 @@
         "answer": {
             "type": "textBox",
             "options": [{
-                "selected": null,
+                "selected": false,
                 "value": null,
                 "display": null
             }]
@@ -396,7 +396,7 @@
         "answer": {
             "type": "textBox",
             "options": [{
-                "selected": null,
+                "selected": false,
                 "value": null,
                 "display": null
             }]
@@ -407,7 +407,7 @@
         "answer": {
             "type": "textBox",
             "options": [{
-                "selected": null,
+                "selected": false,
                 "value": null,
                 "display": null
             }]
@@ -418,7 +418,7 @@
         "answer": {
             "type": "textBox",
             "options": [{
-                "selected": null,
+                "selected": false,
                 "value": null,
                 "display": null
             }]
@@ -429,7 +429,7 @@
         "answer": {
             "type": "textBox",
             "options": [{
-                "selected": null,
+                "selected": false,
                 "value": null,
                 "display": null
             }]
@@ -440,7 +440,7 @@
         "answer": {
             "type": "textBox",
             "options": [{
-                "selected": null,
+                "selected": false,
                 "value": null,
                 "display": null
             }]

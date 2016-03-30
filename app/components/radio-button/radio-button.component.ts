@@ -1,28 +1,29 @@
 import {Component} from 'angular2/core';
+import {FORM_DIRECTIVES, FORM_PROVIDERS} from 'angular2/common';
 import {Item, Label, RadioButton} from 'ionic-angular';
-import {Question} from '../../models/survey/question';
+import {Answer} from '../../models/survey/answer';
 
 @Component({
   selector: 'radio-button',
   templateUrl: 'build/components/radio-button/radio-button.component.html',
-  directives: [Item, Label, RadioButton],
-  inputs: ['question'],
+  directives: [FORM_DIRECTIVES, Item, Label, RadioButton],
+  inputs: ['answer'],
 })
 
 export class RadioButtonComponent {
-  question: Question;
+  answer: any;
+  
+  getValue(id: number, res: any) {
+    let choices = this.answer.answer.options;
 
-  getValue(option: any) {
-
-    let choices = this.question.answer.options;
-
-    choices.forEach(function(choice) {
-      if (choice.value === option.value) {
-        choice.selected = true;
+    choices.forEach(function(c) {
+      if (c.value === res.value) {
+        c.selected = true;
       } else {
-        choice.selected = false;
+        c.selected = false;
       }
-      return choice;
+
+      return c;
     });
   }
 }

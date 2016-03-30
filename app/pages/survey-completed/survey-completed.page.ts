@@ -1,7 +1,6 @@
 import {Page} from 'ionic-angular';
 import {NavController, NavParams, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
-import {SurveyPage} from '../survey/survey.page';
 import {EventsPage} from '../events/events.page';
 
 @Page({

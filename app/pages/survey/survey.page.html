@@ -1,11 +1,13 @@
-<ion-navbar *navbar>
+<ion-navbar *navbar primary>
   <button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-title></ion-title>
+  <ion-title>{{survey.name}}</ion-title>
 </ion-navbar>
 
 <ion-content>
-  <div>image</div>
+  <div>
+    <img class="question-image" src="/build/assets/images/surveyQuestion.png" alt="">
+  </div>
   <question [questions]="survey.questions"></question>
 </ion-content>
