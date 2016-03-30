@@ -8,7 +8,7 @@ import {Survey} from '../../models/survey/survey';
   directives: [QuestionComponent]
 })
 
-export class SurveyPage{
+export class SurveyPage {
   params: NavParams;
   survey: Survey;
 

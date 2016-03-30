@@ -1,7 +1,7 @@
-<div class="question-text">
+<ion-row center class="question-text">
   {{currentQuestion.text}}
-</div>
-<ion-list>
+</ion-row>
+<ion-list class="answer-container">
   <div [ngSwitch]="currentQuestion.answer.type">
     <ion-list *ngSwitchWhen="'radio'" radio-group>
       <ion-item *ngFor="#option of currentQuestion.answer.options" [class.selected]="option.selected">
@@ -33,14 +33,30 @@
     </ion-list>
   </div>
 </ion-list>
-<ion-row class="question-buttons">
-  <ion-col width-20>
-    <ion-icon name="arrow-back"></ion-icon>
-  </ion-col>  
-  <button clear (click)="previousQuestion()" *ngIf="enabled">Previous</button>
-  <button light clear (click)="previousQuestion()" *ngIf="disabled">Previous</button>
-  <button clear (click)="skipQuestion()">Skip</button>
-  <button clear (click)="nextQuestion()">Next</button>
-  <ion-icon name="arrow-forward"></ion-icon>  
-</ion-row>
+<ion-toolbar position="bottom">
+  <ion-row center class="question-buttons">
+    <ion-col width-20>
+      <button clear (click)="previousQuestion()" *ngIf="enabled">
+        <ion-icon matrixblue name="arrow-back"></ion-icon>
+        Previous
+      </button>
+      <button surveylight clear (click)="previousQuestion()" *ngIf="disabled">
+        <ion-icon surveylight name="arrow-back"></ion-icon>
+        Previous
+      </button>
+    </ion-col>
+    <ion-col width-20></ion-col>
+    <ion-col width-20>
+      <button clear (click)="skipQuestion()">Skip</button>
+    </ion-col>
+    <ion-col width-10></ion-col>
+    <ion-col width-20>
+      <button clear (click)="nextQuestion()">
+        Next
+        <ion-icon matrixblue name="arrow-forward"></ion-icon>  
+      </button>
+    </ion-col>
+    <ion-col width-10></ion-col>
+  </ion-row>
+</ion-toolbar>
 
