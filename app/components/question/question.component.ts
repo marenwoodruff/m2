@@ -2,7 +2,6 @@ import {Component, OnInit} from 'angular2/core';
 import {Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, NavController, NavParams} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 import {Survey} from '../../models/survey/survey';
-import {AnswerComponent} from '../answer/answer.component';
 import {StorageService} from '../../service/storage.service';
 import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
 

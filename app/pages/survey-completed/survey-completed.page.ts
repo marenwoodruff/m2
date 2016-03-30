@@ -19,9 +19,8 @@ export class SurveyCompletedPage {
     this.survey = this.params.get('survey');
   }
 
-  navigateHomepage() { 
+  navigateHomepage() {
     this.nav.setRoot(EventsPage);
-    console.log('go home');
   }
 
 }
