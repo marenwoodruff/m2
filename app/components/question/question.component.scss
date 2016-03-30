@@ -1,0 +1,56 @@
+$gray-background: #f6fafb;
+
+.question-text {
+  font-size: 1.2em;
+  padding: 0 1em;
+  min-height: 20%;
+  max-height: 20%;
+}
+
+.answer-container {
+  min-height: 36%;
+  max-height: 36%;
+
+  .textarea-label {
+    padding: 0 0.3em;
+  }
+
+  ion-textarea {
+    padding: 1em;
+    height: 100%;
+  }
+}
+
+.item {
+  padding-left: 0;
+  font-size: 1.3em;
+
+  ion-label {
+  }
+
+  span {
+    padding-left: 1em;
+    padding: 1.5em;
+  }
+}
+
+.selected {
+  font-weight: bold;
+  background-color: $gray-background;
+}
+
+.item-radio-checked ion-label {
+  color: #1064b1; 
+}
+
+.question-buttons {
+  background-color: $gray-background;
+
+  .disabled {
+    color: #999b9a;
+  }
+
+  .enabled {
+    color: #1064b1;
+  }
+}

@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Item, NavController} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {SurveyPage} from '../../pages/survey/survey.page';
@@ -10,12 +10,16 @@ import {SurveyPage} from '../../pages/survey/survey.page';
   inputs: ['survey']
 })
 
-export class SurveyDescriptionComponent {
+export class SurveyDescriptionComponent implements OnInit{
   survey: Survey;
   nav: NavController;
 
   constructor(nav: NavController) {
     this.nav = nav;
+  }
+
+  ngOnInit() {
+    console.log('hi');
   }
 
   viewSurvey(survey) {

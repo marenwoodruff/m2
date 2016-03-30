@@ -1,7 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
-import {Button, List, Item, NavController, NavParams} from 'ionic-angular';
+import {Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar, TextArea, NavController, NavParams} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
-import {SurveyService} from '../../service/survey.service';
 import {Survey} from '../../models/survey/survey';
 import {StorageService} from '../../service/storage.service';
 import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
@@ -9,11 +8,10 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
 @Component({
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
-  directives: [Button, List, Item],
-  providers: [SurveyService, StorageService],
+  directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar, TextArea],
+  providers: [StorageService],
   inputs: ['questions']
 })
-
 
 export class QuestionComponent implements OnInit {
   questions: Question[];
@@ -25,7 +23,7 @@ export class QuestionComponent implements OnInit {
   enabled: boolean = false;
   disabled: boolean = true;
 
-  constructor(private surveyService: SurveyService, private storageService: StorageService, private nav: NavController) {
+  constructor(private storageService: StorageService, private nav: NavController) {
   }
 
   public ngOnInit(): void {
@@ -36,6 +34,16 @@ export class QuestionComponent implements OnInit {
       this.disabled = false;
       this.enabled = true;
     }
+  }
+
+  private changeSelection(option): void {
+    this.currentQuestion.answer.options.forEach(function(opt) {
+      if (option.value === opt.value) {
+        opt.selected = true;
+      } else {
+        opt.selected = false;
+      }
+    });
   }
 
   private saveProgress(survey): void {
@@ -53,7 +61,7 @@ export class QuestionComponent implements OnInit {
   private nextQuestion(): void {
     if (this.questionIndex === this.questionsLength - 1) {
       this.nav.push(SurveyCompletedPage, {
-        survey: this.survey
+        survey: this.questions
       });
     } else {
       this.questionIndex = this.questionIndex + 1;
