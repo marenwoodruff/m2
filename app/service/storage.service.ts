@@ -11,18 +11,40 @@ export class StorageService {
 
   surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
   surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
-  private storage: Storage;
+  public storage: Storage
 
     constructor() {
-
+      this.storage = new Storage(SqlStorage, {name: 'SurveyResponse'});
     }
     public saveSurveyProgress(survey: Survey):void {
-      this.storage.query(`INSERT INTO SurveyResponse (surveyId, responses) VALUES (${survey.id}, ${survey.questions})`)
+      console.log('saveSurveyProvgressSurvey: ', survey);
+      console.log('Stringify Id', JSON.stringify(survey.id));
+      console.log('Stringify Questions', JSON.stringify(survey.questions));
+
+
+
+      this.storage.query(`insert into SurveyResponse (surveyId, responses) values(${JSON.stringify(survey.id)},
+      "[
+        {
+          "questionId":68,
+          "text":"Question stinker",
+          "answer": {
+            "type":"answer",
+            "options": [
+              {
+                "selected":true,
+                "value":"hey",
+                "display":"yes, hey"
+              }
+            ]
+          }
+        }
+      ]")`)
         .then((data) => {
           this.surveyQuestions.emit(data);
-          console.log(JSON.stringify(data.res));
+          console.log("Save Progress Completed -> ", JSON.stringify(data.res));
         }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
+          console.log("Save Progress ERROR -> " + JSON.stringify(error.err));
         });
     }
     public getSurveyProgress(id:any):void {
@@ -31,7 +53,7 @@ export class StorageService {
           this.surveyProgress.emit(data);
           console.log("Data: " + data);
         }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
+          console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
         });
     };
 }
