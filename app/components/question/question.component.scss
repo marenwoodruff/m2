@@ -1,17 +1,27 @@
-$gray-background: #e8eeee;
+$gray-background: #f6fafb;
 
 .question-text {
-  text-align: center;
-  font-size: 1.25em;
-  padding: 1.25em;
+  font-size: 1.2em;
+  padding: 0 1em;
+  min-height: 19%;
+  max-height: 19%;
+}
+
+.answer-container {
+  min-height: 35.5%;
+  max-height: 35.5%;
 }
 
 .item {
   padding-left: 0;
-  font-size: 1.35em;
+  font-size: 1.3em;
+
+  ion-label {
+  }
 
   span {
     padding-left: 1em;
+    padding: 1.5em;
   }
 }
 
@@ -26,4 +36,12 @@ $gray-background: #e8eeee;
 
 .question-buttons {
   background-color: $gray-background;
+
+  .disabled {
+    color: #999b9a;
+  }
+
+  .enabled {
+    color: #1064b1;
+  }
 }
