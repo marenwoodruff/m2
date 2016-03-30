@@ -20,8 +20,8 @@
     </ion-list>
     <ion-list *ngSwitchWhen="'textBox'">
       <ion-item *ngFor="#option of currentQuestion.answer.options">
-        <textarea [(ngModel)]="option.value" 
-                placeholder="type response here"></textarea>
+        <ion-label class="textarea-label" floating>Type Response Here</ion-label>
+        <ion-textarea [(ngModel)]="option.value"></ion-textarea>
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchWhen="'checkBox'">
