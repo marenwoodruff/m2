@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar, TextArea, NavController, NavParams} from 'ionic-angular';
+import {Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar,  NavController, NavParams} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 import {Survey} from '../../models/survey/survey';
 import {StorageService} from '../../service/storage.service';
@@ -8,7 +8,7 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
 @Component({
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
-  directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar, TextArea],
+  directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
   providers: [StorageService],
   inputs: ['questions']
 })

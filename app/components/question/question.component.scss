@@ -11,14 +11,14 @@ $gray-background: #f6fafb;
   min-height: 36%;
   max-height: 36%;
 
-  .textarea-label {
-    padding: 0 0.3em;
+  textarea {
+    border: none;
+    width: 100%;
+    padding: 1em;
+    resize: none;
+    height: 10em;
   }
 
-  ion-textarea {
-    padding: 1em;
-    height: 100%;
-  }
 }
 
 .item {
