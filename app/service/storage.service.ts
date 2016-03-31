@@ -27,23 +27,20 @@ export class StorageService {
         });
     }
     public saveSurveyProgress(survey: Survey):void {
-      console.log("Survey Object: ", JSON.stringify(survey));
-      console.log("Survey Id: ", JSON.stringify(survey.id));
 
       let surveyId = JSON.stringify(survey.id);
       let surveyObject = JSON.stringify(survey);
-      
-      this.storage.query(`insert into Survey (surveyId, survey) values(?, ?)`, [surveyId, surveyObject])
+
+      this.storage.query(`INSERT INTO Survey (surveyId, survey) VALUES(?, ?)`, [surveyId, surveyObject])
         .then((data) => {
-          this.surveyQuestions.emit(data);
+          this.surveyQuestions.emit(data.questions);
           console.log("Save Progress Completed -> ", JSON.stringify(data));
         }, (error) => {
-
           console.log("Save Progress ERROR -> " + error.err.sqlerror);
         });
     }
     public getSurveyProgress(id:any):void {
-      this.storage.get(id)
+      this.storage.query(`SELECT * FROM Survey WHERE surveyId = ${id}`)
         .then((data) => {
           this.surveyProgress.emit(data);
           console.log("Data: " + data);
