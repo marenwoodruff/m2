@@ -16,9 +16,9 @@ export class EventService {
 
     public getEvents():void {
         this._api.get("build/assets/events.json")
-            .map(res => <Event[]> res.json())
+            .map(res => <Event[]> res.json().events)
             .subscribe(
-                events =>this.events.emit(events),
+                events => this.events.emit(events),
                 err => console.log(err),
                 () => console.log('Events retrieval is completed'));
     };

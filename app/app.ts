@@ -4,6 +4,8 @@ import {SurveyService} from './service/survey.service';
 import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
+import {Storage, SqlStorage} from 'ionic-angular';
+import {LoginPage} from './pages/login/login.page';
 
 @App({
     templateUrl: 'build/app.html',
@@ -13,6 +15,7 @@ import {EventService} from "./service/event.service";
 class MyApp {
     rootPage:any = EventsPage;
     pages:Array<{title: string, component: any}>;
+    private storage: Storage;
 
     constructor(private app:IonicApp, private platform:Platform) {
         this.initializeApp();
@@ -28,20 +31,13 @@ class MyApp {
 
     initializeApp() {
         this.platform.ready().then(() => {
-            // The platform is now ready. Note: if this callback fails to fire, follow
-            // the Troubleshooting guide for a number of possible solutions:
-            //
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
-            //
-            // First, let's hide the keyboard accessory bar (only works natively) since
-            // that's a better default:
-            //
-            // Keyboard.setAccessoryBarVisible(false);
-            //
-            // For example, we might change the StatusBar color. This one below is
-            // good for dark backgrounds and light text:
-            // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
+          this.storage = new Storage(SqlStorage, {name: 'SurveyResponse'});
+          this.storage.query('CREATE TABLE IF NOT EXISTS SurveyResponse (id INTEGER PRIMARY KEY AUTOINCREMENT, surveyId TEXT, responses TEXT)')
+            .then((data) => {
+              console.log("TABLE CREATED -> " + JSON.stringify(data.res));
+            }, (error) => {
+              console.log("ERROR -> " + JSON.stringify(error.err));
+            });
         });
     }
 
