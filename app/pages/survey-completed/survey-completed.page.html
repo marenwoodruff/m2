@@ -1,0 +1,33 @@
+<ion-content class="done-page">
+  <ion-navbar hideBackButton *navbar transparent>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title></ion-title>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <button clear class="return-home-button" (click)="navigateHomepage()">Return Home<ion-icon class="forward-arrow-icon" name="arrow-forward"></ion-icon></button>
+    </ion-row>
+  </ion-navbar>
+  <ion-row class="done-row">
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+    <ion-col class="done-column">DONE!</ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="thank-you-message">
+      Thank you for participating in the MATRIX Executive Seminar Series.
+      We hope that you found this seminar to be helpful and informative.
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="thank-you-message">
+      We hope to see you again.
+    </ion-col>
+  </ion-row>
+</ion-content>
