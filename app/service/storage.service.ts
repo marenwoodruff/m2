@@ -47,5 +47,13 @@ export class StorageService {
         }, (error) => {
           console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
         });
-    };
+    }
+    public removeSurveyProgress(id:any):void {
+      this.storage.query(`DELETE FROM Survey WHERE surveyId = ${id}`)
+        .then((data) => {
+          console.log("Data: " + data);
+        }, (error) => {
+          console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
+        });
+    }
 }
