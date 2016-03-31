@@ -11,40 +11,35 @@ export class StorageService {
 
   surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
   surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
-  public storage: Storage
+  private storage: Storage
 
     constructor() {
-      this.storage = new Storage(SqlStorage, {name: 'SurveyResponse'});
+      this.initializeDb();
+    }
+    private initializeDb() {
+      this.storage = new Storage(SqlStorage, {name: 'MatrixDB'});
+
+      this.storage.query('CREATE TABLE IF NOT EXISTS Survey (surveyId, survey)')
+        .then((data) => {
+          console.log("TABLE CREATED -> " + JSON.stringify(data.res));
+        }, (error) => {
+          console.log("ERROR -> " + JSON.stringify(error.err));
+        });
     }
     public saveSurveyProgress(survey: Survey):void {
-      console.log('saveSurveyProvgressSurvey: ', survey);
-      console.log('Stringify Id', JSON.stringify(survey.id));
-      console.log('Stringify Questions', JSON.stringify(survey.questions));
+      console.log("Survey Object: ", JSON.stringify(survey));
+      console.log("Survey Id: ", JSON.stringify(survey.id));
 
-
-
-      this.storage.query(`insert into SurveyResponse (surveyId, responses) values(${JSON.stringify(survey.id)},
-      "[
-        {
-          "questionId":68,
-          "text":"Question stinker",
-          "answer": {
-            "type":"answer",
-            "options": [
-              {
-                "selected":true,
-                "value":"hey",
-                "display":"yes, hey"
-              }
-            ]
-          }
-        }
-      ]")`)
+      let surveyId = JSON.stringify(survey.id);
+      let surveyObject = JSON.stringify(survey);
+      
+      this.storage.query(`insert into Survey (surveyId, survey) values(?, ?)`, [surveyId, surveyObject])
         .then((data) => {
           this.surveyQuestions.emit(data);
-          console.log("Save Progress Completed -> ", JSON.stringify(data.res));
+          console.log("Save Progress Completed -> ", JSON.stringify(data));
         }, (error) => {
-          console.log("Save Progress ERROR -> " + JSON.stringify(error.err));
+
+          console.log("Save Progress ERROR -> " + error.err.sqlerror);
         });
     }
     public getSurveyProgress(id:any):void {
