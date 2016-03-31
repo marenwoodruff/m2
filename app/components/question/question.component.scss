@@ -7,31 +7,45 @@ $gray-background: #f6fafb;
   max-height: 20%;
 }
 
+.md ion-list {
+  min-height: 39%;
+  max-height: 39%;
+}
+
 .answer-container {
   min-height: 36%;
   max-height: 36%;
 
-  .textarea-label {
-    padding: 0 0.3em;
+  textarea {
+    border: none;
+    width: 100%;
+    padding: 1em;
+    resize: none;
+    height: 10em;
   }
 
-  ion-textarea {
-    padding: 1em;
-    height: 100%;
-  }
+}
+
+.ios .radio-checked .radio-inner {
+  border-width: 5px;
+  width: 10px;
+  height: 21px;
+  left: 0;
+  top: 0;
 }
 
 .item {
   padding-left: 0;
   font-size: 1.3em;
 
-  ion-label {
-  }
-
   span {
     padding-left: 1em;
     padding: 1.5em;
   }
+}
+
+.item.checkbox-item {
+  padding-left: 0.25em;
 }
 
 .selected {
