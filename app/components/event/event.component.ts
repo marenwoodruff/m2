@@ -1,7 +1,5 @@
 import {Component, OnInit, OnDestroy, Input} from 'angular2/core';
-import {SurveyService} from '../../service/survey.service';
 import {List, Item, NavController} from 'ionic-angular';
-import {Survey} from '../../models/survey/survey';
 import {Event} from '../../models/events/event';
 import {SessionComponent} from '../session/session.component';
 import {EventLocationComponent} from '../event-location/event-location.component';
