@@ -42,7 +42,7 @@
         <ion-icon matrixblue name="arrow-back"></ion-icon>
         Previous
       </button>
-      <button surveylight clear (click)="previousQuestion()" *ngIf="disabled">
+      <button surveylight clear (click)="previousQuestion()" *ngIf="!enabled">
         <ion-icon surveylight name="arrow-back"></ion-icon>
         Previous
       </button>
