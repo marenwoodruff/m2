@@ -1,0 +1,35 @@
+<ion-content class="main-container">
+  <ion-col>
+    <ion-navbar *navbar transparent>
+      <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title></ion-title>
+    </ion-navbar>
+    <ion-row class="beginSurveyRows">
+      <ion-col>
+      </ion-col>
+      <ion-col width-90 class="centerText">
+        <ion-text class="conferenceName">
+          {{survey.name}}
+        </ion-text>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+    <ion-row class="beginSurveyRows">
+      <ion-col>
+      </ion-col>
+      <ion-col width-90 class="centerText">
+        <ion-text class="surveyTime">
+          {{surveyTime}}
+        </ion-text>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+    <ion-row class="beginSurveyRows">
+      <button primary class="button button-block beginSurveyButton" (click)="viewSurvey(survey)">Begin Survey</button>
+    </ion-row>
+  </ion-col>
+</ion-content>

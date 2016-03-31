@@ -11,11 +11,15 @@ export class StorageService {
 
   surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
   surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
-  private storage: Storage;
+  private storage: Storage
 
     constructor() {
-      this.storage = new Storage(SqlStorage, {name: 'SurveyResponse'});
-      this.storage.query('CREATE TABLE IF NOT EXISTS SurveyResponse (id INTEGER PRIMARY KEY AUTOINCREMENT, surveyId TEXT, responses TEXT)')
+      this.initializeDb();
+    }
+    private initializeDb() {
+      this.storage = new Storage(SqlStorage, {name: 'MatrixDB'});
+
+      this.storage.query('CREATE TABLE IF NOT EXISTS Survey (surveyId, survey)')
         .then((data) => {
           console.log("TABLE CREATED -> " + JSON.stringify(data.res));
         }, (error) => {
@@ -23,21 +27,33 @@ export class StorageService {
         });
     }
     public saveSurveyProgress(survey: Survey):void {
-      this.storage.query(`INSERT INTO SurveyResponse (surveyId, responses) VALUES (${survey.id}, ${survey.questions})`)
+
+      let surveyId = JSON.stringify(survey.id);
+      let surveyObject = JSON.stringify(survey);
+
+      this.storage.query(`INSERT INTO Survey (surveyId, survey) VALUES(?, ?)`, [surveyId, surveyObject])
         .then((data) => {
-          this.surveyQuestions.emit(data);
-          console.log(JSON.stringify(data.res));
+          this.surveyQuestions.emit(data.questions);
+          console.log("Save Progress Completed -> ", JSON.stringify(data));
         }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
+          console.log("Save Progress ERROR -> " + error.err.sqlerror);
         });
     }
     public getSurveyProgress(id:any):void {
-      this.storage.get(id)
+      this.storage.query(`SELECT * FROM Survey WHERE surveyId = ${id}`)
         .then((data) => {
           this.surveyProgress.emit(data);
           console.log("Data: " + data);
         }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
+          console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
         });
-    };
+    }
+    public removeSurveyProgress(id:any):void {
+      this.storage.query(`DELETE FROM Survey WHERE surveyId = ${id}`)
+        .then((data) => {
+          console.log("Data: " + data);
+        }, (error) => {
+          console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
+        });
+    }
 }

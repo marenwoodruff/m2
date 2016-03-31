@@ -1,22 +1,21 @@
 import {Component} from 'angular2/core';
 import {Page, NavParams} from 'ionic-angular';
-import {Question} from '../../models/survey/question';
 import {QuestionComponent} from '../../components/question/question.component';
 import {Survey} from '../../models/survey/survey';
+import {StorageService} from '../../service/storage.service';
 
 @Page({
   templateUrl: 'build/pages/survey/survey.page.html',
-  directives: [QuestionComponent]
+  directives: [QuestionComponent],
 })
 
-
-export class SurveyPage{
+export class SurveyPage {
   params: NavParams;
   survey: Survey;
+  storage: StorageService;
 
-  constructor(params: NavParams) {
+  constructor(params: NavParams, storage: StorageService) {
     this.params = params;
-    this.survey = this.params.get('question');
-    console.log('survey:', this.survey);
+    this.survey = this.params.get('survey');
   }
 }
