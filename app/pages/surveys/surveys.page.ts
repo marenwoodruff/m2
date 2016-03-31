@@ -11,7 +11,7 @@ import {Survey} from '../../models/survey/survey';
 })
 
 export class SurveysPage implements OnInit, OnDestroy{
-    surveyQuestions: any;
+    public surveyProgress: any;
     public surveys: Survey[];
 
     constructor(private _surveyApi: SurveyService, private _storageApi:StorageService) {
@@ -25,32 +25,14 @@ export class SurveysPage implements OnInit, OnDestroy{
         () =>  console.log('finished subscribing to surveys')
       );
 
-      this._storageApi.surveyQuestions.subscribe(
-        surveys => this.surveyQuestions = surveys,
+      this._storageApi.surveyProgress.subscribe(
+        survey => this.surveyProgress = survey,
         err => console.log('SurveysComponent subscribe error:', err),
         () =>  console.log('finished subscribing to surveys')
       );
 
       this._surveyApi.getSurveys();
 
-      this._storageApi.saveSurveyProgress({
-        id: 2,
-        eventId: 4,
-        name: "Name",
-        questions: [{
-          questionId: 68,
-          text: "Question stinker",
-          answer: {
-            type: "answer",
-            options: [{
-              selected: true,
-              value: "hey",
-              display: "yes, hey",
-            }]
-          }
-        }]
-      });
-      console.log(this.surveyQuestions);
     }
 
     ngOnDestroy() {
