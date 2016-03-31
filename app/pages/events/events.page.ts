@@ -52,4 +52,3 @@ export class EventsPage implements OnInit, OnDestroy {
     }
 
   }
-  
