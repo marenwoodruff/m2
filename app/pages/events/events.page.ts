@@ -43,7 +43,7 @@ export class EventsPage implements OnInit, OnDestroy{
 
     getUpcomingEvents(events:Event[]) {
       this.upcomingEvents = events.filter((event) => {
-        return moment(event.starts).isAfter();
+        return moment.unix(event.startDate).isAfter();
       });
     }
 
