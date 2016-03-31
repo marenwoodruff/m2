@@ -8,7 +8,7 @@ import {Survey} from '../../models/survey/survey';
 @Page({
   templateUrl: 'build/pages/surveys/surveys.page.html',
   directives: [SurveysComponent],
-  providers: [SurveyService, StorageService],
+  providers: [SurveyService],
 })
 
 export class SurveysPage implements OnInit, OnDestroy{
