@@ -13,7 +13,7 @@ import {StorageService} from '../../service/storage.service';
 export class SurveyPage {
   params: NavParams;
   survey: Survey;
-  storage: any;
+  storage: StorageService;
 
   constructor(params: NavParams, storage: StorageService) {
     this.params = params;
