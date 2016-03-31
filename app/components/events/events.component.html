@@ -1,12 +1,14 @@
 <ion-row class="month-filters" center>
-  <ion-col>
-    <ion-icon
-      class="icon-chevron-left"
-      (click)="subtractMonth()"></ion-icon>
-    <span class="event-month">{{month | amDateFormat:"MMMM"}}</span>
-    <ion-icon
-      class="icon-chevron-right"
-      (click)="addMonth()"></ion-icon>
+  <ion-col style="display: flex; justify-content: space-between;">
+    <ion-col width-10>
+      <img *ngIf="showLeftButton" class="chevrons" src="build/assets/icons/Gray_LeftArrow.png"(click)="subtractMonth()"/>
+    </ion-col>
+    <ion-col width-67>
+      <span class="event-month">{{month | amDateFormat:"MMMM YYYY"}}</span>
+    </ion-col>
+    <ion-col width-10>
+      <img *ngIf="showRightButton" class="chevrons" src="build/assets/icons/Gray_RightArrow.png"(click)="addMonth()"/>
+    </ion-col>
   </ion-col>
   <ion-col>
     <ion-searchbar

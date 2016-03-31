@@ -5,6 +5,8 @@
   background-color: map-get($colors, primary);;
   button {
     box-shadow: none;
+    text-transform: none;
+    font-size: 1.3rem;
   }
   .active {
     background-color: map-get($colors, light);
@@ -20,12 +22,10 @@
 .month-filters {
   height: 10vh;
   background-color: map-get($colors, light);
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: lighter;
   border-bottom: 1px solid #DBDBDB;
   .event-month {
-    padding-left: 10px;
-    padding-right: 10px;
     vertical-align: middle;
   }
   ion-icon {

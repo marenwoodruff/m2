@@ -3,36 +3,9 @@
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{event.name}}</ion-title>
+    <ion-title>{{event.title}}</ion-title>
 </ion-navbar>
 
-<ion-toolbar>
-  <ion-segment [(ngModel)]="page" >
-    <ion-segment-button value="overview">
-      Overview
-    </ion-segment-button>
-    <ion-segment-button *ngIf="event.sessions.length > 1"  value="sessions">
-      Sessions
-    </ion-segment-button>
-    <ion-segment-button value="surveys">
-      Surveys
-    </ion-segment-button>
-  </ion-segment>
-</ion-toolbar>
-
 <ion-content>
-  <div [ngSwitch]="page">
-    <div *ngSwitchWhen="'overview'">
-      <event [event]="event"></event>
-    </div>
-    <div *ngSwitchWhen="'sessions'" >
-      <sessions [sessions]="event.sessions" [location]="event.location"></sessions>
-    </div>
-    <div *ngSwitchWhen="'surveys'">
-      <surveys *ngIf="surveys.length >= 1" [surveys]='surveys'></surveys>
-      <p *ngIf="surveys.length === 0" class="center" style="padding: 10vmin" >
-        There are no surveys for this event.
-      </p>
-    </div>
-  </div>
+  <event [event]="event"></event>
 </ion-content>

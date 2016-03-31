@@ -7,22 +7,22 @@
 </ion-navbar>
 <ion-row class="event-segments">
   <button
-    [ngClass]="{active: page === 'myEvents'}"
-    (click)="changePage('myEvents')"
-    round>
-    My Events
-  </button>
-  <button
     [ngClass]="{active: page === 'upcomingEvents'}"
     (click)="changePage('upcomingEvents')"
     round>
-    Upcoming Events
+    Future Events
   </button>
   <button
-    [ngClass]="{active: page === 'mySurveys'}"
-    (click)="changePage('mySurveys')"
+    [ngClass]="{active: page === 'pastEvents'}"
+    (click)="changePage('pastEvents')"
     round>
-    My Surveys
+    Past Events
+  </button>
+  <button
+    [ngClass]="{active: page === 'surveys'}"
+    (click)="changePage('surveys')"
+    round>
+    Surveys
   </button>
 </ion-row>
 <ion-content padding class="events-container">
@@ -30,19 +30,16 @@
     <div *ngSwitchDefault>
       <events [events]="events"></events>
     </div>
-    <div *ngSwitchWhen="'myEvents'">
-      <events *ngIf="userEvents.length > 1" [events]="userEvents"></events>
-      <p *ngIf="userEvents.length === 0" class="center" style="padding: 10vmin" >
-        You have no saved events
-      </p>
-    </div>
     <div *ngSwitchWhen="'upcomingEvents'">
       <events [events]="upcomingEvents"></events>
     </div>
-    <div *ngSwitchWhen="'mySurveys'">
-      <surveys *ngIf="userSurveys.length > 1" [surveys]='userSurveys'></surveys>
-      <p *ngIf="userSurveys.length === 0" class="center" style="padding: 10vmin" >
-        You have no saved surveys
+    <div *ngSwitchWhen="'pastEvents'">
+      <events [events]="pastEvents"></events>
+    </div>
+    <div *ngSwitchWhen="'surveys'">
+      <surveys *ngIf="surveys.length > 1" [surveys]='surveys'></surveys>
+      <p *ngIf="surveys.length === 0" class="center" style="padding: 10vmin" >
+        Hold up no surveys yet...
       </p>
     </div>
   </div>
