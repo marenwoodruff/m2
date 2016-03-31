@@ -17,9 +17,9 @@ export class EventsPage implements OnInit, OnDestroy{
     private _eventsApi:EventService;
     public events:any;
     public upcomingEvents:Event[];
+    public pastEvents:Event[];
     page: string;
-    userEvents:Event[] = [];
-    userSurveys:Survey[] = [];
+    surveys: Survey[] = [];
 
     constructor(eventService:EventService) {
       this._eventsApi = eventService;
@@ -30,6 +30,7 @@ export class EventsPage implements OnInit, OnDestroy{
           events => {
             this.events = events
             this.getUpcomingEvents(events);
+            this.getPastEvents(events);
           },
           err => console.log("EventsComponent events subscribe error: ", err),
           () => console.log("Finished subscribing to events")
@@ -44,6 +45,12 @@ export class EventsPage implements OnInit, OnDestroy{
     getUpcomingEvents(events:Event[]) {
       this.upcomingEvents = events.filter((event) => {
         return moment.unix(event.startDate).isAfter();
+      });
+    }
+
+    getPastEvents(events:Event[]) {
+      this.pastEvents = events.filter((event) => {
+        return moment.unix(event.startDate).isBefore();
       });
     }
 
