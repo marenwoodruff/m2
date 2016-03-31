@@ -26,6 +26,14 @@ $gray-background: #f6fafb;
 
 }
 
+.radio-checked .radio-inner {
+  border-width: 5px;
+  width: 10px;
+  height: 21px;
+  left: 0;
+  top: 0;
+}
+
 .item {
   padding-left: 0;
   font-size: 1.3em;
