@@ -1,14 +1,11 @@
 import {Page} from 'ionic-angular';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {OnInit, OnDestroy} from 'angular2/core';
-import {SurveyService} from '../../service/survey.service';
-import {StorageService} from '../../service/storage.service';
 import {Survey} from '../../models/survey/survey';
 
 @Page({
   templateUrl: 'build/pages/surveys/surveys.page.html',
-  directives: [SurveysComponent],
-  providers: [SurveyService, StorageService],
+  directives: [SurveysComponent]
 })
 
 export class SurveysPage implements OnInit, OnDestroy{
