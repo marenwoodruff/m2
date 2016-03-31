@@ -1,23 +1,22 @@
 import {App, IonicApp, Platform} from 'ionic-angular';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
+import {StorageService} from './service/storage.service';
 import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
-import {Storage, SqlStorage} from 'ionic-angular';
 import {LoginPage} from './pages/login/login.page';
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService],
+    providers: [SurveyService, StorageService],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
     rootPage:any = EventsPage;
     pages:Array<{title: string, component: any}>;
-    private storage: Storage;
 
-    constructor(private app:IonicApp, private platform:Platform) {
+    constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
@@ -31,13 +30,7 @@ class MyApp {
 
     initializeApp() {
         this.platform.ready().then(() => {
-          this.storage = new Storage(SqlStorage, {name: 'SurveyResponse'});
-          this.storage.query('CREATE TABLE IF NOT EXISTS SurveyResponse (id INTEGER PRIMARY KEY AUTOINCREMENT, surveyId TEXT, responses TEXT)')
-            .then((data) => {
-              console.log("TABLE CREATED -> " + JSON.stringify(data.res));
-            }, (error) => {
-              console.log("ERROR -> " + JSON.stringify(error.err));
-            });
+
         });
     }
 
