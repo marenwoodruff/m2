@@ -10,7 +10,6 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
   directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
-  providers: [StorageService],
   inputs: ['questions']
 })
 

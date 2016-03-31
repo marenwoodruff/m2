@@ -7,7 +7,6 @@ import {StorageService} from '../../service/storage.service';
 @Page({
   templateUrl: 'build/pages/survey/survey.page.html',
   directives: [QuestionComponent],
-  providers: [StorageService]
 })
 
 export class SurveyPage {
