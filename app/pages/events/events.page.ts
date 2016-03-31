@@ -35,7 +35,6 @@ export class EventsPage implements OnInit, OnDestroy {
           () => console.log("Finished subscribing to events")
       );
       this._eventsApi.getEvents();
-      console.log(this.events);
     }
 
     ngOnDestroy():any {
