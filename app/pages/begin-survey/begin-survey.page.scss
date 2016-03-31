@@ -1,0 +1,38 @@
+.main-container {
+  padding: 2rem;
+  font-size: 20px;
+  color: #333333;
+  background-image: url('../assets/images/BeginSurvey.png');
+  background-position: center;
+  background-size: auto 100%;
+}
+
+.toolbar[transparent] .toolbar-title, .toolbar[transparent] .bar-button-default {
+  color: #333333;
+}
+
+.beginSurveyButton {
+  border-radius: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.surveyTime {
+  padding: 8px 16px;
+  border: 2px solid #333333;
+  border-radius: 25px;
+}
+
+.conferenceName {
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.beginSurveyRows {
+  padding: 2rem 0;
+}
