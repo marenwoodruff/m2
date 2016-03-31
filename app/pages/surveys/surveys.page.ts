@@ -32,7 +32,6 @@ export class SurveysPage implements OnInit, OnDestroy{
       );
 
       this._surveyApi.getSurveys();
-
     }
 
     ngOnDestroy() {
