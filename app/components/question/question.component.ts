@@ -22,7 +22,7 @@ export class QuestionComponent implements OnInit {
   questionsLength: number;
   enabled: boolean = false;
 
-  constructor(private storageService: StorageService, private nav: NavController) {
+  constructor(private _storageApi: StorageService, private nav: NavController) {
   }
 
   public ngOnInit(): void {
@@ -45,7 +45,7 @@ export class QuestionComponent implements OnInit {
   }
 
   private saveProgress(survey: Survey): void {
-    this.storageService.saveSurveyProgress(survey);
+    this._storageApi.saveSurveyProgress(survey);
   }
 
   private skipQuestion(): void {
