@@ -7,19 +7,15 @@ import {StorageService} from '../../service/storage.service';
 @Page({
   templateUrl: 'build/pages/survey/survey.page.html',
   directives: [QuestionComponent],
-  providers: [StorageService]
 })
 
 export class SurveyPage {
   params: NavParams;
   survey: Survey;
-  storage: any;
+  storage: StorageService;
 
   constructor(params: NavParams, storage: StorageService) {
     this.params = params;
-    this.survey = this.params.get('question');
-    this.storage = storage;
-    console.log('Service: ', this.storage);
-
+    this.survey = this.params.get('survey');
   }
 }

@@ -20,15 +20,17 @@
     </ion-list>
     <ion-list *ngSwitchWhen="'textBox'">
       <ion-item *ngFor="#option of currentQuestion.answer.options">
-        <ion-label class="textarea-label" floating>Type Response Here</ion-label>
-        <ion-textarea [(ngModel)]="option.value"></ion-textarea>
+        <textarea [(ngModel)]="option.value"
+                  placeholder="Type response here"></textarea>
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchWhen="'checkBox'">
-      <ion-item *ngFor="#option of currentQuestion.answer.options">
+      <ion-item class="checkbox-item" *ngFor="#option of currentQuestion.answer.options">
         <ion-label>{{option.display}}</ion-label>
         <ion-checkbox
-                     [value]="option.value"></ion-checkbox>
+                     [value]="option.value"
+                     [checked]="option.selected"
+                     [(ngModel)]="option.selected"></ion-checkbox>
       </ion-item>
     </ion-list>
   </div>
@@ -40,7 +42,7 @@
         <ion-icon matrixblue name="arrow-back"></ion-icon>
         Previous
       </button>
-      <button surveylight clear (click)="previousQuestion()" *ngIf="disabled">
+      <button surveylight clear (click)="previousQuestion()" *ngIf="!enabled">
         <ion-icon surveylight name="arrow-back"></ion-icon>
         Previous
       </button>

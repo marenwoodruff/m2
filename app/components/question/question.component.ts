@@ -1,15 +1,15 @@
 import {Component, OnInit} from 'angular2/core';
-import {Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar, TextArea, NavController, NavParams} from 'ionic-angular';
+import {Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar,  NavController, NavParams} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 import {Survey} from '../../models/survey/survey';
+import {Option} from '../../models/survey/option';
 import {StorageService} from '../../service/storage.service';
 import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
 
 @Component({
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
-  directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar, TextArea],
-  providers: [StorageService],
+  directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
   inputs: ['questions']
 })
 
@@ -21,7 +21,6 @@ export class QuestionComponent implements OnInit {
   questionIndex: number = 0;
   questionsLength: number;
   enabled: boolean = false;
-  disabled: boolean = true;
 
   constructor(private storageService: StorageService, private nav: NavController) {
   }
@@ -31,12 +30,11 @@ export class QuestionComponent implements OnInit {
     this.questionsLength = this.questions.length;
 
     if (this.questionIndex !== 0) {
-      this.disabled = false;
       this.enabled = true;
     }
   }
 
-  private changeSelection(option): void {
+  private changeSelection(option: Option): void {
     this.currentQuestion.answer.options.forEach(function(opt) {
       if (option.value === opt.value) {
         opt.selected = true;
@@ -46,12 +44,15 @@ export class QuestionComponent implements OnInit {
     });
   }
 
-  private saveProgress(survey): void {
+  private saveProgress(survey: Survey): void {
     this.storageService.saveSurveyProgress(survey);
   }
 
   private skipQuestion(): void {
-    if (this.questionIndex >= this.questionsLength) {
+    if (this.questionIndex === this.questionsLength - 1) {
+      this.nav.push(SurveyCompletedPage, {
+        survey: this.questions
+      });
     } else {
       this.questionIndex = this.questionIndex + 1;
       this.currentQuestion = this.questions[this.questionIndex];
@@ -68,13 +69,7 @@ export class QuestionComponent implements OnInit {
       this.currentQuestion = this.questions[this.questionIndex];
     }
 
-    if (this.questionIndex !== 0) {
-      this.disabled = false;
-      this.enabled = true;
-    } else {
-      this.disabled = true;
-      this.enabled = false;
-    }
+    this.evaluateIndex();
   }
 
   private previousQuestion(): void {
@@ -85,14 +80,15 @@ export class QuestionComponent implements OnInit {
       console.log("first question, no previous")
     }
 
+    this.evaluateIndex();
+  }
+
+  private evaluateIndex() {
     if (this.questionIndex !== 0) {
-      this.disabled = false;
       this.enabled = true;
     } else {
-      this.disabled = true;
       this.enabled = false;
-    }
-
+    }  
   }
 
   private onSubmit(survey): void {
