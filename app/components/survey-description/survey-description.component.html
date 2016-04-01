@@ -1,8 +1,11 @@
 <ion-item (click)="viewSurvey(survey)">
   {{survey.name}}
   <ion-badge matrixblue 
-             [hidden]="newSurvey" 
+             *ngIf="savedSurvey"
              item-right>In Progress</ion-badge>
+  <ion-badge favorite
+             *ngIf="completedSurvey"
+             item-right>Completed</ion-badge>
 </ion-item>
 
 

@@ -13,7 +13,9 @@ import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
 export class SurveyDescriptionComponent {
   survey: Survey;
   nav: NavController;
-  newSurvey: boolean = true;
+  savedSurvey: boolean;
+  completedSurvey: boolean;
+
 
   constructor(nav: NavController) {
     this.nav = nav;
