@@ -61,7 +61,7 @@ export class QuestionComponent implements OnInit {
   }
 
   private nextQuestion(): void {
-    this._storageApi.removeSurveyProgress(this.survey.id);
+    // this._storageApi.removeSurveyProgress(this.survey.id);
     this.saveProgress(this.survey);
     if (this.questionIndex === this.questionsLength - 1) {
       this.nav.push(SurveyCompletedPage, {

@@ -42,7 +42,7 @@ export class StorageService {
     public getSurveyProgress(id:any):void {
       this.storage.query(`SELECT * FROM Survey WHERE surveyId = ${id}`)
         .then((data) => {
-          this.surveyProgress.emit(data);  //convert to survey object
+          this.surveyProgress.emit(data);
           console.log("Data: " + data);
         }, (error) => {
           console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
