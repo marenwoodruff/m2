@@ -18,20 +18,21 @@ export class SurveysPage implements OnInit, OnDestroy{
     private storageSubscription: EventEmitter<Survey[]>;
 
     constructor(private _surveyApi: SurveyService, private _storageApi:StorageService) {
+    }
+
+    ngOnInit():any {
       this.surveySubscription = this._surveyApi.surveys.subscribe(
         surveys => this.surveys = surveys,
-        err => console.log('SurveysComponent subscribe error:', err),
+        err => console.log('SurveysComponent surveyservice subscribe error:', err),
         () =>  console.log('finished subscribing to surveys')
       );
 
       this.storageSubscription = this._storageApi.surveyProgress.subscribe(
         survey => this.surveyProgress = survey,
-        err => console.log('SurveysComponent subscribe error:', err),
-        () =>  console.log('finished subscribing to surveys')
+        err => console.log('SurveysComponent storageservice subscribe error:', err),
+        () =>  console.log('finished subscribing to storage surveys')
       );
-    }
-
-    ngOnInit():any {
+      
       this._surveyApi.getSurveys();
     }
 
