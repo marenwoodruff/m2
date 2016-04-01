@@ -1,26 +1,41 @@
-<h2 class="center">{{event.title}}</h2>
-<h5 *ngIf="event.startDate === event.endDate" class="center">
-    {{event.startDate}} | {{event.city}}, {{event.state}}
-</h5>
-<div *ngIf="event.startDate !== event.endDate" class="center">
-  <h5>
-    {{event.startDate}} - {{event.endDate}}
-  </h5>
-  <h5>
-    {{event.location.city}}, {{event.location.state}}
-  </h5>
+<div class="event-component">
+  <img src="build/assets/images/EventImage.jpg" alt="event image"/>
+  <ion-row class="row-padding">
+    <ion-col>
+      <h2>{{event.title}}</h2>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row-padding">
+    <ion-col>
+      <h5>
+        <span *ngIf="event.startDate === event.endDate">{{(event.startDate | amFromUnix)| amDateFormat:"MMMM Do, YYYY"}}</span>
+        <span *ngIf="event.startDate !== event.endDate">{{(event.startDate | amFromUnix)| amDateFormat:"MMMM Do, YYYY"}} - {{(event.endDate | amFromUnix)| amDateFormat:"MMMM Do, YYYY"}}</span>
+      </h5>
+      <h5>
+        {{event.city}}, {{event.state}}
+      </h5>
+    </ion-col>
+    <ion-col class="register-button-col">
+      <button>Register</button>
+    </ion-col>
+  </ion-row>
+
+  <!--<ion-row>-->
+    <!--<ion-col width-10>-->
+    <!--</ion-col>-->
+    <!--<ion-col width-80>-->
+      <!--<img class="center-event-image" src="http://matrixres.com/{{event.thumb}}" alt="{{event.name}}"/>-->
+    <!--</ion-col>-->
+    <!--<ion-col width-10>-->
+    <!--</ion-col>-->
+  <!--</ion-row>-->
+  <ion-row class="event-description row-padding">
+    <ion-col>
+      <p>{{event.description}}</p>
+    </ion-col>
+  </ion-row>
+
 </div>
-<ion-row>
-  <ion-col width-10>
-  </ion-col>
-  <ion-col width-80>
-    <img class="center-event-image" src="{{event.thumb}}" alt="{{event.name}}"/>
-  </ion-col>
-  <ion-col width-10>
-  </ion-col>
-</ion-row>
-<p class="center matrixBlueFont"><string>{{event.description}}</string></p>
-<!--<hr>-->
-<!--<event-location [location]="event.location"></event-location>-->
-<!--<hr>-->
-<!--<session *ngIf="event.sessions.length === 1" [session]="event.sessions[0]"></session>-->
+
+
+

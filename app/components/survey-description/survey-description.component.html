@@ -1,3 +1,9 @@
 <ion-item (click)="viewSurvey(survey)">
   {{survey.name}}
+  <ion-badge matrixblue 
+             [hidden]="newSurvey" 
+             item-right>In Progress</ion-badge>
 </ion-item>
+
+
+

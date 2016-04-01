@@ -13,17 +13,13 @@
   content: '\f030';
 }
 
-.icon-chevron-right:before {
-  font-family: 'fontawesome';
-  content: '\f054'
-}
-
-.icon-chevron-left:before {
-  font-family: 'fontawesome';
-  content: '\f053'
-}
-
 .icon-search:before {
   font-family: 'fontawesome';
   content: '\f002'
+}
+
+.chevrons {
+  //width: 8%;
+  //height: 10%;
+  vertical-align: middle;
 }

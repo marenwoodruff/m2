@@ -16,6 +16,7 @@ export class SurveyPage {
 
   constructor(params: NavParams, storage: StorageService) {
     this.params = params;
+    this.storage = storage;
     this.survey = this.params.get('survey');
   }
 }

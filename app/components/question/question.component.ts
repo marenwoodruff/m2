@@ -10,7 +10,7 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
   directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
-  inputs: ['questions']
+  inputs: ['survey']
 })
 
 export class QuestionComponent implements OnInit {
@@ -22,10 +22,11 @@ export class QuestionComponent implements OnInit {
   questionsLength: number;
   enabled: boolean = false;
 
-  constructor(private storageService: StorageService, private nav: NavController) {
+  constructor(private _storageApi: StorageService, private nav: NavController) {
   }
 
   public ngOnInit(): void {
+    this.questions = this.survey.questions;
     this.currentQuestion = this.questions[this.questionIndex];
     this.questionsLength = this.questions.length;
 
@@ -35,7 +36,7 @@ export class QuestionComponent implements OnInit {
   }
 
   private changeSelection(option: Option): void {
-    this.currentQuestion.answer.options.forEach(function(opt) {
+    this.currentQuestion.answer.options.forEach((opt:Option) => {
       if (option.value === opt.value) {
         opt.selected = true;
       } else {
@@ -45,7 +46,7 @@ export class QuestionComponent implements OnInit {
   }
 
   private saveProgress(survey: Survey): void {
-    this.storageService.saveSurveyProgress(survey);
+    this._storageApi.saveSurveyProgress(survey);
   }
 
   private skipQuestion(): void {
@@ -60,6 +61,8 @@ export class QuestionComponent implements OnInit {
   }
 
   private nextQuestion(): void {
+    this._storageApi.removeSurveyProgress(this.survey.id);
+    this.saveProgress(this.survey);
     if (this.questionIndex === this.questionsLength - 1) {
       this.nav.push(SurveyCompletedPage, {
         survey: this.questions
