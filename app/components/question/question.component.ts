@@ -35,7 +35,7 @@ export class QuestionComponent implements OnInit {
   }
 
   private changeSelection(option: Option): void {
-    this.currentQuestion.answer.options.forEach(function(opt) {
+    this.currentQuestion.answer.options.forEach((opt:Option) => {
       if (option.value === opt.value) {
         opt.selected = true;
       } else {

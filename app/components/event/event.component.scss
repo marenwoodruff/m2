@@ -1,5 +1,37 @@
+@import '../../theme/app.variables';
 .center-event-image{
     margin-right: auto;
     margin-left: auto;
     display: block;
+}
+
+.event-component {
+    h2 {
+        font-family: lato-bold;
+        margin-bottom: 0;
+    }
+    h5 {
+        margin-top: 0;
+        margin-bottom: 0.2rem;
+    }
+    .event-description {
+        background-color: map-get($colors, light);
+        border-top: 1px solid #D7D8D8;
+        border-bottom: 1px solid #D7D8D8;
+        margin-top: 1.2rem;
+    }
+    .row-padding {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+    }
+}
+
+.register-button-col {
+    display: flex;
+    justify-content:flex-end;
+    button {
+        text-transform: none;
+        border-radius: 0;
+        font-family: lato-bold;
+    }
 }
