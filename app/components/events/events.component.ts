@@ -21,6 +21,8 @@ export class EventsComponent implements OnChanges{
   month:string;
   months:string[] = [];
   currentMonthIndex:number = 0;
+  showLeftButton:boolean;
+  showRightButton:boolean;
   @Input() events;
 
   constructor() {
@@ -48,8 +50,9 @@ export class EventsComponent implements OnChanges{
          }
        }
      });
-     this.month = this.months[this.currentMonthIndex];
-     this.initializeItems();
+      this.month = this.months[this.currentMonthIndex];
+      this.initializeItems();
+      this.showHideArrows()
     }
 
   }
@@ -69,6 +72,8 @@ export class EventsComponent implements OnChanges{
       this.month = this.months[nextMonthIndex];
       this.currentMonthIndex = nextMonthIndex;
       this.initializeItems();
+      this.showHideArrows()
+
     }
 
   }
@@ -80,7 +85,14 @@ export class EventsComponent implements OnChanges{
       this.month = this.months[nextMonthIndex];
       this.currentMonthIndex = nextMonthIndex;
       this.initializeItems();
+      this.showHideArrows()
     }
+
+  }
+
+  private showHideArrows():void {
+    this.showLeftButton = this.currentMonthIndex === 0 ? false : true;
+    this.showRightButton = this.currentMonthIndex === (this.months.length - 1) ? false : true;
   }
 
   private searchEvents(search:string):boolean {

@@ -7,7 +7,7 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
-@import "./app.fontAwesome";
+@import "app.icons";
 @import "../components/events/eventListItem.component";
 @import "../components/events/events.component";
 @import "../components/event/event.component";
@@ -38,4 +38,21 @@
         url('../fonts/fontawesome-webfont.svg') format('svg');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+  font-family: 'lato-regular';
+  src:url('../fonts/Lato-Regular.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'lato-bold';
+  src:url('../fonts/Lato-Bold.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: lato-regular;
 }
