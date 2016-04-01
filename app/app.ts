@@ -16,7 +16,7 @@ class MyApp {
     rootPage:any = EventsPage;
     pages:Array<{title: string, component: any}>;
 
-    constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService) {
+    constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
