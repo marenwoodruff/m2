@@ -14,6 +14,7 @@ import {Survey} from '../../models/survey/survey';
 export class SurveysPage implements OnInit, OnDestroy{
     public surveyProgress: any;
     public surveys: Survey[];
+    public surveyIds = [];
     private surveySubscription: EventEmitter<Survey[]>;
     private storageSubscription: EventEmitter<Survey[]>;
 
@@ -28,16 +29,19 @@ export class SurveysPage implements OnInit, OnDestroy{
       );
 
       this.storageSubscription = this._storageApi.surveyProgress.subscribe(
-        survey => this.surveyProgress = survey,
+        surveys => this.surveyProgress = surveys,
         err => console.log('SurveysComponent storageservice subscribe error:', err),
         () =>  console.log('finished subscribing to storage surveys')
       );
       
       this._surveyApi.getSurveys();
+      // actually run this for each survey id
+      this._storageApi.getSurveyProgress(287182928);
     }
 
     ngOnDestroy() {
       this.surveySubscription.unsubscribe();
       this.storageSubscription.unsubscribe();
     }
+
 }
