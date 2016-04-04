@@ -23,7 +23,10 @@ export class SurveysPage implements OnInit, OnDestroy{
 
     ngOnInit():any {
       this.surveySubscription = this._surveyApi.surveys.subscribe(
-        surveys => this.surveys = surveys,
+        (surveys) => {
+          this.surveys = surveys;
+          this.checkSurveyProgress(this.surveys);
+        },
         err => console.log('SurveysComponent surveyservice subscribe error:', err),
         () =>  console.log('finished subscribing to surveys')
       );
@@ -33,15 +36,20 @@ export class SurveysPage implements OnInit, OnDestroy{
         err => console.log('SurveysComponent storageservice subscribe error:', err),
         () =>  console.log('finished subscribing to storage surveys')
       );
+
       
       this._surveyApi.getSurveys();
-      // actually run this for each survey id
-      this._storageApi.getSurveyProgress(287182928);
     }
 
     ngOnDestroy() {
       this.surveySubscription.unsubscribe();
       this.storageSubscription.unsubscribe();
+    }
+
+    checkSurveyProgress(surveys) {
+      surveys.forEach((survey) => {
+        this._storageApi.getSurveyProgress(survey.id);
+      });
     }
 
 }
