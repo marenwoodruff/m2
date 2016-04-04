@@ -6,6 +6,8 @@ import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
 import {LoginPage} from './pages/login/login.page';
+import {ContactPage} from './pages/contact/contact.page';
+import {SettingsPage} from './pages/settings/settings.page';
 
 @App({
     templateUrl: 'build/app.html',
@@ -24,6 +26,8 @@ class MyApp {
             {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'Surveys', component: SurveysPage},
             {title: 'Twitter', component: TwitterPage},
+            {title: 'Contact Us', component: ContactPage},
+            {title: 'Settings', component: SettingsPage}
         ];
 
     }
