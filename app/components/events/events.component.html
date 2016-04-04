@@ -23,14 +23,13 @@
       [ngClass]="{eventSearchActive: eventSearchActive}"
       [(ngModel)]="searchQuery"
       (input)="searchEvents($event.value)"
-      (focus)="eventSearchActive = true"
-      (blur)="eventSearchActive = searchQuery ? true : false"
+      (focus)="hideClose = true"
+      (blur)="hideClose = false"
       placeholder="Search Events..."
-      hideCancelButton="true"
       ></ion-searchbar>
   </ion-col>
   <ion-col width-10>
-    <ion-icon name="close" (click)="eventSearchActive = !eventSearchActive"></ion-icon>
+    <ion-icon *ngIf="!hideClose" name="close" (click)="eventSearchActive = !eventSearchActive"></ion-icon>
   </ion-col>
 </ion-row>
 <ion-list class="events-list">
