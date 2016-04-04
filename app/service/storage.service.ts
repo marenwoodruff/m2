@@ -17,6 +17,7 @@ export class StorageService {
     constructor() {
       this.initializeDb();
     }
+
     private initializeDb() {
       this.storage = new Storage(SqlStorage, {name: 'MatrixDB'});
 
@@ -27,6 +28,7 @@ export class StorageService {
           console.log("ERROR -> " + JSON.stringify(error.err));
         });
     }
+
     public saveSurveyProgress(survey: Survey):void {
 
       let surveyId = JSON.stringify(survey.id);
@@ -40,6 +42,7 @@ export class StorageService {
           console.log("Save Progress ERROR -> " + error.err.sqlerror);
         });
     }
+
     public getSurveyProgress(id:any):void {
       this.storage.query(`SELECT * FROM Survey WHERE surveyId = '${id}'`)
         .then((data) => {
@@ -64,10 +67,13 @@ export class StorageService {
     }
 
     public updateSurveyProgress(survey: Survey): void {
-      this.storage.query(`UPDATE Survey WHERE surveyId = '${survey.id}'`)
+      let surveyObject = JSON.stringify(survey);
+
+      this.storage.query(`UPDATE Survey SET surveyObject = survey WHERE surveyId = '${survey.id}'`)
         .then((data) => {
-          console.log('Data: ' + data);
+          console.log('Updating Data: ' + data);
         }, (error) => {
+          debugger
           console.log('Update Progress ERROR -> ' + JSON.stringify(error));
         });
     }
