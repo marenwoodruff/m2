@@ -9,17 +9,14 @@ import {Event} from '../../models/events/event';
 @Page({
     templateUrl: 'build/pages/event/event.page.html',
     directives: [EventComponent, forwardRef(() => SurveysComponent), SessionsComponent],
-    // providers:[SurveyService]
 
 })
-
-
-
 export class EventPage implements OnInit, OnDestroy{
   params: NavParams;
   event: Event;
   public surveys: Survey[];
- platform:Platform;
+  platform:Platform;
+
   constructor(navParams: NavParams, platform: Platform) {
     this.params = navParams;
     this.platform = platform;
@@ -32,10 +29,11 @@ export class EventPage implements OnInit, OnDestroy{
   ngOnDestroy() {
   }
 
-  share(message, subject, file, link) {
+  private share(message:string, subject:string, file:string, link:string):void {
+    link = `http://matrixres.com${link}`;
     this.platform.ready().then(() => {
             if (window.plugins.socialsharing) {
-                window.plugins.socialsharing.share('General share Message', null, null, null);;
+                window.plugins.socialsharing.share(message, subject, file, link);;
             }
         });
   }
