@@ -4,7 +4,8 @@ import {Button, List, Item, TextInput, Label} from 'ionic-angular';
 @Component({
   selector: 'session-registration',
   templateUrl: 'build/components/session-registration/session-registration.component.html',
-  directives: [Button, List, Item, TextInput, Label]
+  directives: [Button, List, Item, TextInput, Label],
+  inputs: ['event']
 })
 
 export class SessionRegistrationPage { }

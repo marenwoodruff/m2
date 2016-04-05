@@ -15,13 +15,12 @@ import {RegistrationPage} from '../../pages/registration/registration.page';
 })
 
 export class EventComponent{
-  event: Event;
+  event: Event
 
-  constructor(private nav: NavController, private params: NavParams) {
-    this.event = this.params.get('event');
+  constructor(private nav: NavController) {
   }
 
-  private viewSurvey(event): void {
+  private register(event): void {
     this.nav.push(RegistrationPage, {
       event: event
     });
