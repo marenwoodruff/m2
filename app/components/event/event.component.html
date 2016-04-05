@@ -1,5 +1,16 @@
 <div class="event-component">
-  <img src="build/assets/images/EventImage.jpg" alt="event image"/>
+  <ion-row class="row-padding light">
+    <ion-col>
+      <h5 class="center">Are you at this event?</h5>
+      <p class="center">
+        Take this questionare & be entered to win a prize
+      </p>
+      <ion-row style="display: flex; justify-content: center">
+        <button>Take Survey</button>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <img src="build/assets/images/EventImage.jpg" alt="event image" />
   <ion-row class="row-padding">
     <ion-col>
       <h2>{{event.title}}</h2>
@@ -7,13 +18,13 @@
   </ion-row>
   <ion-row class="row-padding">
     <ion-col>
-      <h5>
+      <h6>
         <span *ngIf="event.startDate === event.endDate">{{(event.startDate | amFromUnix)| amDateFormat:"MMMM Do, YYYY"}}</span>
         <span *ngIf="event.startDate !== event.endDate">{{(event.startDate | amFromUnix)| amDateFormat:"MMMM Do, YYYY"}} - {{(event.endDate | amFromUnix)| amDateFormat:"MMMM Do, YYYY"}}</span>
-      </h5>
-      <h5>
+      </h6>
+      <h6>
         {{event.city}}, {{event.state}}
-      </h5>
+      </h6>
     </ion-col>
     <ion-col class="register-button-col">
       <button>Register</button>
@@ -26,34 +37,63 @@
   </ion-row>
   <ion-row class="row-padding">
     <ion-col>
-      <h4>Madison Square Garden</h4>
-      <h6>{{event.addressLine1}}</h6>
-      <h6>{{event.addressLine2}}</h6>
-      <h6>{{event.city}}, {{event.state}} {{event.zipcode}}</h6>
+      <ion-row>
+        <ion-col width-25></ion-col>
+        <ion-col width-75>
+          <h4>Madison Square Garden</h4>
+          <h6>{{event.addressLine1}}</h6>
+          <h6>{{event.addressLine2}}</h6>
+          <h6>{{event.city}}, {{event.state}} {{event.zipcode}}</h6>
+        </ion-col>
+      </ion-row>
       <hr/>
-      <h5>Time: 11:30AM - 1:30PM</h5>
-      <h6>(Lunch will be served from 11:30AM - Noon. Educational session begins at Noon.)</h6>
+      <ion-row>
+        <ion-col>
+          <h5>Time: 11:30AM - 1:30PM</h5>
+          <h6 style="padding-top: 0.6rem;">(Lunch will be served from 11:30AM - Noon. Educational session begins at Noon.)</h6>
+        </ion-col>
+      </ion-row>
     </ion-col>
   </ion-row>
   <ion-row class="row-padding light">
     <ion-col>
       <h4>Overview</h4>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
-      <h4>About the Facilitator</h4>
-      <h5>Robert Woods</h5>
+      <ion-row>
+        <ion-col width-25>
+          <img src="http://www.matrixres.com/media/1337/robertwoods.png">
+        </ion-col>
+        <ion-col width-75>
+          <h4 style="margin-bottom: 0;">About the Facilitator</h4>
+          <h5>Robert Woods</h5>
+        </ion-col>
+      </ion-row>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
       <hr/>
-      <h5 class="center">Connect with Robert</h5>
-      <button>In</button>
-      <button>T</button>
+      <h5 class="center connect">Connect with Robert</h5>
+      <ion-row>
+        <ion-col style="display: flex; justify-content: center;">
+          <button class="fab" item-right linkedIn>
+            <ion-icon class="icon-linkedin"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col></ion-col>
+        <ion-col style="display: flex; justify-content: center;">
+          <button class="fab" item-left twitter>
+            <ion-icon class="icon-twitter"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
     </ion-col>
   </ion-row>
-  <ion-row class="row-padding">
-    <ion-col>
+  <ion-row class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
+    <ion-col style="display: flex; justify-content: center;">
       <button>Register Now for this Event</button>
     </ion-col>
   </ion-row>
