@@ -26,7 +26,7 @@ export class EventsComponent implements OnChanges{
   @Input() events;
 
   constructor() {
-
+    console.log(window);
   }
 
   ngOnChanges():void{
