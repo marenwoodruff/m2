@@ -4,7 +4,8 @@ import {DateFormatPipe} from 'angular2-moment';
 import {Session} from '../../models/events/session';
 import {Location} from '../../models/events/location';
 import {SessionPage} from '../../pages/session/session.page';
-import {SessionRegistrationPage} from '../../pages/session-registration/session-registration.page';
+import {RegistrationPage} from '../../pages/registration/registration.page';
+
 
 @Component({
   selector: 'sessions',
@@ -25,7 +26,7 @@ export class SessionsComponent {
   }
 
   goToRegistration(session: Session) {
-    this.navController.push(SessionRegistrationPage, { session });
+    this.navController.push(RegistrationPage, { session });
   }
 
 }
