@@ -66,10 +66,9 @@ export class StorageService {
         });
     }
 
-    public updateSurveyProgress(s: Survey): void {
-      let surveyObject = JSON.stringify(s);
-      let surveyId = JSON.stringify(s.id);
-      // console.log(surveyObject);
+    public updateSurveyProgress(survey: Survey): void {
+      let surveyObject = JSON.stringify(survey);
+      let surveyId = JSON.stringify(survey.id);
 
       this.storage.query(`UPDATE Survey SET survey = ? WHERE surveyId = ?`, [surveyObject, surveyId])
         .then((data) => {
