@@ -1,9 +1,10 @@
 import {Component} from 'angular2/core';
-import {List, Item, Button} from 'ionic-angular';
+import {NavController, NavParams, List, Item, Button} from 'ionic-angular';
 import {Event} from '../../models/events/event';
 import {SessionComponent} from '../session/session.component';
 import {EventLocationComponent} from '../event-location/event-location.component';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
+import {RegistrationPage} from '../../pages/registration/registration.page';
 
 @Component({
   selector: 'event',
@@ -13,4 +14,15 @@ import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
   pipes:[DateFormatPipe, FromUnixPipe]
 })
 
-export class EventComponent{}
+export class EventComponent{
+  event: Event
+
+  constructor(private nav: NavController) {
+  }
+
+  private register(event): void {
+    this.nav.push(RegistrationPage, {
+      event: event
+    });
+  }
+}
