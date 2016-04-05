@@ -66,15 +66,16 @@ export class StorageService {
         });
     }
 
-    public updateSurveyProgress(survey: Survey): void {
-      let surveyObject = JSON.stringify(survey);
+    public updateSurveyProgress(s: Survey): void {
+      let surveyObject = JSON.stringify(s);
+      let surveyId = JSON.stringify(s.id);
+      // console.log(surveyObject);
 
-      this.storage.query(`UPDATE Survey SET surveyObject = survey WHERE surveyId = '${survey.id}'`)
+      this.storage.query(`UPDATE Survey SET survey = ? WHERE surveyId = ?`, [surveyObject, surveyId])
         .then((data) => {
           console.log('Updating Data: ' + data);
         }, (error) => {
-          debugger
-          console.log('Update Progress ERROR -> ' + JSON.stringify(error));
+          console.log('Update Progress ERROR -> ' + error.err.message);
         });
     }
 }
