@@ -8,6 +8,7 @@ import {EventService} from "./service/event.service";
 import {LoginPage} from './pages/login/login.page';
 import {ContactPage} from './pages/contact/contact.page';
 import {SettingsPage} from './pages/settings/settings.page';
+import {RegistrationPage} from './pages/registration/registration.page';
 
 @App({
     templateUrl: 'build/app.html',
@@ -15,7 +16,7 @@ import {SettingsPage} from './pages/settings/settings.page';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-    rootPage:any = EventsPage;
+  rootPage: any = EventsPage;
     pages:Array<{title: string, component: any}>;
 
     constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService) {
