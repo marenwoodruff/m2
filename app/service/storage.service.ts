@@ -51,7 +51,7 @@ export class StorageService {
             this.surveys.push(JSON.parse(results[i].survey));
             this.surveyProgress.emit(this.surveys);
           }
-          console.log("Survey(s): " + this.surveys.length);
+          console.log("Survey(s): " + this.surveys);
         }, (error) => {
           console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
         });

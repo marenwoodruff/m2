@@ -6,7 +6,7 @@ import {SurveyDescriptionComponent} from '../survey-description/survey-descripti
   selector: 'surveys',
   templateUrl: 'build/components/surveys/surveys.component.html',
   directives: [List, Item, forwardRef(() => SurveyDescriptionComponent)],
-  inputs:['surveys']
+  inputs:['surveys', 'surveysInProgress']
 })
 
-export class SurveysComponent { }
+export class SurveysComponent {}
