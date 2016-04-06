@@ -5,6 +5,8 @@ import {StorageService} from '../../service/storage.service';
 import {SurveyService} from '../../service/survey.service';
 import {OnInit, OnDestroy} from 'angular2/core';
 import {Survey} from '../../models/survey/survey';
+import {SurveyProgress} from '../../models/survey/surveyProgress';
+
 
 @Page({
   templateUrl: 'build/pages/surveys/surveys.page.html',
@@ -12,11 +14,11 @@ import {Survey} from '../../models/survey/survey';
 })
 
 export class SurveysPage implements OnInit, OnDestroy{
-    public surveyProgress: any;
     public surveys: Survey[];
     public surveyIds = [];
     private surveySubscription: EventEmitter<Survey[]>;
     private storageSubscription: EventEmitter<Survey[]>;
+    surveysInProgress: SurveyProgress[];
 
     constructor(private _surveyApi: SurveyService, private _storageApi:StorageService) {
     }
@@ -32,18 +34,43 @@ export class SurveysPage implements OnInit, OnDestroy{
       );
 
       this.storageSubscription = this._storageApi.surveyProgress.subscribe(
-        surveys => this.surveyProgress = surveys,
+        (surveys) => {
+          this.surveysInProgress = surveys.map((sip) => {
+            let lastQuestionId = this.findQuestionId(sip);
+            return {
+              surveyId: sip.id,
+              lastQuestionId,
+            }
+          });
+        },
         err => console.log('SurveysComponent storageservice subscribe error:', err),
-        () =>  console.log('finished subscribing to storage surveys')
+        () => {
+          console.log('finished subscribing to storage surveys')
+        }
       );
 
-      
       this._surveyApi.getSurveys();
     }
 
     ngOnDestroy() {
       this.surveySubscription.unsubscribe();
       this.storageSubscription.unsubscribe();
+    }
+
+    findQuestionId(survey) {
+      let
+          lastQuestionAnsweredFound = false,
+          questionId = null;
+
+      survey.questions.forEach((question) => {
+        question.answer.options.forEach((option) => {
+          if (option.selected === false && lastQuestionAnsweredFound === false) {
+            lastQuestionAnsweredFound = true;
+            questionId = question.questionId;
+          }
+        });
+      });
+      return questionId;
     }
 
     checkSurveyProgress(surveys) {
