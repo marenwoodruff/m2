@@ -1,4 +1,4 @@
-import {Component, AfterContentInit, OnChanges} from 'angular2/core';
+import {Component, OnChanges} from 'angular2/core';
 import {Item, NavController} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
@@ -11,7 +11,7 @@ import {SurveyProgress} from '../../models/survey/surveyProgress';
   inputs:['survey', 'surveysInProgress']
 })
 
-export class SurveyDescriptionComponent implements AfterContentInit, OnChanges {
+export class SurveyDescriptionComponent implements OnChanges {
   survey: Survey;
   surveysInProgress: SurveyProgress[];
   nav: NavController;
@@ -20,10 +20,6 @@ export class SurveyDescriptionComponent implements AfterContentInit, OnChanges {
 
   constructor(nav: NavController) {
     this.nav = nav;
-  }
-
-  ngAfterContentInit() {
-    console.log("after content", this.survey);
   }
 
   viewSurvey(survey) {

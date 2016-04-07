@@ -23,8 +23,7 @@ export class QuestionComponent implements OnInit {
   enabled: boolean;
   inProgress: boolean;
 
-  constructor(private _storageApi: StorageService, private nav: NavController) {
-  }
+  constructor(private _storageApi: StorageService, private nav: NavController) { }
 
   public ngOnInit(): void {
     this.questions = this.survey.questions;
@@ -66,13 +65,15 @@ export class QuestionComponent implements OnInit {
   }
 
   private nextQuestion(): void {
-    this._storageApi.updateSurveyProgress(this.survey);
 
     if (this.questionIndex === this.questionsLength - 1) {
-      this.nav.push(SurveyCompletedPage, {
-        survey: this.questions
-      });
+      this._storageApi.updateSurveyProgress(this.survey);
+      this.checkSurveyCompletion(this.survey);
+      // this.nav.push(SurveyCompletedPage, {
+      //   survey: this.survey
+      // });
     } else {
+      this._storageApi.updateSurveyProgress(this.survey);
       this.questionIndex = this.questionIndex + 1;
       this.currentQuestion = this.questions[this.questionIndex];
     }
@@ -84,9 +85,7 @@ export class QuestionComponent implements OnInit {
     if (this.questionIndex > 0) {
       this.questionIndex = this.questionIndex - 1;
       this.currentQuestion = this.questions[this.questionIndex];
-    } else {
-      console.log("first question, no previous")
-    }
+    } 
 
     this.evaluateIndex();
   }
@@ -97,6 +96,23 @@ export class QuestionComponent implements OnInit {
     } else {
       this.enabled = false;
     }
+  }
+
+  private checkSurveyCompletion(survey: Survey): void {
+    console.log('checking survey completion of: ', survey);
+    survey.questions.forEach((question) => {
+      switch (question.answer.type) {
+        case "radio":
+          console.log('radio', question);
+          break;
+        case "textBox":
+          console.log('textbox', question);
+          break;
+        case "checkBox":
+          console.log('checkbox', question);
+          break;
+      }
+    });
   }
 
   private onSubmit(survey): void {
