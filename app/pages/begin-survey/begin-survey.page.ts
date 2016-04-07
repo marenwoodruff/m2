@@ -13,9 +13,11 @@ import {SurveyCompletedPage} from '../survey-completed/survey-completed.page';
 export class BeginSurveyPage implements OnInit {
   survey: Survey;
   surveyTime: String;
+  inProgress: boolean;
 
   constructor(private nav: NavController, private params: NavParams) {
     this.survey = this.params.get('survey');
+    this.inProgress = this.params.get('inProgress');
   }
 
   public ngOnInit(): void {
@@ -30,7 +32,8 @@ export class BeginSurveyPage implements OnInit {
 
   private viewSurvey(survey): void {
     this.nav.push(SurveyPage, {
-      survey: survey
+      survey: survey,
+      inProgress: this.inProgress
     });
   }
 

@@ -28,7 +28,8 @@ export class SurveyDescriptionComponent implements AfterContentInit, OnChanges {
 
   viewSurvey(survey) {
     this.nav.push(BeginSurveyPage, {
-      survey: survey
+      survey: survey,
+      inProgress: this.inProgress
     });
   }
 
