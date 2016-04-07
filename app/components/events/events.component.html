@@ -1,26 +1,35 @@
-<ion-row class="month-filters" center>
-  <ion-col style="display: flex; justify-content: space-between;">
-    <ion-col width-10 (click)="subtractMonth()">
-      <img *ngIf="showLeftButton" class="chevrons" src="build/assets/icons/Gray_LeftArrow.png"/>
-    </ion-col>
-    <ion-col width-67>
-      <span class="event-month">{{month | amDateFormat:"MMMM YYYY"}}</span>
-    </ion-col>
-    <ion-col width-10 (click)="addMonth()">
-      <img *ngIf="showRightButton" class="chevrons" src="build/assets/icons/Gray_RightArrow.png"/>
-    </ion-col>
+<ion-row class="month-filters" center *ngIf="!eventSearchActive">
+  <ion-col width-67>
+    <ion-row>
+      <ion-col width-10 (click)="subtractMonth()">
+        <img *ngIf="showLeftButton" class="chevrons" src="build/assets/icons/Gray_LeftArrow.png"/>
+      </ion-col>
+      <ion-col width-50>
+        <span class="event-month">{{month | amDateFormat:"MMMM YYYY"}}</span>
+      </ion-col>
+      <ion-col width-10 (click)="addMonth()">
+        <img *ngIf="showRightButton" class="chevrons" src="build/assets/icons/Gray_RightArrow.png"/>
+      </ion-col>
+    </ion-row>
   </ion-col>
-  <ion-col>
+  <ion-col style="display:flex; justify-content:flex-end;" width-33 (click)="eventSearchActive = !eventSearchActive">
+    <ion-icon name="search"></ion-icon>
+  </ion-col>
+</ion-row>
+<ion-row class="month-filters" center *ngIf="eventSearchActive">
+  <ion-col width-90>
     <ion-searchbar
       class="event-search"
       [ngClass]="{eventSearchActive: eventSearchActive}"
       [(ngModel)]="searchQuery"
       (input)="searchEvents($event.value)"
-      (focus)="eventSearchActive = true"
-      (blur)="eventSearchActive = searchQuery ? true : false"
-      placeholder=" "
-      hideCancelButton="true"
+      (focus)="hideClose = true"
+      (blur)="hideClose = false"
+      placeholder="Search Events..."
       ></ion-searchbar>
+  </ion-col>
+  <ion-col width-10>
+    <ion-icon *ngIf="!hideClose" name="close" (click)="eventSearchActive = !eventSearchActive"></ion-icon>
   </ion-col>
 </ion-row>
 <ion-list class="events-list">
