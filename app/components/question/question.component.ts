@@ -4,6 +4,7 @@ import {Question} from '../../models/survey/question';
 import {Survey} from '../../models/survey/survey';
 import {Option} from '../../models/survey/option';
 import {StorageService} from '../../service/storage.service';
+import {SurveyService} from '../../service/survey.service';
 import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
 
 @Component({
@@ -25,7 +26,7 @@ export class QuestionComponent implements OnInit {
   completed: boolean;
   completedQuestions = [];
 
-  constructor(private _storageApi: StorageService, private nav: NavController) { }
+  constructor(private _storageApi: StorageService, private _surveyApi: SurveyService, private nav: NavController) { }
 
   public ngOnInit(): void {
     this.questions = this.survey.questions;
@@ -134,6 +135,7 @@ export class QuestionComponent implements OnInit {
 
     if (this.completedQuestions.length === this.questionsLength) {
       this.completed = true;
+      this._surveyApi.surveyCompleted(this.completed);
       this._storageApi.removeSurveyProgress(this.survey.id);
       console.log('survey complete and deleted from local');
     } else {
