@@ -34,6 +34,7 @@ export class QuestionComponent implements OnInit {
     this.questionIndex = this.lastQuestionIndex ? this.lastQuestionIndex + 1 : 0;
     this.currentQuestion = this.questions[this.questionIndex];
     this.questionsLength = this.questions.length;
+    console.log(this.survey);
 
     if (this.questionIndex !== 0) {
       this.enabled = true;
