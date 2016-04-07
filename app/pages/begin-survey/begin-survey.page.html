@@ -29,7 +29,7 @@
       </ion-col>
     </ion-row>
     <ion-row class="beginSurveyRows">
-      <button primary class="button button-block beginSurveyButton" (click)="viewSurvey(survey)">Begin Survey</button>
+      <button primary class="button button-block beginSurveyButton" (click)="viewSurvey(survey, lastQuestionIndex)">{{surveyStartText}}</button>
     </ion-row>
   </ion-col>
 </ion-content>

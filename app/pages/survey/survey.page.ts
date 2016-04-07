@@ -14,11 +14,13 @@ export class SurveyPage {
   survey: Survey;
   storage: StorageService;
   inProgress: boolean;
+  lastQuestionIndex: number;
 
   constructor(params: NavParams, storage: StorageService) {
     this.params = params;
     this.storage = storage;
     this.survey = this.params.get('survey');
     this.inProgress = this.params.get('inProgress');
+    this.lastQuestionIndex = this.params.get('lastQuestionIndex');
   }
 }

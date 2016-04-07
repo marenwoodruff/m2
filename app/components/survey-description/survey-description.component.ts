@@ -17,6 +17,8 @@ export class SurveyDescriptionComponent implements OnInit, OnChanges {
   surveysInProgress: SurveyProgress[];
   completed: boolean;
   inProgress: boolean;
+  surveyProgress: SurveyProgress;
+
 
   constructor(private _surveyApi: SurveyService, private nav: NavController) { }
 
@@ -26,9 +28,10 @@ export class SurveyDescriptionComponent implements OnInit, OnChanges {
       );
   }
 
-  viewSurvey(survey) {
+  viewSurvey(survey, surveyProgress) {
     this.nav.push(BeginSurveyPage, {
-      survey: survey,
+      survey,
+      surveyProgress,
       inProgress: this.inProgress
     });
   }
@@ -39,9 +42,16 @@ export class SurveyDescriptionComponent implements OnInit, OnChanges {
 
   evaluateProgress(survey, surveysInProgress) {
     if (surveysInProgress) {
+      let surveyProgressFound = false;
       surveysInProgress.forEach((sip) => {
-        if (survey.id === sip.surveyId) {
-          this.inProgress = true;
+        if (!surveyProgressFound) {
+          if (survey.id === sip.surveyId) {
+            this.inProgress = true;
+            this.surveyProgress = {
+              surveyId: sip.surveyId,
+              lastQuestionId: sip.lastQuestionId,
+            };
+          }
         }
       });
     }
