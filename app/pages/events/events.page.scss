@@ -1,7 +1,8 @@
 @import '../../theme/app.variables';
 
 .event-segments {
-
+  display: flex;
+  justify-content: space-between;
   background-color: map-get($colors, primary);;
   button {
     box-shadow: none;
