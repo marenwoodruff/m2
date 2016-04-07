@@ -23,6 +23,7 @@ export class QuestionComponent implements OnInit {
   enabled: boolean;
   inProgress: boolean;
   completed: boolean;
+  completedQuestions = [];
 
   constructor(private _storageApi: StorageService, private nav: NavController) { }
 
@@ -90,7 +91,7 @@ export class QuestionComponent implements OnInit {
     this.evaluateIndex();
   }
 
-  private evaluateIndex() {
+  private evaluateIndex(): void {
     if (this.questionIndex !== 0) {
       this.enabled = true;
     } else {
@@ -98,22 +99,20 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  private checkSurveyCompletion(survey: Survey): void {
-    let completedQuestions = [];
-
+  private getAnswers(survey: Survey): void {
     survey.questions.forEach((question) => {
       switch (question.answer.type) {
         case "radio":
           question.answer.options.forEach((option) => {
             if (option.selected) {
-              completedQuestions.push(question.questionId);
+              this.completedQuestions.push(question.questionId);
             }
           });
           break;
         case "textBox":
           question.answer.options.forEach((option) => {
             if (option.value) {
-              completedQuestions.push(question.questionId);
+              this.completedQuestions.push(question.questionId);
             }
           });
           break;
@@ -124,12 +123,16 @@ export class QuestionComponent implements OnInit {
               checkboxAnswers.push(option.display);
             }            
           });
-          completedQuestions.push(checkboxAnswers);
+          this.completedQuestions.push(checkboxAnswers);
           break;
       }
-    });
+    }); 
+  }
 
-    if (completedQuestions.length === this.questionsLength) {
+  private checkSurveyCompletion(survey: Survey): void {
+    this.getAnswers(survey);
+
+    if (this.completedQuestions.length === this.questionsLength) {
       this.completed = true;
       this._storageApi.removeSurveyProgress(this.survey.id);
       console.log('survey complete and deleted from local');
