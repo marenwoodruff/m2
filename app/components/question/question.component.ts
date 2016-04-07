@@ -10,7 +10,7 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
   directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
-  inputs: ['survey']
+  inputs: ['survey', 'inProgress']
 })
 
 export class QuestionComponent implements OnInit {
@@ -20,7 +20,8 @@ export class QuestionComponent implements OnInit {
   currentQuestion: Question;
   questionIndex: number = 0;
   questionsLength: number;
-  enabled: boolean = false;
+  enabled: boolean;
+  inProgress: boolean;
 
   constructor(private _storageApi: StorageService, private nav: NavController) {
   }
@@ -33,6 +34,10 @@ export class QuestionComponent implements OnInit {
     if (this.questionIndex !== 0) {
       this.enabled = true;
     }
+
+    if (!this.inProgress) {
+      this.saveProgress(this.survey);
+    } 
   }
 
   private changeSelection(option: Option): void {
@@ -61,9 +66,8 @@ export class QuestionComponent implements OnInit {
   }
 
   private nextQuestion(): void {
-    // this._storageApi.updateSurveyProgress(this.survey);
-    // this._storageApi.removeSurveyProgress(this.survey.id);
-    this.saveProgress(this.survey);
+    this._storageApi.updateSurveyProgress(this.survey);
+
     if (this.questionIndex === this.questionsLength - 1) {
       this.nav.push(SurveyCompletedPage, {
         survey: this.questions
