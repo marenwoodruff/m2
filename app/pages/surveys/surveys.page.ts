@@ -1,5 +1,5 @@
   import {Page} from 'ionic-angular';
-  import {EventEmitter, OnInit, OnDestroy, OnChanges} from 'angular2/core';
+  import {EventEmitter, OnInit, OnDestroy} from 'angular2/core';
   import {SurveysComponent} from '../../components/surveys/surveys.component';
   import {StorageService} from '../../service/storage.service';
   import {SurveyService} from '../../service/survey.service';
@@ -12,7 +12,7 @@
     directives: [SurveysComponent]
   })
 
-  export class SurveysPage implements OnInit, OnDestroy, OnChanges {
+  export class SurveysPage implements OnInit, OnDestroy {
       public surveys: Survey[];
       public startedSurveys: Survey[];
       public surveyIds = [];
@@ -42,6 +42,15 @@
                 lastQuestionId,
               }
             });
+
+            progressSurveys.forEach((progressSurvey) => {
+              this.surveys.forEach((survey) => {
+                if (survey.id === progressSurvey.id) {
+                  survey = progressSurvey;
+                }
+              });
+            });
+
           },
           err => console.log('SurveysComponent storageservice subscribe error:', err),
           () => {
@@ -55,12 +64,6 @@
       ngOnDestroy() {
         this.surveySubscription.unsubscribe();
         this.storageSubscription.unsubscribe();
-      }
-
-      ngOnChanges() {
-        if (this.startedSurveys) {
-          this.compareSurveys();
-        }
       }
 
       findQuestionId(survey) {
@@ -83,17 +86,6 @@
           }
         });
         return questionId;
-      }
-
-      compareSurveys() {
-        this.startedSurveys.forEach((progressSurvey) => {
-          this.surveys.forEach((survey) => {
-            if (survey.id === progressSurvey.id) {
-              survey = progressSurvey;
-            }
-          });
-        });
-        console.log(this.surveys);
       }
 
       checkSurveyProgress(surveys) {
