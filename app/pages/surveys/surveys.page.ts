@@ -37,6 +37,7 @@ export class SurveysPage implements OnInit, OnDestroy{
         (surveys) => {
           this.surveysInProgress = surveys.map((sip) => {
             let lastQuestionId = this.findQuestionId(sip);
+            debugger
             return {
               surveyId: sip.id,
               lastQuestionId,
@@ -63,12 +64,18 @@ export class SurveysPage implements OnInit, OnDestroy{
           questionId = null;
 
       survey.questions.forEach((question) => {
-        question.answer.options.forEach((option) => {
-          if (option.selected === false && lastQuestionAnsweredFound === false) {
+        if (lastQuestionAnsweredFound === false) {
+          let questionAnswered = false;
+          question.answer.options.forEach((option) => {
+            if (option.selected === true && lastQuestionAnsweredFound === false) {
+              questionAnswered = true;
+              questionId = question.questionId;
+            }
+          });
+          if (questionAnswered === false) {
             lastQuestionAnsweredFound = true;
-            questionId = question.questionId;
           }
-        });
+        }
       });
       return questionId;
     }

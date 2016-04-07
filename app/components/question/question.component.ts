@@ -11,7 +11,7 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
   directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
-  inputs: ['survey', 'inProgress']
+  inputs: ['survey', 'lastQuestionIndex', 'inProgress']
 })
 
 export class QuestionComponent implements OnInit {
@@ -19,6 +19,7 @@ export class QuestionComponent implements OnInit {
   survey: Survey;
   params: NavParams;
   currentQuestion: Question;
+  lastQuestionIndex: number;
   questionIndex: number = 0;
   questionsLength: number;
   enabled: boolean;
@@ -30,6 +31,7 @@ export class QuestionComponent implements OnInit {
 
   public ngOnInit(): void {
     this.questions = this.survey.questions;
+    this.questionIndex = this.lastQuestionIndex ? this.lastQuestionIndex + 1 : 0;
     this.currentQuestion = this.questions[this.questionIndex];
     this.questionsLength = this.questions.length;
 
@@ -71,9 +73,7 @@ export class QuestionComponent implements OnInit {
 
     if (this.questionIndex === this.questionsLength - 1) {
       this.checkSurveyCompletion(this.survey);
-      this.nav.push(SurveyCompletedPage, {
-        survey: this.survey
-      });
+      this.nav.push(SurveyCompletedPage);
     } else {
       this._storageApi.updateSurveyProgress(this.survey);
       this.questionIndex = this.questionIndex + 1;
@@ -132,10 +132,10 @@ export class QuestionComponent implements OnInit {
 
   private checkSurveyCompletion(survey: Survey): void {
     this.getAnswers(survey);
-
+    debugger
     if (this.completedQuestions.length === this.questionsLength) {
       this.completed = true;
-      this._surveyApi.surveyCompleted(this.completed);
+      // this._surveyApi.surveyCompleted(this.completed);
       this._storageApi.removeSurveyProgress(this.survey.id);
       console.log('survey complete and deleted from local');
     } else {
