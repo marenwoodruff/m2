@@ -10,7 +10,7 @@ import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
   directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
-  inputs: ['survey']
+  inputs: ['survey', 'lastQuestionIndex']
 })
 
 export class QuestionComponent implements OnInit {
@@ -18,6 +18,7 @@ export class QuestionComponent implements OnInit {
   survey: Survey;
   params: NavParams;
   currentQuestion: Question;
+  lastQuestionIndex: number;
   questionIndex: number = 0;
   questionsLength: number;
   enabled: boolean = false;
@@ -27,6 +28,7 @@ export class QuestionComponent implements OnInit {
 
   public ngOnInit(): void {
     this.questions = this.survey.questions;
+    this.questionIndex = this.lastQuestionIndex ? this.lastQuestionIndex + 1 : 0;
     this.currentQuestion = this.questions[this.questionIndex];
     this.questionsLength = this.questions.length;
 

@@ -17,6 +17,8 @@ export class SurveyDescriptionComponent implements AfterContentInit, OnChanges {
   nav: NavController;
   completed: boolean;
   inProgress: boolean;
+  surveyProgress: SurveyProgress;
+
 
   constructor(nav: NavController) {
     this.nav = nav;
@@ -26,9 +28,10 @@ export class SurveyDescriptionComponent implements AfterContentInit, OnChanges {
     console.log("after content", this.survey);
   }
 
-  viewSurvey(survey) {
+  viewSurvey(survey, surveyProgress) {
     this.nav.push(BeginSurveyPage, {
-      survey: survey
+      survey,
+      surveyProgress,
     });
   }
 
@@ -38,9 +41,16 @@ export class SurveyDescriptionComponent implements AfterContentInit, OnChanges {
 
   evaluateProgress(survey, surveysInProgress) {
     if (surveysInProgress) {
+      let surveyProgressFound = false;
       surveysInProgress.forEach((sip) => {
-        if (survey.id === sip.surveyId) {
-          this.inProgress = true;
+        if (!surveyProgressFound) {
+          if (survey.id === sip.surveyId) {
+            this.inProgress = true;
+            this.surveyProgress = {
+              surveyId: sip.surveyId,
+              lastQuestionId: sip.lastQuestionId,
+            };
+          }
         }
       });
     }
