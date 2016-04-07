@@ -22,6 +22,7 @@ export class QuestionComponent implements OnInit {
   questionsLength: number;
   enabled: boolean;
   inProgress: boolean;
+  completed: boolean;
 
   constructor(private _storageApi: StorageService, private nav: NavController) { }
 
@@ -67,11 +68,10 @@ export class QuestionComponent implements OnInit {
   private nextQuestion(): void {
 
     if (this.questionIndex === this.questionsLength - 1) {
-      this._storageApi.updateSurveyProgress(this.survey);
       this.checkSurveyCompletion(this.survey);
-      // this.nav.push(SurveyCompletedPage, {
-      //   survey: this.survey
-      // });
+      this.nav.push(SurveyCompletedPage, {
+        survey: this.survey
+      });
     } else {
       this._storageApi.updateSurveyProgress(this.survey);
       this.questionIndex = this.questionIndex + 1;
@@ -99,20 +99,45 @@ export class QuestionComponent implements OnInit {
   }
 
   private checkSurveyCompletion(survey: Survey): void {
-    console.log('checking survey completion of: ', survey);
+    let completedQuestions = [];
+
     survey.questions.forEach((question) => {
       switch (question.answer.type) {
         case "radio":
-          console.log('radio', question);
+          question.answer.options.forEach((option) => {
+            if (option.selected) {
+              completedQuestions.push(question.questionId);
+            }
+          });
           break;
         case "textBox":
-          console.log('textbox', question);
+          question.answer.options.forEach((option) => {
+            if (option.value) {
+              completedQuestions.push(question.questionId);
+            }
+          });
           break;
         case "checkBox":
-          console.log('checkbox', question);
+          let checkboxAnswers = [];
+          question.answer.options.forEach((option) => {
+            if (option.selected) {
+              checkboxAnswers.push(option.display);
+            }            
+          });
+          completedQuestions.push(checkboxAnswers);
           break;
       }
     });
+
+    if (completedQuestions.length === this.questionsLength) {
+      this.completed = true;
+      this._storageApi.removeSurveyProgress(this.survey.id);
+      console.log('survey complete and deleted from local');
+    } else {
+      this._storageApi.updateSurveyProgress(this.survey);
+      console.log('survey incomplete and updated in local');
+    }
+    
   }
 
   private onSubmit(survey): void {

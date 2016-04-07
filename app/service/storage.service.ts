@@ -56,7 +56,7 @@ export class StorageService {
         });
     }
 
-    public removeSurveyProgress(id:any):void {
+    public removeSurveyProgress(id:number):void {
       this.storage.query(`DELETE FROM Survey WHERE surveyId = '${id}'`)
         .then((data) => {
           console.log("Data: " + data);
