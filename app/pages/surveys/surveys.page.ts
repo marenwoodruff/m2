@@ -42,15 +42,6 @@
                 lastQuestionId,
               }
             });
-
-            progressSurveys.forEach((progressSurvey) => {
-              this.surveys.forEach((survey) => {
-                if (survey.id === progressSurvey.id) {
-                  survey = progressSurvey;
-                }
-              });
-            });
-
           },
           err => console.log('SurveysComponent storageservice subscribe error:', err),
           () => {
