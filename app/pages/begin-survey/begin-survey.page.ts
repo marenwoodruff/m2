@@ -14,12 +14,14 @@ import {SurveyProgress} from '../../models/survey/surveyProgress';
 export class BeginSurveyPage implements OnInit {
   survey: Survey;
   surveyTime: String;
+  inProgress: boolean;
   surveyProgress: SurveyProgress;
   surveyStartText: String;
   lastQuestionIndex: number;
 
   constructor(private nav: NavController, private params: NavParams) {
     this.survey = this.params.get('survey');
+    this.inProgress = this.params.get('inProgress');
     this.surveyProgress = this.params.get('surveyProgress');
   }
 
@@ -54,6 +56,7 @@ export class BeginSurveyPage implements OnInit {
     this.nav.push(SurveyPage, {
       survey,
       lastQuestionIndex,
+      inProgress: this.inProgress
     });
   }
 

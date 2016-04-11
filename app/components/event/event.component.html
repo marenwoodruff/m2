@@ -38,9 +38,11 @@
   <ion-row class="row-padding">
     <ion-col>
       <ion-row>
-        <ion-col width-25></ion-col>
+        <ion-col width-25>
+          <img src="build/assets/images/MapImage.png" alt="location image">
+        </ion-col>
         <ion-col width-75>
-          <h4>Madison Square Garden</h4>
+          <h5>{{event.eventLocation}}</h5>
           <h6>{{event.addressLine1}}</h6>
           <h6>{{event.addressLine2}}</h6>
           <h6>{{event.city}}, {{event.state}} {{event.zipcode}}</h6>
@@ -49,8 +51,7 @@
       <hr/>
       <ion-row>
         <ion-col>
-          <h5>Time: 11:30AM - 1:30PM</h5>
-          <h6 style="padding-top: 0.6rem;">(Lunch will be served from 11:30AM - Noon. Educational session begins at Noon.)</h6>
+          <span [innerHTML]="event.timeDetails"></span>
         </ion-col>
       </ion-row>
     </ion-col>
@@ -58,34 +59,28 @@
   <ion-row class="row-padding light">
     <ion-col>
       <h4>Overview</h4>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <div [innerHTML]="event.overview"></div>
       <ion-row>
         <ion-col width-25>
           <img src="http://www.matrixres.com/media/1337/robertwoods.png">
         </ion-col>
         <ion-col width-75>
           <h4 style="margin-bottom: 0;">About the Facilitator</h4>
-          <h5>Robert Woods</h5>
+          <h5>{{event.eventFacilitator}}</h5>
         </ion-col>
       </ion-row>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <div [innerHTML]="event.aboutFacilitator"></div>
       <hr/>
-      <h5 class="center connect">Connect with Robert</h5>
+      <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
       <ion-row>
         <ion-col style="display: flex; justify-content: center;">
-          <button class="fab" item-right linkedIn>
+          <button (click)="launchUrl(event.linkedIn)" class="fab" item-right linkedIn>
             <ion-icon class="icon-linkedin"></ion-icon>
           </button>
         </ion-col>
         <ion-col></ion-col>
         <ion-col style="display: flex; justify-content: center;">
-          <button class="fab" item-left twitter>
+          <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" class="fab" item-left twitter>
             <ion-icon class="icon-twitter"></ion-icon>
           </button>
         </ion-col>

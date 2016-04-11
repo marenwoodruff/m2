@@ -51,13 +51,12 @@ export class StorageService {
             this.surveys.push(JSON.parse(results[i].survey));
             this.surveyProgress.emit(this.surveys);
           }
-          console.log("Survey(s): " + this.surveys);
         }, (error) => {
           console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
         });
     }
 
-    public removeSurveyProgress(id:any):void {
+    public removeSurveyProgress(id:number):void {
       this.storage.query(`DELETE FROM Survey WHERE surveyId = '${id}'`)
         .then((data) => {
           console.log("Data: " + data);
