@@ -3,10 +3,10 @@
     <ion-col>
       <h5 class="center">Are you at this event?</h5>
       <p class="center">
-        Take this questionare & be entered to win a prize
+        Take this questionnaire & be entered to win a prize
       </p>
       <ion-row style="display: flex; justify-content: center">
-        <button>Take Survey</button>
+        <button (click)="takeSurvey(event.eventId)">Take Survey</button>
       </ion-row>
     </ion-col>
   </ion-row>
