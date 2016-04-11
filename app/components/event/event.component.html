@@ -38,9 +38,11 @@
   <ion-row class="row-padding">
     <ion-col>
       <ion-row>
-        <ion-col width-25></ion-col>
+        <ion-col width-25>
+          <img src="build/assets/images/MapImage.png" alt="location image">
+        </ion-col>
         <ion-col width-75>
-          <h4>Madison Square Garden</h4>
+          <h5>{{event.eventLocation}}</h5>
           <h6>{{event.addressLine1}}</h6>
           <h6>{{event.addressLine2}}</h6>
           <h6>{{event.city}}, {{event.state}} {{event.zipcode}}</h6>
@@ -49,8 +51,7 @@
       <hr/>
       <ion-row>
         <ion-col>
-          <h5>Time: 11:30AM - 1:30PM</h5>
-          <h6 style="padding-top: 0.6rem;">(Lunch will be served from 11:30AM - Noon. Educational session begins at Noon.)</h6>
+          <span [innerHTML]="event.timeDetails"></span>
         </ion-col>
       </ion-row>
     </ion-col>
