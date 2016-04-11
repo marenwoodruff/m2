@@ -133,7 +133,6 @@ export class QuestionComponent implements OnInit {
 
   private checkSurveyCompletion(survey: Survey): void {
     this.getAnswers(survey);
-    debugger
     if (this.completedQuestions.length === this.questionsLength) {
       this.completed = true;
       // this._surveyApi.surveyCompleted(this.completed);
