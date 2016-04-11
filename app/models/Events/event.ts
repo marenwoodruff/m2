@@ -1,4 +1,5 @@
 export class Event {
+    eventId: number;
     startDate: number;
     endDate: number;
     addressLine1: string;
@@ -14,4 +15,22 @@ export class Event {
     cost: string;
     description: string;
     detailPage: string;
+    corpLocation: string;
+    bannerImage: string;
+    relatedThumb: string;
+    targetAudience: string;
+    timeDetails: string;
+    paidEvent: boolean;
+    nonMatrixEvent: boolean;
+    pageBannerText: string;
+    overview: string;
+    pdfLink: string;
+    eventLocation: string;
+    mapCoordinates: string;
+    showFacilitator: boolean;
+    eventFacilitator: string;
+    facilitatorImage: string;
+    aboutFacilitator: string;
+    linkedIn: string;
+    twitter: string;
 }
