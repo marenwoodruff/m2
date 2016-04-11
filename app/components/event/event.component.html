@@ -66,21 +66,21 @@
         </ion-col>
         <ion-col width-75>
           <h4 style="margin-bottom: 0;">About the Facilitator</h4>
-          <h5>Robert Woods</h5>
+          <h5>{{event.eventFacilitator}}</h5>
         </ion-col>
       </ion-row>
       <div [innerHTML]="event.aboutFacilitator"></div>
       <hr/>
-      <h5 class="center connect">Connect with Robert</h5>
+      <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
       <ion-row>
         <ion-col style="display: flex; justify-content: center;">
-          <button class="fab" item-right linkedIn>
+          <button (click)="launchUrl(event.linkedIn)" class="fab" item-right linkedIn>
             <ion-icon class="icon-linkedin"></ion-icon>
           </button>
         </ion-col>
         <ion-col></ion-col>
         <ion-col style="display: flex; justify-content: center;">
-          <button class="fab" item-left twitter>
+          <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" class="fab" item-left twitter>
             <ion-icon class="icon-twitter"></ion-icon>
           </button>
         </ion-col>
