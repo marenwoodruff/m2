@@ -12,10 +12,12 @@ export class StorageService {
   surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
   surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
   private storage: Storage
+  private surveys = [];
 
     constructor() {
       this.initializeDb();
     }
+
     private initializeDb() {
       this.storage = new Storage(SqlStorage, {name: 'MatrixDB'});
 
@@ -26,6 +28,7 @@ export class StorageService {
           console.log("ERROR -> " + JSON.stringify(error.err));
         });
     }
+
     public saveSurveyProgress(survey: Survey):void {
 
       let surveyId = JSON.stringify(survey.id);
@@ -39,21 +42,38 @@ export class StorageService {
           console.log("Save Progress ERROR -> " + error.err.sqlerror);
         });
     }
+
     public getSurveyProgress(id:any):void {
-      this.storage.query(`SELECT * FROM Survey WHERE surveyId = ${id}`)
+      this.storage.query(`SELECT * FROM Survey WHERE surveyId = '${id}'`)
         .then((data) => {
-          this.surveyProgress.emit(data);
+          let results = data.res.rows;
+          for (var i = 0; i < results.length; i++) {
+            this.surveys.push(JSON.parse(results[i].survey));
+            this.surveyProgress.emit(this.surveys);
+          }
+        }, (error) => {
+          console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
+        });
+    }
+
+    public removeSurveyProgress(id:number):void {
+      this.storage.query(`DELETE FROM Survey WHERE surveyId = '${id}'`)
+        .then((data) => {
           console.log("Data: " + data);
         }, (error) => {
           console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
         });
     }
-    public removeSurveyProgress(id:any):void {
-      this.storage.query(`DELETE FROM Survey WHERE surveyId = ${id}`)
+
+    public updateSurveyProgress(survey: Survey): void {
+      let surveyObject = JSON.stringify(survey);
+      let surveyId = JSON.stringify(survey.id);
+
+      this.storage.query(`UPDATE Survey SET survey = ? WHERE surveyId = ?`, [surveyObject, surveyId])
         .then((data) => {
-          console.log("Data: " + data);
+          console.log('Updating Data: ' + data);
         }, (error) => {
-          console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
+          console.log('Update Progress ERROR -> ' + error.err.message);
         });
     }
 }

@@ -15,6 +15,7 @@ export class SurveyService {
 
     private _api:Http;
     surveys:EventEmitter<Survey[]> = new EventEmitter();
+    surveyComplete: EventEmitter<boolean> = new EventEmitter();
       
     constructor(private http:Http) {
       this._api = http;
@@ -41,6 +42,11 @@ export class SurveyService {
         err => console.log(err),
         () => console.log('Survey has been submitted'));
     };
+
+    public surveyCompleted(completed:boolean):void {
+      this.surveyComplete.emit(completed);
+      console.log('EMITTEDDDDDDD');
+    }
 
     // public getSurveyResponses(id:number, userId?:number):void {
     //   this._api.get("build/assets/surveyResponse.json")

@@ -4,8 +4,6 @@
   </button>
   <ion-title>Surveys</ion-title>
 </ion-navbar>
-
-
 <ion-content padding class="survey-container">
-  <surveys [surveys]='surveys'></surveys>
+  <surveys [surveys]="surveys" [surveysInProgress]="surveysInProgress" [startedSurveys]="startedSurveys"></surveys>
 </ion-content>

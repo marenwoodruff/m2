@@ -11,7 +11,7 @@
           </span>
           </ion-label>
         <ion-radio
-                  (click)="changeSelection(option)" 
+                  (click)="changeSelection(option)"
                   [value]="option.value"
                   [checked]="option.selected"
                   [name]="currentQuestion.questionId"
@@ -25,12 +25,13 @@
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchWhen="'checkBox'">
-      <ion-item class="checkbox-item" *ngFor="#option of currentQuestion.answer.options">
-        <ion-label>{{option.display}}</ion-label>
+      <ion-item class="checkbox-item" *ngFor="#option of currentQuestion.answer.options" [class.selected]="option.selected">
+        <ion-label [class.checkSelected]="option.selected">{{option.display}}</ion-label>
         <ion-checkbox
                      [value]="option.value"
                      [checked]="option.selected"
-                     [(ngModel)]="option.selected"></ion-checkbox>
+                     [(ngModel)]="option.selected"
+                     matrixblue></ion-checkbox>
       </ion-item>
     </ion-list>
   </div>
@@ -55,7 +56,7 @@
     <ion-col width-20>
       <button clear (click)="nextQuestion()">
         Next
-        <ion-icon matrixblue name="arrow-forward"></ion-icon>  
+        <ion-icon matrixblue name="arrow-forward"></ion-icon>
       </button>
     </ion-col>
     <ion-col width-10></ion-col>

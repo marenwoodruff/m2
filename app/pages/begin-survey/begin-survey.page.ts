@@ -4,6 +4,7 @@ import {NavController, NavParams, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {SurveyPage} from '../survey/survey.page';
 import {SurveyCompletedPage} from '../survey-completed/survey-completed.page';
+import {SurveyProgress} from '../../models/survey/surveyProgress';
 
 @Page({
   templateUrl: 'build/pages/begin-survey/begin-survey.page.html',
@@ -13,24 +14,49 @@ import {SurveyCompletedPage} from '../survey-completed/survey-completed.page';
 export class BeginSurveyPage implements OnInit {
   survey: Survey;
   surveyTime: String;
+  inProgress: boolean;
+  surveyProgress: SurveyProgress;
+  surveyStartText: String;
+  lastQuestionIndex: number;
 
   constructor(private nav: NavController, private params: NavParams) {
     this.survey = this.params.get('survey');
+    this.inProgress = this.params.get('inProgress');
+    this.surveyProgress = this.params.get('surveyProgress');
   }
 
   public ngOnInit(): void {
-    let
-      length = this.survey.questions.length,
-      surveyMinTime = Math.floor(length * 0.30),
-      surveyMaxTime = length * 0.50;
+    if (!this.surveyProgress) {
+      const
+        length = this.survey.questions.length,
+        surveyMinTime = Math.floor(length * 0.30),
+        surveyMaxTime = length * 0.50;
 
-    this.surveyTime = (`${surveyMinTime} - ${surveyMaxTime} mins`);
-    console.log(this.surveyTime);
+      this.surveyTime = (`${surveyMinTime} - ${surveyMaxTime} mins`);
+      this.surveyStartText = 'Begin Survey';
+    } else {
+
+      this.survey.questions.forEach((question, idx) => {
+        if (question.questionId === this.surveyProgress.lastQuestionId) {
+          this.lastQuestionIndex = idx;
+        }
+      })
+
+      let
+        length = this.survey.questions.length - (this.lastQuestionIndex + 1),
+        surveyMinTime = Math.floor(length * 0.30),
+        surveyMaxTime = length * 0.50;
+
+      this.surveyTime = (`${surveyMinTime} - ${surveyMaxTime} mins remaining`);
+      this.surveyStartText = 'Continue Survey';
+    }
   }
 
-  private viewSurvey(survey): void {
+  private viewSurvey(survey, lastQuestionIndex): void {
     this.nav.push(SurveyPage, {
-      survey: survey
+      survey,
+      lastQuestionIndex,
+      inProgress: this.inProgress
     });
   }
 
