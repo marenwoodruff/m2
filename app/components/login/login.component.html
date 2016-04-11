@@ -37,12 +37,12 @@
   <ion-row>
     <ion-col>
       <ion-row>
-        <button class="linkedin-button social-button" block>
+        <button class="linkedin-button social-button" block (click)="login()">
           <ion-col>
             <ion-icon class="icon-linkedin"></ion-icon>
           </ion-col>
           <ion-col>
-            <span *ngIf="login">Connect with</span> LinkedIn
+            LinkedIn
           </ion-col>
         </button>
       </ion-row>
@@ -54,7 +54,7 @@
             <ion-icon class="icon-twitter"></ion-icon>
           </ion-col>
           <ion-col>
-            <span *ngIf="login">Connect with</span> Twitter
+            Twitter
           </ion-col>
         </button>
       </ion-row>
