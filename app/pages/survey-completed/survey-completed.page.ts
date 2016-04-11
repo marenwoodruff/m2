@@ -16,7 +16,7 @@ export class SurveyCompletedPage {
   constructor(nav: NavController, params: NavParams) {
     this.nav = nav;
     this.params = params;
-    this.survey = this.params.get('survey');
+    // this.survey = this.params.get('survey');
   }
 
   navigateHomepage() {

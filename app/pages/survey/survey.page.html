@@ -7,7 +7,7 @@
 
 <ion-content>
   <div>
-    <img class="question-image" src="/build/assets/images/surveyQuestion.png" alt="">
+    <img class="question-image" src="build/assets/images/surveyQuestion.png" alt="">
   </div>
-  <question [questions]="survey.questions"></question>
+  <question [survey]="survey" [inProgress]="inProgress" [lastQuestionIndex]="lastQuestionIndex"></question>
 </ion-content>

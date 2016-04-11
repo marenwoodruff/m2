@@ -1,0 +1,28 @@
+.session-registration{
+  ion-item{
+    padding-left: 0;
+    border-right: 1px solid #C1BFC0;
+    border-left: 1px solid #C1BFC0;
+  }
+  ion-list{
+    margin: 10px;
+    border-bottom: none;
+    border-top: none;
+  }
+  ion-label{
+    margin: 20px 15px;
+    color: #C1BFC0;
+  }
+  .registration-list{
+    padding: 2em 0 0 0;
+  }
+  .register-button{
+    border-radius: 0;
+  }
+  .red-asterix{
+    color: red;
+    padding: .25em 0 2em .25em;
+    margin: 0;
+    border: 0;
+  }
+}

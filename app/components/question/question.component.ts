@@ -4,13 +4,14 @@ import {Question} from '../../models/survey/question';
 import {Survey} from '../../models/survey/survey';
 import {Option} from '../../models/survey/option';
 import {StorageService} from '../../service/storage.service';
+import {SurveyService} from '../../service/survey.service';
 import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
 
 @Component({
   selector: 'question',
   templateUrl: 'build/components/question/question.component.html',
   directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
-  inputs: ['questions']
+  inputs: ['survey', 'lastQuestionIndex', 'inProgress']
 })
 
 export class QuestionComponent implements OnInit {
@@ -18,20 +19,30 @@ export class QuestionComponent implements OnInit {
   survey: Survey;
   params: NavParams;
   currentQuestion: Question;
+  lastQuestionIndex: number;
   questionIndex: number = 0;
   questionsLength: number;
-  enabled: boolean = false;
+  enabled: boolean;
+  inProgress: boolean;
+  completed: boolean;
+  completedQuestions = [];
 
-  constructor(private storageService: StorageService, private nav: NavController) {
-  }
+  constructor(private _storageApi: StorageService, private _surveyApi: SurveyService, private nav: NavController) { }
 
   public ngOnInit(): void {
+    this.questions = this.survey.questions;
+    this.questionIndex = this.lastQuestionIndex ? this.lastQuestionIndex + 1 : 0;
     this.currentQuestion = this.questions[this.questionIndex];
     this.questionsLength = this.questions.length;
+    console.log(this.survey);
 
     if (this.questionIndex !== 0) {
       this.enabled = true;
     }
+
+    if (!this.inProgress) {
+      this.saveProgress(this.survey);
+    } 
   }
 
   private changeSelection(option: Option): void {
@@ -45,7 +56,7 @@ export class QuestionComponent implements OnInit {
   }
 
   private saveProgress(survey: Survey): void {
-    this.storageService.saveSurveyProgress(survey);
+    this._storageApi.saveSurveyProgress(survey);
   }
 
   private skipQuestion(): void {
@@ -60,11 +71,12 @@ export class QuestionComponent implements OnInit {
   }
 
   private nextQuestion(): void {
+
     if (this.questionIndex === this.questionsLength - 1) {
-      this.nav.push(SurveyCompletedPage, {
-        survey: this.questions
-      });
+      this.checkSurveyCompletion(this.survey);
+      this.nav.push(SurveyCompletedPage);
     } else {
+      this._storageApi.updateSurveyProgress(this.survey);
       this.questionIndex = this.questionIndex + 1;
       this.currentQuestion = this.questions[this.questionIndex];
     }
@@ -76,19 +88,62 @@ export class QuestionComponent implements OnInit {
     if (this.questionIndex > 0) {
       this.questionIndex = this.questionIndex - 1;
       this.currentQuestion = this.questions[this.questionIndex];
-    } else {
-      console.log("first question, no previous")
-    }
+    } 
 
     this.evaluateIndex();
   }
 
-  private evaluateIndex() {
+  private evaluateIndex(): void {
     if (this.questionIndex !== 0) {
       this.enabled = true;
     } else {
       this.enabled = false;
-    }  
+    }
+  }
+
+  private getAnswers(survey: Survey): void {
+    survey.questions.forEach((question) => {
+      switch (question.answer.type) {
+        case "radio":
+          question.answer.options.forEach((option) => {
+            if (option.selected) {
+              this.completedQuestions.push(question.questionId);
+            }
+          });
+          break;
+        case "textBox":
+          question.answer.options.forEach((option) => {
+            if (option.value) {
+              this.completedQuestions.push(question.questionId);
+            }
+          });
+          break;
+        case "checkBox":
+          let checkboxAnswers = [];
+          question.answer.options.forEach((option) => {
+            if (option.selected) {
+              checkboxAnswers.push(option.display);
+            }            
+          });
+          this.completedQuestions.push(checkboxAnswers);
+          break;
+      }
+    }); 
+  }
+
+  private checkSurveyCompletion(survey: Survey): void {
+    this.getAnswers(survey);
+    debugger
+    if (this.completedQuestions.length === this.questionsLength) {
+      this.completed = true;
+      // this._surveyApi.surveyCompleted(this.completed);
+      this._storageApi.removeSurveyProgress(this.survey.id);
+      console.log('survey complete and deleted from local');
+    } else {
+      this._storageApi.updateSurveyProgress(this.survey);
+      console.log('survey incomplete and updated in local');
+    }
+    
   }
 
   private onSubmit(survey): void {
