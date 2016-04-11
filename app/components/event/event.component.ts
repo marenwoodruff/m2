@@ -27,9 +27,6 @@ export class EventComponent{
   }
 
   public launchUrl(url: string): void {
-    // this.platform.ready().then(() => {
-    //   window.open(url, "_system", "location=true");
-    // });
     this.platform.ready().then(() => {
       cordova.InAppBrowser.open(url, "_system", "location=true");
     });
