@@ -20,7 +20,7 @@ export class LoginComponent {
   }
 
   login() {
-    this.launch("https://google.com")
+    this.launch("https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=77afy8frauu9vo&redirect_uri=http://localhost:8100&state=51e48176-4b06-48d4-884b-9a3d643ee7d1&scope=r_basicprofile")
     // this.platform.ready().then(() => {
 
 

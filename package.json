@@ -37,16 +37,20 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-sqlite-storage",
-    "ionic-plugin-deploy",
-    "cordova-plugin-inappbrowser",
-    {
-      "locator": "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
-      "id": "cordova-plugin-x-socialsharing"
-    },
-    "plugin"
+    "cordova-plugin-inappbrowser"
   ],
   "cordovaPlatforms": [
     "ios",
-    "android"
+    "android",
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    },
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
   ]
 }
