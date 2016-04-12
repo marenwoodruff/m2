@@ -1,11 +1,12 @@
 import {Component, OnInit} from 'angular2/core';
-import {Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar,  NavController, NavParams} from 'ionic-angular';
+import {Alert, Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar,  NavController, NavParams} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 import {Survey} from '../../models/survey/survey';
 import {Option} from '../../models/survey/option';
 import {StorageService} from '../../service/storage.service';
 import {SurveyService} from '../../service/survey.service';
 import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
+import {EventsPage} from '../../pages/events/events.page';
 
 @Component({
   selector: 'question',
@@ -74,7 +75,6 @@ export class QuestionComponent implements OnInit {
 
     if (this.questionIndex === this.questionsLength - 1) {
       this.checkSurveyCompletion(this.survey);
-      this.nav.push(SurveyCompletedPage);
     } else {
       this._storageApi.updateSurveyProgress(this.survey);
       this.questionIndex = this.questionIndex + 1;
@@ -135,14 +135,37 @@ export class QuestionComponent implements OnInit {
     this.getAnswers(survey);
     if (this.completedQuestions.length === this.questionsLength) {
       this.completed = true;
-      // this._surveyApi.surveyCompleted(this.completed);
       this._storageApi.removeSurveyProgress(this.survey.id);
       console.log('survey complete and deleted from local');
+      this.nav.push(SurveyCompletedPage);
     } else {
       this._storageApi.updateSurveyProgress(this.survey);
       console.log('survey incomplete and updated in local');
+      this.incompleteAlert();
     }
     
+  }
+
+  private incompleteAlert(): void {
+    let confirm = Alert.create({
+      title: 'You are so close to being done!',
+      message: 'Are you sure you want to leave this survey without finishing?',
+      buttons: [
+        {
+          text: 'Yes, Please',
+          handler: () => {
+            this.nav.setRoot(EventsPage);
+          }
+        },
+        {
+          text: 'No, I will finish',
+          handler: () => {
+            console.log('gonna keep going');
+          },
+          buttons: ['Dismiss']
+        }]
+    });
+    this.nav.present(confirm);
   }
 
   private onSubmit(survey): void {
