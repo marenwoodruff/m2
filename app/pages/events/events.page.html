@@ -28,13 +28,13 @@
 <ion-content padding class="events-container">
   <div [ngSwitch]="page">
     <div *ngSwitchDefault>
-      <events [events]="events"></events>
+      <events [events]="events" [location]="currentLocation"></events>
     </div>
     <div *ngSwitchWhen="'upcomingEvents'">
-      <events [events]="upcomingEvents"></events>
+      <events [events]="upcomingEvents" [location]="currentLocation"></events>
     </div>
     <div *ngSwitchWhen="'pastEvents'">
-      <events [events]="pastEvents"></events>
+      <events [events]="pastEvents" [location]="currentLocation"></events>
     </div>
     <div *ngSwitchWhen="'surveys'">
       <surveys *ngIf="surveys.length > 1" [surveys]='surveys'></surveys>
