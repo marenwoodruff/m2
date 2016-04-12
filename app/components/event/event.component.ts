@@ -58,6 +58,13 @@ export class EventComponent implements OnInit, OnDestroy {
     })
   }
 
+  public launchNavigator(coordinates: string, city: string): void {
+    let navCoordinates = coordinates.split(',').splice(0, 2);
+    launchnavigator.navigate(navCoordinates, {
+      start: city
+    });
+  }
+
   public launchUrl(url: string): void {
     this.platform.ready().then(() => {
       cordova.InAppBrowser.open(url, "_system", "location=true");
