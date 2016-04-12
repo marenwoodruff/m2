@@ -38,7 +38,7 @@
   </ion-row>
   <ion-row class="row-padding">
     <ion-col>
-      <ion-row center>
+      <ion-row (click)="launchNavigator(event.mapCoordinates, event.city)" center>
         <ion-col width-25>
           <img src="build/assets/images/MapImage.png" alt="location image">
         </ion-col>
