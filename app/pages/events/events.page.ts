@@ -20,12 +20,15 @@ export class EventsPage implements OnInit, OnDestroy {
     public pastEvents:Event[];
     page: string;
     surveys: Survey[] = [];
+    public currentLocation: Array<number>;
 
     constructor(eventService:EventService) {
       this._eventsApi = eventService;
     }
 
     ngOnInit():any {
+      this.getCurrentLocation();
+
       this._eventsApi.events.subscribe(
           events => {
             this.events = events
@@ -35,6 +38,7 @@ export class EventsPage implements OnInit, OnDestroy {
           err => console.log("EventsComponent events subscribe error: ", err),
           () => console.log("Finished subscribing to events")
       );
+
       this._eventsApi.getEvents();
     }
 
@@ -56,6 +60,18 @@ export class EventsPage implements OnInit, OnDestroy {
 
     changePage(page:string) {
       this.page = (this.page === page) ? null : page;
+    }
+
+    getCurrentLocation() {
+      navigator.geolocation.getCurrentPosition(
+        (position) => { 
+          this.currentLocation = [position.coords.latitude, position.coords.longitude];
+        },
+        (error) => {
+          alert(error.message);
+          console.log('getting location error:', error);
+        }
+      );
     }
 
   }

@@ -6,7 +6,8 @@
         Take this questionnaire & be entered to win a prize
       </p>
       <ion-row style="display: flex; justify-content: center">
-        <button (click)="takeSurvey(event.eventId)">Take Survey</button>
+        <button *ngIf="survey" (click)="takeSurvey()">Take Survey</button>
+        <button *ngIf="!survey" disabled>Survey Not Available</button>
       </ion-row>
     </ion-col>
   </ion-row>
@@ -37,7 +38,7 @@
   </ion-row>
   <ion-row class="row-padding">
     <ion-col>
-      <ion-row center>
+      <ion-row (click)="launchNavigator(event.mapCoordinates, event.city)" center>
         <ion-col width-25>
           <img src="build/assets/images/MapImage.png" alt="location image">
         </ion-col>

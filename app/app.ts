@@ -25,7 +25,7 @@ class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
-            {title: 'My Matrix', component: EventsPage},
+            {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'Surveys', component: SurveysPage},
             {title: 'Twitter', component: TwitterPage},
             {title: 'Contact Us', component: ContactPage},
