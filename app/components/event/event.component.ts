@@ -7,6 +7,7 @@ import {SessionComponent} from '../session/session.component';
 import {EventLocationComponent} from '../event-location/event-location.component';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
 import {RegistrationPage} from '../../pages/registration/registration.page';
+import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
 
 @Component({
   selector: 'event',
@@ -20,6 +21,7 @@ export class EventComponent implements OnInit, OnDestroy {
   public event: Event;
   private surveySubscription: EventEmitter<Survey[]>;
   public surveys: Survey[];
+  public survey: Survey;
 
   constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService) {
   }
@@ -28,6 +30,10 @@ export class EventComponent implements OnInit, OnDestroy {
     this.surveySubscription = this._surveyApi.surveys.subscribe(
       (surveys) => {
         this.surveys = surveys;
+        if (this.surveys.length === 1) {
+          this.survey = this.surveys[0];
+          console.log(this.survey);
+        }
       },
       err => console.log('error', err),
       () => console.log('finished checking for event survey')
@@ -46,7 +52,10 @@ export class EventComponent implements OnInit, OnDestroy {
     });
   }
 
-  private takeSurvey(eventId: number): void {
+  private takeSurvey(): void {
+    this.nav.push(BeginSurveyPage, {
+      survey: this.survey
+    })
   }
 
   public launchUrl(url: string): void {
