@@ -68,6 +68,7 @@ export class EventsPage implements OnInit, OnDestroy {
           this.currentLocation = [position.coords.latitude, position.coords.longitude];
         },
         (error) => {
+          alert(error.message);
           console.log('getting location error:', error);
         }
       );
