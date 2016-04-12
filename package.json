@@ -40,6 +40,7 @@
     "ionic-plugin-deploy",
     "cordova-plugin-inappbrowser",
     "uk.co.workingedge.phonegap.plugin.launchnavigator",
+    "cordova-plugin-geolocation",
     {
       "locator": "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
       "id": "cordova-plugin-x-socialsharing"

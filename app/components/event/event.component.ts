@@ -22,6 +22,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private surveySubscription: EventEmitter<Survey[]>;
   public surveys: Survey[];
   public survey: Survey;
+  private currentLocation: Array<number>;
 
   constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService) {
   }
@@ -38,6 +39,8 @@ export class EventComponent implements OnInit, OnDestroy {
       err => console.log('error', err),
       () => console.log('finished checking for event survey')
     );
+
+    this.getCurrentLocation();
 
     this._surveyApi.getSurveys(null, this.event.eventId);
   }
@@ -58,11 +61,30 @@ export class EventComponent implements OnInit, OnDestroy {
     })
   }
 
+  private getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.currentLocation = [position.coords.latitude, position.coords.longitude];
+      },
+      (error) => {
+        debugger
+        console.log('error: ', error);
+      }
+    );
+  }
+
   public launchNavigator(coordinates: string, city: string): void {
+    console.log(this.currentLocation);
     let navCoordinates = coordinates.split(',').splice(0, 2);
-    launchnavigator.navigate(navCoordinates, {
-      start: city
-    });
+    if (this.currentLocation) {
+      launchnavigator.navigate(navCoordinates, {
+        start: this.currentLocation
+      });
+    } else {
+      launchnavigator.navigate(navCoordinates, {
+        start: city
+      });
+    }
   }
 
   public launchUrl(url: string): void {
