@@ -16,13 +16,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   linkedInState: String;
   twitterCode: String;
   twitterState: String;
-  twitterCredentials: Object;
+  twitterCredentials: any;
   private twitterSubscription: EventEmitter<any>;
   http: Http;
 
   constructor(private platform: Platform, @Inject(Http) http: Http, private _twitterApi: TwitterService) {
     this.http = http;
-    this.twitterCredentials = undefined;
+    this.twitterCredentials = { access_token: null };
   }
 
   login(media) {
@@ -74,14 +74,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     twitterLogin() {
       this._twitterApi.getBearer();
-      debugger
     }
 
     ngOnInit(): any {
       this.twitterSubscription = this._twitterApi.twitterCredentials.subscribe(
         (twitterCredentials) => {
           this.twitterCredentials = twitterCredentials;
-          alert(twitterCredentials);
             // return {
             //   surveyId: sip.id,
             //   lastQuestionId,

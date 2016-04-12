@@ -9,7 +9,7 @@ export class TwitterService {
     private _api:Http;
     feed:EventEmitter<TwitterFeed[]> = new EventEmitter();
     bearerToken:EventEmitter<any> = new EventEmitter();
-    twitterCredentials: EventEmitter<any> = new EventEmitter();
+    twitterCredentials:EventEmitter<any> = new EventEmitter();
 
     constructor(private http: Http) {
       this._api = http;
@@ -25,12 +25,13 @@ export class TwitterService {
       headers.set("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
       console.log('headers', headers);
 
-this._api.post('https://api.twitter.com/oauth2/token', "grant_type=client_credentials", {headers: headers})
-        .map(res => console.log('bearerToken', res))
+    this._api.post('https://api.twitter.com/oauth2/token', "grant_type=client_credentials", {headers: headers})
+        .map(res => <any>res.json())
         .subscribe(
-          bearer => console.log('bearerToken', bearer),
+          credentials => this.twitterCredentials = credentials,
           err => console.log('this is the error', err),
           () => console.log('Bearer Token retrieval is completed'));
+          this.twitterCredentials.emit(this.twitterCredentials);
     }
     getMatrixFeed() {
 
