@@ -12,7 +12,7 @@ import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
 @Component({
   selector: 'event',
   templateUrl: 'build/components/event/event.component.html',
-  inputs:['event'],
+  inputs:['event', 'currentLocation'],
   directives: [List, Item, SessionComponent, EventLocationComponent, Button],
   pipes:[DateFormatPipe, FromUnixPipe]
 })
@@ -40,8 +40,6 @@ export class EventComponent implements OnInit, OnDestroy {
       () => console.log('finished checking for event survey')
     );
 
-    this.getCurrentLocation();
-
     this._surveyApi.getSurveys(null, this.event.eventId);
   }
 
@@ -59,18 +57,6 @@ export class EventComponent implements OnInit, OnDestroy {
     this.nav.push(BeginSurveyPage, {
       survey: this.survey
     })
-  }
-
-  private getCurrentLocation() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.currentLocation = [position.coords.latitude, position.coords.longitude];
-      },
-      (error) => {
-        debugger
-        console.log('error: ', error);
-      }
-    );
   }
 
   public launchNavigator(coordinates: string, city: string): void {
