@@ -1,6 +1,8 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit, OnDestroy, EventEmitter} from 'angular2/core';
 import {NavController, NavParams, List, Item, Button, Platform} from 'ionic-angular';
+import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
+import {Survey} from '../../models/survey/survey';
 import {SessionComponent} from '../session/session.component';
 import {EventLocationComponent} from '../event-location/event-location.component';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
@@ -14,16 +16,37 @@ import {RegistrationPage} from '../../pages/registration/registration.page';
   pipes:[DateFormatPipe, FromUnixPipe]
 })
 
-export class EventComponent{
-  event: Event
+export class EventComponent implements OnInit, OnDestroy {
+  public event: Event;
+  private surveySubscription: EventEmitter<Survey[]>;
+  public surveys: Survey[];
 
-  constructor(private nav: NavController, private platform: Platform) {
+  constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService) {
+  }
+
+  public ngOnInit() {
+    this.surveySubscription = this._surveyApi.surveys.subscribe(
+      (surveys) => {
+        this.surveys = surveys;
+      },
+      err => console.log('error', err),
+      () => console.log('finished checking for event survey')
+    );
+
+    this._surveyApi.getSurveys(null, this.event.eventId);
+  }
+
+  public ngOnDestroy() {
+    this.surveySubscription.unsubscribe();
   }
 
   private register(event): void {
     this.nav.push(RegistrationPage, {
       event: event
     });
+  }
+
+  private takeSurvey(eventId: number): void {
   }
 
   public launchUrl(url: string): void {

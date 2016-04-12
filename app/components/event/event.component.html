@@ -3,10 +3,10 @@
     <ion-col>
       <h5 class="center">Are you at this event?</h5>
       <p class="center">
-        Take this questionare & be entered to win a prize
+        Take this questionnaire & be entered to win a prize
       </p>
       <ion-row style="display: flex; justify-content: center">
-        <button>Take Survey</button>
+        <button (click)="takeSurvey(event.eventId)">Take Survey</button>
       </ion-row>
     </ion-col>
   </ion-row>
@@ -37,7 +37,7 @@
   </ion-row>
   <ion-row class="row-padding">
     <ion-col>
-      <ion-row>
+      <ion-row center>
         <ion-col width-25>
           <img src="build/assets/images/MapImage.png" alt="location image">
         </ion-col>
@@ -69,22 +69,48 @@
           <h5>{{event.eventFacilitator}}</h5>
         </ion-col>
       </ion-row>
+      <!-- ngIf for displaying twitter/linkedIn icons -->
       <div [innerHTML]="event.aboutFacilitator"></div>
+      <div *ngIf="event.twitter && event.linkedIn">
       <hr/>
-      <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
-      <ion-row>
-        <ion-col style="display: flex; justify-content: center;">
-          <button (click)="launchUrl(event.linkedIn)" class="fab" item-right linkedIn>
-            <ion-icon class="icon-linkedin"></ion-icon>
-          </button>
-        </ion-col>
-        <ion-col></ion-col>
-        <ion-col style="display: flex; justify-content: center;">
-          <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" class="fab" item-left twitter>
-            <ion-icon class="icon-twitter"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
+        <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
+        <ion-row>
+          <ion-col style="display: flex; justify-content: center;">
+            <button (click)="launchUrl(event.linkedIn)" class="fab" item-right linkedIn>
+              <ion-icon class="icon-linkedin"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col></ion-col>
+          <ion-col style="display: flex; justify-content: center;">
+            <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" class="fab" item-left twitter>
+              <ion-icon class="icon-twitter"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="event.twitter && !event.linkedIn">
+      <hr/>
+        <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
+        <ion-row>
+          <ion-col style="display: flex; justify-content: center;">
+            <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" class="fab" item-left twitter>
+              <ion-icon class="icon-twitter"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="!event.twitter && event.linkedIn">
+      <hr/>
+        <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
+        <ion-row>
+          <ion-col style="display: flex; justify-content: center;">
+            <button (click)="launchUrl(event.linkedIn)" class="fab" item-right linkedIn>
+              <ion-icon class="icon-linkedin"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </div>
+      <!-- end of conditional for displaying icons -->
     </ion-col>
   </ion-row>
   <ion-row class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
@@ -96,7 +122,7 @@
     <ion-col>
       <h5 class="center">Are you going to this event?</h5>
       <p class="center">
-        Take this questionare & be entered to win a prize
+        Take this questionnaire & be entered to win a prize
       </p>
     </ion-col>
   </ion-row>
