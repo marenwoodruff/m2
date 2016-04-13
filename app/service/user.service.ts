@@ -3,6 +3,7 @@ import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+import {MyMatrixApi} from '../constants/apiConstants';
 import {User} from '../models/user/user';
 import {UserEvent} from '../models/user/userEvent';
 import {UserSurvey} from '../models/user/userSurvey';
@@ -11,6 +12,7 @@ import {UserSurvey} from '../models/user/userSurvey';
 @Injectable()
 export class UserService {
     private _api:Http;
+    user:EventEmitter<User> = new EventEmitter();
     userSurveys:EventEmitter<UserSurvey[]> = new EventEmitter();
     userEvents:EventEmitter<UserEvent[]> = new EventEmitter();
 
@@ -18,27 +20,69 @@ export class UserService {
       this._api = http;
     };
 
-    public getUserEvents():void {
-
+    public getUser(userId:number):void {
+      this._api.get(`${MyMatrixApi}/users/${userId}`)
+        .map(res => <User>res.json())
+        .subscribe(
+        user => this.user.emit(user),
+        err => console.log(err),
+        () => console.log('User retrieval is completed'));
     }
 
-    public getUserSurveys():void {
-
+    public getUserEvents(userId:number):void {
+      this._api.get(`${MyMatrixApi}/users/${userId}/events`)
+        .map(res => <UserEvent[]>res.json())
+        .subscribe(
+          userEvents => this.userEvents.emit(userEvents),
+          err => console.log('error: ', err),
+          () => console.log('User Events retrieval is completed')
+        )
     }
 
-    public updateUser():void {
-
+    public getUserSurveys(userId:number):void {
+      this._api.get(`${MyMatrixApi}/users/${userId}/surveys`)
+        .map(res => <UserSurvey[]>res.json())
+        .subscribe(
+          userSurvey => this.userSurveys.emit(userSurvey),
+          err => console.log('error: ', err),
+          () => console.log('User Surveys retrieval is completed')
+        )
     }
 
-    public updateUserEvent():void {
-
+    public updateUser(userId:number, user:User):void {
+      const userBody = JSON.stringify(user);
+      this._api.put(`${MyMatrixApi}/users/${userId}`, userBody)
+        .subscribe(
+          () => this.getUser(userId),
+          err => console.log('error: ', err),
+          () => console.log('User updated')
+        );
     }
 
-    public deleteUserEven():void {
-
+    public updateUserEvent(userId:number, userEventId:number, userEvent:UserEvent):void {
+      const userEventBody = JSON.stringify(userEvent);
+      this._api.put(`${MyMatrixApi}/users/${userId}/events/${userEventId}`, userEventBody)
+        .subscribe(
+          () => this.getUserEvents(userId),
+          err => console.log('error: ', err),
+          () => console.log('User updated')
+        );
     }
 
-    public deleteUser():void {
+    public deleteUserEvent(userId:number, userEventId:number):void {
+      this._api.delete(`${MyMatrixApi}/users/${userId}/events/${userEventId}`)
+        .subscribe(
+          () => this.getUserEvents(userId),
+          err => console.log('error: ', err),
+          () => console.log('User updated')
+        );
+    }
 
+    public deleteUser(userId:number):void {
+      this._api.delete(`${MyMatrixApi}/users/${userId}`)
+        .subscribe(
+          err => console.log('error: ', err),
+          () => console.log('User updated')
+        );
     }
 }
