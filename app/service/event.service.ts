@@ -20,6 +20,7 @@ export class EventService {
             .subscribe(
             events => this.events.emit(events),
             err => console.log(err),
-            () => console.log('Events retrieval is completed'));
+            () => console.log('Events retrieval is completed')
+          );
     };
 }
