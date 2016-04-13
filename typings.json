@@ -6,6 +6,10 @@
   "ambientDependencies": {
     "cordova": "registry:dt/cordova#0.0.0+20160316155526",
     "cordova/plugins/inappbrowser": "registry:dt/cordova/plugins/inappbrowser#0.0.0+20160316155526",
-    "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#4de74cb527395c13ba20b438c3a7a419ad931f1c"
+    "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#4de74cb527395c13ba20b438c3a7a419ad931f1c",
+    "firebase": "registry:dt/firebase#2.4.1+20160412125105",
+    "firebase-client": "registry:dt/firebase-client#0.1.0+20160316155526",
+    "firebase-simplelogin": "registry:dt/firebase-simplelogin#0.0.0+20160316155526",
+    "firebase-token-generator": "registry:dt/firebase-token-generator#2.0.0+20160316155526"
   }
 }
