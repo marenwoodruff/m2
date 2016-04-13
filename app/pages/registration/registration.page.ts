@@ -1,5 +1,4 @@
 import {Page, NavParams} from 'ionic-angular';
-import {AfterContentInit} from 'angular2/core';
 import {SessionRegistrationPage} from '../../components/session-registration/session-registration.component';
 import {Event} from '../../models/events/event';
 
@@ -7,15 +6,11 @@ import {Event} from '../../models/events/event';
   templateUrl: 'build/pages/registration/registration.page.html',
   directives: [SessionRegistrationPage]
 })
-export class RegistrationPage implements AfterContentInit {
+export class RegistrationPage {
   event: Event;
 
   constructor(private params: NavParams) {
     this.event = this.params.get('event');
-  }
-
-  ngAfterContentInit() {
-    MktoForms2.loadForm("//app-abm.marketo.com", "695-WVM-122", 1862);
   }
 
 }

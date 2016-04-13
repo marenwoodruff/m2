@@ -66,6 +66,7 @@ export class EventsPage implements OnInit, OnDestroy {
           }
         ]
       });
+
       this.nav.present(filterSheet);
     }
 
