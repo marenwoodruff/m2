@@ -17,7 +17,7 @@ import {RegistrationPage} from './pages/registration/registration.page';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-  rootPage: any = LoginPage;
+  rootPage: any = RegistrationPage;
     pages:Array<{title: string, component: any}>;
 
     constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService) {

@@ -21,11 +21,12 @@ export class TwitterService {
 
       let bearerRequest = btoa(key + ':' + secret);
       let headers = new Headers();
-      headers.set("Authorization", "Basic " + encodedBearerTokenCredentials);
-      headers.set("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+      headers.append("Authorization", "Basic " + encodedBearerTokenCredentials);
+      headers.append("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+      let options = new RequestOptions({ headers });
       console.log('headers', headers);
 
-    this._api.post('https://api.twitter.com/oauth2/token', "grant_type=client_credentials", {headers: headers})
+      this._api.post('https://api.twitter.com/oauth2/token', "grant_type=client_credentials", options)
         .map(res => <any>res.json())
         .subscribe(
           credentials => this.twitterCredentials = credentials,
