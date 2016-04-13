@@ -59,7 +59,6 @@ export class LinkedInService {
           for (var i = 0; i < responseParameters.length; i++) {
             parsedResponse[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
           }
-          console.log(parsedResponse);
           if (parsedResponse.code !== undefined && parsedResponse.code !== null) {
             resolve(parsedResponse);
           } else {
