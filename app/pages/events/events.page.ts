@@ -18,6 +18,7 @@ export class EventsPage implements OnInit, OnDestroy {
     public events:any;
     public upcomingEvents:Event[];
     public pastEvents:Event[];
+    public localEvents: Event[];
     page: string;
     surveys: Survey[] = [];
     public currentLocation: Array<number>;
@@ -58,6 +59,17 @@ export class EventsPage implements OnInit, OnDestroy {
       });
     }
 
+    getLocalEvents(events:Event[]) {
+      this.localEvents = events.filter((event) => {
+        let eventCoordinates = event.mapCoordinates.split(',').splice(0, 2);
+        let latDistance = Math.abs(eventCoordinates[0] - this.currentLocation[0]);
+        let longDistance = Math.abs(eventCoordinates[1] - this.currentLocation[1]);
+        if ((latDistance <= 1.445674) && (longDistance <= 1.445674)) {
+          return true;
+        }
+      });
+    }
+
     changePage(page:string) {
       this.page = (this.page === page) ? null : page;
     }
@@ -66,6 +78,7 @@ export class EventsPage implements OnInit, OnDestroy {
       navigator.geolocation.getCurrentPosition(
         (position) => { 
           this.currentLocation = [position.coords.latitude, position.coords.longitude];
+          this.getLocalEvents(this.events);
         },
         (error) => {
           alert(error.message);
