@@ -1,6 +1,5 @@
-import {Page} from 'ionic-angular';
+import {Page, Icon, NavController, ActionSheet} from 'ionic-angular';
 import {OnInit, OnDestroy, forwardRef} from 'angular2/core';
-import {NgClass} from 'angular2/common';
 import {EventsComponent} from '../../components/events/events.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {EventService} from "../../service/event.service";
@@ -10,7 +9,7 @@ import {Event} from '../../models/events/event';
 
 @Page({
     templateUrl: 'build/pages/events/events.page.html',
-    directives: [EventsComponent, forwardRef(() => SurveysComponent), NgClass],
+    directives: [EventsComponent, forwardRef(() => SurveysComponent), Icon],
     providers:[EventService]
 })
 export class EventsPage implements OnInit, OnDestroy {
@@ -22,8 +21,9 @@ export class EventsPage implements OnInit, OnDestroy {
     page: string;
     surveys: Survey[] = [];
     public currentLocation: Array<number>;
+    public filteredLocation: Event[];
 
-    constructor(eventService:EventService) {
+    constructor(eventService:EventService, public nav:NavController) {
       this._eventsApi = eventService;
     }
 
@@ -47,6 +47,28 @@ export class EventsPage implements OnInit, OnDestroy {
       this._eventsApi.events.unsubscribe();
     }
 
+    filterLocations() {
+      let filterSheet = ActionSheet.create({
+        title: 'Filter Events by Location',
+        buttons: [
+          {
+            text: 'All Events',
+            handler: () => {
+              this.filteredLocation = this.events;
+            }
+          },
+          {
+            text: 'Events Near Me',
+            handler: () => {
+              this.filteredLocation = this.localEvents;
+              console.log(this.filteredLocation);
+            }
+          }
+        ]
+      });
+      this.nav.present(filterSheet);
+    }
+
     getUpcomingEvents(events:Event[]) {
       this.upcomingEvents = events.filter((event) => {
         return moment.unix(event.startDate).isAfter();
@@ -68,6 +90,7 @@ export class EventsPage implements OnInit, OnDestroy {
           return true;
         }
       });
+      this.filteredLocation = this.localEvents;
     }
 
     changePage(page:string) {

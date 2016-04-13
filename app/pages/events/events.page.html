@@ -3,44 +3,16 @@
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align:center"><img class="little-logo" src="build/assets/images/MyMatrix_Little.png" alt="My Matrix"></ion-title>
+    <ion-title style="text-align:center">
+      <img class="little-logo" src="build/assets/images/MyMatrix_Little.png" alt="My Matrix">
+    </ion-title>
+    <ion-buttons end>
+      <button (click)="filterLocations()">
+        <ion-icon ios="ios-pin" md="md-pin" class="location-icon"></ion-icon>
+      </button>
+    </ion-buttons>
 </ion-navbar>
-<ion-row class="event-segments">
-  <button
-    [ngClass]="{active: page === 'upcomingEvents'}"
-    (click)="changePage('upcomingEvents')"
-    round>
-    Future Events
-  </button>
-  <button
-    [ngClass]="{active: page === 'pastEvents'}"
-    (click)="changePage('pastEvents')"
-    round>
-    Past Events
-  </button>
-  <button
-    [ngClass]="{active: page === 'surveys'}"
-    (click)="changePage('surveys')"
-    round>
-    Surveys
-  </button>
-</ion-row>
+
 <ion-content padding class="events-container">
-  <div [ngSwitch]="page">
-    <div *ngSwitchDefault>
-      <events [events]="localEvents" [location]="currentLocation"></events>
-    </div>
-    <div *ngSwitchWhen="'upcomingEvents'">
-      <events [events]="upcomingEvents" [location]="currentLocation"></events>
-    </div>
-    <div *ngSwitchWhen="'pastEvents'">
-      <events [events]="pastEvents" [location]="currentLocation"></events>
-    </div>
-    <div *ngSwitchWhen="'surveys'">
-      <surveys *ngIf="surveys.length > 1" [surveys]='surveys'></surveys>
-      <p *ngIf="surveys.length === 0" class="center" style="padding: 10vmin" >
-        Hold up no surveys yet...
-      </p>
-    </div>
-  </div>
+  <events [events]="filteredLocation" [location]="currentLocation"></events>
 </ion-content>
