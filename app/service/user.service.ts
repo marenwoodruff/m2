@@ -21,12 +21,19 @@ export class UserService {
     };
 
     public getUser(userId:number):void {
-      this._api.get(`${MyMatrixApi}/users/${userId}`)
-        .map(res => <User>res.json())
-        .subscribe(
-        user => this.user.emit(user),
-        err => console.log(err),
-        () => console.log('User retrieval is completed'));
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user) {
+        this._api.get(`${MyMatrixApi}/users/${userId}`)
+          .map(res => <User>res.json())
+          .subscribe(
+          user => this.user.emit(user),
+          err => console.log(err),
+          () => console.log('User retrieval is completed')
+        );
+      } else {
+        this.user.emit(user);
+      }
+
     }
 
     public getUserEvents(userId:number):void {
@@ -36,7 +43,7 @@ export class UserService {
           userEvents => this.userEvents.emit(userEvents),
           err => console.log('error: ', err),
           () => console.log('User Events retrieval is completed')
-        )
+        );
     }
 
     public getUserSurveys(userId:number):void {
@@ -46,7 +53,7 @@ export class UserService {
           userSurvey => this.userSurveys.emit(userSurvey),
           err => console.log('error: ', err),
           () => console.log('User Surveys retrieval is completed')
-        )
+        );
     }
 
     public createUserEvent(userId:number, userEvent:UserEvent):void {
@@ -101,5 +108,9 @@ export class UserService {
           err => console.log('error: ', err),
           () => console.log('User updated')
         );
+    }
+
+    public setUser(user:User):void{
+      localStorage.setItem('user', JSON.stringify(user));
     }
 }
