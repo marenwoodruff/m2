@@ -62,8 +62,8 @@
       <h4>Overview</h4>
       <div [innerHTML]="event.overview"></div>
       <ion-row>
-        <ion-col width-25>
-          <img src="http://www.matrixres.com/media/1337/robertwoods.png">
+        <ion-col *ngIf="event.facilitatorImage" width-25>
+          <img src="http://www.matrixres.com/{{event.facilitatorImage}}">
         </ion-col>
         <ion-col width-75>
           <h4 style="margin-bottom: 0;">About the Facilitator</h4>
