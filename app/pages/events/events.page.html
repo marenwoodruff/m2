@@ -28,7 +28,7 @@
 <ion-content padding class="events-container">
   <div [ngSwitch]="page">
     <div *ngSwitchDefault>
-      <events [events]="events" [location]="currentLocation"></events>
+      <events [events]="localEvents" [location]="currentLocation"></events>
     </div>
     <div *ngSwitchWhen="'upcomingEvents'">
       <events [events]="upcomingEvents" [location]="currentLocation"></events>
