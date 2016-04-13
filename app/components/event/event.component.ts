@@ -33,7 +33,6 @@ export class EventComponent implements OnInit, OnDestroy, OnChanges {
         this.surveys = surveys;
         if (this.surveys.length === 1) {
           this.survey = this.surveys[0];
-          console.log(this.survey);
         }
       },
       err => console.log('error', err),
