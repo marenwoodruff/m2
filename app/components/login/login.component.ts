@@ -80,6 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.twitterSubscription = this._twitterApi.twitterCredentials.subscribe(
         (twitterCredentials) => {
           this.twitterCredentials = twitterCredentials;
+          console.dir(this.twitterCredentials);
             // return {
             //   surveyId: sip.id,
             //   lastQuestionId,
