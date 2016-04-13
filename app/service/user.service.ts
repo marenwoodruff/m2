@@ -49,11 +49,28 @@ export class UserService {
         )
     }
 
+    public createUserEvent(userId:number, userEvent:UserEvent):void {
+      const userEventBody = JSON.stringify(userEvent);
+      this._api.post(`${MyMatrixApi}/users/${userId}/events`, userEventBody)
+        .subscribe(
+          err => console.log('error: ', err),
+          () => console.log('User updated')
+        );
+    }
+
+    public createUserSurvey(userId:number, userSurvey:UserSurvey):void {
+      const userSurveyBody = JSON.stringify(userSurvey);
+      this._api.post(`${MyMatrixApi}/users/${userId}/surveys`, userSurveyBody)
+        .subscribe(
+          err => console.log('error: ', err),
+          () => console.log('User updated')
+        );
+    }
+
     public updateUser(userId:number, user:User):void {
       const userBody = JSON.stringify(user);
       this._api.put(`${MyMatrixApi}/users/${userId}`, userBody)
         .subscribe(
-          () => this.getUser(userId),
           err => console.log('error: ', err),
           () => console.log('User updated')
         );
