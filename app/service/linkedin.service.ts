@@ -2,22 +2,23 @@ import {Injectable, EventEmitter} from 'angular2/core';
 import {Http, Headers, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
+import {AuthorizedUser} from '../models/user/authorizedUser';
+import {UserLogin} from '../models/user/userLogin';
+import {AuthorizationService} from './Authorization.service';
 
 @Injectable()
 export class LinkedInService {
   messagesRef: Firebase; // Initialized Firebase object
   isLoggedIn: boolean;   // Was authentification sucesfull
   authData: any;         // Object that holds Twitter authentification data (displayName, imageURL, etc.)
-  private _api: Http;
   bearerToken: EventEmitter<any> = new EventEmitter();
   linkedInCredentialsEmitter: EventEmitter<any> = new EventEmitter();
   firebaseUrl: String;
   linkedInCredentials: any;
 
-  constructor(private http: Http) {
+  constructor(private _api: Http, private _authApi: AuthorizationService) {
     this.firebaseUrl = "https://mymatrix.firebaseio.com/messages";
     this.messagesRef = new Firebase(this.firebaseUrl);
-    this._api = http;
 
     // this.messagesRef.onAuth((user) => {
     //   if (user) {
@@ -86,7 +87,6 @@ export class LinkedInService {
   }
 
   getUserProfile(access_token:string) {
-    debugger
     const headers = new Headers();
     headers.append('Authorization', 'Bearer ' + access_token);
     this._api.get("https://api.linkedin.com/v1/people/~:(id,email-address,first-name,last-name,headline,positions)?format=json", { headers })
@@ -94,7 +94,16 @@ export class LinkedInService {
       (res) => {
         console.log('user', res);
         let userObject = res.json();
-        
+        let userLogin = {
+          name: userObject.firstName + ' ' + userObject.lastName,
+          company: userObject.positions.values[0].company.name,
+          jobTitle: userObject.positions.values[0].title,
+          email: userObject.emailAddress,
+          authenticationProviderId: 1,
+          authenticationId: userObject.id,
+          id: null
+        }
+        this._authApi.authorizeUser(userLogin);
         this.linkedInCredentialsEmitter.emit(userObject);
       }
     );
