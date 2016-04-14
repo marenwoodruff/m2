@@ -37,24 +37,24 @@
   <ion-row>
     <ion-col>
       <ion-row>
-        <button class="linkedin-button social-button" block>
+        <button class="linkedin-button social-button" block (click)="login('LinkedIn')">
           <ion-col>
             <ion-icon class="icon-linkedin"></ion-icon>
           </ion-col>
           <ion-col>
-            <span *ngIf="login">Connect with</span> LinkedIn
+            {{linkedInCredentials}}
           </ion-col>
         </button>
       </ion-row>
     </ion-col>
     <ion-col>
       <ion-row>
-        <button class="twitter-button social-button" block>
+        <button class="twitter-button social-button" block (click)="login('Twitter')">
           <ion-col>
             <ion-icon class="icon-twitter"></ion-icon>
           </ion-col>
           <ion-col>
-            <span *ngIf="login">Connect with</span> Twitter
+            {{twitterUserName}}
           </ion-col>
         </button>
       </ion-row>
