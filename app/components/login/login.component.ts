@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           console.log("seymour butts linked in", linkedInCredentials);
           this.linkedInCredentials = linkedInCredentials;
           this.access_token = linkedInCredentials.access_token;
+          alert(this.access_token);
         },
         err => console.log('LinkedIn Service subscribe error:', err),
         () => {
