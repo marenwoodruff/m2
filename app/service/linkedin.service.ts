@@ -94,6 +94,7 @@ export class LinkedInService {
       (res) => {
         console.log('user', res);
         let userObject = res.json();
+        
         this.linkedInCredentialsEmitter.emit(userObject);
       }
     );
