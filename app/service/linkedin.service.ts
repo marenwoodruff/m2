@@ -10,8 +10,9 @@ export class LinkedInService {
   authData: any;         // Object that holds Twitter authentification data (displayName, imageURL, etc.)
   private _api: Http;
   bearerToken: EventEmitter<any> = new EventEmitter();
-  linkedInCredentials: EventEmitter<any> = new EventEmitter();
+  linkedInCredentialsEmitter: EventEmitter<any> = new EventEmitter();
   firebaseUrl: String;
+  linkedInCredentials: any;
 
   constructor(private http: Http) {
     this.firebaseUrl = "https://mymatrix.firebaseio.com/messages";
@@ -34,21 +35,31 @@ export class LinkedInService {
 
   auth() {
     this.stepOne().then((success) => {
-      this._api.post('https://www.linkedin.com/uas/oauth2/accessToken', 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=https%3A%2F%2Fwww.myapp.com%2Fauth%2Flinkedin&client_id=123456789&client_secret=shhdonottell')
+      const
+        headers = new Headers(),
+        body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://10.55.254.92:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
+      alert(body);
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      this._api.post('/corsDestroyer', body, { headers: headers })
         .map(res => <any>res.json())
         .subscribe(
-        credentials => this.linkedInCredentials = credentials,
-        err => console.log('this is the error', err),
+        credentials => { 
+          this.linkedInCredentials = credentials;
+          alert('seyless booties'+credentials);
+          this.linkedInCredentialsEmitter.emit(this.linkedInCredentials);
+        },
+        err => { 
+          alert('this is the error' + err.Response.type);
+        },
         () => console.log('Bearer Token retrieval is completed'));
-      this.linkedInCredentials.emit(this.linkedInCredentials);
     });
   }
   stepOne() {
     return new Promise(function(resolve, reject) {
-      var browserRef = cordova.InAppBrowser.open("https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=77afy8frauu9vo&redirect_uri=http://localhost:8100&state=51e48176-4b06-48d4-884b-9a3d643ee7d1&scope=r_basicprofile", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+      var browserRef = cordova.InAppBrowser.open("https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=77afy8frauu9vo&redirect_uri=http://10.55.254.92:8100&state=51e48176-4b06-48d4-884b-9a3d643ee7d1&scope=r_basicprofile", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
 
       browserRef.addEventListener('loadstart', (event) => {
-        if ((event.url).indexOf("http://localhost:8100") === 0) {
+        if ((event.url).indexOf("http://10.55.254.92:8100") === 0) {
           browserRef.removeEventListener("exit", (event) => { });
           browserRef.close();
           var responseParameters = ((event.url).split("?")[1]).split("&");
