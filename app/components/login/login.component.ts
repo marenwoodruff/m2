@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   http: Http;
 
-  constructor(private platform: Platform, @Inject(Http) http: Http, private _twitterApi: TwitterService, private _linkedInApi: LinkedInService) {
+  constructor(private platform: Platform, http: Http, private _twitterApi: TwitterService, private _linkedInApi: LinkedInService) {
     this.http = http;
     this.twitterCredentials = { access_token: null };
   }
@@ -58,12 +58,12 @@ export class LoginComponent implements OnInit, OnDestroy {
           console.log('finished subscribing to twitter service')
         }
       );
-      this.linkedInSubscription = this._linkedInApi.linkedInCredentials.subscribe(
+      this.linkedInSubscription = this._linkedInApi.linkedInCredentialsEmitter.subscribe(
         (linkedInCredentials) => {
-          console.log("seymour butts linked in", linkedInCredentials);
-          this.linkedInCredentials = linkedInCredentials;
-          this.access_token = linkedInCredentials.access_token;
-          alert(this.access_token);
+          alert("seymour butts linked in", linkedInCredentials);
+          // this.linkedInCredentials = linkedInCredentials;
+          // this.access_token = linkedInCredentials.access_token;
+          // alert(this.access_token);
         },
         err => console.log('LinkedIn Service subscribe error:', err),
         () => {
