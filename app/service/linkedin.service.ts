@@ -35,28 +35,30 @@ export class LinkedInService {
 
   auth() {
     this.stepOne().then((success) => {
-      const
-        headers = new Headers(),
-        body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://10.55.254.92:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
+      
+      let headers = new Headers(),
+          body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://10.55.254.92:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
       alert(body);
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
-      this._api.post('/corsDestroyer', body, { headers: headers })
-        .map(res => <any>res.json())
+      this._api.post('https://www.linkedin.com/uas/oauth2/accessToken', body, { headers: headers })
+        .map((res) => {
+          return res.json();
+        })
         .subscribe(
-        credentials => { 
+        ((credentials) => { 
           this.linkedInCredentials = credentials;
-          alert('seyless booties'+credentials);
-          this.linkedInCredentialsEmitter.emit(this.linkedInCredentials);
-        },
-        err => { 
-          alert('this is the error' + err.Response.type);
+          this.getUserProfile(this.linkedInCredentials.access_token);
+          // alert('seyless booties'+credentials);
+        }),
+        (err) => { 
+          alert('this is the error' + err);
         },
         () => console.log('Bearer Token retrieval is completed'));
     });
   }
   stepOne() {
     return new Promise(function(resolve, reject) {
-      var browserRef = cordova.InAppBrowser.open("https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=77afy8frauu9vo&redirect_uri=http://10.55.254.92:8100&state=51e48176-4b06-48d4-884b-9a3d643ee7d1&scope=r_basicprofile", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
+      var browserRef = cordova.InAppBrowser.open("https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=77afy8frauu9vo&redirect_uri=http://10.55.254.92:8100&state=51e48176-4b06-48d4-884b-9a3d643ee7d1&scope=r_basicprofile,r_emailaddress", "_blank", "location=no,clearsessioncache=yes,clearcache=yes");
 
       browserRef.addEventListener('loadstart', (event) => {
         if ((event.url).indexOf("http://10.55.254.92:8100") === 0) {
@@ -81,6 +83,20 @@ export class LinkedInService {
         reject("The LinkedIn sign in flow was canceled");
       });
     });
+  }
+
+  getUserProfile(access_token:string) {
+    debugger
+    const headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + access_token);
+    this._api.get("https://api.linkedin.com/v1/people/~:(id,email-address,first-name,last-name,headline,positions)?format=json", { headers })
+      .subscribe(
+      (res) => {
+        console.log('user', res);
+        let userObject = res.json();
+        this.linkedInCredentialsEmitter.emit(userObject);
+      }
+    );
   }
   // getBearer() {
   //   const encodedBearerTokenCredentials = 'CWNkbHZKMkU0cEY2RzdSWE5KM0pnMGlqeTk6ek1oaUd0V2NyeXFhQVhTZFp3eUNhYWhtOW1nUnFxWGtTWTBCUDg1em5jc3pGdWxISTQNCg==';
