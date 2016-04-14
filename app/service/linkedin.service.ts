@@ -34,7 +34,12 @@ export class LinkedInService {
 
   auth() {
     this.stepOne().then((success) => {
-      this._api.post('https://www.linkedin.com/uas/oauth2/accessToken', 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=https%3A%2F%2Fwww.myapp.com%2Fauth%2Flinkedin&client_id=123456789&client_secret=shhdonottell')
+      const
+        headers = new Headers(),
+        body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://localhost:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
+      alert(body);
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      this._api.post('https://www.linkedin.com/uas/oauth2/accessToken', body, {headers: headers})
         .map(res => <any>res.json())
         .subscribe(
         credentials => this.linkedInCredentials = credentials,
