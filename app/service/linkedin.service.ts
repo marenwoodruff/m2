@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {AuthorizedUser} from '../models/user/authorizedUser';
 import {UserLogin} from '../models/user/userLogin';
-import {AuthorizationService} from './Authorization.service';
+import {AuthorizationService} from './authorization.service';
 
 @Injectable()
 export class LinkedInService {
@@ -17,8 +17,8 @@ export class LinkedInService {
   linkedInCredentials: any;
 
   constructor(private _api: Http, private _authApi: AuthorizationService) {
-    this.firebaseUrl = "https://mymatrix.firebaseio.com/messages";
-    this.messagesRef = new Firebase(this.firebaseUrl);
+    // this.firebaseUrl = "https://mymatrix.firebaseio.com/messages";
+    // this.messagesRef = new Firebase(this.firebaseUrl);
 
     // this.messagesRef.onAuth((user) => {
     //   if (user) {
