@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, Input, AfterContentInit} from 'angular2/core';
+import {Component, Input, AfterContentInit} from 'angular2/core';
 import {Button, List, Item, TextInput, Label} from 'ionic-angular';
 
 @Component({
