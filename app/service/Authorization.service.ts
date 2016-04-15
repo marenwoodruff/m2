@@ -25,7 +25,7 @@ export class AuthorizationService {
         (authorizedUser) => {
           const user = new User(authorizedUser);
           this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
-          this._storageService.setItem('MyMatrixUser', user);
+          this._storageService.setItem('MyMatrixUser', JSON.stringify(user));
           this._userService.emitUser(user);
         },
         err => console.log('error: ', err),
