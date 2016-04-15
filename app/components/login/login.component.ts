@@ -60,10 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       );
       this.linkedInSubscription = this._linkedInApi.linkedInCredentialsEmitter.subscribe(
         (linkedInCredentials) => {
-          alert("seymour butts linked in", linkedInCredentials);
-          // this.linkedInCredentials = linkedInCredentials;
-          // this.access_token = linkedInCredentials.access_token;
-          // alert(this.access_token);
+          this.access_token = linkedInCredentials.access_token;
         },
         err => console.log('LinkedIn Service subscribe error:', err),
         () => {
