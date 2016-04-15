@@ -5,30 +5,33 @@ import 'rxjs/Rx';
 
 import {MyMatrixApi} from '../constants/apiConstants';
 import {User} from '../models/user/user';
+import {StorageService} from './storage.service';
+import {AuthorizationService} from './authorization.service';
 
 @Injectable()
 export class UserService {
-  private _api: Http;
   user: EventEmitter<User> = new EventEmitter();
 
-  constructor(private http: Http) {
-    this._api = http;
+  constructor(private _api: Http, private _storageService:StorageService, private _authorizationService:AuthorizationService) {
   };
 
   public getUser(userId: number): void {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
     if (!user) {
       this._api.get(`${MyMatrixApi}/users/${userId}`)
         .map(res => <User>res.json())
         .subscribe(
-          user => this.user.emit(user),
+          user => this.emitUser(user),
           err => console.log(err),
           () => console.log('User retrieval is completed')
         );
     } else {
-      this.user.emit(user);
+      this.emitUser(user);
     }
+  }
 
+  public emitUser(user:User):void {
+    this.user.emit(user);
   }
 
   public updateUser(userId: number, user: User): void {
