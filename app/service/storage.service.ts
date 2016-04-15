@@ -76,4 +76,17 @@ export class StorageService {
           console.log('Update Progress ERROR -> ' + error.err.message);
         });
     }
+
+    public getItem(key:string):string {
+      return localStorage.getItem(key);
+    }
+
+    public setItem(key:string, value:any):void {
+      localStorage.setItem(key, value);
+    }
+
+    public removeItem(key:string):void {
+      localStorage.removeItem(key);
+    }
+
 }
