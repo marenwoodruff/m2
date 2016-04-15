@@ -8,12 +8,10 @@ import {UserEvent} from '../models/user/userEvent';
 
 @Injectable()
 export class UserEventService {
-  private _api: Http;
+
   userEvents: EventEmitter<UserEvent[]> = new EventEmitter();
 
-  constructor(private http: Http) {
-    this._api = http;
-  };
+  constructor(private _api: Http) {  };
 
   public getUserEvents(userId: number): void {
     this._api.get(`${MyMatrixApi}/users/${userId}/events`)
