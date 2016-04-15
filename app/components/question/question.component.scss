@@ -72,3 +72,34 @@ $gray-background: #f6fafb;
     color: #1064b1;
   }
 }
+
+// alert styles
+.alert-wrapper {
+  border-radius: 0.25em;
+}
+
+.alert-title {
+  padding: 0.25em;
+}
+
+.alert-message {
+  font-size: 16px;
+  padding: 0.5em;
+}
+
+.alert-button {
+  font-size: 15px;
+  border: 1px solid #1064b1;
+  margin-left: 0.2em;
+  min-width: 46%;
+}
+
+.alert-button:last-child {
+  border-right: 1px solid #1064b1;
+  color: white;
+  background-color: #1064b1;
+}
+
+.alert-button-group {
+  padding: 1.25em;
+}

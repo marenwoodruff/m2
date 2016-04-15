@@ -25,4 +25,32 @@
     margin: 0;
     border: 0;
   }
+
+  .form-info {
+    white-space: normal;  
+  }
+
+  .mktoForm {
+    padding: 0;
+
+    input {
+      width: 100%;
+      // margin-left: 1em;
+      height: 40px;
+    }
+  }
+
+  .mktoForm input[type="text"], .mktoForm input[type="url"], .mktoForm input[type="email"], .mktoForm input[type="tel"], .mktoForm input[type="number"], .mktoForm input[type="date"], .mktoForm textarea.mktoField, .mktoForm select.mktoField {
+    width: 100%;
+  }
+
+  #mktoForm_1862 {
+    width: 100%;
+    margin: 0;
+  }
+
+  .mktoAsterix {
+    position: absolute;
+    left: 0.85em;
+  }
 }
