@@ -33,7 +33,6 @@ export class EventsPage implements OnInit, OnDestroy, AfterContentInit {
       this._eventsApi.events.subscribe(
           events => {
             this.events = events
-            this.filteredLocation = this.events;
           },
           err => console.log("EventsComponent events subscribe error: ", err),
           () => console.log("Finished subscribing to events")
@@ -90,6 +89,7 @@ export class EventsPage implements OnInit, OnDestroy, AfterContentInit {
           return true;
         }
       });
+      this.filteredLocation = this.localEvents;
     }
 
     changePage(page:string) {
@@ -103,7 +103,6 @@ export class EventsPage implements OnInit, OnDestroy, AfterContentInit {
           this.getLocalEvents(this.events);
         },
         (error) => {
-          alert(error.message);
           console.log('getting location error:', error);
         }
       );
