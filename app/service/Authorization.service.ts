@@ -2,7 +2,6 @@ import {Injectable, EventEmitter} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
-
 import {MyMatrixApi} from '../constants/apiConstants';
 import {User} from '../models/user/user';
 import {UserLogin} from '../models/user/userLogin';

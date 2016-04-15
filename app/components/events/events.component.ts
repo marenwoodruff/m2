@@ -10,7 +10,7 @@ import * as moment from 'moment';
     selector: 'events',
     templateUrl: 'build/components/events/events.component.html',
     directives: [List, EventListItemComponent, Button, Searchbar, Icon, NgClass],
-    inputs:['events'],
+    inputs:['events', 'location'],
     pipes: [DateFormatPipe]
 })
 

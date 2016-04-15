@@ -6,17 +6,20 @@ import {EventsPage} from './pages/events/events.page';
 import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
 import {LoginPage} from './pages/login/login.page';
+import {SignupPage} from './pages/signup/signup.page';
 import {ContactPage} from './pages/contact/contact.page';
 import {SettingsPage} from './pages/settings/settings.page';
 import {RegistrationPage} from './pages/registration/registration.page';
+import {AuthorizationService} from './service/Authorization.service';
+
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, StorageService],
+    providers: [SurveyService, StorageService, AuthorizationService],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-    rootPage: any = EventsPage;
+  rootPage: any = LoginPage;
     pages:Array<{title: string, component: any}>;
 
     constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService) {
@@ -24,7 +27,7 @@ class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
-            {title: 'My Matrix', component: EventsPage},
+            {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'Surveys', component: SurveysPage},
             {title: 'Twitter', component: TwitterPage},
             {title: 'Contact Us', component: ContactPage},

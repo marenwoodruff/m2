@@ -37,7 +37,7 @@ export class SurveyDescriptionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.evaluateProgress(this.survey, this.surveysInProgress);
+    this.evaluateProgress(this.survey, this.surveysInProgress)
   }
 
   evaluateProgress(survey, surveysInProgress) {
