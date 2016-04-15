@@ -6,14 +6,14 @@ import {MyMatrixApi} from '../constants/apiConstants';
 import {User} from '../models/user/user';
 import {UserLogin} from '../models/user/userLogin';
 import {AuthorizedUser} from '../models/user/authorizedUser';
+import {UserService} from './user.service';
+import {StorageService} from './storage.service';
 
 @Injectable()
 export class AuthorizationService {
-  private _api:Http;
   authorizedUser:EventEmitter<AuthorizedUser> = new EventEmitter();
 
-  constructor(private http:Http) {
-    this._api = http;
+  constructor(private _api:Http, private _userService:UserService, private _storageService:StorageService ) {
   };
 
   public authorizeUser(userLogin:UserLogin):void {
@@ -22,8 +22,10 @@ export class AuthorizationService {
       .map(res => <AuthorizedUser>res.json())
       .subscribe(
         (authorizedUser) => {
-          this.authorizedUser.emit(authorizedUser)
-          this.setToken(authorizedUser.token)
+          const user = new User(authorizedUser);
+          this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
+          this._storageService.setItem('MyMatrixUser', user);
+          this._userService.emitUser(user);
         },
         err => console.log('error: ', err),
         () => console.log('User updated')
@@ -32,20 +34,8 @@ export class AuthorizationService {
 
   public createAuthorizationHeader():Headers{
     let headers = new Headers();
-    headers.append('Authorization', this.getToken());
+    headers.append('Authorization', this._storageService.getItem('MyMatrixAuthToken'));
     return headers;
-  }
-
-  public getToken():string {
-    return localStorage.getItem('token');
-  }
-
-  public setToken(token:string):void {
-    localStorage.setItem('token', token);
-  }
-
-  public removeToken():void {
-    localStorage.removeItem('token');
   }
 
 }
