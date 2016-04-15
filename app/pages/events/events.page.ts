@@ -1,5 +1,5 @@
 import {Page, Icon, NavController, ActionSheet} from 'ionic-angular';
-import {OnInit, OnDestroy, forwardRef} from 'angular2/core';
+import {OnInit, OnDestroy, AfterContentInit, forwardRef} from 'angular2/core';
 import {EventsComponent} from '../../components/events/events.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {EventService} from "../../service/event.service";
@@ -12,7 +12,7 @@ import {Event} from '../../models/events/event';
     directives: [EventsComponent, forwardRef(() => SurveysComponent), Icon],
     providers:[EventService]
 })
-export class EventsPage implements OnInit, OnDestroy {
+export class EventsPage implements OnInit, OnDestroy, AfterContentInit {
     private _eventsApi:EventService;
     public events:any;
     public upcomingEvents:Event[];
@@ -33,8 +33,7 @@ export class EventsPage implements OnInit, OnDestroy {
       this._eventsApi.events.subscribe(
           events => {
             this.events = events
-            this.getUpcomingEvents(events);
-            this.getPastEvents(events);
+            this.filteredLocation = this.events;
           },
           err => console.log("EventsComponent events subscribe error: ", err),
           () => console.log("Finished subscribing to events")
@@ -91,7 +90,6 @@ export class EventsPage implements OnInit, OnDestroy {
           return true;
         }
       });
-      this.filteredLocation = this.localEvents;
     }
 
     changePage(page:string) {
