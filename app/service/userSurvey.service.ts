@@ -5,18 +5,19 @@ import 'rxjs/Rx';
 
 import {MyMatrixApi} from '../constants/apiConstants';
 import {UserSurvey} from '../models/user/userSurvey';
+import {AuthorizationService} from './authorization.service';
 
 @Injectable()
 export class UserEventService {
   private _api: Http;
   userSurveys: EventEmitter<UserSurvey[]> = new EventEmitter();
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private _authorizationService:AuthorizationService) {
     this._api = http;
   };
 
   public getUserSurveys(userId: number): void {
-    this._api.get(`${MyMatrixApi}/users/${userId}/surveys`)
+    this._api.get(`${MyMatrixApi}/users/${userId}/surveys`, { headers: this._authorizationService.createAuthorizationHeader() })
       .map(res => <UserSurvey[]>res.json())
       .subscribe(
         userSurvey => this.userSurveys.emit(userSurvey),
@@ -27,7 +28,7 @@ export class UserEventService {
 
   public createUserSurvey(userId: number, userSurvey: UserSurvey): void {
     const userSurveyBody = JSON.stringify(userSurvey);
-    this._api.post(`${MyMatrixApi}/users/${userId}/surveys`, userSurveyBody)
+    this._api.post(`${MyMatrixApi}/users/${userId}/surveys`, userSurveyBody, { headers: this._authorizationService.createAuthorizationHeader() })
       .subscribe(
         err => console.log('error: ', err),
         () => console.log('User updated')

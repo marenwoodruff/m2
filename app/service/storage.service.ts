@@ -81,7 +81,7 @@ export class StorageService {
       return localStorage.getItem(key);
     }
 
-    public setItem(key:string, value:any):void {
+    public setItem(key:string, value:string):void {
       localStorage.setItem(key, value);
     }
 

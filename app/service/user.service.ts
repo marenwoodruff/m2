@@ -17,7 +17,9 @@ export class UserService {
 
   public getUser(userId: number): void {
     const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
-    if (!user) {
+    if (user) {
+      this.emitUser(user);
+    } else {
       this._api.get(`${MyMatrixApi}/users/${userId}`)
         .map(res => <User>res.json())
         .subscribe(
@@ -25,8 +27,6 @@ export class UserService {
           err => console.log(err),
           () => console.log('User retrieval is completed')
         );
-    } else {
-      this.emitUser(user);
     }
   }
 
@@ -36,7 +36,7 @@ export class UserService {
 
   public updateUser(userId: number, user: User): void {
     const userBody = JSON.stringify(user);
-    this._api.put(`${MyMatrixApi}/users/${userId}`, userBody)
+    this._api.put(`${MyMatrixApi}/users/${userId}`, userBody, {headers: this._authorizationService.createAuthorizationHeader()})
       .subscribe(
         err => console.log('error: ', err),
         () => console.log('User updated')
@@ -44,7 +44,7 @@ export class UserService {
   }
 
   public deleteUser(userId: number): void {
-    this._api.delete(`${MyMatrixApi}/users/${userId}`)
+    this._api.delete(`${MyMatrixApi}/users/${userId}`, {headers: this._authorizationService.createAuthorizationHeader()})
       .subscribe(
         err => console.log('error: ', err),
         () => console.log('User updated')
