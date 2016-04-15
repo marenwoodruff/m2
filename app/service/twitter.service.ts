@@ -2,41 +2,33 @@ import {Injectable, EventEmitter} from 'angular2/core';
 import {Http, Headers, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {TwitterFeed} from '../models/twitter/twitter';
+import {AuthorizedUser} from '../models/user/authorizedUser';
+import {UserLogin} from '../models/user/userLogin';
+import {AuthorizationService} from './authorization.service';
 import 'rxjs/Rx';
 
 @Injectable()
 export class TwitterService {
-    messagesRef: Firebase; // Initialized Firebase object
-    isLoggedIn: boolean;   // Was authentification sucesfull
-    authData: any;         // Object that holds Twitter authentification data (displayName, imageURL, etc.)
-    authDataProfileName: string;        // Profile name
-    authDataProfileImage: string;       // Profile image
-    authDataProfileDescription: string; // Profile description
-    authDataProfileMemberSince: string; // Member since
-    authDataProfileNoFollowers: Number;    // Number of followers
+    messagesRef: Firebase;
+    isLoggedIn: boolean;
+    authData: any;
+    authDataProfileName: string;
+    authDataProfileImage: string;
+    authDataProfileDescription: string;
+    authDataProfileMemberSince: string;
+    authDataProfileNoFollowers: Number;
     authDataProfileLocation: string;
+    userLogin: UserLogin;
     private _api:Http;
     feed:EventEmitter<TwitterFeed[]> = new EventEmitter();
     bearerToken:EventEmitter<any> = new EventEmitter();
     twitterCredentials:EventEmitter<any> = new EventEmitter();
     firebaseUrl: String;
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private _authApi: AuthorizationService) {
       this.firebaseUrl = "https://mymatrix.firebaseio.com/messages";
       this.messagesRef = new Firebase(this.firebaseUrl);
       this._api = http;
-      // this.messagesRef.onAuth((user) => {
-      //   if (user) {
-      //     this.authData = user;
-      //     this.authDataProfileImage = this.authData.twitter.profileImageURL.replace(/\_normal/, "");
-      //     this.authDataProfileName = this.authData.twitter.displayName;
-      //     this.authDataProfileDescription = this.authData.twitter.cachedUserProfile.description;
-      //     this.authDataProfileMemberSince = this.authData.twitter.cachedUserProfile.created_at;
-      //     this.authDataProfileNoFollowers = this.authData.twitter.cachedUserProfile.followers_count;
-      //     this.authDataProfileLocation = this.authData.twitter.cachedUserProfile.location;
-      //     this.isLoggedIn = true;
-      //   }
-      // });
     }
 
     auth() {
@@ -44,7 +36,16 @@ export class TwitterService {
         if (error) {
           console.log(error);
         } else {
-          this.twitterCredentials.emit(authdata);
+          this.userLogin = {
+              name: authdata.twitter.displayName,
+              company: null,
+              jobTitle: null,
+              email: null,
+              authenticationProviderId: '2',
+              authenticationId: authdata.uid,
+              id: null
+            };
+          this._authApi.authorizeUser(this.userLogin);
         }
       }, { remember: "sessionOnly" });
       console.log(this.authDataProfileName)

@@ -1,9 +1,5 @@
 module.exports = {
   proxies: [
-    {
-      "path": "/corsDestroyer",
-      "proxyUrl": "https://www.linkedin.com/uas/oauth2/accessToken"
-    }
   ],
 
   paths: {
