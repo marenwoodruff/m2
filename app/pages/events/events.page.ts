@@ -33,6 +33,7 @@ export class EventsPage implements OnInit, OnDestroy, AfterContentInit {
       this._eventsApi.events.subscribe(
           events => {
             this.events = events
+            console.log(this.events);
           },
           err => console.log("EventsComponent events subscribe error: ", err),
           () => console.log("Finished subscribing to events")

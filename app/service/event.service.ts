@@ -1,5 +1,5 @@
 import {Injectable, EventEmitter} from 'angular2/core';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Http, HTTP_PROVIDERS, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -15,7 +15,9 @@ export class EventService {
     }
 
     public getEvents(): void {
-        this._api.get("build/assets/events.json")
+      let headers = new Headers();
+      headers.append('Access-Control-Allow-Origin', 'http://google.com');
+      this._api.get("http://localhost:1337/www.matrixres.com/apis/eventapi", { headers: headers })
             .map(res => <Event[]>res.json().events)
             .subscribe(
             events => this.events.emit(events),

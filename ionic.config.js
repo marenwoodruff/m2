@@ -1,11 +1,10 @@
 module.exports = {
   proxies: [
     {
-      "path": "/corsDestroyer",
-      "proxyUrl": "https://www.linkedin.com/uas/oauth2/accessToken"
+      "path": "/events",
+      "proxyUrl": "http://www.matrixres.com/apis/eventapi"
     }
   ],
-
   paths: {
     html : {
       src: ['app/**/*.html'],

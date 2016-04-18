@@ -2,6 +2,7 @@
   "dependencies": {
     "angular2": "2.0.0-beta.6",
     "angular2-moment": "^0.4.3",
+    "corsproxy": "^1.4.0",
     "es6-promise": "3.0.2",
     "es6-shim": "0.33.13",
     "font-awesome": "^4.5.0",
