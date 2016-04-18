@@ -6,14 +6,13 @@ import 'rxjs/Rx';
 import {MyMatrixApi} from '../constants/apiConstants';
 import {User} from '../models/user/user';
 import {StorageService} from './storage.service';
-import {AuthorizationService} from './authorization.service';
+// import {AuthorizationService} from './authorization.service';
 
 @Injectable()
 export class UserService {
   user: EventEmitter<User> = new EventEmitter();
 
-  constructor(private _api: Http, private _storageService:StorageService, private _authService:AuthorizationService) {
-  };
+  constructor(private _api: Http, private _storageService:StorageService) { };
 
   public getUser(userId: number): void {
     const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
