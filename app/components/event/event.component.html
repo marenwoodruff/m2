@@ -6,8 +6,8 @@
         Take this questionnaire & be entered to win a prize
       </p>
       <ion-row style="display: flex; justify-content: center">
-        <button *ngIf="survey" (click)="takeSurvey()">Take Survey</button>
-        <button *ngIf="!survey" disabled>Survey Not Available</button>
+        <button *ngIf="survey" (click)="takeSurvey()" style="border-radius: 0;">Take Survey</button>
+        <button *ngIf="!survey" disabled style="border-radius: 0;">Survey Not Available</button>
       </ion-row>
     </ion-col>
   </ion-row>
@@ -61,6 +61,7 @@
     <ion-col>
       <h4>Overview</h4>
       <div [innerHTML]="event.overview"></div>
+      <hr/>
       <ion-row>
         <ion-col *ngIf="event.facilitatorImage" width-25>
           <img src="http://www.matrixres.com/{{event.facilitatorImage}}">
@@ -77,14 +78,16 @@
         <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
         <ion-row>
           <ion-col style="display: flex; justify-content: center;">
-            <button (click)="launchUrl(event.linkedIn)" class="fab" item-right linkedIn>
+            <button (click)="launchUrl(event.linkedIn)" style="border-radius: 0;" linkedIn large>
               <ion-icon class="icon-linkedin"></ion-icon>
+              LinkedIn
             </button>
           </ion-col>
           <ion-col></ion-col>
           <ion-col style="display: flex; justify-content: center;">
-            <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" class="fab" item-left twitter>
+            <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" style="border-radius: 0;" twitter large>
               <ion-icon class="icon-twitter"></ion-icon>
+              Twitter
             </button>
           </ion-col>
         </ion-row>
@@ -94,8 +97,9 @@
         <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
         <ion-row>
           <ion-col style="display: flex; justify-content: center;">
-            <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" class="fab" item-left twitter>
+            <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" style="border-radius: 0;" twitter large>
               <ion-icon class="icon-twitter"></ion-icon>
+              Twitter
             </button>
           </ion-col>
         </ion-row>
@@ -105,8 +109,9 @@
         <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
         <ion-row>
           <ion-col style="display: flex; justify-content: center;">
-            <button (click)="launchUrl(event.linkedIn)" class="fab" item-right linkedIn>
+            <button (click)="launchUrl(event.linkedIn)" style="border-radius: 0;" linkedIn large>
               <ion-icon class="icon-linkedin"></ion-icon>
+              LinkedIn
             </button>
           </ion-col>
         </ion-row>
@@ -116,7 +121,7 @@
   </ion-row>
   <ion-row class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
     <ion-col style="display: flex; justify-content: center;">
-      <button>Register Now for this Event</button>
+      <button full>Register for this Event</button>
     </ion-col>
   </ion-row>
   <ion-row class="row-padding light" style="padding-top: 1.2rem;">
@@ -125,6 +130,10 @@
       <p class="center">
         Take this questionnaire & be entered to win a prize
       </p>
+      <ion-row style="display: flex; justify-content: center">
+        <button *ngIf="survey" (click)="takeSurvey()" style="border-radius: 0;">Take Survey</button>
+        <button *ngIf="!survey" disabled style="border-radius: 0;">Survey Not Available</button>
+      </ion-row>
     </ion-col>
   </ion-row>
 </div>
