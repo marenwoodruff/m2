@@ -8,35 +8,17 @@ import {AuthorizationService} from './authorization.service';
 
 @Injectable()
 export class LinkedInService {
-  messagesRef: Firebase; // Initialized Firebase object
-  isLoggedIn: boolean;   // Was authentification sucesfull
-  authData: any;         // Object that holds Twitter authentification data (displayName, imageURL, etc.)
+  isLoggedIn: boolean;
+  authData: any;
   bearerToken: EventEmitter<any> = new EventEmitter();
   linkedInCredentialsEmitter: EventEmitter<any> = new EventEmitter();
-  firebaseUrl: String;
   linkedInCredentials: any;
 
-  constructor(private _api: Http, private _authApi: AuthorizationService) {
-    // this.firebaseUrl = "https://mymatrix.firebaseio.com/messages";
-    // this.messagesRef = new Firebase(this.firebaseUrl);
-
-    // this.messagesRef.onAuth((user) => {
-    //   if (user) {
-    //     this.authData = user;
-    //     this.authDataProfileImage = this.authData.twitter.profileImageURL.replace(/\_normal/, "");
-    //     this.authDataProfileName = this.authData.twitter.displayName;
-    //     this.authDataProfileDescription = this.authData.twitter.cachedUserProfile.description;
-    //     this.authDataProfileMemberSince = this.authData.twitter.cachedUserProfile.created_at;
-    //     this.authDataProfileNoFollowers = this.authData.twitter.cachedUserProfile.followers_count;
-    //     this.authDataProfileLocation = this.authData.twitter.cachedUserProfile.location;
-    //     this.isLoggedIn = true;
-    //   }
-    // });
-  }
+  constructor(private _api: Http, private _authApi: AuthorizationService) { }
 
   auth() {
     this.stepOne().then((success) => {
-      
+
       let headers = new Headers(),
           body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://10.55.254.92:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
       alert(body);
@@ -46,12 +28,11 @@ export class LinkedInService {
           return res.json();
         })
         .subscribe(
-        ((credentials) => { 
+        (credentials) => {
           this.linkedInCredentials = credentials;
           this.getUserProfile(this.linkedInCredentials.access_token);
-          // alert('seyless booties'+credentials);
-        }),
-        (err) => { 
+        },
+        (err) => {
           alert('this is the error' + err);
         },
         () => console.log('Bearer Token retrieval is completed'));
@@ -108,36 +89,4 @@ export class LinkedInService {
       }
     );
   }
-  // getBearer() {
-  //   const encodedBearerTokenCredentials = 'CWNkbHZKMkU0cEY2RzdSWE5KM0pnMGlqeTk6ek1oaUd0V2NyeXFhQVhTZFp3eUNhYWhtOW1nUnFxWGtTWTBCUDg1em5jc3pGdWxISTQNCg==';
-  //   let key = "cdlvJ2E4pF6G7RXNJ3Jg0ijy9";
-  //   let secret = "zMhiGtWcryqaAXSdZwyCaahm9mgRqqXkSY0BP85zncszFulHI4";
-
-  //   let bearerRequest = btoa(key + ':' + secret);
-  //   let headers = new Headers();
-  //   headers.append("Authorization", "Basic " + encodedBearerTokenCredentials);
-  //   headers.append("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-  //   console.log('headers', headers);
-
-  // this._api.post('https://api.twitter.com/oauth2/token', "grant_type=client_credentials", {headers: headers})
-  //     .map(res => <any>res.json())
-  //     .subscribe(
-  //       credentials => this.twitterCredentials = credentials,
-  //       err => console.log('this is the error', err),
-  //       () => console.log('Bearer Token retrieval is completed'));
-  //       this.twitterCredentials.emit(this.twitterCredentials);
-  // }
-  // getMatrixFeed() {
-
-  //   let headers = new Headers();
-  //   headers.append("Authorization", "Bearer AAAAAAAAAAAAAAAAAAAAABWruAAAAAAAmYTQM0oq16eaD%2FKtouB6FzJmVRI%3Dc6vo5GlwjWZWEc27ALYnoBI2M1ETx0UvvSMo8T50iHTPiPcE4F");
-  //   headers.append("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-
-  //   this._api.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=matrixresources', headers)
-  //     .map(res => <TwitterFeed[]> res.json())
-  //     .subscribe(
-  //         matrixFeed =>this.feed.emit(matrixFeed),
-  //         err => console.log(err),
-  //         () => console.log('Matrix Twitter Feed retrieval is completed'));
-  // }
 }

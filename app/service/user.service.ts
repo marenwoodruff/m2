@@ -12,7 +12,7 @@ import {AuthorizationService} from './authorization.service';
 export class UserService {
   user: EventEmitter<User> = new EventEmitter();
 
-  constructor(private _api: Http, private _storageService:StorageService, private _authorizationService:AuthorizationService) {
+  constructor(private _api: Http, private _storageService:StorageService, private _authService:AuthorizationService) {
   };
 
   public getUser(userId: number): void {
