@@ -12,28 +12,28 @@ import {StorageService} from './storage.service';
 
 @Injectable()
 export class AuthorizationService {
-  authorizedUser:EventEmitter<AuthorizedUser> = new EventEmitter();
+  authorizedUser: EventEmitter<AuthorizedUser> = new EventEmitter();
 
-  constructor(private _api:Http, private _userService:UserService, private _storageService:StorageService ) {
+  constructor(private _api: Http, private _userService: UserService, private _storageService: StorageService) {
   };
 
-  public authorizeUser(userLogin:UserLogin):void {
+  public authorizeUser(userLogin: UserLogin): void {
     const userLoginBody = JSON.stringify(userLogin);
     this._api.post(`${MyMatrixApi}/users/`, userLoginBody)
       .map(res => <AuthorizedUser>res.json())
       .subscribe(
-        (authorizedUser) => {
-          const user = new User(authorizedUser);
-          this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
-          this._storageService.setItem('MyMatrixUser', user);
-          this._userService.emitUser(user);
-        },
-        err => console.log('error: ', err),
-        () => console.log('User updated')
+      (authorizedUser) => {
+        const user = new User(authorizedUser);
+        this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
+        this._storageService.setItem('MyMatrixUser', user);
+        this._userService.emitUser(user);
+      },
+      err => console.log('error: ', err),
+      () => console.log('User updated')
       );
   }
 
-  public createAuthorizationHeader():Headers{
+  public createAuthorizationHeader(): Headers {
     let headers = new Headers();
     headers.append('Authorization', this._storageService.getItem('MyMatrixAuthToken'));
     return headers;
