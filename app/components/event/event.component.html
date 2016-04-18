@@ -11,7 +11,7 @@
       </ion-row>
     </ion-col>
   </ion-row>
-  <img src="build/assets/images/EventImage.jpg" alt="event image" />
+  <img src="http://www.matrixres.com/{{event.mobileLarge}}" alt="event image" />
   <ion-row class="row-padding">
     <ion-col>
       <h2>{{event.title}}</h2>
@@ -121,7 +121,7 @@
   </ion-row>
   <ion-row class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
     <ion-col style="display: flex; justify-content: center;">
-      <button full>Register for this Event</button>
+      <button (click)="register(event)" full>Register for this Event</button>
     </ion-col>
   </ion-row>
   <ion-row class="row-padding light" style="padding-top: 1.2rem;">
