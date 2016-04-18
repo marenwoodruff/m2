@@ -1,10 +1,5 @@
 module.exports = {
-  proxies: [
-    {
-      "path": "/events",
-      "proxyUrl": "http://www.matrixres.com/apis/eventapi"
-    }
-  ],
+  proxies: [],
   paths: {
     html : {
       src: ['app/**/*.html'],

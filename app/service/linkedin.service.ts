@@ -13,6 +13,7 @@ export class LinkedInService {
   bearerToken: EventEmitter<any> = new EventEmitter();
   linkedInCredentialsEmitter: EventEmitter<any> = new EventEmitter();
   linkedInCredentials: any;
+  userLogin: UserLogin;
 
   constructor(private _api: Http, private _authApi: AuthorizationService) { }
 
@@ -75,16 +76,16 @@ export class LinkedInService {
       (res) => {
         console.log('user', res);
         let userObject = res.json();
-        let userLogin = {
+        this.userLogin = {
           name: userObject.firstName + ' ' + userObject.lastName,
           company: userObject.positions.values[0].company.name,
           jobTitle: userObject.positions.values[0].title,
           email: userObject.emailAddress,
-          authenticationProviderId: 1,
+          authenticationProviderId: '1',
           authenticationId: userObject.id,
           id: null
-        }
-        this._authApi.authorizeUser(userLogin);
+        };
+        this._authApi.authorizeUser(this.userLogin);
         this.linkedInCredentialsEmitter.emit(userObject);
       }
     );
