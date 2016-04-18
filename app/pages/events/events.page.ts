@@ -6,6 +6,7 @@ import {EventService} from "../../service/event.service";
 import * as moment from 'moment';
 import {Survey} from '../../models/survey/survey';
 import {Event} from '../../models/events/event';
+import {LocationFilterPage} from '../location-filter/location-filter.page';
 
 @Page({
     templateUrl: 'build/pages/events/events.page.html',
@@ -59,7 +60,6 @@ export class EventsPage implements OnInit, OnDestroy {
             text: 'Events Near Me',
             handler: () => {
               this.filteredLocation = this.localEvents;
-              console.log(this.filteredLocation);
             }
           }
         ]
