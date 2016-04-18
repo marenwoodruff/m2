@@ -45,10 +45,13 @@
   }
 
   .mktoForm input[type="radio"] {
+    position: absolute;
   }
 
   .mktoForm .mktoRadioList > label, .mktoForm .mktoCheckboxList > label {
     margin-left: 2.5em;
+    position: relative;
+    margin-top: 1.15em;
   }
 
   #mktoForm_1862 {
@@ -56,7 +59,13 @@
     margin: 0;
   }
 
-
+  .mktoFieldDescriptor .mktoFormCol {
+    .mktoFieldWrap {
+      padding-top: 2em;
+      border-top: 1px solid black;
+      margin-top: 2em;
+    }
+  }
 
   .mktoAsterix {
     position: absolute;
