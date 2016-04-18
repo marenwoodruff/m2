@@ -13,11 +13,12 @@ import {SettingsPage} from './pages/settings/settings.page';
 import {RegistrationPage} from './pages/registration/registration.page';
 import {AuthorizationService} from './service/authorization.service';
 import {UserService} from './service/user.service';
+import {HttpClient} from './service/http-client.service';
 
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, StorageService, AuthorizationService, UserService],
+    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
