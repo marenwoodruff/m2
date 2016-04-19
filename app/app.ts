@@ -1,10 +1,10 @@
-import {App, IonicApp, Platform, Icon} from 'ionic-angular';
-import {forwardRef} from 'angular2/core';
+
+import {App, IonicApp, Platform, NavController, Icon} from 'ionic-angular';
+import {forwardRef, OnInit} from 'angular2/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
 import {EventsPage} from './pages/events/events.page';
-import {TwitterPage} from './pages/twitter/twitter.page';
 import {EventService} from "./service/event.service";
 import {LoginPage} from './pages/login/login.page';
 import {SignupPage} from './pages/signup/signup.page';
@@ -21,33 +21,48 @@ import {HttpClient} from './service/http-client.service';
     directives: [Icon],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
-class MyApp {
-  rootPage: any = EventsPage;
+class MyApp implements OnInit{
+    rootPage: any = LoginPage;
     pages:Array<{title: string, component: any}>;
+    nav:NavController;
 
-    constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService, public eventService:EventService) {
+    constructor(
+      private app:IonicApp,
+      private platform:Platform,
+      private storageService:StorageService,
+      public surveyService:SurveyService,
+      private userService:UserService) {}
+
+    ngOnInit(){
         this.initializeApp();
-
-        // used for an example of ngFor and navigation
         this.pages = [
             {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'Surveys', component: SurveysPage},
             {title: 'Contact Us', component: ContactPage},
             {title: 'Settings', component: SettingsPage}
         ];
-
     }
 
-    initializeApp() {
+    private initializeApp() {
         this.platform.ready().then(() => {
+            var nav:NavController = this.app.getComponent("nav");
+            this.nav = nav;
 
+            this.hasLoggedIn((loggedIn) => {
+        		  if (loggedIn === true) {
+        			  this.openPage(EventsPage);
+    		      }
+    	     });
         });
+
     }
 
-    openPage(page) {
-        // Reset the content nav to have just this page
-        // we wouldn't want the back button to show in this scenario
-        let nav = this.app.getComponent('nav');
-        nav.setRoot(page.component);
+    private openPage(page) {
+        this.nav.setRoot(page);
+    }
+
+    private hasLoggedIn(cb) {
+      var loggedIn = this.userService.isUserLoggedIn();
+      return cb(loggedIn)
     }
 }
