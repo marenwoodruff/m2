@@ -12,8 +12,7 @@ import {StorageService} from './storage.service';
 export class UserService {
   user: EventEmitter<User> = new EventEmitter();
 
-  constructor(private _api: Http, private _storageService:StorageService) {
-  };
+  constructor(private _api: Http, private _storageService:StorageService) { };
 
   public getUser(userId: number): void {
     const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
