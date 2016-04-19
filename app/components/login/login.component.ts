@@ -22,65 +22,68 @@ export class LoginComponent implements OnInit, OnDestroy {
   private linkedInSubscription: EventEmitter<any>;
 
 
-  constructor(private platform: Platform, private _twitterApi: TwitterService, private _linkedInApi: LinkedInService, private _userService: UserService, private _navController: NavController) {
+  constructor(
+    private platform: Platform,
+    private _twitterApi: TwitterService,
+    private _linkedInApi: LinkedInService,
+    private _userService: UserService,
+    private _navController: NavController) {
     this.twitterCredentials = { access_token: null };
-
   }
 
-
-
-    login(media) {
-      this.platform.ready().then(() => {
-        if (media === 'LinkedIn') {
-          this.linkedInLogin()
-        }
-        if (media === 'Twitter') {
-          this.twitterLogin();
-        }
-        if (media === 'Email') {
-          this.emailLogin();
-        }
-      });
-    }
-
-    linkedInLogin() {
-      this._linkedInApi.auth();
-    }
-
-    twitterLogin() {
-      this._twitterApi.auth();
-    }
-
-    emailLogin(){
-      // this._userService.login();
-    }
-
-    ngOnInit(): any {
-      this.twitterSubscription = this._twitterApi.twitterCredentials.subscribe(
-        (twitterCredentials) => {
-          this.twitterCredentials = twitterCredentials;
-        },
-        err => console.log('twitterService subscribe error:', err),
-        () => {
-          console.log('finished subscribing to twitter service')
-        }
+  ngOnInit(): any {
+    this.twitterSubscription = this._twitterApi.twitterCredentials.subscribe(
+      (twitterCredentials) => {
+        this.twitterCredentials = twitterCredentials;
+      },
+      err => console.log('twitterService subscribe error:', err),
+      () => {
+        console.log('finished subscribing to twitter service')
+      }
       );
-      this.linkedInSubscription = this._linkedInApi.linkedInCredentialsEmitter.subscribe(
-        (linkedInCredentials) => {
-          this.access_token = linkedInCredentials.access_token;
-        },
-        err => console.log('LinkedIn Service subscribe error:', err),
-        () => {
-          console.log('finished subscribing to LinkedIn service')
-        }
+    this.linkedInSubscription = this._linkedInApi.linkedInCredentialsEmitter.subscribe(
+      (linkedInCredentials) => {
+        this.access_token = linkedInCredentials.access_token;
+      },
+      err => console.log('LinkedIn Service subscribe error:', err),
+      () => {
+        console.log('finished subscribing to LinkedIn service')
+      }
       );
-    }
+  }
 
-    emailSignup(){
-      this._navController.push(SignupEmailPage);
-    }
-
-    ngOnDestroy() {
+  ngOnDestroy() {
       this.twitterSubscription.unsubscribe();
-    }
+  }
+
+  login(media) {
+    this.platform.ready().then(() => {
+      if (media === 'LinkedIn') {
+        this.linkedInLogin()
+      }
+      if (media === 'Twitter') {
+        this.twitterLogin();
+      }
+      if (media === 'Email') {
+        this.emailLogin();
+      }
+    });
+  }
+
+  private linkedInLogin() {
+    this._linkedInApi.auth();
+  }
+
+  private twitterLogin() {
+    this._twitterApi.auth();
+  }
+
+  private emailLogin() {
+    // this._userService.login();
+  }
+
+  private emailSignup() {
+    this._navController.push(SignupEmailPage);
+  }
+
 }
