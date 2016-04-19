@@ -21,13 +21,13 @@ export class LinkedInService {
     this.stepOne().then((success) => {
 
       let headers = new Headers(),
-          body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://10.55.254.92:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
+        body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://10.55.254.92:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
       alert(body);
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
       this._api.post('https://www.linkedin.com/uas/oauth2/accessToken', body, { headers: headers })
         .map((res) => {
-          return res.json();
-        })
+        return res.json();
+      })
         .subscribe(
         (credentials) => {
           this.linkedInCredentials = credentials;
@@ -68,7 +68,7 @@ export class LinkedInService {
     });
   }
 
-  getUserProfile(access_token:string) {
+  getUserProfile(access_token: string) {
     const headers = new Headers();
     headers.append('Authorization', 'Bearer ' + access_token);
     this._api.get("https://api.linkedin.com/v1/people/~:(id,email-address,first-name,last-name,headline,positions)?format=json", { headers })
@@ -83,11 +83,12 @@ export class LinkedInService {
           email: userObject.emailAddress,
           authenticationProviderId: '1',
           authenticationId: userObject.id,
+          password: '',
           id: null
         };
         this._authApi.authorizeUser(this.userLogin);
         this.linkedInCredentialsEmitter.emit(userObject);
       }
-    );
+      );
   }
 }

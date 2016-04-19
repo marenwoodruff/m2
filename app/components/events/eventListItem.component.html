@@ -1,6 +1,6 @@
 <ion-item (click)="viewEvent(event)">
     <ion-thumbnail item-left>
-        <img class="center-event-image" src="http://matrixres.com/{{event.thumb}}" alt="{{event.title}}"/>
+        <img class="center-event-image" src="http://matrixres.com/{{event.mobileSmall}}" alt="{{event.title}}"/>
     </ion-thumbnail>
     <h2 class="sessions event-title">{{event.title}}</h2>
     <p class="sessions">{{(event.startDate | amFromUnix)| amDateFormat:"MMMM Do YYYY"}}</p>

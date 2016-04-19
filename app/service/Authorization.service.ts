@@ -20,14 +20,44 @@ export class AuthorizationService {
 
   public authorizeUser(userLogin: UserLogin): void {
     const userLoginBody = JSON.stringify(userLogin);
-    this.httpClient.post(`${MyMatrixApi}/users/`, userLoginBody)
-      .map(res => <AuthorizedUser>res.json())
+    this.httpClient.post(`${MyMatrixApi}/users/authorize`, userLoginBody)
+      .map(res => {return res.json()})
       .subscribe(
         (authorizedUser) => {
-          const user = new User(authorizedUser);
-          this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
-          this._storageService.setItem('MyMatrixUser', JSON.stringify(user));
-          this._userService.emitUser(user);
+          this.emitAuthorizedUser(authorizedUser);
+        },
+        err => console.log('error: ', err),
+        () => console.log('User updated')
+      );
+  }
+
+  public emitAuthorizedUser(authorizedUser:AuthorizedUser): void{
+    const user = new User(authorizedUser);
+    this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
+    this._storageService.setItem('MyMatrixUser', JSON.stringify(user));
+    this._userService.emitUser(user);
+  }
+
+  public createUser(userLogin: UserLogin): void {
+    const userLoginBody = JSON.stringify(userLogin);
+    this.httpClient.post(`${MyMatrixApi}/users`, userLoginBody)
+      .map(res => {return res.json()})
+      .subscribe(
+        (authorizedUser) => {
+          this.emitAuthorizedUser(authorizedUser);
+        },
+        err => console.log('error: ', err),
+        () => console.log('User updated')
+      );
+  }
+
+  public loginUserWithEmail(userLogin: UserLogin): void {
+    const userLoginBody = JSON.stringify(userLogin);
+    this.httpClient.post(`${MyMatrixApi}/users/login`, userLoginBody)
+      .map(res => {return res.json()})
+      .subscribe(
+        (authorizedUser) => {
+          this.emitAuthorizedUser(authorizedUser);
         },
         err => console.log('error: ', err),
         () => console.log('User updated')

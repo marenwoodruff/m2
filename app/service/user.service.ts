@@ -33,9 +33,18 @@ export class UserService {
     this.user.emit(user);
   }
 
+  public isUserLoggedIn(){
+    const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public updateUser(userId: number, user: User): void {
     const userBody = JSON.stringify(user);
-    this._api.put(`${MyMatrixApi}/users/${userId}`, userBody, {headers: this._authorizationService.createAuthorizationHeader()})
+    this._api.put(`${MyMatrixApi}/users/${userId}`, userBody)
       .subscribe(
         err => console.log('error: ', err),
         () => console.log('User updated')
@@ -43,7 +52,7 @@ export class UserService {
   }
 
   public deleteUser(userId: number): void {
-    this._api.delete(`${MyMatrixApi}/users/${userId}`, {headers: this._authorizationService.createAuthorizationHeader()})
+    this._api.delete(`${MyMatrixApi}/users/${userId}`)
       .subscribe(
         err => console.log('error: ', err),
         () => console.log('User updated')
