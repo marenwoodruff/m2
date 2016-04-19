@@ -2,8 +2,10 @@ import {EventEmitter, Component, OnInit, OnDestroy, Input} from 'angular2/core';
 import { Inject } from 'angular2/core';
 import {TwitterService} from '../../service/twitter.service';
 import {LinkedInService} from '../../service/linkedin.service';
+import {UserService} from '../../service/user.service';
 import {Http} from 'angular2/http';
-import {Button, List, Item, TextInput, Label, Platform} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, Platform, NavController} from 'ionic-angular';
+import {SignupEmailPage} from '../../pages/signupEmail/signupEmail.page';
 
 @Component({
   selector: 'login',
@@ -19,25 +21,27 @@ export class LoginComponent implements OnInit, OnDestroy {
   private twitterSubscription: EventEmitter<any>;
   private linkedInSubscription: EventEmitter<any>;
 
-  http: Http;
 
-  constructor(private platform: Platform, http: Http, private _twitterApi: TwitterService, private _linkedInApi: LinkedInService) {
-    this.http = http;
+  constructor(private platform: Platform, private _twitterApi: TwitterService, private _linkedInApi: LinkedInService, private _userService: UserService, private _navController: NavController) {
     this.twitterCredentials = { access_token: null };
+
   }
 
 
 
-  login(media) {
-    this.platform.ready().then(() => {
-      if (media === 'LinkedIn') {
-        this.linkedInLogin()
-      }
-      if (media === 'Twitter') {
-        this.twitterLogin();
-      }
-    });
-  }
+    login(media) {
+      this.platform.ready().then(() => {
+        if (media === 'LinkedIn') {
+          this.linkedInLogin()
+        }
+        if (media === 'Twitter') {
+          this.twitterLogin();
+        }
+        if (media === 'Email') {
+          this.emailLogin();
+        }
+      });
+    }
 
     linkedInLogin() {
       this._linkedInApi.auth();
@@ -47,10 +51,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       this._twitterApi.auth();
     }
 
+    emailLogin(){
+      // this._userService.login();
+    }
+
     ngOnInit(): any {
       this.twitterSubscription = this._twitterApi.twitterCredentials.subscribe(
         (twitterCredentials) => {
-          console.log("seymour butts twitter", twitterCredentials);
           this.twitterCredentials = twitterCredentials;
         },
         err => console.log('twitterService subscribe error:', err),
@@ -67,6 +74,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           console.log('finished subscribing to LinkedIn service')
         }
       );
+    }
+
+    emailSignup(){
+      this._navController.push(SignupEmailPage);
     }
 
     ngOnDestroy() {
