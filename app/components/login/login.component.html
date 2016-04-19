@@ -1,6 +1,6 @@
 <ion-content padding class="login" primary>
 
-  <ion-row style="margin-top: 12vh; margin-bottom: 4vh;">
+  <ion-row style="margin-top: 5vh; margin-bottom: 4vh;">
     <ion-col width-20>
     </ion-col>
     <ion-col width-60>
@@ -10,9 +10,41 @@
     </ion-col>
   </ion-row>
 
+  <ion-row class="signup-page-buttons">
+    <button class="linkedin-button social-button" (click)="login('LinkedIn')">
+      <ion-col width-10>
+        <ion-icon class="icon-linkedin"></ion-icon>
+      </ion-col>
+      <ion-col width-90>
+        <span *ngIf="!signup">Connect with</span> LinkedIn
+      </ion-col>
+    </button>
+  </ion-row>
+
+  <ion-row class="signup-page-buttons">
+    <button class="twitter-button social-button" (click)="login('Twitter')">
+      <ion-col width-10>
+        <ion-icon class="icon-twitter"></ion-icon>
+      </ion-col>
+      <ion-col width-90>
+        <span *ngIf="!signup">Connect with</span> Twitter
+      </ion-col>
+    </button>
+  </ion-row>
+
+
+  <ion-row>
+    <ion-col></ion-col>
+    <h5>
+      CONNECT WITH
+    </h5>
+    <ion-col></ion-col>
+  </ion-row>
+  <form>
+
   <ion-list>
     <ion-item>
-      <ion-label>Username or Email</ion-label>
+      <ion-label>Email</ion-label>
       <ion-input type="text"></ion-input>
     </ion-item>
 
@@ -24,70 +56,23 @@
 
   <ion-row>
     <button class="social-button" block>
-      Sign in
+      Log in
     </button>
   </ion-row>
+</form>
 
-  <ion-row style="margin-top: 10px;">
-    <ion-col class="center">
-      OR SIGN IN WITH
-    </ion-col>
+  <ion-row (click)="emailSignup()">
+    <ion-col></ion-col>
+    <p class="matrixBlueFont">Create an Email Account</p>
+    <ion-col></ion-col>
   </ion-row>
 
   <ion-row>
-    <ion-col>
-      <ion-row>
-        <button class="linkedin-button social-button" block (click)="login('LinkedIn')">
-          <ion-col>
-            <ion-icon class="icon-linkedin"></ion-icon>
-          </ion-col>
-          <ion-col>
-            LinkedIn
-          </ion-col>
-        </button>
-      </ion-row>
-    </ion-col>
-    <ion-col>
-      <ion-row>
-        <button class="twitter-button social-button" block (click)="login('Twitter')">
-          <ion-col>
-            <ion-icon class="icon-twitter"></ion-icon>
-          </ion-col>
-          <ion-col>
-            Twitter
-          </ion-col>
-        </button>
-      </ion-row>
-    </ion-col>
-  </ion-row>
-
-  <!-- <ion-row class="login-page-buttons">
-    <button class="social-button" outline>
-        Sign up with Email
-    </button>
-  </ion-row>
-
-  <ion-row style="height: 15vh">
-    <ion-col>
-      <p class="center login-text">Already have an account?</p>
-    </ion-col>
-  </ion-row>
-
-  <ion-row class="disclaimer" baseline>
-    <ion-col>
-      <p class="center login-text">By Signing up you agree to the</p>
-      <p class="center login-text"><span class="disclaimer-link">Terms of Service</span> and <span class="disclaimer-link">Privacy Policy</span></p>
-    </ion-col>
-  </ion-row> -->
-  <ion-row>
-  </ion-row>
-
-  <ion-row class="forgot-password">
-    <ion-col>
-      <p class="center">
-        Forgot username or password?
+    <ion-col></ion-col>
+      <p>
+        Forgot password?
       </p>
-    </ion-col>
+    <ion-col></ion-col>
   </ion-row>
 
 </ion-content>
