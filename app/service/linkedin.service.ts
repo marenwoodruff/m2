@@ -15,8 +15,7 @@ export class LinkedInService {
   linkedInCredentials: any;
   userLogin: UserLogin;
 
-  constructor(private _api: Http, private _authApi: AuthorizationService) {
-  }
+  constructor(private _api: Http, private _authApi: AuthorizationService) { }
 
   auth() {
     this.stepOne().then((success) => {

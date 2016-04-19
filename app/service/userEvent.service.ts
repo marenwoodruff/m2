@@ -3,7 +3,7 @@ import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import {MyMatrixApi} from '../constants/apiConstants';
+import MyMatrixApi from '../constants/apiConstants';
 import {UserEvent} from '../models/user/userEvent';
 import {AuthorizationService} from './authorization.service';
 

@@ -10,16 +10,14 @@ import {Survey} from "../models/survey/survey";
 import {SurveyProgress} from "../models/survey/surveyProgress";
 import {SurveyResponse} from "../models/survey/surveyResponse";
 
+
 @Injectable()
 export class SurveyService {
 
-    private _api:Http;
     surveys:EventEmitter<Survey[]> = new EventEmitter();
     surveyComplete: EventEmitter<boolean> = new EventEmitter();
       
-    constructor(private http:Http) {
-      this._api = http;
-    };
+    constructor(private _api:Http) {};
 
     public getSurveys(id?:number, eventId?:number):void {
       this._api.get("build/assets/survey.json")

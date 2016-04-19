@@ -1,6 +1,6 @@
-# SPH Mobile App
+# MyMatrix Mobile App
 #### Usage
-To get the SPH Mobile App running on your local system, please perform the following instructions:
+To get the MyMatrix Mobile App running on your local system, please perform the following instructions:
 * Installation
     * `git clone <repo location>` (Copy repo to local system)
     *  `cd <repo name>` (Enter repo folder)

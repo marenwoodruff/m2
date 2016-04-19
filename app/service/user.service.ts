@@ -3,7 +3,7 @@ import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import {MyMatrixApi} from '../constants/apiConstants';
+import MyMatrixApi from '../constants/apiConstants';
 import {User} from '../models/user/user';
 import {StorageService} from './storage.service';
 // import {AuthorizationService} from './authorization.service';
@@ -12,8 +12,7 @@ import {StorageService} from './storage.service';
 export class UserService {
   user: EventEmitter<User> = new EventEmitter();
 
-  constructor(private _api: Http, private _storageService:StorageService) {
-  };
+  constructor(private _api: Http, private _storageService:StorageService) { };
 
   public getUser(userId: number): void {
     const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
