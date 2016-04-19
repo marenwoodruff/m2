@@ -7,7 +7,8 @@
   <ion-content>
     <ion-list>
       <button menuClose ion-item *ngFor="#p of pages" (click)="openPage(p)">
-        {{p.title}}
+        <ion-label style="margin-left: 1em; padding: 0.15em;">{{p.title}}</ion-label>
+        <ion-icon name="arrow-forward" style="margin: 8px -5px 8px 8px;" item-right surveylight></ion-icon>
       </button>
     </ion-list>
   </ion-content>
