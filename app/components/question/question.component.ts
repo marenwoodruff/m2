@@ -32,10 +32,10 @@ export class QuestionComponent implements OnInit {
 
   public ngOnInit(): void {
     this.questions = this.survey.questions;
+    console.log(this.questions);
     this.questionIndex = this.lastQuestionIndex ? this.lastQuestionIndex + 1 : 0;
     this.currentQuestion = this.questions[this.questionIndex];
     this.questionsLength = this.questions.length;
-    console.log(this.survey);
 
     if (this.questionIndex !== 0) {
       this.enabled = true;
@@ -107,14 +107,14 @@ export class QuestionComponent implements OnInit {
         case "radio":
           question.answer.options.forEach((option) => {
             if (option.selected) {
-              this.completedQuestions.push(question.questionId);
+              this.completedQuestions.push(question.id);
             }
           });
           break;
         case "textBox":
           question.answer.options.forEach((option) => {
             if (option.value) {
-              this.completedQuestions.push(question.questionId);
+              this.completedQuestions.push(question.id);
             }
           });
           break;

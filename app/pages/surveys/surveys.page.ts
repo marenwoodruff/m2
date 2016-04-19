@@ -68,7 +68,7 @@
             question.answer.options.forEach((option) => {
               if (option.selected === true && lastQuestionAnsweredFound === false) {
                 questionAnswered = true;
-                questionId = question.questionId;
+                questionId = question.id;
               }
             });
             if (questionAnswered === false) {
