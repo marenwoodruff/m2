@@ -3,7 +3,7 @@ import {Http, HTTP_PROVIDERS, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import {MyMatrixApi} from '../constants/apiConstants';
+import MyMatrixApi from '../constants/apiConstants';
 import {User} from '../models/user/user';
 import {UserLogin} from '../models/user/userLogin';
 import {AuthorizedUser} from '../models/user/authorizedUser';
@@ -23,14 +23,14 @@ export class AuthorizationService {
     this.httpClient.post(`${MyMatrixApi}/users/`, userLoginBody)
       .map(res => <AuthorizedUser>res.json())
       .subscribe(
-      (authorizedUser) => {
-        const user = new User(authorizedUser);
-        this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
-        this._storageService.setItem('MyMatrixUser', user);
-        this._userService.emitUser(user);
-      },
-      err => console.log('error: ', err),
-      () => console.log('User updated')
+        (authorizedUser) => {
+          const user = new User(authorizedUser);
+          this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
+          this._storageService.setItem('MyMatrixUser', JSON.stringify(user));
+          this._userService.emitUser(user);
+        },
+        err => console.log('error: ', err),
+        () => console.log('User updated')
       );
   }
 
