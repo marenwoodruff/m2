@@ -15,17 +15,16 @@ import {AuthorizationService} from './service/authorization.service';
 import {UserService} from './service/user.service';
 import {HttpClient} from './service/http-client.service';
 
-
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient],
+    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-  rootPage: any = EventsPage;
+  rootPage: any = SignupPage;
     pages:Array<{title: string, component: any}>;
 
-    constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService) {
+    constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService, public eventService:EventService) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation

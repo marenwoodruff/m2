@@ -3,13 +3,15 @@ import {Http, HTTP_PROVIDERS, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+import {Survey} from '../models/survey/survey';
+
 import {HttpClient} from './http-client.service';
 
 @Injectable()
 export class EventService {
 
     events: EventEmitter<Event[]> = new EventEmitter();
-
+    eventSurveys: EventEmitter<Survey[]> = new EventEmitter();
 
     constructor(private httpClient: HttpClient) { }
 
@@ -24,4 +26,14 @@ export class EventService {
             () => console.log('Events retrieval is completed')
           );
     };
+
+    public getEventSurvey(eventId:number): void {
+      this.httpClient.get("mymatrixapidev.azurewebsites.net/events/" + eventId + "/surveys")
+        .map(res => <Survey[]>res.json().surveys)
+        .subscribe(
+          surveys => this.eventSurveys.emit(surveys),
+          err => console.log(err),
+          () => console.log('we have surveys for this event')
+        );
+    }
 }
