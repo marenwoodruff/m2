@@ -1,5 +1,5 @@
 import {Page, Icon, NavController, ActionSheet} from 'ionic-angular';
-import {OnInit, OnDestroy, forwardRef} from 'angular2/core';
+import {OnInit, OnDestroy, forwardRef, EventEmitter} from 'angular2/core';
 import {EventsComponent} from '../../components/events/events.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {EventService} from "../../service/event.service";
@@ -10,11 +10,9 @@ import {LocationFilterPage} from '../location-filter/location-filter.page';
 
 @Page({
     templateUrl: 'build/pages/events/events.page.html',
-    directives: [EventsComponent, forwardRef(() => SurveysComponent), Icon],
-    providers:[EventService]
+    directives: [EventsComponent, forwardRef(() => SurveysComponent), Icon]
 })
 export class EventsPage implements OnInit, OnDestroy {
-    private _eventsApi:EventService;
     public events:any;
     public upcomingEvents:Event[];
     public pastEvents:Event[];
@@ -23,15 +21,14 @@ export class EventsPage implements OnInit, OnDestroy {
     surveys: Survey[] = [];
     public currentLocation: Array<number>;
     public filteredLocation: Event[];
+    private eventSubscription: EventEmitter<Event[]>;
 
-    constructor(eventService:EventService, public nav:NavController) {
-      this._eventsApi = eventService;
-    }
+    constructor(private _eventsApi:EventService, public nav:NavController) { }
 
     ngOnInit():any {
       this.getCurrentLocation();
 
-      this._eventsApi.events.subscribe(
+      this.eventSubscription = this._eventsApi.events.subscribe(
           events => {
             this.events = events
           },
@@ -43,7 +40,7 @@ export class EventsPage implements OnInit, OnDestroy {
     }
 
     ngOnDestroy():any {
-      this._eventsApi.events.unsubscribe();
+      this.eventSubscription.unsubscribe();
     }
 
     filterLocations() {

@@ -1,5 +1,5 @@
-import {Component, OnInit, OnChanges} from 'angular2/core';
-import {Item, NavController} from 'ionic-angular';
+import {Component, OnChanges} from 'angular2/core';
+import {Item, NavController, Icon, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
 import {SurveyProgress} from '../../models/survey/surveyProgress';
@@ -8,11 +8,11 @@ import {SurveyService} from '../../service/survey.service';
 @Component({
   selector: 'survey-description',
   templateUrl: 'build/components/survey-description/survey-description.component.html',
-  directives: [Item],
+  directives: [Item, Icon, Button],
   inputs:['survey', 'surveysInProgress']
 })
 
-export class SurveyDescriptionComponent implements OnInit, OnChanges {
+export class SurveyDescriptionComponent implements OnChanges {
   survey: Survey;
   surveysInProgress: SurveyProgress[];
   completed: boolean;
@@ -21,12 +21,6 @@ export class SurveyDescriptionComponent implements OnInit, OnChanges {
 
 
   constructor(private _surveyApi: SurveyService, private nav: NavController) { }
-
-  ngOnInit() {
-    this._surveyApi.surveyComplete.subscribe(
-      (completed) => { this.completed = completed }
-      );
-  }
 
   viewSurvey(survey, surveyProgress) {
     this.nav.push(BeginSurveyPage, {

@@ -37,7 +37,7 @@ export class BeginSurveyPage implements OnInit {
     } else {
 
       this.survey.questions.forEach((question, idx) => {
-        if (question.questionId === this.surveyProgress.lastQuestionId) {
+        if (question.id === this.surveyProgress.lastQuestionId) {
           this.lastQuestionIndex = idx;
         }
       })
