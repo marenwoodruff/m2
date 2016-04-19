@@ -7,7 +7,7 @@ export class HttpClient {
 
   constructor(private _api:Http) { }
 
-  public get(url:string, headers:Headers) {
+  public get(url:string, headers?:Headers) {
     return this._api.get('http://' + this.proxy + url, { headers: headers });
   }
 

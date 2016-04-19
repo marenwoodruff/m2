@@ -1,5 +1,5 @@
 import {Component, OnInit, OnChanges} from 'angular2/core';
-import {Item, NavController} from 'ionic-angular';
+import {Item, NavController, Icon, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
 import {SurveyProgress} from '../../models/survey/surveyProgress';
@@ -8,7 +8,7 @@ import {SurveyService} from '../../service/survey.service';
 @Component({
   selector: 'survey-description',
   templateUrl: 'build/components/survey-description/survey-description.component.html',
-  directives: [Item],
+  directives: [Item, Icon, Button],
   inputs:['survey', 'surveysInProgress']
 })
 
