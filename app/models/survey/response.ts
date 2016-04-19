@@ -1,6 +1,6 @@
 import {Selection} from './selection';
 
-export class Response {
+export class Answer {
     questionId:number;
     selections:Selection[];
 

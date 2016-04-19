@@ -1,9 +1,9 @@
 export class Selection {
+    questionId:number;
     value:any;
-    display:string;
 
-    constructor(value?:any, display?:string) {
+    constructor(questionId:number, value:any) {
+        this.questionId = questionId;
         this.value = value;
-        this.display = display;
     }
 }
