@@ -28,8 +28,10 @@ export class EventService {
     };
 
     public getEventSurvey(eventId:number): void {
-      this.httpClient.get("mymatrixapidev.azurewebsites.net/events/" + eventId + "/surveys")
-        .map(res => <Survey[]>res.json().surveys)
+      this.httpClient.get("mymatrixapidev.azurewebsites.net/surveys/events/" + eventId)
+        .map((res) => {
+          return res.json();
+        })
         .subscribe(
           surveys => this.eventSurveys.emit(surveys),
           err => console.log(err),

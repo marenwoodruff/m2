@@ -33,25 +33,13 @@ export class EventComponent implements OnInit, OnDestroy, OnChanges {
       (surveys) => {
         console.log(surveys);
         this.surveys = surveys;
+        this.survey = this.surveys[0];
       },
       err => console.log('error', err),
       () => console.log('finished checking for event surveys')
     );
 
     this._eventApi.getEventSurvey(this.event.eventId);
-
-    // this.surveySubscription = this._surveyApi.surveys.subscribe(
-    //   (surveys) => {
-    //     this.surveys = surveys;
-    //     if (this.surveys.length === 1) {
-    //       this.survey = this.surveys[0];
-    //     }
-    //   },
-    //   err => console.log('error', err),
-    //   () => console.log('finished checking for event survey')
-    // );
-
-    // this._surveyApi.getSurveys(null, this.event.eventId);
   }
 
   public ngOnChanges() {

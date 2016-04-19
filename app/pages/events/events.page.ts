@@ -41,7 +41,6 @@ export class EventsPage implements OnInit, OnDestroy {
 
     ngOnDestroy():any {
       this.eventSubscription.unsubscribe();
-      console.log('unsubscribing from events page!');
     }
 
     filterLocations() {
