@@ -10,6 +10,8 @@ import {Survey} from "../models/survey/survey";
 import {SurveyProgress} from "../models/survey/surveyProgress";
 import {SurveyResponse} from "../models/survey/surveyResponse";
 
+import {HttpClient} from './http-client.service';
+
 
 @Injectable()
 export class SurveyService {
@@ -17,10 +19,10 @@ export class SurveyService {
     surveys:EventEmitter<Survey[]> = new EventEmitter();
     surveyComplete: EventEmitter<boolean> = new EventEmitter();
       
-    constructor(private _api:Http) {};
+    constructor(private _api:Http, private _clientApi:HttpClient) {};
 
     public getSurveys(id?:number, eventId?:number):void {
-      this._api.get("build/assets/survey.json")
+      this._clientApi.get("mymatrixapidev.azurewebsites.net/surveys")
         .map(res => <Survey[]>res.json())
         .subscribe(
         surveys => {
@@ -34,11 +36,12 @@ export class SurveyService {
     };
 
     public submitSurvey(survey:Survey):void {
-      let surveyAnswers = JSON.stringify(survey.questions);
-      this._api.post("build/assets/surveyComplete.json", surveyAnswers)
-      .subscribe(
-        err => console.log(err),
-        () => console.log('Survey has been submitted'));
+      let surveyAnswers = survey.questions;
+      console.log(surveyAnswers);
+      // this._api.post("build/assets/surveyComplete.json", surveyAnswers)
+      // .subscribe(
+      //   err => console.log(err),
+      //   () => console.log('Survey has been submitted'));
     };
 
     public surveyCompleted(completed:boolean):void {

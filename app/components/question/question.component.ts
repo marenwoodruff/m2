@@ -136,6 +136,7 @@ export class QuestionComponent implements OnInit {
     if (this.completedQuestions.length === this.questionsLength) {
       this.completed = true;
       this._storageApi.removeSurveyProgress(this.survey.id);
+      this._surveyApi.submitSurvey(survey);
       console.log('survey complete and deleted from local');
       this.nav.push(SurveyCompletedPage);
     } else {
