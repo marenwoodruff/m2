@@ -1,29 +1,16 @@
 //<reference path="./response.ts" />
 //<reference path="./user.ts" />
 
-import {Response} from "./response";
+import {Answer} from "./response";
 
-// module Matrix.MyMatrix {
-//
-//     export class SurveyResponse {
-//         user:User;
-//         surveyId:number;
-//         responses:Response[];
-//
-//         constructor(user?:User, surveyId?:number, responses?:Response[]) {
-//             this.user = user;
-//             this.surveyId = surveyId;
-//             this.responses = responses;
-//         }
-//     }
-// }
-// export default Matrix.MyMatrix.SurveyResponse;
 export class SurveyResponse {
-    surveyId:number;
-    responses:Response[];
+    eventId:number;
+    eventTitle:string;
+    answers:Answer[];
 
-    constructor(surveyId?:number, responses?:Response[]) {
-        this.surveyId = surveyId;
-        this.responses = responses;
+    constructor(eventId?:number, eventTitle?:string, answers?:Answer[]) {
+        this.eventId = eventId;
+        this.eventTitle = eventTitle;
+        this.answers = answers;
     }
 }

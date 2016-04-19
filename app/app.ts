@@ -1,4 +1,5 @@
-import {App, IonicApp, Platform, NavController} from 'ionic-angular';
+
+import {App, IonicApp, Platform, NavController, Icon} from 'ionic-angular';
 import {forwardRef, OnInit} from 'angular2/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
@@ -16,7 +17,8 @@ import {HttpClient} from './service/http-client.service';
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient],
+    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService],
+    directives: [Icon],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp implements OnInit{

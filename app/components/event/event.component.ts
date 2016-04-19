@@ -8,6 +8,7 @@ import {EventLocationComponent} from '../event-location/event-location.component
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
 import {RegistrationPage} from '../../pages/registration/registration.page';
 import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
+import {EventService} from '../../service/event.service';
 
 @Component({
   selector: 'event',
@@ -24,22 +25,21 @@ export class EventComponent implements OnInit, OnDestroy, OnChanges {
   public survey: Survey;
   private currentLocation: Array<number>;
 
-  constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService) {
+  constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService, private _eventApi: EventService) {
   }
 
   public ngOnInit() {
-    this.surveySubscription = this._surveyApi.surveys.subscribe(
+    this.surveySubscription = this._eventApi.eventSurveys.subscribe(
       (surveys) => {
+        console.log(surveys);
         this.surveys = surveys;
-        if (this.surveys.length === 1) {
-          this.survey = this.surveys[0];
-        }
+        this.survey = this.surveys[0];
       },
       err => console.log('error', err),
-      () => console.log('finished checking for event survey')
+      () => console.log('finished checking for event surveys')
     );
 
-    this._surveyApi.getSurveys(null, this.event.eventId);
+    this._eventApi.getEventSurvey(this.event.eventId);
   }
 
   public ngOnChanges() {

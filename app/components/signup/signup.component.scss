@@ -8,9 +8,10 @@
     margin: 10px;
     border-bottom: none;
     border-top: none;
+    margin-top: 4em;
   }
   ion-label{
-    margin: 20px 15px;
+    margin: 0.75em 0.5em;
     color: #C1BFC0;
   }
   .icon-photo{
@@ -24,6 +25,10 @@
     height: 100px;
   }
 
+}
+
+.social-button {
+  font-weight: bold;
 }
 
 .photo-sphere{
