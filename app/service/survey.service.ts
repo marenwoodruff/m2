@@ -18,22 +18,33 @@ export class SurveyService {
 
     surveys:EventEmitter<Survey[]> = new EventEmitter();
     surveyComplete: EventEmitter<boolean> = new EventEmitter();
+    surveyById: EventEmitter<Survey> = new EventEmitter();
       
     constructor(private _api:Http, private _clientApi:HttpClient) {};
 
     public getSurveys(id?:number, eventId?:number):void {
-      this._clientApi.get("mymatrixapidev.azurewebsites.net/surveys")
+      this._clientApi.get("surveys")
         .map(res => <Survey[]>res.json())
         .subscribe(
-        surveys => {
-          surveys = eventId ? surveys.filter(s => s.eventId === eventId) : surveys;
-          surveys = id ? surveys.filter(s => s.id === id) : surveys;
-          this.surveys.emit(surveys)
-        },
-        err => console.log('error: ', err),
-        () => console.log('Surveys retrieval is completed')
-      )
-    };
+          surveys => {
+            surveys = eventId ? surveys.filter(s => s.eventId === eventId) : surveys;
+            surveys = id ? surveys.filter(s => s.id === id) : surveys;
+            this.surveys.emit(surveys)
+          },
+          err => console.log('error: ', err),
+          () => console.log('Surveys retrieval is completed')
+        );
+    }
+
+    public getSurveyById(id:number):void {
+      this._clientApi.get("surveys/" + id)
+        .map(res => <Survey>res.json())
+        .subscribe(
+          survey => this.surveyById.emit(survey),
+          err => console.log('error: ', err),
+          () => console.log('retrieved survey with id:', id)
+        );
+    }
 
     public submitSurvey(survey:Survey):void {
       let surveyAnswers = survey.questions;

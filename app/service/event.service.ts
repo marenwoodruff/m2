@@ -18,7 +18,7 @@ export class EventService {
     public getEvents(): void {
       let headers = new Headers();
       headers.append('Access-Control-Allow-Origin', 'http://google.com');
-      this.httpClient.get("www.matrixres.com/apis/eventapi", headers)
+      this.httpClient.getEvents("www.matrixres.com/apis/eventapi", headers)
             .map(res => <Event[]>res.json().events)
             .subscribe(
             events => this.events.emit(events),
@@ -28,7 +28,7 @@ export class EventService {
     };
 
     public getEventSurvey(eventId:number): void {
-      this.httpClient.get("mymatrixapidev.azurewebsites.net/surveys/events/" + eventId)
+      this.httpClient.get("surveys/events/" + eventId)
         .map((res) => {
           return res.json();
         })
