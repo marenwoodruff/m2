@@ -1,7 +1,5 @@
 module.exports = {
-  proxies: [
-  ],
-
+  proxies: [],
   paths: {
     html : {
       src: ['app/**/*.html'],
