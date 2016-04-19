@@ -1,4 +1,4 @@
-import {App, IonicApp, Platform} from 'ionic-angular';
+import {App, IonicApp, Platform, Icon} from 'ionic-angular';
 import {forwardRef} from 'angular2/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
@@ -18,10 +18,11 @@ import {HttpClient} from './service/http-client.service';
 @App({
     templateUrl: 'build/app.html',
     providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService],
+    directives: [Icon],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-  rootPage: any = SignupPage;
+  rootPage: any = EventsPage;
     pages:Array<{title: string, component: any}>;
 
     constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService, public eventService:EventService) {
