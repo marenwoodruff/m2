@@ -31,7 +31,6 @@ class MyApp {
         this.pages = [
             {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'Surveys', component: SurveysPage},
-            {title: 'Twitter', component: TwitterPage},
             {title: 'Contact Us', component: ContactPage},
             {title: 'Settings', component: SettingsPage}
         ];

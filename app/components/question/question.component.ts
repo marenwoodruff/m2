@@ -7,6 +7,7 @@ import {StorageService} from '../../service/storage.service';
 import {SurveyService} from '../../service/survey.service';
 import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
 import {EventsPage} from '../../pages/events/events.page';
+import {SurveyResponse} from '../../models/survey/surveyResponse';
 
 @Component({
   selector: 'question',
@@ -136,7 +137,7 @@ export class QuestionComponent implements OnInit {
     if (this.completedQuestions.length === this.questionsLength) {
       this.completed = true;
       this._storageApi.removeSurveyProgress(this.survey.id);
-      this._surveyApi.submitSurvey(survey);
+      this.processSurvey(survey);
       console.log('survey complete and deleted from local');
       this.nav.push(SurveyCompletedPage);
     } else {
@@ -145,6 +146,39 @@ export class QuestionComponent implements OnInit {
       this.incompleteAlert();
     }
     
+  }
+
+  private processSurvey(survey:Survey) {
+    let surveyResponse = new SurveyResponse();
+    let surveyAnswers = [];
+    survey.eventId ? surveyResponse.eventId = survey.eventId : surveyResponse.eventId;
+    survey.eventTitle ? surveyResponse.eventTitle = survey.eventTitle : surveyResponse.eventTitle;
+    survey.questions.forEach((question) => {
+      question.answer.options.forEach((option) => {
+        switch (question.answer.type) {
+          case "radio":
+            if (option.selected) {
+              surveyAnswers.push({ questionId: question.id, value: option.display });
+            }
+            break;
+          case "textBox":
+            if (option.value) {
+              surveyAnswers.push({ questionId: question.id, value: option.value });
+            }
+            break;
+          case "checkBox":
+            let checkBoxAnswers = [];
+            if (option.selected) {
+              checkBoxAnswers.push(option.display);
+            }
+            surveyAnswers.push({ questionId: question.id, value: checkBoxAnswers });
+            break;
+        }
+      });
+      surveyResponse.answers = surveyAnswers;
+      return surveyResponse;
+    });  
+    this._surveyApi.submitSurvey(survey, surveyResponse);
   }
 
   private incompleteAlert(): void {
@@ -167,9 +201,5 @@ export class QuestionComponent implements OnInit {
         }]
     });
     this.nav.present(confirm);
-  }
-
-  private onSubmit(survey): void {
-    console.log('submitting', survey);
   }
 }

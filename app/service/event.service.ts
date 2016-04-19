@@ -17,9 +17,11 @@ export class EventService {
 
     public getEvents(): void {
       let headers = new Headers();
-      headers.append('Access-Control-Allow-Origin', 'http://google.com');
+      headers.append('Access-Control-Allow-Origin', '*');
       this.httpClient.getEvents("www.matrixres.com/apis/eventapi", headers)
-            .map(res => <Event[]>res.json().events)
+        .map(res => {
+          return <Event[]>res.json().events;
+        })
             .subscribe(
             events => this.events.emit(events),
             err => console.log(err),

@@ -9,14 +9,14 @@ export class HttpClient {
   constructor(private _api:Http) { }
 
   public get(path:string, headers?:Headers) {
-    return this._api.get('http://' + this.proxy + MyMatrixApi + path, { headers: headers });
+    return this._api.get('http://' +  MyMatrixApi + path, { headers: headers });
   }
 
   public getEvents(url:string, headers?:Headers) {
-    return this._api.get('http://' + this.proxy + url, { headers: headers });
+    return this._api.get('http://' + url, { headers: headers });
   }
 
-  public post(url:string, data:any) {
-    return this._api.post('http://' + this.proxy + url, data);
+  public post(path:string, headers:any, data:any) {
+    return this._api.post('http://' + MyMatrixApi + path, data, {headers: headers});
   }
 }
