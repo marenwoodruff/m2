@@ -14,7 +14,6 @@ import {AuthorizationService} from './service/authorization.service';
 import {UserService} from './service/user.service';
 import {HttpClient} from './service/http-client.service';
 
-
 @App({
     templateUrl: 'build/app.html',
     providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient],
@@ -25,9 +24,12 @@ class MyApp implements OnInit{
     pages:Array<{title: string, component: any}>;
     nav:NavController;
 
-    constructor(private app:IonicApp, private platform:Platform, private storageService:StorageService, public surveyService:SurveyService, private userService:UserService) {
-
-    }
+    constructor(
+      private app:IonicApp,
+      private platform:Platform,
+      private storageService:StorageService,
+      public surveyService:SurveyService,
+      private userService:UserService) {}
 
     ngOnInit(){
         this.initializeApp();
@@ -39,7 +41,7 @@ class MyApp implements OnInit{
         ];
     }
 
-    initializeApp() {
+    private initializeApp() {
         this.platform.ready().then(() => {
             var nav:NavController = this.app.getComponent("nav");
             this.nav = nav;
@@ -53,11 +55,11 @@ class MyApp implements OnInit{
 
     }
 
-    openPage(page) {
+    private openPage(page) {
         this.nav.setRoot(page);
     }
 
-    hasLoggedIn(cb) {
+    private hasLoggedIn(cb) {
       var loggedIn = this.userService.isUserLoggedIn();
       return cb(loggedIn)
     }
