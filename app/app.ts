@@ -21,7 +21,7 @@ import {HttpClient} from './service/http-client.service';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp implements OnInit{
-    rootPage: any = EventsPage;
+    rootPage: any = LoginPage;
     pages:Array<{title: string, component: any}>;
     nav:NavController;
 
