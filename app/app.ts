@@ -4,7 +4,7 @@ import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
 import {EventsPage} from './pages/events/events.page';
-import {EventService} from "./service/event.service";
+import {EventService} from './service/event.service';
 import {LoginPage} from './pages/login/login.page';
 import {SignupPage} from './pages/signup/signup.page';
 import {ContactPage} from './pages/contact/contact.page';
@@ -57,7 +57,8 @@ class MyApp implements OnInit{
     }
 
     private openPage(page) {
-        this.nav.setRoot(page);
+        let nav = this.app.getComponent('nav');
+        nav.setRoot(page.component);
     }
 
     private hasLoggedIn(cb) {
