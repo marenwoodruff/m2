@@ -1,11 +1,10 @@
-
 import {App, IonicApp, Platform, NavController, Icon} from 'ionic-angular';
 import {forwardRef, OnInit} from 'angular2/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
 import {EventsPage} from './pages/events/events.page';
-import {EventService} from "./service/event.service";
+import {EventService} from './service/event.service';
 import {LoginPage} from './pages/login/login.page';
 import {SignupPage} from './pages/signup/signup.page';
 import {ContactPage} from './pages/contact/contact.page';
@@ -22,7 +21,7 @@ import {HttpClient} from './service/http-client.service';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp implements OnInit{
-    rootPage: any = LoginPage;
+    rootPage: any = EventsPage;
     pages:Array<{title: string, component: any}>;
     nav:NavController;
 
@@ -50,15 +49,19 @@ class MyApp implements OnInit{
 
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
-        			  this.openPage(EventsPage);
+        			  this.setInitialPage(EventsPage);
     		      }
     	     });
         });
+    }
 
+    private setInitialPage(page) {
+        this.nav.setRoot(page);
     }
 
     private openPage(page) {
-        this.nav.setRoot(page);
+        let nav = this.app.getComponent('nav');
+        nav.setRoot(page.component);
     }
 
     private hasLoggedIn(cb) {
