@@ -1,4 +1,3 @@
-
 import {App, IonicApp, Platform, NavController, Icon} from 'ionic-angular';
 import {forwardRef, OnInit} from 'angular2/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
@@ -22,7 +21,7 @@ import {HttpClient} from './service/http-client.service';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp implements OnInit{
-    rootPage: any = LoginPage;
+    rootPage: any = EventsPage;
     pages:Array<{title: string, component: any}>;
     nav:NavController;
 
