@@ -3,7 +3,7 @@ import {Http, Headers, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {AuthorizedUser} from '../models/user/authorizedUser';
-import {UserLogin} from '../models/user/userLogin';
+import {AuthorizeUser} from '../models/user/authorizeUser';
 import {AuthorizationService} from './authorization.service';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class LinkedInService {
   bearerToken: EventEmitter<any> = new EventEmitter();
   linkedInCredentialsEmitter: EventEmitter<any> = new EventEmitter();
   linkedInCredentials: any;
-  userLogin: UserLogin;
+  userLogin: AuthorizeUser;
 
   constructor(private _api: Http, private _authApi: AuthorizationService) { }
 
@@ -83,7 +83,6 @@ export class LinkedInService {
           email: userObject.emailAddress,
           authenticationProviderId: '1',
           authenticationId: userObject.id,
-          password: '',
           id: null
         };
         this._authApi.authorizeUser(this.userLogin);

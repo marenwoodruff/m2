@@ -3,7 +3,7 @@ import {Http, Headers, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {TwitterFeed} from '../models/twitter/twitter';
 import {AuthorizedUser} from '../models/user/authorizedUser';
-import {UserLogin} from '../models/user/userLogin';
+import {AuthorizeUser} from '../models/user/authorizeUser';
 import {AuthorizationService} from './authorization.service';
 import 'rxjs/Rx';
 
@@ -18,7 +18,7 @@ export class TwitterService {
     authDataProfileMemberSince: string;
     authDataProfileNoFollowers: Number;
     authDataProfileLocation: string;
-    userLogin: UserLogin;
+    userLogin: AuthorizeUser;
     private _api:Http;
     feed:EventEmitter<TwitterFeed[]> = new EventEmitter();
     bearerToken:EventEmitter<any> = new EventEmitter();

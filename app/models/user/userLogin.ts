@@ -1,7 +1,4 @@
-import {User} from './user';
-
-export class UserLogin extends User{
-  authenticationProviderId:string
-  authenticationId:string
-  password:string
+export class UserLogin {
+  email:string;
+  password:string;
 }
