@@ -91,7 +91,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private emailLogin(userLogin) {
-    console.log(userLogin);
     this._authService.loginUserWithEmail(userLogin);
   }
 
