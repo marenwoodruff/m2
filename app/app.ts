@@ -49,11 +49,14 @@ class MyApp implements OnInit{
 
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
-        			  this.openPage(EventsPage);
+        			  this.setInitialPage(EventsPage);
     		      }
     	     });
         });
+    }
 
+    private setInitialPage(page) {
+        this.nav.setRoot(page);
     }
 
     private openPage(page) {
