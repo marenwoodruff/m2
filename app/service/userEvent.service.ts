@@ -20,6 +20,7 @@ export class UserEventService {
     this.httpClient.get(`users/${userId}/events`)
       .map(res => <UserEvent[]>res.json())
       .subscribe(
+        userEvents => this.userEvents.emit(userEvents),
         err => console.log('error: ', err),
         () => console.log('User Events retrieval is completed')
       );
