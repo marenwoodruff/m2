@@ -39,7 +39,6 @@ export class UserEventService {
     const userEventBody = JSON.stringify(userEvent);
     this.httpClient.put(`users/${userId}/events/${userEventId}`, userEventBody)
       .subscribe(
-        () => this.getUserEvents(userId),
         err => console.log('error: ', err),
         () => console.log('User updated')
       );
@@ -48,7 +47,6 @@ export class UserEventService {
   public deleteUserEvent(userId: number, userEventId: number): void {
     this.httpClient.delete(`users/${userId}/events/${userEventId}`)
       .subscribe(
-        () => this.getUserEvents(userId),
         err => console.log('error: ', err),
         () => console.log('User updated')
       );
