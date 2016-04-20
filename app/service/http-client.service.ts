@@ -28,4 +28,11 @@ export class HttpClient {
     headers.append('Content-Type', 'application/json');
     return headers;
   }
+  public put(path:string, data:any) {
+    return this._api.put('http://' + MyMatrixApi + path, data, {headers: this.createHeaders()});
+  }
+
+  public delete(path:string) {
+    return this._api.delete('http://' + MyMatrixApi + path, {headers: this.createHeaders()});
+  }
 }

@@ -39,8 +39,8 @@ export class AuthorizationService {
     this._userService.emitUser(user);
   }
 
-  public createUser(authorizeUser: AuthorizeUser): void {
-    const userLoginBody = JSON.stringify(authorizeUser);
+  public createUser(user: User): void {
+    const userLoginBody = JSON.stringify(user);
     this.httpClient.post(`users`, userLoginBody)
       .map(res => {return res.json()})
       .subscribe(
