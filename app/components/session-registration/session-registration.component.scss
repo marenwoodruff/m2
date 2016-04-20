@@ -1,4 +1,22 @@
 .session-registration{
+
+  form {
+    position: relative;
+  }
+
+  .register-button {
+    position: flex;
+    margin-bottom: 1em;
+  }
+
+  .mktoForm .mktoButtonWrap.mktoSimple button.mktoButton {
+    position: absolute;
+    opacity: 0;
+    top: 1em;
+    left: 4em;
+    z-index: 5;
+  }
+
   ion-item{
     padding-left: 0;
     border-right: 1px solid #C1BFC0;
@@ -69,5 +87,8 @@
     margin-top: 2em;
     padding-top: 2em;
     width: 24em !important;
+  }
+
+  .mktoButton {
   }
 }

@@ -14,4 +14,9 @@ export class SessionRegistrationPage implements AfterContentInit {
     MktoForms2.loadForm("//app-abm.marketo.com", "695-WVM-122", 1862);
   }
 
+  saveEvent() {
+    let event = document.getElementById('Seminar').value.split(' ').slice(2,6).join(' ');
+    console.log(event);
+  }
+
 }
