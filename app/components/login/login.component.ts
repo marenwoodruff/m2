@@ -3,9 +3,13 @@ import { Inject } from 'angular2/core';
 import {TwitterService} from '../../service/twitter.service';
 import {LinkedInService} from '../../service/linkedin.service';
 import {UserService} from '../../service/user.service';
+import {AuthorizationService} from '../../service/authorization.service';
 import {Http} from 'angular2/http';
 import {Button, List, Item, TextInput, Label, Platform, NavController} from 'ionic-angular';
 import {SignupEmailPage} from '../../pages/signupEmail/signupEmail.page';
+import {EventsPage} from '../../pages/events/events.page';
+import {User} from '../../models/user/user';
+import {UserLogin} from '../../models/user/userLogin';
 
 @Component({
   selector: 'login',
@@ -20,13 +24,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   twitterCredentials: any;
   private twitterSubscription: EventEmitter<any>;
   private linkedInSubscription: EventEmitter<any>;
-
+  private userSubscription: EventEmitter<User>;
+  private userLogin:UserLogin = new UserLogin();
 
   constructor(
     private platform: Platform,
     private _twitterApi: TwitterService,
     private _linkedInApi: LinkedInService,
     private _userService: UserService,
+    private _authService:AuthorizationService,
     private _navController: NavController) {
     this.twitterCredentials = { access_token: null };
   }
@@ -50,6 +56,12 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log('finished subscribing to LinkedIn service')
       }
       );
+      this.userSubscription = this._userService.user.subscribe(
+        (user) => {
+          console.log(user);
+          this._navController.push(EventsPage);
+        }
+      )
   }
 
   ngOnDestroy() {
@@ -65,7 +77,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.twitterLogin();
       }
       if (media === 'Email') {
-        this.emailLogin();
+        this.emailLogin(this.userLogin);
       }
     });
   }
@@ -78,8 +90,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._twitterApi.auth();
   }
 
-  private emailLogin() {
-    // this._userService.login();
+  private emailLogin(userLogin) {
+    console.log(userLogin);
+    this._authService.loginUserWithEmail(userLogin);
   }
 
   private emailSignup() {
