@@ -45,17 +45,17 @@
   <ion-list>
     <ion-item>
       <ion-label>Email</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="userLogin.email" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input [(ngModel)]="userLogin.password" type="password"></ion-input>
     </ion-item>
   </ion-list>
 
   <ion-row>
-    <button class="social-button" block>
+    <button class="social-button" block (click)="login('Email')">
       Log in
     </button>
   </ion-row>

@@ -7,11 +7,13 @@ export class User {
     jobTitle:string
     email:string
 
-    constructor(authorizedUser:AuthorizedUser) {
-      this.id = authorizedUser.id;
-      this.name = authorizedUser.name;
-      this.company = authorizedUser.company;
-      this.jobTitle = authorizedUser.jobTitle;
-      this.email = authorizedUser.email;
+    constructor(authorizedUser?:AuthorizedUser) {
+      if(authorizedUser){
+        this.id = authorizedUser.id;
+        this.name = authorizedUser.name;
+        this.company = authorizedUser.company;
+        this.jobTitle = authorizedUser.jobTitle;
+        this.email = authorizedUser.email;
+      }
     }
 }

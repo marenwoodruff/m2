@@ -21,31 +21,31 @@
       <ion-list>
         <ion-item>
           <ion-label>Name</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input [(ngModel)]="user.name" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Email Address</ion-label>
-          <ion-input type="email"></ion-input>
+          <ion-input [(ngModel)]="user.email"  type="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input [(ngModel)]="user.password" type="password"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Job Title</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input [(ngModel)]="user.jobTitle" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Company Name</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input [(ngModel)]="user.companyName" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Phone Number</ion-label>
-          <ion-input type="number"></ion-input>
+          <ion-input [(ngModel)]="user.phoneNumber" type="number"></ion-input>
         </ion-item>
       </ion-list>
       <ion-row>
-        <button block class="social-button">Sign up</button>
+        <button block class="social-button" (click)="signUp()">Sign up</button>
       </ion-row>
     </form>
 </ion-content>

@@ -5,8 +5,9 @@ import 'rxjs/Rx';
 
 import MyMatrixApi from '../constants/apiConstants';
 import {User} from '../models/user/user';
-import {UserLogin} from '../models/user/userLogin';
+import {AuthorizeUser} from '../models/user/authorizeUser';
 import {AuthorizedUser} from '../models/user/authorizedUser';
+import {UserLogin} from '../models/user/userLogin';
 import {UserService} from './user.service';
 import {StorageService} from './storage.service';
 import {HttpClient} from './http-client.service';
@@ -18,9 +19,9 @@ export class AuthorizationService {
   constructor(private _api: Http, private httpClient:HttpClient, private _userService: UserService, private _storageService: StorageService) {
   };
 
-  public authorizeUser(userLogin: UserLogin): void {
-    const userLoginBody = JSON.stringify(userLogin);
-    this.httpClient.post(`${MyMatrixApi}/users/authorize`, userLoginBody)
+  public authorizeUser(authorizeUser: AuthorizeUser): void {
+    const userLoginBody = JSON.stringify(authorizeUser);
+    this.httpClient.post(`users/authorize`, userLoginBody)
       .map(res => {return res.json()})
       .subscribe(
         (authorizedUser) => {
@@ -38,9 +39,9 @@ export class AuthorizationService {
     this._userService.emitUser(user);
   }
 
-  public createUser(userLogin: UserLogin): void {
-    const userLoginBody = JSON.stringify(userLogin);
-    this.httpClient.post(`${MyMatrixApi}/users`, userLoginBody)
+  public createUser(user: User): void {
+    const userLoginBody = JSON.stringify(user);
+    this.httpClient.post(`users`, userLoginBody)
       .map(res => {return res.json()})
       .subscribe(
         (authorizedUser) => {
@@ -53,7 +54,7 @@ export class AuthorizationService {
 
   public loginUserWithEmail(userLogin: UserLogin): void {
     const userLoginBody = JSON.stringify(userLogin);
-    this.httpClient.post(`${MyMatrixApi}/users/login`, userLoginBody)
+    this.httpClient.post(`users/login`, userLoginBody)
       .map(res => {return res.json()})
       .subscribe(
         (authorizedUser) => {
@@ -62,12 +63,6 @@ export class AuthorizationService {
         err => console.log('error: ', err),
         () => console.log('User updated')
       );
-  }
-
-  public createAuthorizationHeader(): Headers {
-    let headers = new Headers();
-    headers.append('Authorization', this._storageService.getItem('MyMatrixAuthToken'));
-    return headers;
   }
 
 }

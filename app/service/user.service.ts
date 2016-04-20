@@ -6,16 +6,17 @@ import 'rxjs/Rx';
 import MyMatrixApi from '../constants/apiConstants';
 import {User} from '../models/user/user';
 import {StorageService} from './storage.service';
+import {HttpClient} from './http-client.service';
 // import {AuthorizationService} from './authorization.service';
 
 @Injectable()
 export class UserService {
   user: EventEmitter<User> = new EventEmitter();
 
-  constructor(private _api: Http, private _storageService:StorageService) { };
+  constructor(private _api: Http, private httpClient:HttpClient, private _storageService:StorageService) { };
 
   public getUser(userId: number): void {
-    const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
+    const user = this.getUserFromLocalStorage();
     if (user) {
       this.emitUser(user);
     } else {
@@ -27,6 +28,16 @@ export class UserService {
           () => console.log('User retrieval is completed')
         );
     }
+  }
+
+  public getUserFromLocalStorage():any{
+    const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
+    return user;
+  }
+
+  public getUserId():number{
+    const user = JSON.parse(this._storageService.getItem('MyMatrixUser'));
+    return user.id;
   }
 
   public emitUser(user:User):void {
