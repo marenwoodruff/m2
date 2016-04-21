@@ -8,10 +8,10 @@ import {Button, List, Item, TextInput, Label} from 'ionic-angular';
   inputs: ['event']
 })
 
-export class SessionRegistrationPage implements AfterContentInit { 
+export class SessionRegistrationPage implements AfterContentInit {
 
   ngAfterContentInit() {
-    MktoForms2.loadForm("//app-abm.marketo.com", "695-WVM-122", 1862);
+    MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862);
   }
 
 }
