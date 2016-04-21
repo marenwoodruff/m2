@@ -22,7 +22,6 @@ export class LinkedInService {
 
       let headers = new Headers(),
         body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://10.55.254.92:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
-      alert(body);
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
       this._api.post('https://www.linkedin.com/uas/oauth2/accessToken', body, { headers: headers })
         .map((res) => {
@@ -34,7 +33,7 @@ export class LinkedInService {
           this.getUserProfile(this.linkedInCredentials.access_token);
         },
         (err) => {
-          alert('this is the error' + err);
+          console.log(err);
         },
         () => console.log('Bearer Token retrieval is completed'));
     });
