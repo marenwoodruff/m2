@@ -4,19 +4,27 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
 * Installation
     * `git clone <repo location>` (Copy repo to local system)
     *  `cd <repo name>` (Enter repo folder)
+    *  install node at `https://nodejs.org/en/`
+    *  Run `node -v` (Check version of node installed)
+    *  Run `npm -v` (Check version of npm installed)
+        *  To update npm `sudo npm install npm -g`
     *  `sudo npm install -g ionic@2.0.0-beta.19` (Install Ionic 2 beta 19)
+        * Run `ionic -v` (Check version of ionic installed)
     *  `sudo npm install -g cordova` (Installs Cordova)
+        * Run `cordova -v` (Check version of cordova installed)
     *  `npm install -g typescript` (Installs Typescript)
-    *  `npm install typings --g` (Installs Typings- definitions for Typescriptss)
+    *  `npm install -g typings` (Installs Typings- definitions for Typescriptss)
     *  `npm install` (Install dependencies)
     *  `gulp build` (Install dependencies)
+    *  `typings install` (Installs typings package manager)
+    *  `ionic state reset` (Resets ionic/rebuilds state)
 * Running on Web Browser
     * `ionic serve` (Start Ionic app)
-    * `ionic serve -l` (View Ionic App on IOS and Android)
+    * `ionic serve -l` (View Ionic App on IOS and Android in browser)
     * Open browser to url: `http://localhost:8100/` (View Ionic App in browser)
 * Running on Device
     * NOTE: `You must have a working Apple Developer account certified and updated to run on device`
-    * Make sure you have Xcode install
+    * Make sure you have Xcode install + updated
         * Download Url: `https://developer.apple.com/xcode/download/`
     * Plug in your device into USB port
     *  In terminal: `ionic platform add ios` (Creates Xcode project folder and dependencies)
