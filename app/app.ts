@@ -13,6 +13,7 @@ import {RegistrationPage} from './pages/registration/registration.page';
 import {AuthorizationService} from './service/authorization.service';
 import {UserService} from './service/user.service';
 import {HttpClient} from './service/http-client.service';
+import {UserEventsPage} from './pages/user-events/user-events.page';
 
 @App({
     templateUrl: 'build/app.html',
@@ -36,6 +37,7 @@ class MyApp implements OnInit{
         this.initializeApp();
         this.pages = [
             {title: 'MATRIX Calendar', component: EventsPage},
+            {title: 'My MATRIX', component: UserEventsPage},
             {title: 'Surveys', component: SurveysPage},
             {title: 'Contact Us', component: ContactPage},
             {title: 'Settings', component: SettingsPage}
