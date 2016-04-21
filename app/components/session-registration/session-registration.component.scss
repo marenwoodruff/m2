@@ -10,11 +10,12 @@
   }
 
   .mktoForm .mktoButtonWrap.mktoSimple button.mktoButton {
-    position: absolute;
-    opacity: 0;
-    top: 1em;
-    left: 4em;
-    z-index: 5;
+    // position: absolute;
+    // opacity: 0;
+    // top: 1em;
+    // left: 4em;
+    // z-index: 5;
+    display: none;
   }
 
   ion-item{
