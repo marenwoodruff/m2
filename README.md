@@ -12,7 +12,7 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
         * `ionic -v` (Check version of ionic installed)
     *  `sudo npm install -g cordova` (Installs Cordova)
         * `cordova -v` (Check version of cordova installed)
-    *  `npm install -g typescript` (Installs Typescript)
+    *  `npm install -g typescript` (Install Typescript)
     *  `npm install -g typescript@next` (For Typescript nightly builds)
     *  `npm install -g typings` (Installs Typings- definitions for Typescript)
     *  `npm install` (Install dependencies)
