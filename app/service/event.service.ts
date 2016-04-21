@@ -40,4 +40,8 @@ export class EventService {
           () => console.log('we have surveys for this event')
         );
     }
+
+    public saveUserEvent(): void {
+      
+    }
 }
