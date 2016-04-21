@@ -22,6 +22,7 @@ export class EventsPage implements OnInit, OnDestroy {
     public currentLocation: Array<number>;
     public filteredLocation: Event[];
     private eventSubscription: EventEmitter<Event[]>;
+    private isLoading:boolean = false;
 
     constructor(private _eventsApi:EventService, public nav:NavController) { }
 

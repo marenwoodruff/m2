@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
     this.userSubscription = this._userService.user.subscribe(
         (user) => {
           console.log(user);
-          this._navController.push(EventsPage);
+          this._navController.setRoot(EventsPage);
         }
       )
   }
