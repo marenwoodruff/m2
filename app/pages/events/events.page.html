@@ -4,7 +4,8 @@
         <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title style="text-align:center">
-      <img class="little-logo" src="build/assets/images/MyMatrix_Little.png" alt="My Matrix">
+      <!-- <img class="little-logo" src="build/assets/images/MyMatrix_Little.png" alt="My Matrix"> -->
+      MATRIX Calendar
     </ion-title>
     <ion-buttons end>
       <button (click)="filterLocations()">
@@ -14,5 +15,5 @@
 </ion-navbar>
 
 <ion-content padding class="events-container">
-  <events [events]="filteredLocation" [location]="currentLocation"></events>
+  <events [events]="filteredLocation" [location]="currentLocation" *ngIf="!isLoading"></events>
 </ion-content>
