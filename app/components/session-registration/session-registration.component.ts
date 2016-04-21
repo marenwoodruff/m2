@@ -1,6 +1,9 @@
 import {Component, Input, AfterContentInit} from 'angular2/core';
 import {Button, List, Item, TextInput, Label} from 'ionic-angular';
 
+import {UserService} from '../../service/user.service';
+import {UserEventService} from '../../service/userEvent.service';
+
 import {Event} from '../../models/Events/event';
 
 @Component({
@@ -12,15 +15,27 @@ import {Event} from '../../models/Events/event';
 
 export class SessionRegistrationPage implements AfterContentInit {
   event: Event; 
+  userId: number;
+
+  constructor(private _userApi:UserService, private _userEventApi:UserEventService) {}
 
   ngAfterContentInit() {
     MktoForms2.loadForm("//app-abm.marketo.com", "695-WVM-122", 1862);
-    console.log(this.event);
   }
 
   saveEvent() {
     let event = document.getElementById('Seminar').value.split(' ').slice(2,6).join(' ');
-    console.log(event);
+    let eventInfo = {
+      eventId: this.event.eventId,
+      title: this.event.title,
+      registered: true
+    }
+    this.getUserInfo();
+    this._userEventApi.createUserEvent(this.userId, eventInfo);
+  }
+
+  getUserInfo() {
+    this.userId = this._userApi.getUserId();
   }
 
 }
