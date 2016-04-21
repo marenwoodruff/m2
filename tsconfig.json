@@ -7,8 +7,7 @@
   },
   "filesGlob": [
     "**/*.ts",
-    "!node_modules/**/*",
-    "!app/modules/marketo.ts"
+    "!node_modules/**/*"
   ],
   "exclude": [
     "node_modules",
