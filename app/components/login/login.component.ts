@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.userSubscription = this._userService.user.subscribe(
         (user) => {
           console.log(user);
-          this._navController.push(EventsPage);
+          this._navController.setRoot(EventsPage);
         }
       )
   }
