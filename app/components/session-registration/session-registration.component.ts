@@ -1,8 +1,10 @@
 import {Component, Input, AfterContentInit} from 'angular2/core';
-import {Button, List, Item, TextInput, Label} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, NavController, NavParams} from 'ionic-angular';
 
 import {UserService} from '../../service/user.service';
 import {UserEventService} from '../../service/userEvent.service';
+
+import {EventPage} from '../../pages/event/event.page';
 
 import {Event} from '../../models/Events/event';
 
@@ -17,14 +19,13 @@ export class SessionRegistrationPage implements AfterContentInit {
   event: Event; 
   userId: number;
 
-  constructor(private _userApi:UserService, private _userEventApi:UserEventService) {}
+  constructor(private _userApi:UserService, private _userEventApi:UserEventService, private nav: NavController, private params: NavParams) {}
 
   ngAfterContentInit() {
     MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862);
   }
 
-  saveEvent() {
-    let event = document.getElementById('Seminar').value.split(' ').slice(2,6).join(' ');
+  saveEvent() {   
     let eventInfo = {
       eventId: this.event.eventId,
       title: this.event.title,
@@ -35,7 +36,20 @@ export class SessionRegistrationPage implements AfterContentInit {
       startDate: this.event.startDate
     }
     this.getUserInfo();
-    this._userEventApi.createUserEvent(this.userId, eventInfo);
+    this.submitForm(eventInfo);
+  }
+
+  submitForm(eventInfo:any) {
+    MktoForms2.whenReady((form) => {
+      let valid = form.validate();
+      if (valid) {
+        this._userEventApi.createUserEvent(this.userId, eventInfo);
+        // form.submit();
+        this.nav.pop();
+      } else {
+        console.log('form invalid');
+      }
+    });
   }
 
   getUserInfo() {
