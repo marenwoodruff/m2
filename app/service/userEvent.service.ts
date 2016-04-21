@@ -16,11 +16,15 @@ export class UserEventService {
     private _api: Http,
     private httpClient:HttpClient) {  };
 
-  public getUserEvents(userId: number): void {
+  public getUserEvents(userId: number, eventId?: number): void {
     this.httpClient.get(`users/${userId}/events`)
       .map(res => <UserEvent[]>res.json())
       .subscribe(
-        userEvents => this.userEvents.emit(userEvents),
+        userEvents => {
+          userEvents = eventId ? userEvents.filter(e => e.eventId === eventId) : userEvents;
+          console.log(userEvents);
+          this.userEvents.emit(userEvents);
+        },
         err => console.log('error: ', err),
         () => console.log('User Events retrieval is completed')
       );
@@ -28,8 +32,9 @@ export class UserEventService {
 
   public createUserEvent(userId: number, userEvent: UserEvent): void {
     const userEventBody = JSON.stringify(userEvent);
-    this.httpClient.post(`users/${userId}/events`, userEventBody)
+    this.httpClient.post('users/' + userId + '/events', userEventBody)
       .subscribe(
+        res => console.log(res),
         err => console.log('error: ', err),
         () => console.log('User updated')
       );
@@ -37,6 +42,7 @@ export class UserEventService {
 
   public updateUserEvent(userId: number, userEventId: number, userEvent: UserEvent): void {
     const userEventBody = JSON.stringify(userEvent);
+    console.log(userEventBody);
     this.httpClient.put(`users/${userId}/events/${userEventId}`, userEventBody)
       .subscribe(
         err => console.log('error: ', err),
