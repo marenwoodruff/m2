@@ -28,7 +28,11 @@ export class SessionRegistrationPage implements AfterContentInit {
     let eventInfo = {
       eventId: this.event.eventId,
       title: this.event.title,
-      registered: true
+      registered: true,
+      mobileSmall: this.event.mobileSmall,
+      city: this.event.city,
+      state: this.event.state,
+      startDate: this.event.startDate
     }
     this.getUserInfo();
     this._userEventApi.createUserEvent(this.userId, eventInfo);
