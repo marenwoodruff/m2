@@ -33,4 +33,6 @@ export class Event {
     aboutFacilitator: string;
     linkedIn: string;
     twitter: string;
+    mobileSmall: string;
+    mobileLarge: string;
 }

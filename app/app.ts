@@ -13,10 +13,12 @@ import {RegistrationPage} from './pages/registration/registration.page';
 import {AuthorizationService} from './service/authorization.service';
 import {UserService} from './service/user.service';
 import {HttpClient} from './service/http-client.service';
+import {UserEventsPage} from './pages/user-events/user-events.page';
+import {UserEventService} from './service/userEvent.service';
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService],
+    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService],
     directives: [Icon],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
@@ -30,12 +32,14 @@ class MyApp implements OnInit{
       private platform:Platform,
       private storageService:StorageService,
       public surveyService:SurveyService,
-      private userService:UserService) {}
+      private userService:UserService,
+      private userEventService:UserEventService) {}
 
     ngOnInit(){
         this.initializeApp();
         this.pages = [
             {title: 'MATRIX Calendar', component: EventsPage},
+            {title: 'My MATRIX', component: UserEventsPage},
             {title: 'Surveys', component: SurveysPage},
             {title: 'Contact Us', component: ContactPage},
             {title: 'Settings', component: SettingsPage}
