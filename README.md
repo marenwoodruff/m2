@@ -14,7 +14,7 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
         * `cordova -v` (Check version of cordova installed)
     *  `npm install -g typescript` (Installs Typescript)
     *  `npm install -g typescript@next` (For Typescript nightly builds)
-    *  `npm install -g typings` (Installs Typings- definitions for Typescriptss)
+    *  `npm install -g typings` (Installs Typings- definitions for Typescript)
     *  `npm install` (Install dependencies)
     *  `gulp build` (Install dependencies)
     *  `typings install` (Installs typings package manager)
