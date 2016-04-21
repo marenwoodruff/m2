@@ -6,6 +6,8 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
     *  `cd <repo name>` (Enter repo folder)
     *  `sudo npm install -g ionic@2.0.0-beta.19` (Install Ionic 2 beta 19)
     *  `sudo npm install -g cordova` (Installs Cordova)
+    *  `npm install -g typescript` (Installs Typescript)
+    *  `npm install typings --g` (Installs Typings- definitions for Typescriptss)
     *  `npm install` (Install dependencies)
     *  `gulp build` (Install dependencies)
 * Running on Web Browser
