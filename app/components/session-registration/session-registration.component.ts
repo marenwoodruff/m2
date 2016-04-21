@@ -20,7 +20,7 @@ export class SessionRegistrationPage implements AfterContentInit {
   constructor(private _userApi:UserService, private _userEventApi:UserEventService) {}
 
   ngAfterContentInit() {
-    MktoForms2.loadForm("//app-abm.marketo.com", "695-WVM-122", 1862);
+    MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862);
   }
 
   saveEvent() {
