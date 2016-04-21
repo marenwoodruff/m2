@@ -28,7 +28,8 @@
       </h6>
     </ion-col>
     <ion-col class="register-button-col">
-      <button (click)="register(event)">Register</button>
+      <button *ngIf="!registered" (click)="register(event)">Register</button>
+      <button *ngIf="registered" disabled>Registered</button>
     </ion-col>
   </ion-row>
   <ion-row class="event-description light row-padding">
@@ -119,7 +120,7 @@
       <!-- end of conditional for displaying icons -->
     </ion-col>
   </ion-row>
-  <ion-row class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
+  <ion-row *ngIf="!registered" class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
     <ion-col style="display: flex; justify-content: center;">
       <button (click)="register(event)" full>Register for this Event</button>
     </ion-col>

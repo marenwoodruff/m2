@@ -9,6 +9,9 @@ import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
 import {RegistrationPage} from '../../pages/registration/registration.page';
 import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
 import {EventService} from '../../service/event.service';
+import {UserEventService} from '../../service/userEvent.service';
+import {UserService} from '../../service/user.service';
+import {UserEvent} from '../../models/user/userEvent';
 
 @Component({
   selector: 'event',
@@ -21,17 +24,27 @@ import {EventService} from '../../service/event.service';
 export class EventComponent implements OnInit, OnDestroy, OnChanges {
   public event: Event;
   private surveySubscription: EventEmitter<Survey[]>;
+  private userEventSubscription: EventEmitter<UserEvent>;
   public surveys: Survey[];
   public survey: Survey;
   private currentLocation: Array<number>;
+  private registered: boolean;
+  private userId: number;
 
-  constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService, private _eventApi: EventService) {
-  }
+  constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService, private _eventApi: EventService, private _userEventApi: UserEventService, private _userApi: UserService) { }
 
   public ngOnInit() {
+
+    this.getUserId();
+
+    this.userEventSubscription = this._userEventApi.userEvents.subscribe(
+      event => event.length > 0 ? this.registered = true : this.registered = false,
+      err => console.log('err: ', err),
+      () => console.log('user event over')
+    );
+
     this.surveySubscription = this._eventApi.eventSurveys.subscribe(
       (surveys) => {
-        console.log(surveys);
         this.surveys = surveys;
         this.survey = this.surveys[0];
       },
@@ -39,6 +52,7 @@ export class EventComponent implements OnInit, OnDestroy, OnChanges {
       () => console.log('finished checking for event surveys')
     );
 
+    this.checkRegistration();
     this._eventApi.getEventSurvey(this.event.eventId);
   }
 
@@ -48,6 +62,15 @@ export class EventComponent implements OnInit, OnDestroy, OnChanges {
 
   public ngOnDestroy() {
     this.surveySubscription.unsubscribe();
+    this.userEventSubscription.unsubscribe();
+  }
+
+  private getUserId() {
+    this.userId = this._userApi.getUserId();
+  }
+
+  private checkRegistration() {
+    this._userEventApi.getUserEvents(this.userId, this.event.eventId);
   }
 
   private register(event): void {
