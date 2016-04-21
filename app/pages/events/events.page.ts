@@ -95,7 +95,7 @@ export class EventsPage implements OnInit, OnDestroy {
 
     getCurrentLocation() {
       navigator.geolocation.getCurrentPosition(
-        (position) => { 
+        (position) => {
           this.currentLocation = [position.coords.latitude, position.coords.longitude];
           this.getLocalEvents(this.events);
         },
