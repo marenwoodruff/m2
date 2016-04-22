@@ -32,7 +32,7 @@
     <ion-icon *ngIf="!hideClose" name="close" (click)="eventSearchActive = !eventSearchActive"></ion-icon>
   </ion-col>
 </ion-row>
-<ion-list class="events-list">
+<ion-list *ngIf="!userEvents" class="events-list">
   <ion-card *ngIf="eventsCount === 0">
     <ion-card-content>
       <ion-card-title>
@@ -41,4 +41,15 @@
     </ion-card-content>
   </ion-card>
   <eventListItem *ngFor="#event of eventsSearch" [event]="event" [location]="location"></eventListItem>
+</ion-list>
+
+<ion-list *ngIf="userEvents" class="events-list">
+  <ion-card *ngIf="userEventsCount === 0">
+    <ion-card-content>
+      <ion-card-title>
+        Looks like you haven't saved any events.
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+  <eventListItem *ngFor="#event of eventsSearch" [event]="event" [userEvents]="userEvents"></eventListItem>
 </ion-list>
