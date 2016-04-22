@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, OnChanges, EventEmitter} from 'angular2/core';
+import {Component, OnInit, OnDestroy, EventEmitter} from 'angular2/core';
 import {NavController, NavParams, List, Item, Button, Platform} from 'ionic-angular';
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
@@ -21,7 +21,7 @@ import {UserEvent} from '../../models/user/userEvent';
   pipes:[DateFormatPipe, FromUnixPipe]
 })
 
-export class EventComponent implements OnInit, OnDestroy, OnChanges {
+export class EventComponent implements OnInit, OnDestroy {
   public event: Event;
   private surveySubscription: EventEmitter<Survey[]>;
   private userEventSubscription: EventEmitter<UserEvent>;
@@ -54,10 +54,6 @@ export class EventComponent implements OnInit, OnDestroy, OnChanges {
 
     this.checkRegistration();
     this._eventApi.getEventSurvey(this.event.eventId);
-  }
-
-  public ngOnChanges() {
-    console.log('from event component:', this.currentLocation);
   }
 
   public ngOnDestroy() {
