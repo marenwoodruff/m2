@@ -33,5 +33,12 @@
   </ion-col>
 </ion-row>
 <ion-list class="events-list">
+  <ion-card *ngIf="eventsCount === 0">
+    <ion-card-content>
+      <ion-card-title>
+        No local events. User location filter to view other events.
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
   <eventListItem *ngFor="#event of eventsSearch" [event]="event" [location]="location"></eventListItem>
 </ion-list>
