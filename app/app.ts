@@ -6,6 +6,7 @@ import {StorageService} from './service/storage.service';
 import {EventsPage} from './pages/events/events.page';
 import {EventService} from './service/event.service';
 import {LoginPage} from './pages/login/login.page';
+import {LogoutPage} from './pages/logout/logout.page';
 import {SignupPage} from './pages/signup/signup.page';
 import {ContactPage} from './pages/contact/contact.page';
 import {SettingsPage} from './pages/settings/settings.page';
@@ -42,7 +43,8 @@ class MyApp implements OnInit{
             {title: 'My MATRIX', component: UserEventsPage},
             {title: 'Surveys', component: SurveysPage},
             {title: 'Contact Us', component: ContactPage},
-            {title: 'Settings', component: SettingsPage}
+            {title: 'Settings', component: SettingsPage},
+            {title: 'Logout', component: LogoutPage}
         ];
     }
 

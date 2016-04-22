@@ -1,8 +1,24 @@
 <ion-item (click)="viewEvent(event)">
-    <ion-thumbnail item-left>
-        <img class="center-event-image" src="http://matrixres.com/{{event.mobileSmall}}" alt="{{event.title}}"/>
-    </ion-thumbnail>
-    <h2 class="sessions event-title">{{event.title}}</h2>
-    <p class="sessions">{{(event.startDate | amFromUnix)| amDateFormat:"MMMM Do YYYY"}}</p>
-    <p class="sessions">{{event.city}}, {{event.state}}</p>
+    <ion-row>
+      <ion-col width-33>
+        <ion-thumbnail item-left>
+            <img class="center-event-image" src="http://matrixres.com/{{event.mobileSmall}}" alt="{{event.title}}"/>
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col style="margin-top: 1.2rem;" width-50>
+        <ion-row>
+          <h2 class="sessions event-title">{{event.title}}</h2>
+        </ion-row>
+        <ion-row>
+          <p class="sessions">{{(event.startDate | amFromUnix)| amDateFormat:"MMMM Do YYYY"}}</p>
+        </ion-row>
+        <ion-row>
+          <p class="sessions">{{event.city}}, {{event.state}}</p>
+        </ion-row>
+      </ion-col>
+      <ion-col width-10></ion-col>
+      <ion-col width-10 class="eventListItemCol">
+        <img src="build/assets/icons/SideArrow.png" alt="click here" />
+      </ion-col>
+    </ion-row>
 </ion-item>

@@ -79,7 +79,7 @@ export class EventsPage implements OnInit, OnDestroy {
     }
 
     getLocalEvents(events:Event[]) {
-      if(events){
+      if (events) {
         this.localEvents = events.filter((event) => {
           let eventCoordinates = event.mapCoordinates.split(',').splice(0, 2);
           let latDistance = Math.abs(eventCoordinates[0] - this.currentLocation[0]);
