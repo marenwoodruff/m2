@@ -16,4 +16,7 @@
 
 <ion-content padding class="events-container">
   <events [events]="filteredLocation" [location]="currentLocation" *ngIf="!isLoading"></events>
+  <div class="page-loader" *ngIf="isLoading">
+      <loader [isRunning]="isLoading"></loader>
+  </div>
 </ion-content>
