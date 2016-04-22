@@ -29,3 +29,6 @@
 // App iOS Only Sass
 // --------------------------------------------------
 // CSS that should only apply to the iOS app
+button.item:not([detail-none]) .item-inner{
+  background-image: none;
+}
