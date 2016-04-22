@@ -25,9 +25,7 @@ export class EventsComponent implements OnChanges{
   showRightButton:boolean;
   @Input() events;
 
-  constructor() {
-    console.log(window);
-  }
+  constructor() {}
 
   ngOnChanges():void{
     if (this.events) {
