@@ -1,11 +1,10 @@
-import {EventEmitter, Component, OnInit, OnDestroy, Input} from 'angular2/core';
-import { Inject } from 'angular2/core';
+import {EventEmitter, Component, OnInit, OnDestroy, Input, Inject} from 'angular2/core';
 import {TwitterService} from '../../service/twitter.service';
 import {LinkedInService} from '../../service/linkedin.service';
 import {UserService} from '../../service/user.service';
 import {AuthorizationService} from '../../service/authorization.service';
 import {Http} from 'angular2/http';
-import {Button, List, Item, TextInput, Label, Platform, NavController} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, Platform, NavController, MenuController} from 'ionic-angular';
 import {SignupEmailPage} from '../../pages/signupEmail/signupEmail.page';
 import {EventsPage} from '../../pages/events/events.page';
 import {User} from '../../models/user/user';
@@ -33,11 +32,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _linkedInApi: LinkedInService,
     private _userService: UserService,
     private _authService:AuthorizationService,
-    private _navController: NavController) {
+    private _navController: NavController,
+    private _menuController: MenuController) {
     this.twitterCredentials = { access_token: null };
   }
 
   ngOnInit(): any {
+    this._menuController.enable(false);
     this.twitterSubscription = this._twitterApi.twitterCredentials.subscribe(
       (twitterCredentials) => {
         this.twitterCredentials = twitterCredentials;
@@ -79,6 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       if (media === 'Email') {
         this.emailLogin(this.userLogin);
       }
+      this._menuController.enable(true);
     });
   }
 
