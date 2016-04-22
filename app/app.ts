@@ -1,4 +1,4 @@
-import {App, IonicApp, Platform, NavController, Icon} from 'ionic-angular';
+import {App, IonicApp, Platform, NavController, Icon, MenuController} from 'ionic-angular';
 import {forwardRef, OnInit} from 'angular2/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
@@ -34,7 +34,8 @@ class MyApp implements OnInit{
       private storageService:StorageService,
       public surveyService:SurveyService,
       private userService:UserService,
-      private userEventService:UserEventService) {}
+      private userEventService:UserEventService
+      private menuController: MenuController) {}
 
     ngOnInit(){
         this.initializeApp();
@@ -46,16 +47,17 @@ class MyApp implements OnInit{
             {title: 'Settings', component: SettingsPage},
             {title: 'Logout', component: LogoutPage}
         ];
+
     }
 
     private initializeApp() {
         this.platform.ready().then(() => {
             var nav:NavController = this.app.getComponent("nav");
             this.nav = nav;
-
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
-        			  this.setInitialPage(EventsPage);
+                this.menuController.enable(true);
+        			  this.setInitialPage(EventsPage);              
     		      }
     	     });
         });
