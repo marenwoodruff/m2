@@ -28,6 +28,10 @@ export class EventsComponent implements OnChanges{
   constructor() {}
 
   ngOnChanges():void{
+    this.setDates();
+  }
+
+  private setDates():void{
     if (this.events) {
       let months:string[] = [];
       this.events.forEach((event) => {
@@ -52,7 +56,6 @@ export class EventsComponent implements OnChanges{
       this.initializeItems();
       this.showHideArrows()
     }
-
   }
 
   private initializeItems():void {
