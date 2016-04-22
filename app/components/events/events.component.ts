@@ -18,6 +18,7 @@ export class EventsComponent implements OnChanges{
   searchQuery: string = '';
   eventsSearch:Event[];
   eventSearchActive:boolean;
+  eventsCount: number;
   month:string;
   months:string[] = [];
   currentMonthIndex:number = 0;
@@ -25,12 +26,11 @@ export class EventsComponent implements OnChanges{
   showRightButton:boolean;
   @Input() events;
 
-  constructor() {
-    console.log(window);
-  }
+  constructor() { }
 
   ngOnChanges():void{
     if (this.events) {
+      this.eventsCount = this.events.length;
       let months:string[] = [];
       this.events.forEach((event) => {
        const month:string = moment.unix(event.startDate).format('YYYY-MM');
@@ -73,7 +73,6 @@ export class EventsComponent implements OnChanges{
       this.currentMonthIndex = nextMonthIndex;
       this.initializeItems();
       this.showHideArrows()
-
     }
 
   }
