@@ -1,10 +1,11 @@
 import {Component, Input, AfterContentInit} from 'angular2/core';
-import {Button, List, Item, TextInput, Label, NavController, NavParams} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
 
 import {UserService} from '../../service/user.service';
 import {UserEventService} from '../../service/userEvent.service';
 
 import {EventPage} from '../../pages/event/event.page';
+import {EventsPage} from '../../pages/events/events.page';
 
 import {Event} from '../../models/Events/event';
 
@@ -44,12 +45,38 @@ export class SessionRegistrationPage implements AfterContentInit {
       let valid = form.validate();
       if (valid) {
         this._userEventApi.createUserEvent(this.userId, eventInfo);
-        // form.submit();
-        this.nav.pop();
+        this.confirmRegistration();
       } else {
         console.log('form invalid');
       }
     });
+  }
+
+  confirmRegistration() {
+    let confirm = Alert.create({
+      title: 'Registration Confirmation',
+      message: 'Thank you for registering! You will receive an e-mail to confirm your registration for this event.',
+      buttons: [
+        {
+          text: 'Confirm',
+          handler: () => {
+            // form.submit();
+            this.backToEvents();
+          }
+        },
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('cancel registration');
+          }
+        }
+      ]
+    });
+    this.nav.present(confirm);
+  }
+
+  backToEvents() {
+    this.nav.setRoot(EventsPage);
   }
 
   getUserInfo() {
