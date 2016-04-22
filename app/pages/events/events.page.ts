@@ -6,11 +6,11 @@ import {EventService} from "../../service/event.service";
 import * as moment from 'moment';
 import {Survey} from '../../models/survey/survey';
 import {Event} from '../../models/events/event';
-import {LocationFilterPage} from '../location-filter/location-filter.page';
+import {LoaderComponent} from '../../components/loader/loader.component';
 
 @Page({
     templateUrl: 'build/pages/events/events.page.html',
-    directives: [EventsComponent, forwardRef(() => SurveysComponent), Icon]
+    directives: [EventsComponent, forwardRef(() => SurveysComponent), Icon, LoaderComponent]
 })
 export class EventsPage implements OnInit, OnDestroy {
     public events:any;
@@ -22,7 +22,7 @@ export class EventsPage implements OnInit, OnDestroy {
     public currentLocation: Array<number>;
     public filteredLocation: Event[];
     private eventSubscription: EventEmitter<Event[]>;
-    private isLoading:boolean = false;
+    private isLoading:boolean = true;
 
     constructor(private _eventsApi:EventService, public nav:NavController) { }
 
@@ -31,7 +31,7 @@ export class EventsPage implements OnInit, OnDestroy {
 
       this.eventSubscription = this._eventsApi.events.subscribe(
           events => {
-            this.events = events
+            this.events = events;
           },
           err => console.log("EventsComponent events subscribe error: ", err),
           () => console.log("Finished subscribing to events")
@@ -89,6 +89,7 @@ export class EventsPage implements OnInit, OnDestroy {
           }
         });
         this.filteredLocation = this.localEvents;
+        this.isLoading = false;
       }
     }
 
@@ -97,6 +98,7 @@ export class EventsPage implements OnInit, OnDestroy {
     }
 
     getCurrentLocation() {
+      this.isLoading = true;
       navigator.geolocation.getCurrentPosition(
         (position) => {
           this.currentLocation = [position.coords.latitude, position.coords.longitude];
