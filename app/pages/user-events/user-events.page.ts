@@ -15,7 +15,7 @@ import {UserService} from '../../service/user.service';
 
 export class UserEventsPage implements OnInit, OnDestroy {
 
-  eventSubscription: EventEmitter<UserEvent[]>;
+  userEventSubscription: EventEmitter<UserEvent[]>;
   userEvents: UserEvent[];
   userId: number;
   location: Array<number>;
@@ -25,7 +25,7 @@ export class UserEventsPage implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.getUserId();
 
-    this.eventSubscription = this._userEventApi.userEvents.subscribe(
+    this.userEventSubscription = this._userEventApi.userEvents.subscribe(
       userEvents => this.userEvents = userEvents,
       err => console.log('user event error', err),
       () => console.log('finished subscribing to user events')
@@ -35,7 +35,7 @@ export class UserEventsPage implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.eventSubscription.unsubscribe();
+    this.userEventSubscription.unsubscribe();
   }
 
   private getUserId(): void {
