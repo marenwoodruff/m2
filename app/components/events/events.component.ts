@@ -3,6 +3,7 @@ import {NgClass} from 'angular2/common';
 import {List, Button, Searchbar, Icon} from 'ionic-angular';
 import {EventListItemComponent} from "./eventListItem.component";
 import {Event} from '../../models/events/event';
+import {UserEvent} from '../../models/user/userEvent';
 import {DateFormatPipe} from 'angular2-moment';
 import * as moment from 'moment';
 
@@ -10,14 +11,17 @@ import * as moment from 'moment';
     selector: 'events',
     templateUrl: 'build/components/events/events.component.html',
     directives: [List, EventListItemComponent, Button, Searchbar, Icon, NgClass],
-    inputs:['events', 'location'],
+    inputs:['events', 'location', 'userEvents'],
     pipes: [DateFormatPipe]
 })
 
-export class EventsComponent implements OnChanges{
+export class EventsComponent implements OnChanges {
   searchQuery: string = '';
+  userEvents: UserEvent[] = this.userEvents;
+  userEventsCount: number;
   eventsSearch:Event[];
   eventSearchActive:boolean;
+  eventsCount: number;
   month:string;
   months:string[] = [];
   currentMonthIndex:number = 0;
@@ -25,14 +29,16 @@ export class EventsComponent implements OnChanges{
   showRightButton:boolean;
   @Input() events;
 
-  constructor() {}
+  constructor() { }
 
   ngOnChanges():void{
     this.setDates();
   }
 
   private setDates():void{
+    this.userEvents ? this.userEventsCount = this.userEvents.length : this.userEventsCount;
     if (this.events) {
+      this.eventsCount = this.events.length;
       let months:string[] = [];
       this.events.forEach((event) => {
        const month:string = moment.unix(event.startDate).format('YYYY-MM');
@@ -74,7 +80,6 @@ export class EventsComponent implements OnChanges{
       this.currentMonthIndex = nextMonthIndex;
       this.initializeItems();
       this.showHideArrows()
-
     }
 
   }
