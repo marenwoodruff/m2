@@ -22,7 +22,6 @@ export class UserEventService {
       .subscribe(
         userEvents => {
           userEvents = eventId ? userEvents.filter(e => e.eventId === eventId) : userEvents;
-          console.log(userEvents);
           this.userEvents.emit(userEvents);
         },
         err => console.log('error: ', err),
