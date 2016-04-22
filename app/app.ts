@@ -34,7 +34,7 @@ class MyApp implements OnInit{
       private storageService:StorageService,
       public surveyService:SurveyService,
       private userService:UserService,
-      private userEventService:UserEventService
+      private userEventService:UserEventService,
       private menuController: MenuController) {}
 
     ngOnInit(){
@@ -57,7 +57,7 @@ class MyApp implements OnInit{
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
                 this.menuController.enable(true);
-        			  this.setInitialPage(EventsPage);              
+        			  this.setInitialPage(EventsPage);
     		      }
     	     });
         });

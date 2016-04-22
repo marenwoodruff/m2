@@ -22,7 +22,6 @@ export class UserEventService {
       .subscribe(
         userEvents => {
           userEvents = eventId ? userEvents.filter(e => e.eventId === eventId) : userEvents;
-          console.log(userEvents);
           this.userEvents.emit(userEvents);
         },
         err => console.log('error: ', err),
@@ -53,6 +52,7 @@ export class UserEventService {
   public deleteUserEvent(userId: number, userEventId: number): void {
     this.httpClient.delete(`users/${userId}/events/${userEventId}`)
       .subscribe(
+        res => console.log(res),
         err => console.log('error: ', err),
         () => console.log('User updated')
       );
