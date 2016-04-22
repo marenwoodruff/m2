@@ -15,5 +15,12 @@
       max-width: 9rem;
       max-height: 9rem;
   }
-
+  .eventListItemCol{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: 1.4rem;
+    }
+  }
 }

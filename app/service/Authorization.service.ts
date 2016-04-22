@@ -65,4 +65,9 @@ export class AuthorizationService {
       );
   }
 
+  public logOut():void {
+    this._storageService.removeItem('MyMatrixAuthToken');
+    this._storageService.removeItem('MyMatrixUser');
+  }
+
 }
