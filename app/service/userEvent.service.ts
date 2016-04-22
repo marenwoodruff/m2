@@ -52,6 +52,7 @@ export class UserEventService {
   public deleteUserEvent(userId: number, userEventId: number): void {
     this.httpClient.delete(`users/${userId}/events/${userEventId}`)
       .subscribe(
+        res => console.log(res),
         err => console.log('error: ', err),
         () => console.log('User updated')
       );
