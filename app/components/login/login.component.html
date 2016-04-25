@@ -40,30 +40,30 @@
     </h5>
     <ion-col></ion-col>
   </ion-row>
-  <form>
-  <div *ngIf="errorMessage" class="center" style="color: red;">
-    {{errorMessage}}
-  </div>
+  <form [ngFormModel]="userForm" (submit)="login('Email')">
+    <div *ngIf="errorMessage" class="center" style="color: red;">
+      {{errorMessage}}
+    </div>
 
-  <ion-list>
-    <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input [(ngModel)]="userLogin.email" type="text"></ion-input>
-    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input ngControl="email" id="email" type="email" required></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input [(ngModel)]="userLogin.password" type="password"></ion-input>
-    </ion-item>
-  </ion-list>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input ngControl="password" id="password" type="password" required></ion-input>
+      </ion-item>
+    </ion-list>
 
-  <ion-row>
-    <button class="social-button" block (click)="login('Email')">
-      <loader [white]="true" *ngIf="loggingIn"></loader>
-      <span *ngIf="!loggingIn">Log in</span>
-    </button>
-  </ion-row>
-</form>
+    <ion-row>
+      <button class="social-button" block>
+        <loader [white]="true" *ngIf="loggingIn"></loader>
+        <span *ngIf="!loggingIn">Log in</span>
+      </button>
+    </ion-row>
+  </form>
 
   <ion-row (click)="emailSignup()">
     <ion-col></ion-col>

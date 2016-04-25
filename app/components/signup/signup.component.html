@@ -17,6 +17,9 @@
       <ion-col>
       </ion-col>
     </ion-row> -->
+    <div *ngIf="errorMessage" class="center" style="color: red;">
+      {{errorMessage}}
+    </div>
     <form>
       <ion-list>
         <ion-item>
@@ -25,11 +28,11 @@
         </ion-item>
         <ion-item>
           <ion-label>Email Address</ion-label>
-          <ion-input [(ngModel)]="user.email"  type="email"></ion-input>
+          <ion-input [(ngModel)]="user.email"  type="email" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Password</ion-label>
-          <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+          <ion-input [(ngModel)]="user.password" type="password" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Job Title</ion-label>
@@ -45,7 +48,10 @@
         </ion-item>
       </ion-list>
       <ion-row>
-        <button block class="social-button" (click)="signUp()">Sign up</button>
+        <button block class="social-button" (click)="signUp()">
+          <loader [white]="true" *ngIf="signingUp"></loader>
+          <span *ngIf="!signingUp">Sign Up</span>
+        </button>
       </ion-row>
     </form>
 </ion-content>
