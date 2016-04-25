@@ -1,5 +1,5 @@
 import {EventEmitter, Component, OnInit, OnDestroy, Input, Inject} from 'angular2/core';
-import {FORM_PROVIDERS, FormBuilder, Validators} from 'angular2/common';
+import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from 'angular2/common';
 import {TwitterService} from '../../service/twitter.service';
 import {LinkedInService} from '../../service/linkedin.service';
 import {UserService} from '../../service/user.service';
@@ -23,14 +23,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   linkedInCredentials: any;
   access_token: any;
   twitterCredentials: any;
+  private userForm: ControlGroup;
   private loggingIn: boolean;
   private errorMessage: string;
   private twitterSubscription: EventEmitter<any>;
   private linkedInSubscription: EventEmitter<any>;
   private userSubscription: EventEmitter<User>;
   private errorSubscription: EventEmitter<any>;
-  private userLogin:UserLogin = new UserLogin();
-  userForm: any;
 
   constructor(
     private platform: Platform,
