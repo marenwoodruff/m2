@@ -1,4 +1,5 @@
 import {Input, OnDestroy, Component} from 'angular2/core';
+import {NgClass} from 'angular2/common'
 
 export class BaseSpinner implements OnDestroy {
   private visible: boolean = true;
@@ -6,7 +7,8 @@ export class BaseSpinner implements OnDestroy {
 
   @Input()
   public delay: number = 0;
-
+  @Input()
+  public white: boolean;
   @Input()
   public set isRunning(value: boolean) {
     if (!value) {
@@ -34,7 +36,9 @@ export class BaseSpinner implements OnDestroy {
   }
 }
 
+
 @Component({
+  directives: [NgClass],
   selector: 'loader',
   styles: [`
     .chasing-dots-spinner {
@@ -54,11 +58,13 @@ export class BaseSpinner implements OnDestroy {
       display: inline-block;
       position: absolute;
       top: 0;
-      background-color: #1D6BB6;
       border-radius: 100%;
-
+      background-color: white;
       -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
       animation: sk-bounce 2.0s infinite ease-in-out;
+    }
+    .blue {
+      background-color: #1D6BB6;
     }
 
     .dot2 {
@@ -100,8 +106,8 @@ export class BaseSpinner implements OnDestroy {
     }
   `],
   template:`<div [hidden]="!visible" class="chasing-dots-spinner">
-    <div class="dot1"></div>
-    <div class="dot2"></div>
+    <div class="dot1" [ngClass]="{blue: !white}"></div>
+    <div [ngClass]="{blue: !white}" class="dot2"></div>
   </div>`
 })
 
