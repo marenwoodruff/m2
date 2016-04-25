@@ -20,35 +20,35 @@
     <div *ngIf="errorMessage" class="center" style="color: red;">
       {{errorMessage}}
     </div>
-    <form>
+    <form [ngFormModel]="userForm" (submit)="signUp()">
       <ion-list>
         <ion-item>
           <ion-label>Name</ion-label>
-          <ion-input [(ngModel)]="user.name" type="text"></ion-input>
+          <ion-input ngControl="name" id="name" type="text" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Email Address</ion-label>
-          <ion-input [(ngModel)]="user.email"  type="email" required></ion-input>
+          <ion-input ngControl="email" id="email" type="email" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Password</ion-label>
-          <ion-input [(ngModel)]="user.password" type="password" required></ion-input>
+          <ion-input ngControl="password" id="password" type="password" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Job Title</ion-label>
-          <ion-input [(ngModel)]="user.jobTitle" type="text"></ion-input>
+          <ion-input ngControl="jobTitle" id="jobTitle" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Company Name</ion-label>
-          <ion-input [(ngModel)]="user.companyName" type="text"></ion-input>
+          <ion-input ngControl="company" id="company" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Phone Number</ion-label>
-          <ion-input [(ngModel)]="user.phoneNumber" type="number"></ion-input>
+          <ion-input ngControl="phone" id="phone" type="text"></ion-input>
         </ion-item>
       </ion-list>
       <ion-row>
-        <button block class="social-button" (click)="signUp()">
+        <button block class="social-button">
           <loader [white]="true" *ngIf="signingUp"></loader>
           <span *ngIf="!signingUp">Sign Up</span>
         </button>
