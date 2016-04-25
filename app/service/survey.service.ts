@@ -17,6 +17,7 @@ import {HttpClient} from './http-client.service';
 export class SurveyService {
 
     surveys:EventEmitter<Survey[]> = new EventEmitter();
+    eventSurveys: EventEmitter<any> = new EventEmitter();
     surveyComplete: EventEmitter<boolean> = new EventEmitter();
     surveyById: EventEmitter<Survey> = new EventEmitter();
     surveyResponse: SurveyResponse;
@@ -50,18 +51,17 @@ export class SurveyService {
         );
     }
 
-    public getSurveyForEvents(eventId:number) {
-      this._clientApi.get("surveys/events/" + eventId)
+    public getSurveyForEvents(eventId?:number) {
+      this._clientApi.get("surveys/events/")
         .map(res => <Survey[]>res.json())
         .subscribe(
-          survey => {
-            if (survey.length > 0) {
-              this.surveysForEvents.push(survey[0]);
-              this.surveys.emit(this.surveysForEvents);
+          surveys => {
+            if (surveys.length > 0) {
+              this.eventSurveys.emit(surveys);
             }
           },
           err => console.log('error:', err),
-          () => console.log('retrieved survey with eventId: ', eventId)
+          () => console.log('retrieved surveys for events')
         );
     }
 
