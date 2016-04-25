@@ -15,7 +15,7 @@ import {ValidationService} from '../../service/validation.service';
   directives: [Button, List, Item, TextInput, Label, LoaderComponent]
 })
 
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   private signingUp: boolean;
   private errorMessage: string;
   private userSubscription: EventEmitter<User>;
@@ -53,6 +53,11 @@ export class SignupComponent implements OnInit {
         }
       }
     )
+  }
+
+  ngOnDestroy():any {
+    this.userSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
   }
 
   signUp(){

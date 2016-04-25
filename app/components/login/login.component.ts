@@ -86,6 +86,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
       this.twitterSubscription.unsubscribe();
+      this.userSubscription.unsubscribe();
+      this.errorSubscription.unsubscribe();
   }
 
   login(media) {
