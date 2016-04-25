@@ -14,7 +14,7 @@ import {HttpClient} from './http-client.service';
 
 @Injectable()
 export class AuthorizationService {
-  authorizedUser: EventEmitter<AuthorizedUser> = new EventEmitter();
+  error: EventEmitter<any> = new EventEmitter();
 
   constructor(private _api: Http, private httpClient:HttpClient, private _userService: UserService, private _storageService: StorageService) {
   };
@@ -60,7 +60,7 @@ export class AuthorizationService {
         (authorizedUser) => {
           this.emitAuthorizedUser(authorizedUser);
         },
-        err => console.log('error: ', err),
+        err => this.error.emit(err.json()),
         () => console.log('User updated')
       );
   }

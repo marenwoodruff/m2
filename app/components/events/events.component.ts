@@ -109,7 +109,10 @@ export class EventsComponent implements OnChanges {
     }
 
     this.eventsSearch = this.eventsSearch.filter((event) => {
-      if (event.title.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+      const searchString = search.toLowerCase();
+      if (event.title.toLowerCase().includes(searchString) || event.city.toLowerCase().includes(searchString)
+          || event.state.toLowerCase().includes(searchString) || event.corpLocation.toLowerCase().includes(searchString) ||
+          event.topic.toLowerCase().includes(searchString) || event.type.toLowerCase().includes(searchString)) {
         return true;
       }
       return false;
