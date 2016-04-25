@@ -6,6 +6,9 @@ export class User {
     company:string
     jobTitle:string
     email:string
+    admin: boolean
+    password:string
+    phone: string
 
     constructor(authorizedUser?:AuthorizedUser) {
       if(authorizedUser){
