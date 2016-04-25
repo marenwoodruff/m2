@@ -21,26 +21,27 @@
       public surveyIds = [];
       private surveySubscription: EventEmitter<Survey[]>;
       private storageSubscription: EventEmitter<Survey[]>;
-      private eventSubscription: EventEmitter<Event[]>;
+      private eventSurveySubscription: EventEmitter<any>;
       surveysInProgress: SurveyProgress[];
 
       constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService) { }
 
       ngOnInit():any {
 
-        this.eventSubscription = this._eventApi.events.subscribe(
-          (events) => {
-            this.events = events;
-            this.getSurveysForEvents(this.events);
+        this.eventSurveySubscription = this._surveyApi.eventSurveys.subscribe(
+          (eventSurveys) => {
+            eventSurveys.forEach((survey) => {
+              this._surveyApi.getSurveys(survey.surveyId);
+            });
           },
           (err) => console.log(err),
-          () => console.log('event success')
+          () => console.log('have survey ids based on events')
         );
 
         this.surveySubscription = this._surveyApi.surveys.subscribe(
           (surveys) => {
+            console.log(surveys);
             this.surveys = surveys;
-            console.log(this.surveys);
             this.checkSurveyProgress(this.surveys);
           },
           err => console.log('SurveysComponent surveyservice subscribe error:', err),
@@ -64,12 +65,13 @@
           }
         );
 
-        this._eventApi.getEvents();
+        this._surveyApi.getSurveyForEvents();
       }
 
       ngOnDestroy() {
         this.surveySubscription.unsubscribe();
         this.storageSubscription.unsubscribe();
+        this.eventSurveySubscription.unsubscribe();
       }
 
       findQuestionId(survey) {
@@ -97,12 +99,6 @@
       checkSurveyProgress(surveys) {
         surveys.forEach((survey) => {
           this._storageApi.getSurveyProgress(survey.id);
-        });
-      }
-
-      getSurveysForEvents(events:Event[]) {
-        events.forEach((event) => {
-          this._surveyApi.getSurveyForEvents(event.eventId);
         });
       }
 
