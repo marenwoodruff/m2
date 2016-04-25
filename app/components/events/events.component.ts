@@ -32,8 +32,11 @@ export class EventsComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges():void{
-    this.userEvents ? this.userEventsCount = this.userEvents.length : this.userEventsCount;
+    this.setDates();
+  }
 
+  private setDates():void{
+    this.userEvents ? this.userEventsCount = this.userEvents.length : this.userEventsCount;
     if (this.events) {
       this.eventsCount = this.events.length;
       let months:string[] = [];
@@ -59,7 +62,6 @@ export class EventsComponent implements OnChanges {
       this.initializeItems();
       this.showHideArrows()
     }
-
   }
 
   private initializeItems():void {
@@ -107,7 +109,10 @@ export class EventsComponent implements OnChanges {
     }
 
     this.eventsSearch = this.eventsSearch.filter((event) => {
-      if (event.title.toLowerCase().indexOf(search.toLowerCase()) > -1) {
+      const searchString = search.toLowerCase();
+      if (event.title.toLowerCase().includes(searchString) || event.city.toLowerCase().includes(searchString)
+          || event.state.toLowerCase().includes(searchString) || event.corpLocation.toLowerCase().includes(searchString) ||
+          event.topic.toLowerCase().includes(searchString) || event.type.toLowerCase().includes(searchString)) {
         return true;
       }
       return false;
