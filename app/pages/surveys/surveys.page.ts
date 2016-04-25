@@ -65,7 +65,6 @@
         );
 
         this._eventApi.getEvents();
-        // this._surveyApi.getSurveys();
       }
 
       ngOnDestroy() {

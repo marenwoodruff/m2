@@ -1,5 +1,6 @@
 import {Page} from 'ionic-angular';
 import {OnInit, OnDestroy, EventEmitter} from 'angular2/core';
+import * as moment from 'moment';
 
 import {UserEvent} from '../../models/user/userEvent';
 import {Event} from '../../models/Events/event';
@@ -32,6 +33,7 @@ export class UserEventsPage implements OnInit, OnDestroy {
     this.userEventSubscription = this._userEventApi.userEvents.subscribe(
       userEvents => {
         this.userEvents = userEvents;
+        this.hideOldEvents(userEvents);
         this._eventApi.getUserEvents(this.userEvents);
       },
       err => console.log('user event error', err),
@@ -54,5 +56,11 @@ export class UserEventsPage implements OnInit, OnDestroy {
 
   private getUserId(): void {
     this.userId = this._userApi.getUserId();
+  }
+
+  private hideOldEvents(userEvents:UserEvent[]) {
+    this.userEvents = userEvents.filter((event) => {
+      return moment.unix(event.startDate).isAfter();
+    });
   }
 }
