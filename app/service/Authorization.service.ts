@@ -27,7 +27,7 @@ export class AuthorizationService {
         (authorizedUser) => {
           this.emitAuthorizedUser(authorizedUser);
         },
-        err => console.log('error: ', err),
+        err => this.error.emit(err.json()),
         () => console.log('User updated')
       );
   }
@@ -47,7 +47,7 @@ export class AuthorizationService {
         (authorizedUser) => {
           this.emitAuthorizedUser(authorizedUser);
         },
-        err => console.log('error: ', err),
+        err => this.error.emit(err.json()),
         () => console.log('User updated')
       );
   }
