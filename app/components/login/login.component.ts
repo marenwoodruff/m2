@@ -9,11 +9,12 @@ import {SignupEmailPage} from '../../pages/signupEmail/signupEmail.page';
 import {EventsPage} from '../../pages/events/events.page';
 import {User} from '../../models/user/user';
 import {UserLogin} from '../../models/user/userLogin';
+import {LoaderComponent} from '../loader/loader.component';
 
 @Component({
   selector: 'login',
   templateUrl: 'build/components/login/login.component.html',
-  directives: [Button, List, Item, TextInput, Label],
+  directives: [Button, List, Item, TextInput, Label, LoaderComponent],
   providers: [TwitterService, LinkedInService]
 })
 
@@ -21,9 +22,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   linkedInCredentials: any;
   access_token: any;
   twitterCredentials: any;
+  loggingIn: boolean;
+  errorMessage: string;
   private twitterSubscription: EventEmitter<any>;
   private linkedInSubscription: EventEmitter<any>;
   private userSubscription: EventEmitter<User>;
+  private errorSubscription: EventEmitter<any>;
   private userLogin:UserLogin = new UserLogin();
 
   constructor(
@@ -63,6 +67,15 @@ export class LoginComponent implements OnInit, OnDestroy {
           this._navController.setRoot(EventsPage);
         }
       )
+      this.errorSubscription = this._authService.error.subscribe(
+        (error) => {
+          console.log(error);
+          this.loggingIn = false;
+          if (error.message){
+            this.errorMessage = error.message;
+          }
+        }
+      )
   }
 
   ngOnDestroy() {
@@ -93,6 +106,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private emailLogin(userLogin) {
+    this.loggingIn = true;
     this._authService.loginUserWithEmail(userLogin);
   }
 
