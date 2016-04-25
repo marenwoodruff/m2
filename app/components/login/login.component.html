@@ -41,6 +41,9 @@
     <ion-col></ion-col>
   </ion-row>
   <form>
+  <div *ngIf="errorMessage" class="center" style="color: red;">
+    {{errorMessage}}
+  </div>
 
   <ion-list>
     <ion-item>
@@ -56,7 +59,8 @@
 
   <ion-row>
     <button class="social-button" block (click)="login('Email')">
-      Log in
+      <loader [white]="true" *ngIf="loggingIn"></loader>
+      <span *ngIf="!loggingIn">Log in</span>
     </button>
   </ion-row>
 </form>
