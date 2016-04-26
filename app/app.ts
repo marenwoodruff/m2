@@ -16,6 +16,7 @@ import {UserService} from './service/user.service';
 import {HttpClient} from './service/http-client.service';
 import {UserEventsPage} from './pages/user-events/user-events.page';
 import {UserEventService} from './service/userEvent.service';
+import {SupportPage} from './pages/support/support.page';
 
 @App({
     templateUrl: 'build/app.html',
@@ -45,6 +46,7 @@ class MyApp implements OnInit{
             {title: 'Surveys', component: SurveysPage},
             {title: 'Contact Us', component: ContactPage},
             {title: 'Settings', component: SettingsPage},
+            {title: 'Support', component: SupportPage},
             {title: 'Logout', component: LogoutPage}
         ];
 
