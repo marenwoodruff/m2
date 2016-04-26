@@ -56,8 +56,8 @@ class MyApp implements OnInit{
             this.nav = nav;
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
-                this.menuController.enable(true);
-        			  this.setInitialPage(EventsPage);
+                      this.setInitialPage(EventsPage);
+                      this.menuController.enable(true);
     		      }
     	     });
         });
