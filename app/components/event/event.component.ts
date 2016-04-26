@@ -3,6 +3,7 @@ import {NavController, NavParams, List, Item, Button, Platform} from 'ionic-angu
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
 import {Survey} from '../../models/survey/survey';
+import {User} from '../../models/user/user';
 import {SessionComponent} from '../session/session.component';
 import {EventLocationComponent} from '../event-location/event-location.component';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
@@ -25,17 +26,22 @@ export class EventComponent implements OnInit, OnDestroy {
   public event: Event;
   private surveySubscription: EventEmitter<Survey[]>;
   private userEventSubscription: EventEmitter<UserEvent>;
+  private userSubscription: EventEmitter<User>;
   public surveys: Survey[];
   public survey: Survey;
   private currentLocation: Array<number>;
   private registered: boolean;
   private userId: number;
+  private user: User;
 
   constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService, private _eventApi: EventService, private _userEventApi: UserEventService, private _userApi: UserService) { }
 
   public ngOnInit() {
-
-    this.getUserId();
+    this.userSubscription = this._userApi.user.subscribe(
+      user => this.user = user,
+      err => console.log(err),
+      () => console.log('got user info')
+    );
 
     this.userEventSubscription = this._userEventApi.userEvents.subscribe(
       event => event.length > 0 ? this.registered = true : this.registered = false,
@@ -52,6 +58,7 @@ export class EventComponent implements OnInit, OnDestroy {
       () => console.log('finished checking for event surveys')
     );
 
+    this.getUserId();
     this.checkRegistration();
     this._eventApi.getEventSurvey(this.event.eventId);
   }
@@ -59,10 +66,12 @@ export class EventComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     this.surveySubscription.unsubscribe();
     this.userEventSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
   private getUserId() {
     this.userId = this._userApi.getUserId();
+    this._userApi.getUser(this.userId);
   }
 
   private checkRegistration() {
@@ -70,6 +79,13 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   private register(event): void {
+    this.nav.push(RegistrationPage, {
+      event: event,
+      user:  this.user
+    });
+  }
+
+  private registerFriend(event): void {
     this.nav.push(RegistrationPage, {
       event: event
     });

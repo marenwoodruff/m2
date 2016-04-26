@@ -1,4 +1,4 @@
-import {Component, Input, AfterContentInit, OnInit, OnDestroy, EventEmitter} from 'angular2/core';
+import {Component, Input, AfterContentInit, OnInit, EventEmitter} from 'angular2/core';
 import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
 
 import {UserService} from '../../service/user.service';
@@ -14,10 +14,10 @@ import {User} from '../../models/user/user';
   selector: 'session-registration',
   templateUrl: 'build/components/session-registration/session-registration.component.html',
   directives: [Button, List, Item, TextInput, Label],
-  inputs: ['event']
+  inputs: ['event', 'user']
 })
 
-export class SessionRegistrationPage implements OnInit, AfterContentInit, OnDestroy {
+export class SessionRegistrationPage implements OnInit, AfterContentInit {
   event: Event; 
   userId: number;
   user: User;
@@ -26,32 +26,23 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit, OnDest
   constructor(private _userApi:UserService, private _userEventApi:UserEventService, private nav: NavController, private params: NavParams) {}
 
   ngOnInit() {
-    this.userSubscription = this._userApi.user.subscribe(
-      (user) => this.user = user,
-      (err) => console.log(err),
-      () => console.log('user event for registration')
-    );
-
     this.getUserInfo();
   }
 
   ngAfterContentInit() {
     MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862, (form) => {
-      console.log(this.user);
-      let firstName = this.user.name.split(' ')[0];
-      let lastName = this.user.name.split(' ')[1];
+        if (this.user) {
+          let firstName = this.user.name.split(' ')[0];
+          let lastName = this.user.name.split(' ')[1];
 
-      form.vals({ 
-        "FirstName": firstName,
-        "LastName": lastName,
-        "Company": this.user.company, 
-        "Title": this.user.jobTitle 
-      });
+          form.vals({ 
+            "FirstName": firstName,
+            "LastName": lastName,
+            "Company": this.user.company, 
+            "Title": this.user.jobTitle 
+          });
+        }
     });
-  }
-
-  ngOnDestroy() {
-    this.userSubscription.unsubscribe();
   }
 
   saveEvent() {   
@@ -110,7 +101,6 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit, OnDest
 
   getUserInfo() {
     this.userId = this._userApi.getUserId();
-    this._userApi.getUser(this.userId);
   }
 
 }
