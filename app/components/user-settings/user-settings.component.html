@@ -1,0 +1,39 @@
+<div class="signupEmail">
+    <div *ngIf="errorMessage" class="center" style="color: red;">
+      {{errorMessage}}
+    </div>
+    <form [ngFormModel]="userForm" (submit)="updateUser()">
+      <ion-list>
+        <ion-item>
+          <ion-label>Name</ion-label>
+          <ion-input ngControl="name" id="name" type="text" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Email Address</ion-label>
+          <ion-input ngControl="email" id="email" type="email" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input ngControl="password" id="password" type="password" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Job Title</ion-label>
+          <ion-input ngControl="jobTitle" id="jobTitle" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Company Name</ion-label>
+          <ion-input ngControl="company" id="company" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Phone Number</ion-label>
+          <ion-input ngControl="phone" id="phone" type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-row>
+        <button block class="social-button">
+          <loader [white]="true" *ngIf="updatingUser"></loader>
+          <span *ngIf="!updatingUser">Sign Up</span>
+        </button>
+      </ion-row>
+    </form>
+</div>
