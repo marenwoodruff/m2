@@ -54,6 +54,7 @@
 
     input {
       width: 100%;
+      height: 40px;
     }
   }
 
@@ -64,9 +65,9 @@
 
   .mktoForm input[type="radio"] {
     position: absolute;
-    // height: 1em;
+    height: 1em;
     margin-top: 1em;
-    right: 8em;
+    // right: 8em;
   }
 
   .mktoForm .mktoRadioList > label, .mktoForm .mktoCheckboxList > label {
