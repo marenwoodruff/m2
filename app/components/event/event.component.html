@@ -28,8 +28,13 @@
     </ion-col>
     <ion-col class="register-button-col">
       <button *ngIf="!registered" (click)="register(event)">Register</button>
-      <button *ngIf="registered" disabled>Registered</button>
+      <button *ngIf="registered" outline>Registered</button>
     </ion-col>
+  </ion-row>
+  <ion-row class="friend-registration">
+    <button *ngIf="registered" (click)="register(event)" full>
+      Register a Friend
+    </button>
   </ion-row>
   <ion-row class="event-description light row-padding">
     <ion-col>
