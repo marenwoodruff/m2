@@ -1,4 +1,4 @@
-import {Page, Icon, NavController, ActionSheet} from 'ionic-angular';
+import {Page, Icon, NavController, ActionSheet, MenuController} from 'ionic-angular';
 import {OnInit, OnDestroy, forwardRef, EventEmitter} from 'angular2/core';
 import {EventsComponent} from '../../components/events/events.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
@@ -24,9 +24,13 @@ export class EventsPage implements OnInit, OnDestroy {
     private eventSubscription: EventEmitter<Event[]>;
     private isLoading:boolean = true;
 
-    constructor(private _eventsApi:EventService, public nav:NavController) { }
+    constructor(
+      private _eventsApi:EventService,
+      private _menuController: MenuController,
+      public nav:NavController) { }
 
     ngOnInit():any {
+      this._menuController.enable(true);
       this.getCurrentLocation();
 
       this.eventSubscription = this._eventsApi.events.subscribe(
