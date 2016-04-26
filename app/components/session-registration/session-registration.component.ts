@@ -70,6 +70,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit, OnDest
 
   submitForm(eventInfo:any) {
     MktoForms2.whenReady((form) => {
+      let vals = form.vals();
       let valid = form.validate();
       if (valid) {
         this._userEventApi.createUserEvent(this.userId, eventInfo);
