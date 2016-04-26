@@ -20,13 +20,14 @@ import {User} from '../../models/user/user';
 export class SessionRegistrationPage implements OnInit, AfterContentInit, OnDestroy {
   event: Event; 
   userId: number;
+  user: User;
   userSubscription: EventEmitter<User>;
 
   constructor(private _userApi:UserService, private _userEventApi:UserEventService, private nav: NavController, private params: NavParams) {}
 
   ngOnInit() {
     this.userSubscription = this._userApi.user.subscribe(
-      (user) => console.log(user),
+      (user) => this.user = user,
       (err) => console.log(err),
       () => console.log('user event for registration')
     );
@@ -35,7 +36,18 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit, OnDest
   }
 
   ngAfterContentInit() {
-    MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862);
+    MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862, (form) => {
+      console.log(this.user);
+      let firstName = this.user.name.split(' ')[0];
+      let lastName = this.user.name.split(' ')[1];
+
+      form.vals({ 
+        "FirstName": firstName,
+        "LastName": lastName,
+        "Company": this.user.company, 
+        "Title": this.user.jobTitle 
+      });
+    });
   }
 
   ngOnDestroy() {
