@@ -6,34 +6,36 @@
       <ion-list>
         <ion-item>
           <ion-label>Name</ion-label>
-          <ion-input ngControl="name" id="name" type="text" required></ion-input>
+          <ion-input [(ngModel)]="user.name" ngControl="name" id="name" type="text" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Email Address</ion-label>
-          <ion-input ngControl="email" id="email" type="email" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input ngControl="password" id="password" type="password" required></ion-input>
+          <ion-input [(ngModel)]="user.email" ngControl="email" id="email" type="email" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Job Title</ion-label>
-          <ion-input ngControl="jobTitle" id="jobTitle" type="text"></ion-input>
+          <ion-input [(ngModel)]="user.jobTitle" ngControl="jobTitle" id="jobTitle" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Company Name</ion-label>
-          <ion-input ngControl="company" id="company" type="text"></ion-input>
+          <ion-input [(ngModel)]="user.company" ngControl="company" id="company" type="text"></ion-input>
         </ion-item>
-        <ion-item>
+        <!-- <ion-item>
           <ion-label>Phone Number</ion-label>
-          <ion-input ngControl="phone" id="phone" type="text"></ion-input>
-        </ion-item>
+          <ion-input [(ngModel)]="user.phone" ngControl="phone" id="phone" type="text"></ion-input>
+        </ion-item> -->
       </ion-list>
       <ion-row>
         <button block class="social-button">
           <loader [white]="true" *ngIf="updatingUser"></loader>
-          <span *ngIf="!updatingUser">Sign Up</span>
+          <span *ngIf="!updatingUser">Update</span>
         </button>
       </ion-row>
     </form>
+    <ion-row [hidden]="true">
+      <button block secondary class="social-button">Change Password</button>
+    </ion-row>
+    <ion-row>
+      <button block danger class="social-button">Delete My Account</button>
+    </ion-row>
 </div>

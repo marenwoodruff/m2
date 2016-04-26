@@ -28,11 +28,10 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder) {
       this.userForm = this._formBuilder.group({
         'email': ['', Validators.required],
-        'password': ['', Validators.required],
         'name': ['', Validators.required],
         'company': [''],
         'jobTitle': [''],
-        'phone': ['', Validators.compose([ValidationService.phoneNumberValidator])]
+        // 'phone': ['', Validators.compose([ValidationService.phoneNumberValidator])]
       })
   }
 
@@ -64,7 +63,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     if (this.userForm.dirty && this.userForm.valid) {
       this.updatingUser = true;
       this.user.email = this.userForm.value.email;
-      this.user.password = this.userForm.value.password;
       this.user.name = this.userForm.value.name;
       this.user.company = this.userForm.value.company;
       this.user.jobTitle = this.userForm.value.jobTitle;
