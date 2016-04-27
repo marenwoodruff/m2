@@ -27,8 +27,6 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.getUserInfo();
-    let u = this._userApi.getUserFromLocalStorage();
-    console.log(u);
   }
 
   ngAfterContentInit() {
@@ -62,10 +60,18 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
     this.submitForm(eventInfo);
   }
 
+  registerFriend() {
+    MktoForms2.whenReady((form) => {
+      let valid = form.validate();
+      if (valid) {
+        this.confirmRegistration();
+      }
+    });
+  }
+
   submitForm(eventInfo:any) {
     MktoForms2.whenReady((form) => {
       let vals = form.vals();
-      console.log(vals);
       let valid = form.validate();
       if (valid) {
         let userInfo = {
@@ -74,7 +80,9 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
           email: vals.Email,
           company: vals.Company,
           jobTitle: vals.Title,
+          phone: vals.Phone
         }
+        console.log(userInfo);
         this._userEventApi.createUserEvent(this.userId, eventInfo);
         this._userApi.updateUser(this.userId, userInfo);
         this.confirmRegistration();
