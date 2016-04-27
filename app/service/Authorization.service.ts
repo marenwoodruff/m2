@@ -35,7 +35,6 @@ export class AuthorizationService {
   public emitAuthorizedUser(authorizedUser:AuthorizedUser): void{
     const user = new User(authorizedUser);
     this._storageService.setItem('MyMatrixAuthToken', authorizedUser.token);
-    this._storageService.setItem('MyMatrixUser', JSON.stringify(user));
     this._userService.emitUser(user);
   }
 

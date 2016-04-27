@@ -44,6 +44,7 @@ export class UserService {
   }
 
   public emitUser(user:User):void {
+    this._storageService.setItem('MyMatrixUser', JSON.stringify(user));
     this.user.emit(user);
   }
 
@@ -60,6 +61,9 @@ export class UserService {
     const userBody = JSON.stringify(user);
     this.httpClient.put(`users/${userId}`, userBody)
       .subscribe(
+        () => {
+          this.emitUser(user);
+        },
         err => {
             console.log(err);
             this.error.emit(err.json());
