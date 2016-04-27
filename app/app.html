@@ -1,7 +1,7 @@
 <ion-menu [content]="content">
 
   <ion-toolbar primary>
-    <ion-title>My MATRIX</ion-title>
+    <ion-title>Welcome, {{userName}}</ion-title>
   </ion-toolbar>
 
   <ion-content>
@@ -9,7 +9,8 @@
       <button menuClose ion-item *ngFor="#p of pages" (click)="openPage(p)">
         <ion-label style="margin-left: 1em; padding: 0.15em;">{{p.title}}</ion-label>
         <ion-icon style="margin: 8px -5px 8px 8px; width: 1.4rem;" item-right>
-        <img src="build/assets/icons/SideArrow.png" alt="click here" /></ion-icon>
+          <img src="build/assets/icons/SideArrow.png" alt="click here" />
+        </ion-icon>
       </button>
     </ion-list>
   </ion-content>
@@ -17,3 +18,4 @@
 </ion-menu>
 
 <ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+

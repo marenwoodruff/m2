@@ -3,8 +3,10 @@
   import {SurveysComponent} from '../../components/surveys/surveys.component';
   import {StorageService} from '../../service/storage.service';
   import {SurveyService} from '../../service/survey.service';
+  import {EventService} from '../../service/event.service';
   import {Survey} from '../../models/survey/survey';
   import {SurveyProgress} from '../../models/survey/surveyProgress';
+  import {Event} from '../../models/Events/event';
 
 
   @Page({
@@ -14,17 +16,31 @@
 
   export class SurveysPage implements OnInit, OnDestroy {
       public surveys: Survey[];
+      public events: Event[];
       public startedSurveys: Survey[];
       public surveyIds = [];
       private surveySubscription: EventEmitter<Survey[]>;
       private storageSubscription: EventEmitter<Survey[]>;
+      private eventSurveySubscription: EventEmitter<any>;
       surveysInProgress: SurveyProgress[];
 
-      constructor(private _surveyApi: SurveyService, private _storageApi:StorageService) { }
+      constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService) { }
 
       ngOnInit():any {
+
+        this.eventSurveySubscription = this._surveyApi.eventSurveys.subscribe(
+          (eventSurveys) => {
+            eventSurveys.forEach((survey) => {
+              this._surveyApi.getSurveys(survey.surveyId);
+            });
+          },
+          (err) => console.log(err),
+          () => console.log('have survey ids based on events')
+        );
+
         this.surveySubscription = this._surveyApi.surveys.subscribe(
           (surveys) => {
+            console.log(surveys);
             this.surveys = surveys;
             this.checkSurveyProgress(this.surveys);
           },
@@ -49,12 +65,13 @@
           }
         );
 
-        this._surveyApi.getSurveys();
+        this._surveyApi.getSurveyForEvents();
       }
 
       ngOnDestroy() {
         this.surveySubscription.unsubscribe();
         this.storageSubscription.unsubscribe();
+        this.eventSurveySubscription.unsubscribe();
       }
 
       findQuestionId(survey) {

@@ -65,12 +65,15 @@
 
   .mktoForm input[type="radio"] {
     position: absolute;
+    height: 1em;
+    margin-top: 1em;
+    // right: 8em;
   }
 
   .mktoForm .mktoRadioList > label, .mktoForm .mktoCheckboxList > label {
     margin-left: 2.5em;
     position: relative;
-    margin-top: 1.15em;
+    margin-top: 1em;
   }
 
   #mktoForm_1862 {
