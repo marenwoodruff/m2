@@ -18,7 +18,7 @@ import {User} from '../../models/user/user';
 })
 
 export class SessionRegistrationPage implements OnInit, AfterContentInit {
-  event: Event; 
+  event: Event;
   userId: number;
   user: User;
   userSubscription: EventEmitter<User>;
@@ -35,17 +35,17 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
           let firstName = this.user.name.split(' ')[0];
           let lastName = this.user.name.split(' ')[1];
 
-          form.vals({ 
+          form.vals({
             "FirstName": firstName,
             "LastName": lastName,
-            "Company": this.user.company, 
-            "Title": this.user.jobTitle 
+            "Company": this.user.company,
+            "Title": this.user.jobTitle
           });
         }
     });
   }
 
-  saveEvent() {   
+  saveEvent() {
     let eventInfo = {
       eventId: this.event.eventId,
       title: this.event.title,
