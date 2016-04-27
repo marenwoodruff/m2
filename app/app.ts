@@ -58,7 +58,6 @@ class MyApp implements OnInit{
             {title: 'Logout', component: LogoutPage}
         ];
 
-        this.userInfo();
     }
 
     private initializeApp() {
@@ -69,6 +68,7 @@ class MyApp implements OnInit{
         		  if (loggedIn === true) {
                       this.menuController.enable(true);
                       this.setInitialPage(EventsPage);
+                      this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
     		      }
     	     });
         });
