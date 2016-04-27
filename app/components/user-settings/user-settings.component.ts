@@ -31,14 +31,15 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
         'name': ['', Validators.required],
         'company': [''],
         'jobTitle': [''],
-        // 'phone': ['', Validators.compose([ValidationService.phoneNumberValidator])]
+        'phone': ['', Validators.compose([ValidationService.phoneNumberValidator])]
       })
   }
 
   ngOnInit(): any {
-    this.user = this._userService.getUserFromLocalStorage();
+    this.initializeUser();
     this.userSubscription = this._userService.user.subscribe(
         (user) => {
+          this.updatingUser = false;
           console.log(user);
           // this._navController.setRoot(EventsPage);
         }
@@ -57,6 +58,10 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   ngOnDestroy():any {
     this.userSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
+  }
+
+  initializeUser():void {
+    this.user = this._userService.getUserFromLocalStorage();
   }
 
   updateUser(){
