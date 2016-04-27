@@ -8,3 +8,4 @@
 /// <reference path="main/ambient/firebase/index.d.ts" />
 /// <reference path="main/definitions/moment/index.d.ts" />
 /// <reference path="window.d.ts" />
+/// <reference path="marketo.d.ts" />
