@@ -57,8 +57,6 @@ class MyApp implements OnInit{
             {title: 'Support', component: SupportPage},
             {title: 'Logout', component: LogoutPage}
         ];
-
-        this.userInfo();
     }
 
     private initializeApp() {
@@ -67,6 +65,7 @@ class MyApp implements OnInit{
             this.nav = nav;
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
+                      this.userInfo();
                       this.menuController.enable(true);
                       this.setInitialPage(EventsPage);
     		      }
