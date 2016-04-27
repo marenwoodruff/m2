@@ -27,7 +27,7 @@ export class EventPage implements OnInit {
     this.event = this.params.get('event');
     this.currentLocation = this.params.get('location');
   }
-  
+
   private share(message:string, subject:string, file:string, link:string):void {
     link = `http://matrixres.com${link}`;
     this.platform.ready().then(() => {
