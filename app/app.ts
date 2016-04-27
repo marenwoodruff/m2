@@ -9,7 +9,7 @@ import {LoginPage} from './pages/login/login.page';
 import {LogoutPage} from './pages/logout/logout.page';
 import {SignupPage} from './pages/signup/signup.page';
 import {ContactPage} from './pages/contact/contact.page';
-import {SettingsPage} from './pages/settings/settings.page';
+import {UserSettingsPage} from './pages/user-settings/user-settings.page';
 import {RegistrationPage} from './pages/registration/registration.page';
 import {AuthorizationService} from './service/authorization.service';
 import {UserService} from './service/user.service';
@@ -53,7 +53,7 @@ class MyApp implements OnInit{
             {title: 'My MATRIX', component: UserEventsPage},
             {title: 'Surveys', component: SurveysPage},
             {title: 'Contact Us', component: ContactPage},
-            {title: 'Settings', component: SettingsPage},
+            {title: 'User Settings', component: UserSettingsPage},
             {title: 'Support', component: SupportPage},
             {title: 'Logout', component: LogoutPage}
         ];
