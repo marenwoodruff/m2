@@ -33,7 +33,6 @@ export class EventsPage implements OnInit, OnDestroy {
       this._menuController.enable(true);
       this.eventSubscription = this._eventsApi.events.subscribe(
           events => {
-            alert('events here');
             this.events = events;
           },
           err => console.log("EventsComponent events subscribe error: ", err),
