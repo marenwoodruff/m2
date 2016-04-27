@@ -24,6 +24,7 @@
 @import "../pages/events/events.page";
 @import "../components/survey-description/survey-description.component";
 @import "../pages/event/event.page";
+@import "../pages/support/support.page";
 
 .center {
   text-align: center;
@@ -58,4 +59,8 @@
 
 body {
   font-family: lato-regular;
+
+  form {
+    font-family: lato-regular;
+  }
 }

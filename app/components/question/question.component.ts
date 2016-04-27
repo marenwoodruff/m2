@@ -67,6 +67,7 @@ export class QuestionComponent implements OnInit {
         survey: this.questions
       });
     } else {
+      this.enabled = true;
       this.questionIndex = this.questionIndex + 1;
       this.currentQuestion = this.questions[this.questionIndex];
     }

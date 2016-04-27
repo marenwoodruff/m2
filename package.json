@@ -54,6 +54,11 @@
       "platform": "android",
       "version": "",
       "locator": "android"
+    },
+    {
+      "platform": "ios",
+      "version": "4.1.0",
+      "locator": "ios@4.1.0"
     }
   ]
 }
