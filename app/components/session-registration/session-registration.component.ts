@@ -77,7 +77,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
         let userInfo = {
           id: this.userId,
           name: this.user.name,
-          email: vals.Email,
+          email: this.user.email,
           company: vals.Company,
           jobTitle: vals.Title,
           phone: vals.Phone
