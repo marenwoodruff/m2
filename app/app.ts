@@ -1,5 +1,5 @@
 import {App, IonicApp, Platform, NavController, Icon, MenuController} from 'ionic-angular';
-import {forwardRef, OnInit} from 'angular2/core';
+import {forwardRef, OnInit, EventEmitter} from 'angular2/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
@@ -16,6 +16,8 @@ import {UserService} from './service/user.service';
 import {HttpClient} from './service/http-client.service';
 import {UserEventsPage} from './pages/user-events/user-events.page';
 import {UserEventService} from './service/userEvent.service';
+import {SupportPage} from './pages/support/support.page';
+import {User} from './models/user/user';
 
 @App({
     templateUrl: 'build/app.html',
@@ -27,6 +29,8 @@ class MyApp implements OnInit{
     rootPage: any = LoginPage;
     pages:Array<{title: string, component: any}>;
     nav:NavController;
+    userName: string;
+    userSubscription: EventEmitter<User>;
 
     constructor(
       private app:IonicApp,
@@ -38,6 +42,11 @@ class MyApp implements OnInit{
       private menuController: MenuController) {}
 
     ngOnInit(){
+        this.userSubscription = this.userService.user.subscribe(
+          user => this.userName = user.name.split(' ')[0],
+          err => console.log(err),
+          () => console.log('we has user name')
+        )
         this.initializeApp();
         this.pages = [
             {title: 'MATRIX Calendar', component: EventsPage},
@@ -45,9 +54,11 @@ class MyApp implements OnInit{
             {title: 'Surveys', component: SurveysPage},
             {title: 'Contact Us', component: ContactPage},
             {title: 'User Settings', component: UserSettingsPage},
+            {title: 'Support', component: SupportPage},
             {title: 'Logout', component: LogoutPage}
         ];
 
+        this.userInfo();
     }
 
     private initializeApp() {
@@ -56,8 +67,8 @@ class MyApp implements OnInit{
             this.nav = nav;
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
-                this.menuController.enable(true);
-        			  this.setInitialPage(EventsPage);
+                      this.menuController.enable(true);
+                      this.setInitialPage(EventsPage);
     		      }
     	     });
         });
@@ -75,5 +86,10 @@ class MyApp implements OnInit{
     private hasLoggedIn(cb) {
       var loggedIn = this.userService.isUserLoggedIn();
       return cb(loggedIn)
+    }
+
+    private userInfo() {
+      let userId = this.userService.getUserId();
+      this.userService.getUser(userId);
     }
 }
