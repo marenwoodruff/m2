@@ -35,10 +35,11 @@ export class BeginSurveyPage implements OnInit {
       this.surveyTime = (`${surveyMinTime} - ${surveyMaxTime} mins`);
       this.surveyStartText = 'Begin Survey';
     } else {
-
       this.survey.questions.forEach((question, idx) => {
         if (question.id === this.surveyProgress.lastQuestionId) {
           this.lastQuestionIndex = idx;
+        } else {
+          this.lastQuestionIndex = 0;
         }
       })
 

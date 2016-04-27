@@ -1,4 +1,4 @@
-import {Component, Input, AfterContentInit} from 'angular2/core';
+import {Component, Input, AfterContentInit, OnInit, EventEmitter} from 'angular2/core';
 import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
 
 import {UserService} from '../../service/user.service';
@@ -8,22 +8,41 @@ import {EventPage} from '../../pages/event/event.page';
 import {EventsPage} from '../../pages/events/events.page';
 
 import {Event} from '../../models/Events/event';
+import {User} from '../../models/user/user';
 
 @Component({
   selector: 'session-registration',
   templateUrl: 'build/components/session-registration/session-registration.component.html',
   directives: [Button, List, Item, TextInput, Label],
-  inputs: ['event']
+  inputs: ['event', 'user']
 })
 
-export class SessionRegistrationPage implements AfterContentInit {
+export class SessionRegistrationPage implements OnInit, AfterContentInit {
   event: Event; 
   userId: number;
+  user: User;
+  userSubscription: EventEmitter<User>;
 
   constructor(private _userApi:UserService, private _userEventApi:UserEventService, private nav: NavController, private params: NavParams) {}
 
+  ngOnInit() {
+    this.getUserInfo();
+  }
+
   ngAfterContentInit() {
-    MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862);
+    MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862, (form) => {
+        if (this.user) {
+          let firstName = this.user.name.split(' ')[0];
+          let lastName = this.user.name.split(' ')[1];
+
+          form.vals({ 
+            "FirstName": firstName,
+            "LastName": lastName,
+            "Company": this.user.company, 
+            "Title": this.user.jobTitle 
+          });
+        }
+    });
   }
 
   saveEvent() {   
@@ -42,6 +61,7 @@ export class SessionRegistrationPage implements AfterContentInit {
 
   submitForm(eventInfo:any) {
     MktoForms2.whenReady((form) => {
+      let vals = form.vals();
       let valid = form.validate();
       if (valid) {
         this._userEventApi.createUserEvent(this.userId, eventInfo);

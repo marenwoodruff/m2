@@ -37,8 +37,8 @@
   </div>
 </ion-list>
 <ion-toolbar position="bottom">
-  <ion-row center class="question-buttons">
-    <ion-col width-20>
+  <ion-row baseline class="question-buttons">
+    <ion-col width-33>
       <button clear (click)="previousQuestion()" *ngIf="enabled">
         <ion-icon matrixblue name="arrow-back"></ion-icon>
         Previous
@@ -48,18 +48,15 @@
         Previous
       </button>
     </ion-col>
-    <ion-col width-20></ion-col>
-    <ion-col width-20>
+    <ion-col width-33>
       <button clear (click)="skipQuestion()">Skip</button>
     </ion-col>
-    <ion-col width-10></ion-col>
-    <ion-col width-20>
+    <ion-col width-33>
       <button clear (click)="nextQuestion()">
         Next
         <ion-icon matrixblue name="arrow-forward"></ion-icon>
       </button>
     </ion-col>
-    <ion-col width-10></ion-col>
   </ion-row>
 </ion-toolbar>
 
