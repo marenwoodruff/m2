@@ -30,9 +30,6 @@ export class EventsPage implements OnInit, OnDestroy {
       public nav:NavController) { }
 
     ngOnInit():any {
-      this._menuController.enable(true);
-      this.getCurrentLocation();
-
       this.eventSubscription = this._eventsApi.events.subscribe(
           events => {
             this.events = events;
@@ -42,6 +39,8 @@ export class EventsPage implements OnInit, OnDestroy {
       );
 
       this._eventsApi.getEvents();
+      this._menuController.enable(true);
+      this.getCurrentLocation();
     }
 
     ngOnDestroy():any {
@@ -62,7 +61,7 @@ export class EventsPage implements OnInit, OnDestroy {
             text: 'Events Near Me',
             handler: () => {
               this.getCurrentLocation();
-              this.filteredLocation = this.localEvents;
+              this.filteredLocation = this.localEvents ? this.localEvents : this.events;
             }
           }
         ]
@@ -84,7 +83,7 @@ export class EventsPage implements OnInit, OnDestroy {
     }
 
     getLocalEvents(events:Event[]) {
-      if (events) {
+      if (this.currentLocation && events) {
         this.localEvents = events.filter((event) => {
           let eventCoordinates:any[] = event.mapCoordinates.split(',').splice(0, 2);
           let latDistance = Math.abs(eventCoordinates[0] - this.currentLocation[0]);
@@ -93,9 +92,9 @@ export class EventsPage implements OnInit, OnDestroy {
             return true;
           }
         });
-        this.filteredLocation = this.localEvents;
-        this.isLoading = false;
-      }
+      } 
+      this.filteredLocation = this.localEvents ? this.localEvents : this.events;
+      this.isLoading = false;
     }
 
     changePage(page:string) {
@@ -111,7 +110,9 @@ export class EventsPage implements OnInit, OnDestroy {
         },
         (error) => {
           console.log('getting location error:', error);
-        }
+          this.getLocalEvents(this.events);
+        },
+        { timeout: 5000 }
       );
     }
 
