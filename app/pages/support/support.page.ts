@@ -9,6 +9,7 @@ export class SupportPage {
   contactSupport() {
     cordova.plugins.email.isAvailable((available) => {
       if (available) {
+        alert('available!');
         cordova.plugins.email.open({
           to: 'events@matrixres.com',
           subject: 'MyMATRIX Mobile Help'
