@@ -4,8 +4,21 @@
     </div>
 
     <form [ngFormModel]="userForm" (submit)="updateUser()">
-      <ion-row>
-            <control-message control="email" [controlGroup]="userForm"></control-message>
+      <ion-row class="center">
+        <ion-col>
+          <control-message
+            control="email"
+            [controlGroup]="userForm"
+            displayName="Email"></control-message>
+          <control-message
+            control="name"
+            [controlGroup]="userForm"
+            displayName="Name"></control-message>
+          <control-message
+            control="phone"
+            [controlGroup]="userForm"
+            displayName="Phone number"></control-message>
+          </ion-col>
       </ion-row>
       <ion-list>
         <ion-item>

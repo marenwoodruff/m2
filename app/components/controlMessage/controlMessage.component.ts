@@ -4,12 +4,13 @@ import {ValidationService} from '../../service/validation.service';
 
 @Component({
     selector: 'control-message',
-    inputs: ['controlName: control', 'controlGroup'],
-    template: `<div *ngIf="errorMessage !== null">{{errorMessage}}</div>`,
+    inputs: ['controlName: control', 'controlGroup', 'name: displayName'],
+    template: `<div *ngIf="errorMessage !== null" style="color:red;">{{errorMessage}}</div>`,
     providers: [NgFormModel]
 })
 export class ControlMessageComponent {
     controlName: string;
+    name: string;
     controlGroup: ControlGroup;
     constructor() { }
 
@@ -18,7 +19,11 @@ export class ControlMessageComponent {
 
         for (let propertyName in c.errors) {
             if (c.errors.hasOwnProperty(propertyName) && c.touched) {
-                return ValidationService.getValidatorErrorMessage(propertyName);
+                if (propertyName === 'required') {
+                  return `${this.name} is required`;
+                } else {
+                  return ValidationService.getValidatorErrorMessage(propertyName);
+                }
             }
         }
 
