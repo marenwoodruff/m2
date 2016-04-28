@@ -4,17 +4,17 @@ import {ValidationService} from '../../service/validation.service';
 
 @Component({
     selector: 'control-message',
-    inputs: ['controlName: control', 'form'],
+    inputs: ['controlName: control', 'controlGroup'],
     template: `<div *ngIf="errorMessage !== null">{{errorMessage}}</div>`,
     providers: [NgFormModel]
 })
 export class ControlMessageComponent {
     controlName: string;
-    form: ControlGroup;
-    constructor(@Host() private _formDir: NgFormModel) { }
+    controlGroup: ControlGroup;
+    constructor() { }
 
     get errorMessage() {
-        let c = this.form.find(this.controlName);
+        let c = this.controlGroup.find(this.controlName);
 
         for (let propertyName in c.errors) {
             if (c.errors.hasOwnProperty(propertyName) && c.touched) {
