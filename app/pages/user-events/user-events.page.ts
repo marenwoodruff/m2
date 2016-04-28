@@ -6,6 +6,7 @@ import {UserEvent} from '../../models/user/userEvent';
 import {Event} from '../../models/Events/event';
 
 import {EventsComponent} from '../../components/events/events.component';
+import {LoaderComponent} from '../../components/loader/loader.component';
 
 import {UserEventService} from '../../service/userEvent.service';
 import {UserService} from '../../service/user.service';
@@ -13,7 +14,7 @@ import {EventService} from '../../service/event.service';
 
 @Page({
   templateUrl: 'build/pages/user-events/user-events.page.html',
-  directives: [EventsComponent]
+  directives: [EventsComponent, LoaderComponent]
 })
 
 export class UserEventsPage implements OnInit, OnDestroy {
@@ -24,6 +25,7 @@ export class UserEventsPage implements OnInit, OnDestroy {
   events: Event[];
   userId: number;
   location: Array<number>;
+  private isLoading: boolean = true;
 
   constructor(private _userEventApi:UserEventService, private _userApi:UserService, private _eventApi:EventService) {}
   
@@ -62,5 +64,6 @@ export class UserEventsPage implements OnInit, OnDestroy {
     this.userEvents = userEvents.filter((event) => {
       return moment.unix(event.startDate).isAfter();
     });
+    this.isLoading = false;
   }
 }
