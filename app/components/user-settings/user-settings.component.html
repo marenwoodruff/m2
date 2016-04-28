@@ -2,7 +2,11 @@
     <div *ngIf="errorMessage" class="center" style="color: red;">
       {{errorMessage}}
     </div>
+
     <form [ngFormModel]="userForm" (submit)="updateUser()">
+      <ion-row>
+            <control-message control="email" [form]="userForm"></control-message>
+      </ion-row>
       <ion-list>
         <ion-item>
           <ion-label>Name</ion-label>
@@ -33,7 +37,7 @@
       </ion-row>
     </form>
     <ion-row [hidden]="user.authenticationProvider">
-      <button block secondary class="social-button">Change Password</button>
+      <button block secondary class="social-button" (click)="goToChangePassword()">Change Password</button>
     </ion-row>
     <ion-row>
       <button block danger class="social-button">Delete My Account</button>
