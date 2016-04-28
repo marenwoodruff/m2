@@ -68,7 +68,7 @@
         </ion-item>
       </ion-list>
       <ion-row>
-        <button block class="social-button">
+        <button block class="social-button" [disabled]="!userForm.valid">
           <loader [white]="true" *ngIf="signingUp"></loader>
           <span *ngIf="!signingUp">Sign Up</span>
         </button>

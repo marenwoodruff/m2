@@ -26,8 +26,10 @@ export class ChangePasswordComponent{
     private _formBuilder: FormBuilder) {
       this.passwordForm = this._formBuilder.group({
         'oldPassword': ['', Validators.required],
-        'newPassword': ['', Validators.required],
-        'confirmNewPassword': ['', Validators.required],
+        matchingPassword: this._formBuilder.group({
+          password: ['', Validators.required],
+          confirmPassword: ['', Validators.required]
+        }, {validator: this.areEqual})
       })
   }
 
@@ -56,8 +58,34 @@ export class ChangePasswordComponent{
   }
 
   private changePassword():void{
-
+    if (this.passwordForm.dirty && this.passwordForm.valid){
+      console.log("change password");
+    }
   }
 
+
+  areEqual(group: ControlGroup) {
+    let val;
+    let valid = true;
+
+    for (name in group.controls) {
+      if (val === undefined) {
+        val = group.controls[name].value
+      } else {
+        if (val !== group.controls[name].value) {
+          valid = false;
+          break;
+        }
+      }
+    }
+
+    if (valid) {
+      return null;
+    }
+
+    return {
+      areEqual: true
+    };
+  }
 
 }
