@@ -88,7 +88,6 @@
               LinkedIn
             </button>
           </ion-col>
-          <ion-col></ion-col>
           <ion-col style="display: flex; justify-content: center;">
             <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" style="border-radius: 0;" twitter large>
               <ion-icon class="icon-twitter"></ion-icon>
@@ -102,7 +101,7 @@
         <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
         <ion-row>
           <ion-col style="display: flex; justify-content: center;">
-            <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" style="border-radius: 0;" twitter large>
+            <button (click)="launchUrl('http://twitter.com/'+ event.twitter)" style="border-radius: 0;" twitter full>
               <ion-icon class="icon-twitter"></ion-icon>
               Twitter
             </button>
@@ -114,7 +113,7 @@
         <h5 class="center connect">Connect with {{event.eventFacilitator}}</h5>
         <ion-row>
           <ion-col style="display: flex; justify-content: center;">
-            <button (click)="launchUrl(event.linkedIn)" style="border-radius: 0;" linkedIn large>
+            <button (click)="launchUrl(event.linkedIn)" style="border-radius: 0;" linkedIn full>
               <ion-icon class="icon-linkedin"></ion-icon>
               LinkedIn
             </button>
