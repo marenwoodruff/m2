@@ -7,11 +7,12 @@
   import {Survey} from '../../models/survey/survey';
   import {SurveyProgress} from '../../models/survey/surveyProgress';
   import {Event} from '../../models/Events/event';
+  import {LoaderComponent} from '../../components/loader/loader.component';
 
 
   @Page({
     templateUrl: 'build/pages/surveys/surveys.page.html',
-    directives: [SurveysComponent]
+    directives: [SurveysComponent, LoaderComponent]
   })
 
   export class SurveysPage implements OnInit, OnDestroy {
@@ -22,6 +23,7 @@
       private surveySubscription: EventEmitter<Survey[]>;
       private storageSubscription: EventEmitter<Survey[]>;
       private eventSurveySubscription: EventEmitter<any>;
+      private isLoading: boolean = true;
       surveysInProgress: SurveyProgress[];
 
       constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService) { }
@@ -40,7 +42,6 @@
 
         this.surveySubscription = this._surveyApi.surveys.subscribe(
           (surveys) => {
-            console.log(surveys);
             this.surveys = surveys;
             this.checkSurveyProgress(this.surveys);
           },
@@ -100,6 +101,7 @@
         surveys.forEach((survey) => {
           this._storageApi.getSurveyProgress(survey.id);
         });
+        this.isLoading = false;
       }
 
   }

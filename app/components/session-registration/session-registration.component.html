@@ -6,7 +6,10 @@
     </ion-card-header>
     <ion-card-content>
       <form width-90 center id="mktoForm_1862"></form>
-      <button id="register-button" class="register-button" (click)="saveEvent()" clear>
+      <button *ngIf="user" id="register-button" class="register-button" (click)="saveEvent()" clear>
+        <img src="build/assets/images/RegisterButton.jpg" alt="">
+      </button>
+      <button *ngIf="!user" id="register-button" class="register-button" (click)="registerFriend()" clear>
         <img src="build/assets/images/RegisterButton.jpg" alt="">
       </button>
     </ion-card-content>
