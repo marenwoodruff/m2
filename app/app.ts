@@ -66,6 +66,7 @@ class MyApp implements OnInit{
                       this.userInfo();
                       this.menuController.enable(true);
                       this.setInitialPage(EventsPage);
+                      this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
     		      }
     	     });
         });

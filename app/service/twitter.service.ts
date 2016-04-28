@@ -23,7 +23,7 @@ export class TwitterService {
     feed:EventEmitter<TwitterFeed[]> = new EventEmitter();
     bearerToken:EventEmitter<any> = new EventEmitter();
     twitterCredentials:EventEmitter<any> = new EventEmitter();
-    firebaseUrl: String;
+    firebaseUrl: string;
 
     constructor(private http: Http, private _authApi: AuthorizationService) {
       this.firebaseUrl = "https://mymatrix.firebaseio.com/messages";
@@ -43,7 +43,11 @@ export class TwitterService {
               email: null,
               authenticationProviderId: '2',
               authenticationId: authdata.uid,
-              id: null
+              authenticationProvider: null,
+              id: null,
+              admin: false,
+              password: '',
+              phone: ''
             };
           this._authApi.authorizeUser(this.userLogin);
         }
