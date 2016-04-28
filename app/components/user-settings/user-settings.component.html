@@ -43,7 +43,7 @@
         </ion-item>
       </ion-list>
       <ion-row>
-        <button block class="social-button">
+        <button block class="social-button" [disabled]="!userForm.valid">
           <loader [white]="true" *ngIf="updatingUser"></loader>
           <span *ngIf="!updatingUser">Update</span>
         </button>
