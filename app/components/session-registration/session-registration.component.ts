@@ -39,7 +39,9 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
             "FirstName": firstName,
             "LastName": lastName,
             "Company": this.user.company,
-            "Title": this.user.jobTitle
+            "Title": this.user.jobTitle,
+            "Phone": this.user.phone
+
           });
         }
     });
@@ -59,12 +61,34 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
     this.submitForm(eventInfo);
   }
 
+  registerFriend() {
+    MktoForms2.whenReady((form) => {
+      let valid = form.validate();
+      if (valid) {
+        this.confirmRegistration();
+      }
+    });
+  }
+
   submitForm(eventInfo:any) {
     MktoForms2.whenReady((form) => {
       let vals = form.vals();
       let valid = form.validate();
       if (valid) {
+        let userInfo = {
+          id: this.userId,
+          name: this.user.name,
+          email: this.user.email,
+          company: vals.Company,
+          jobTitle: vals.Title,
+          phone: vals.Phone,
+          admin: this.user.admin,
+          password: this.user.password,
+          authenticationProvider: this.user.authenticationProvider
+        }
+        console.log(userInfo);
         this._userEventApi.createUserEvent(this.userId, eventInfo);
+        this._userApi.updateUser(this.userId, userInfo);
         this.confirmRegistration();
       } else {
         console.log('form invalid');

@@ -8,7 +8,6 @@ import {EventService} from './service/event.service';
 import {LoginPage} from './pages/login/login.page';
 import {LogoutPage} from './pages/logout/logout.page';
 import {SignupPage} from './pages/signup/signup.page';
-import {ContactPage} from './pages/contact/contact.page';
 import {UserSettingsPage} from './pages/user-settings/user-settings.page';
 import {RegistrationPage} from './pages/registration/registration.page';
 import {AuthorizationService} from './service/authorization.service';
@@ -52,12 +51,10 @@ class MyApp implements OnInit{
             {title: 'MATRIX Calendar', component: EventsPage},
             {title: 'My MATRIX', component: UserEventsPage},
             {title: 'Surveys', component: SurveysPage},
-            {title: 'Contact Us', component: ContactPage},
             {title: 'User Settings', component: UserSettingsPage},
             {title: 'Support', component: SupportPage},
             {title: 'Logout', component: LogoutPage}
         ];
-
     }
 
     private initializeApp() {
@@ -66,6 +63,7 @@ class MyApp implements OnInit{
             this.nav = nav;
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
+                      this.userInfo();
                       this.menuController.enable(true);
                       this.setInitialPage(EventsPage);
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
