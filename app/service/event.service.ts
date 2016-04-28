@@ -35,7 +35,7 @@ export class EventService {
       headers.append('Access-Control-Allow-Origin', '*');
       this.httpClient.getEvents("www.matrixres.com/apis/eventapi", headers)
         .map(res => {
-          return <Event[]>res.json().events;
+          return res.json().events;
         })
         .subscribe(
           events => {
@@ -67,6 +67,6 @@ export class EventService {
     }
 
     public saveUserEvent(): void {
-      
+
     }
 }

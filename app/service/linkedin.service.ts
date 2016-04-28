@@ -18,7 +18,7 @@ export class LinkedInService {
   constructor(private _api: Http, private _authApi: AuthorizationService) { }
 
   auth() {
-    this.stepOne().then((success) => {
+    this.stepOne().then((success:any) => {
 
       let headers = new Headers(),
         body = 'grant_type=authorization_code&code=' + success.code + '&redirect_uri=http://10.55.254.92:8100&client_id=77afy8frauu9vo&client_secret=AQsInIAAqrwqQjy5';
@@ -82,7 +82,11 @@ export class LinkedInService {
           email: userObject.emailAddress,
           authenticationProviderId: '1',
           authenticationId: userObject.id,
-          id: null
+          id: null,
+          phone: '',
+          password: '',
+          admin: false,
+          authenticationProvider: null,
         };
         this._authApi.authorizeUser(this.userLogin);
         this.linkedInCredentialsEmitter.emit(userObject);
