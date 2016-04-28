@@ -4,4 +4,7 @@ export class UserEvent {
   registered:boolean
   userId:number
   title:string
+  startDate:number
+  city:string
+  state:string
 }

@@ -19,7 +19,7 @@ export class User {
       this.company = authorizedUser.company;
       this.jobTitle = authorizedUser.jobTitle;
       this.email = authorizedUser.email;
-      this.phone = authorizedUser.phone;
+      this.phone = authorizedUser.phone ? authorizedUser.phone : '';
       this.authenticationProvider = authorizedUser.authenticationProvider;
     }
   }
