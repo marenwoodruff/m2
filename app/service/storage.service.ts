@@ -44,12 +44,19 @@ export class StorageService {
     }
 
     public getSurveyProgress(id:any):void {
+
+      this.storage.get('MatrixDB').then((name) => {
+        console.log('getting DB:', name);
+      });
+
       this.storage.query(`SELECT * FROM Survey WHERE surveyId = '${id}'`)
         .then((data) => {
           let results = data.res.rows;
           for (var i = 0; i < results.length; i++) {
-            this.surveys.push(JSON.parse(results[i].survey));
-            this.surveyProgress.emit(this.surveys);
+            if (results[i]) {
+              this.surveys.push(JSON.parse(results[i].survey));
+              this.surveyProgress.emit(this.surveys);
+            }
           }
         }, (error) => {
           console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
