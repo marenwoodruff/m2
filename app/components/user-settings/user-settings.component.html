@@ -5,7 +5,7 @@
 
     <form [ngFormModel]="userForm" (submit)="updateUser()">
       <ion-row>
-            <control-message control="email" [form]="userForm"></control-message>
+            <control-message control="email" [controlGroup]="userForm"></control-message>
       </ion-row>
       <ion-list>
         <ion-item>
