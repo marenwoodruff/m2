@@ -3,15 +3,16 @@ import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from 'angular2/co
 import {Button, List, Item, TextInput, Label, NavController} from 'ionic-angular';
 import {UserService} from '../../service/user.service';
 import {User} from '../../models/user/user';
-import {EventsPage} from '../../pages/events/events.page';
+import {ChangePasswordPage} from '../../pages/changePassword/changePassword.page';
 import {LoaderComponent} from '../loader/loader.component';
+import {ControlMessageComponent} from '../controlMessage/controlMessage.component';
 import {ValidationService} from '../../service/validation.service';
 
 
 @Component({
   selector: 'user-settings',
   templateUrl: 'build/components/user-settings/user-settings.component.html',
-  directives: [Button, List, Item, TextInput, Label, LoaderComponent]
+  directives: [Button, List, Item, TextInput, Label, LoaderComponent, ControlMessageComponent]
 })
 
 export class UserSettingsComponent implements OnInit, OnDestroy {
@@ -27,18 +28,19 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     private _navController: NavController,
     private _formBuilder: FormBuilder) {
       this.userForm = this._formBuilder.group({
-        'email': ['', Validators.required],
+        'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
         'name': ['', Validators.required],
         'company': [''],
         'jobTitle': [''],
-        // 'phone': ['', Validators.compose([ValidationService.phoneNumberValidator])]
+        'phone': ['', Validators.compose([ValidationService.phoneNumberValidator])]
       })
   }
 
   ngOnInit(): any {
-    this.user = this._userService.getUserFromLocalStorage();
+    this.initializeUser();
     this.userSubscription = this._userService.user.subscribe(
         (user) => {
+          this.updatingUser = false;
           console.log(user);
           // this._navController.setRoot(EventsPage);
         }
@@ -59,7 +61,11 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this.errorSubscription.unsubscribe();
   }
 
-  updateUser(){
+  private initializeUser():void {
+    this.user = this._userService.getUserFromLocalStorage();
+  }
+
+  private updateUser():void{
     if (this.userForm.dirty && this.userForm.valid) {
       this.updatingUser = true;
       this.user.email = this.userForm.value.email;
@@ -70,6 +76,10 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       this.user.admin = false;
       this._userService.updateUser(this.user.id, this.user);
     }
+  }
+
+  private goToChangePassword():void {
+    this._navController.push(ChangePasswordPage, this.user);
   }
 
 }

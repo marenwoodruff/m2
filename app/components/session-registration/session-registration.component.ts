@@ -18,7 +18,7 @@ import {User} from '../../models/user/user';
 })
 
 export class SessionRegistrationPage implements OnInit, AfterContentInit {
-  event: Event; 
+  event: Event;
   userId: number;
   user: User;
   userSubscription: EventEmitter<User>;
@@ -35,18 +35,19 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
           let firstName = this.user.name.split(' ')[0];
           let lastName = this.user.name.split(' ')[1];
 
-          form.vals({ 
+          form.vals({
             "FirstName": firstName,
             "LastName": lastName,
-            "Company": this.user.company, 
+            "Company": this.user.company,
             "Title": this.user.jobTitle,
             "Phone": this.user.phone
+
           });
         }
     });
   }
 
-  saveEvent() {   
+  saveEvent() {
     let eventInfo = {
       eventId: this.event.eventId,
       title: this.event.title,
@@ -80,7 +81,10 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
           email: this.user.email,
           company: vals.Company,
           jobTitle: vals.Title,
-          phone: vals.Phone
+          phone: vals.Phone,
+          admin: this.user.admin,
+          password: this.user.password,
+          authenticationProvider: this.user.authenticationProvider
         }
         console.log(userInfo);
         this._userEventApi.createUserEvent(this.userId, eventInfo);
