@@ -47,7 +47,7 @@ export class EventsPage implements OnInit, OnDestroy {
       this.eventSubscription.unsubscribe();
     }
 
-    filterLocations() {
+    private filterLocations() {
       let filterSheet = ActionSheet.create({
         title: 'Filter Events by Location',
         buttons: [
@@ -70,19 +70,19 @@ export class EventsPage implements OnInit, OnDestroy {
       this.nav.present(filterSheet);
     }
 
-    getUpcomingEvents(events:Event[]) {
+    private getUpcomingEvents(events:Event[]) {
       this.upcomingEvents = events.filter((event) => {
         return moment.unix(event.startDate).isAfter();
       });
     }
 
-    getPastEvents(events:Event[]) {
+    private getPastEvents(events:Event[]) {
       this.pastEvents = events.filter((event) => {
         return moment.unix(event.startDate).isBefore();
       });
     }
 
-    getLocalEvents(events:Event[]) {
+    private getLocalEvents(events:Event[]) {
       if (this.currentLocation && events) {
         this.localEvents = events.filter((event) => {
           let eventCoordinates:any[] = event.mapCoordinates.split(',').splice(0, 2);
@@ -92,16 +92,16 @@ export class EventsPage implements OnInit, OnDestroy {
             return true;
           }
         });
-      } 
+      }
       this.filteredLocation = this.localEvents ? this.localEvents : this.events;
       this.isLoading = false;
     }
 
-    changePage(page:string) {
+    private changePage(page:string) {
       this.page = (this.page === page) ? null : page;
     }
 
-    getCurrentLocation() {
+    private getCurrentLocation() {
       this.isLoading = true;
       navigator.geolocation.getCurrentPosition(
         (position) => {

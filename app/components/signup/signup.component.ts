@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   signUp(){
     if (this.userForm.dirty && this.userForm.valid) {
       this.signingUp = true;
-      const user = new User();
+      let user = new User();
       user.email = this.userForm.value.email;
       user.password = this.userForm.value.password;
       user.name = this.userForm.value.name;
