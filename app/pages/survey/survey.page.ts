@@ -22,5 +22,7 @@ export class SurveyPage {
     this.survey = this.params.get('survey');
     this.inProgress = this.params.get('inProgress');
     this.lastQuestionIndex = this.params.get('lastQuestionIndex');
+    console.log(this.lastQuestionIndex);
   }
+
 }

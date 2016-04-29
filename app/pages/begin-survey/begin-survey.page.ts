@@ -38,13 +38,11 @@ export class BeginSurveyPage implements OnInit {
       this.survey.questions.forEach((question, idx) => {
         if (question.id === this.surveyProgress.lastQuestionId) {
           this.lastQuestionIndex = idx;
-        } else {
-          this.lastQuestionIndex = 0;
         }
-      })
+      });
 
       let
-        length = this.survey.questions.length - (this.lastQuestionIndex + 1),
+        length = this.lastQuestionIndex ? this.survey.questions.length - (this.lastQuestionIndex + 1) : this.survey.questions.length,
         surveyMinTime = Math.floor(length * 0.30),
         surveyMaxTime = length * 0.50;
 

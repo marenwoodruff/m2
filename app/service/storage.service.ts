@@ -1,5 +1,5 @@
 import {Injectable, EventEmitter} from 'angular2/core';
-import {Storage, SqlStorage} from 'ionic-angular';
+import {Platform, Storage, SqlStorage} from 'ionic-angular';
 import {Survey} from "../models/survey/survey";
 import {Question} from "../models/survey/question";
 import {SurveyProgress} from "../models/survey/surveyProgress";
@@ -11,22 +11,29 @@ export class StorageService {
 
   surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
   surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
-  private storage: Storage
   private surveys = [];
+  public storage: Storage;
 
-    constructor() {
+    constructor(public platform:Platform) {
       this.initializeDb();
     }
 
-    private initializeDb() {
-      this.storage = new Storage(SqlStorage, {name: 'MatrixDB'});
+    public initializeDb() {
+      let options = {
+        name: '_ionicstorage',
+        backupFlag: SqlStorage.BACKUP_LOCAL,
+        existingDatabase: true
+      };
 
-      this.storage.query('CREATE TABLE IF NOT EXISTS Survey (surveyId, survey)')
-        .then((data) => {
-          console.log("TABLE CREATED -> " + JSON.stringify(data.res));
-        }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
-        });
+      this.platform.ready().then(() => {
+        this.storage = new Storage(SqlStorage, options);
+        this.storage.query('CREATE TABLE IF NOT EXISTS Survey (surveyId, survey)')
+          .then((data) => {
+            console.log("TABLE CREATED -> " + JSON.stringify(data.res));
+          }, (error) => {
+            console.log("ERROR -> " + JSON.stringify(error.err));
+          });
+      });
     }
 
     public saveSurveyProgress(survey: Survey):void {
@@ -48,8 +55,10 @@ export class StorageService {
         .then((data) => {
           let results = data.res.rows;
           for (var i = 0; i < results.length; i++) {
-            this.surveys.push(JSON.parse(results[i].survey));
-            this.surveyProgress.emit(this.surveys);
+            if (results.length > 0) {
+              this.surveys.push(JSON.parse(results.item(i).survey));
+              this.surveyProgress.emit(this.surveys);
+            }
           }
         }, (error) => {
           console.log("Retrieve Progress ERROR -> " + JSON.stringify(error.err));
