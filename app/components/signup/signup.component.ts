@@ -10,6 +10,7 @@ import {ControlMessageComponent} from '../controlMessage/controlMessage.componen
 import {ValidationService} from '../../service/validation.service';
 
 
+
 @Component({
   selector: 'signup',
   templateUrl: 'build/components/signup/signup.component.html',
@@ -18,7 +19,7 @@ import {ValidationService} from '../../service/validation.service';
 
 export class SignupComponent implements OnInit, OnDestroy {
   private signingUp: boolean;
-  private errorMessage: string;
+  private signupErrorMessage: string;
   private userSubscription: EventEmitter<User>;
   private errorSubscription: EventEmitter<any>;
   private userForm: ControlGroup;
@@ -45,12 +46,12 @@ export class SignupComponent implements OnInit, OnDestroy {
           this._navController.setRoot(EventsPage);
         }
       )
-    this.errorSubscription = this._authService.error.subscribe(
+    this.errorSubscription = this._authService.createUserError.subscribe(
       (error) => {
         console.log(error);
         this.signingUp = false;
         if (error.message){
-          this.errorMessage = error.message;
+          this.signupErrorMessage = error.message;
         }
       }
     )
@@ -61,7 +62,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.errorSubscription.unsubscribe();
   }
 
-  signUp(){
+  private signUp():void {
     if (this.userForm.dirty && this.userForm.valid) {
       this.signingUp = true;
       let user = new User();
