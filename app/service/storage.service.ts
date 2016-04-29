@@ -1,5 +1,5 @@
 import {Injectable, EventEmitter} from 'angular2/core';
-import {Storage, SqlStorage} from 'ionic-angular';
+import {Platform, Storage, SqlStorage} from 'ionic-angular';
 import {Survey} from "../models/survey/survey";
 import {Question} from "../models/survey/question";
 import {SurveyProgress} from "../models/survey/surveyProgress";
@@ -11,10 +11,9 @@ export class StorageService {
 
   surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
   surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
-  public storage: Storage
   private surveys = [];
 
-    constructor() {
+    constructor(public platform:Platform, public storage:Storage) {
       this.initializeDb();
     }
 
@@ -25,14 +24,15 @@ export class StorageService {
         existingDatabase: true
       };
 
-      this.storage = new Storage(SqlStorage, options);
-
-      this.storage.query('CREATE TABLE IF NOT EXISTS Survey (surveyId, survey)')
-        .then((data) => {
-          console.log("TABLE CREATED -> " + JSON.stringify(data.res));
-        }, (error) => {
-          console.log("ERROR -> " + JSON.stringify(error.err));
-        });
+      this.platform.ready().then(() => {
+        this.storage = new Storage(SqlStorage, options);
+        this.storage.query('CREATE TABLE IF NOT EXISTS Survey (surveyId, survey)')
+          .then((data) => {
+            console.log("TABLE CREATED -> " + JSON.stringify(data.res));
+          }, (error) => {
+            console.log("ERROR -> " + JSON.stringify(error.err));
+          });
+      });
     }
 
     public saveSurveyProgress(survey: Survey):void {
@@ -50,15 +50,12 @@ export class StorageService {
     }
 
     public getSurveyProgress(id:any):void {
-
-      this.storage.get('_ionicstorage').then((name) => {
-        console.log('getting DB:', name);
-      });
-
       this.storage.query(`SELECT * FROM Survey WHERE surveyId = '${id}'`)
         .then((data) => {
           let results = data.res.rows;
-          console.log(results);
+          if (results.length > 0) {
+            console.log(results.item(1).survey);
+          }
           for (var i = 0; i < results.length; i++) {
             if (results[i]) {
               this.surveys.push(JSON.parse(results[i].survey));
@@ -82,8 +79,6 @@ export class StorageService {
     public updateSurveyProgress(survey: Survey): void {
       let surveyObject = JSON.stringify(survey);
       let surveyId = JSON.stringify(survey.id);
-
-      console.log(surveyObject);
 
       this.storage.query(`UPDATE Survey SET survey = ? WHERE surveyId = ?`, [surveyObject, surveyId])
         .then((data) => {
