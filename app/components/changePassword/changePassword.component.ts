@@ -49,7 +49,7 @@ export class ChangePasswordComponent{
           // this._navController.setRoot(UserSettingsPage);
         }
       )
-    this.errorSubscription = this._userService.error.subscribe(
+    this.errorSubscription = this._userService.changePasswordError.subscribe(
       (error) => {
         console.log(error);
         this.updatingPassword = false;
