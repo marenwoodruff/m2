@@ -24,6 +24,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   private userSubscription: EventEmitter<User>;
   private userDeletedSubscription: EventEmitter<boolean>;
   private errorSubscription: EventEmitter<any>;
+  private deleteUserErrorSubscription: EventEmitter<any>;
   private userForm: ControlGroup;
   private user: User;
 
@@ -66,6 +67,14 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
         }
       }
     );
+    this.deleteUserErrorSubscription = this._userService.deleteUserError.subscribe(
+      (err) => {
+        if (err) {
+          console.log(err);
+          this.deleteUserError();
+        }
+      }
+    );
   }
 
   ngOnDestroy():any {
@@ -104,6 +113,22 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           text: 'OK',
           handler: () => {
             this._navController.setRoot(LoginPage);
+          }
+        }
+      ]
+    });
+    this._navController.present(alert);
+  }
+
+  private deleteUserError(): void {
+     let alert = Alert.create({
+      title: 'Woops!',
+      subTitle: 'An error occurred and your account cannot be deleted at this time. Please try again later.',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+
           }
         }
       ]
