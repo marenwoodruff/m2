@@ -22,6 +22,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   private deletingUser: boolean;
   private errorMessage: string;
   private userSubscription: EventEmitter<User>;
+  private userDeletedSubscription: EventEmitter<boolean>;
   private errorSubscription: EventEmitter<any>;
   private userForm: ControlGroup;
   private user: User;
@@ -48,7 +49,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           console.log(user);
           // this._navController.setRoot(EventsPage);
         }
-      )
+      );
     this.errorSubscription = this._userService.updateUserError.subscribe(
       (error) => {
         console.log(error);
@@ -57,7 +58,14 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           this.errorMessage = error.message;
         }
       }
-    )
+    );
+    this.userDeletedSubscription = this._userService.userDeleted.subscribe(
+      (val) => {
+        if (val) {
+          this.userDeleted();
+        }
+      }
+    );
   }
 
   ngOnDestroy():any {
@@ -118,7 +126,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           text: 'Agree',
           handler: () => {
             this.deletingUser = true;
-            this.userDeleted();
+            this._userService.deleteUser(this.user.id);
           }
         }
       ]
