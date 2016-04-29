@@ -30,10 +30,13 @@ export class EventsPage implements OnInit, OnDestroy {
       public nav:NavController) { }
 
     ngOnInit():any {
+      this.isLoading = true;
       this._menuController.enable(true);
       this.eventSubscription = this._eventsApi.events.subscribe(
           events => {
             this.events = events;
+            this.filteredLocation = this.events;
+            this.isLoading = false;
           },
           err => console.log("EventsComponent events subscribe error: ", err),
           () => console.log("Finished subscribing to events")
@@ -93,7 +96,6 @@ export class EventsPage implements OnInit, OnDestroy {
           }
         });
       } 
-      this.filteredLocation = this.localEvents ? this.localEvents : this.events;
       this.isLoading = false;
     }
 
@@ -102,7 +104,6 @@ export class EventsPage implements OnInit, OnDestroy {
     }
 
     getCurrentLocation() {
-      this.isLoading = true;
       navigator.geolocation.getCurrentPosition(
         (position) => {
           this.currentLocation = [position.coords.latitude, position.coords.longitude];
@@ -115,8 +116,7 @@ export class EventsPage implements OnInit, OnDestroy {
           } else {
             this.getCurrentLocation();
           }
-        },
-        { timeout: 5000 }
+        }
       );
     }
 
