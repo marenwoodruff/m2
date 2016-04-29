@@ -43,7 +43,7 @@
         </ion-item>
       </ion-list>
       <ion-row>
-        <button block class="social-button">
+        <button block class="social-button" [disabled]="!userForm.valid">
           <loader [white]="true" *ngIf="updatingUser"></loader>
           <span *ngIf="!updatingUser">Update</span>
         </button>
@@ -53,6 +53,6 @@
       <button block secondary class="social-button" (click)="goToChangePassword()">Change Password</button>
     </ion-row>
     <ion-row>
-      <button block danger class="social-button">Delete My Account</button>
+      <button block danger class="social-button" (click)="deleteUser()">Delete My Account</button>
     </ion-row>
 </div>

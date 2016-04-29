@@ -4,6 +4,7 @@ import {Button, List, Item, TextInput, Label, NavController} from 'ionic-angular
 import {UserService} from '../../service/user.service';
 import {User} from '../../models/user/user';
 import {ChangePasswordPage} from '../../pages/changePassword/changePassword.page';
+import {LoginPage} from '../../pages/login/login.page';
 import {LoaderComponent} from '../loader/loader.component';
 import {ControlMessageComponent} from '../controlMessage/controlMessage.component';
 import {ValidationService} from '../../service/validation.service';
@@ -79,7 +80,13 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   }
 
   private goToChangePassword():void {
+    this.userSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
     this._navController.push(ChangePasswordPage, this.user);
+  }
+
+  private deleteUser():void {
+
   }
 
 }

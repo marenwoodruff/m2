@@ -21,6 +21,26 @@
       {{errorMessage}}
     </div>
     <form [ngFormModel]="userForm" (submit)="signUp()">
+      <ion-row class="center">
+        <ion-col>
+          <control-message
+            control="email"
+            [controlGroup]="userForm"
+            displayName="Email"></control-message>
+          <control-message
+            control="name"
+            [controlGroup]="userForm"
+            displayName="Name"></control-message>
+          <control-message
+            control="phone"
+            [controlGroup]="userForm"
+            displayName="Phone number"></control-message>
+          <control-message
+            control="password"
+            [controlGroup]="userForm"
+            displayName="Password"></control-message>
+          </ion-col>
+      </ion-row>
       <ion-list>
         <ion-item>
           <ion-label>Name</ion-label>
@@ -48,7 +68,7 @@
         </ion-item>
       </ion-list>
       <ion-row>
-        <button block class="social-button">
+        <button block class="social-button" [disabled]="!userForm.valid">
           <loader [white]="true" *ngIf="signingUp"></loader>
           <span *ngIf="!signingUp">Sign Up</span>
         </button>

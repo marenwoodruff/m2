@@ -6,13 +6,14 @@ import {User} from '../../models/user/user';
 import {EventsPage} from '../../pages/events/events.page';
 import {AuthorizationService} from '../../service/authorization.service';
 import {LoaderComponent} from '../loader/loader.component';
+import {ControlMessageComponent} from '../controlMessage/controlMessage.component';
 import {ValidationService} from '../../service/validation.service';
 
 
 @Component({
   selector: 'signup',
   templateUrl: 'build/components/signup/signup.component.html',
-  directives: [Button, List, Item, TextInput, Label, LoaderComponent]
+  directives: [Button, List, Item, TextInput, Label, LoaderComponent, ControlMessageComponent]
 })
 
 export class SignupComponent implements OnInit, OnDestroy {
@@ -28,8 +29,8 @@ export class SignupComponent implements OnInit, OnDestroy {
     private _authService:AuthorizationService,
     private _formBuilder: FormBuilder) {
       this.userForm = this._formBuilder.group({
-        'email': ['', Validators.required],
-        'password': ['', Validators.required],
+        'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
+        'password': ['', Validators.compose([Validators.required, ValidationService.passwordValidator])],
         'name': ['', Validators.required],
         'company': [''],
         'jobTitle': [''],
@@ -63,7 +64,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   signUp(){
     if (this.userForm.dirty && this.userForm.valid) {
       this.signingUp = true;
-      const user = new User();
+      let user = new User();
       user.email = this.userForm.value.email;
       user.password = this.userForm.value.password;
       user.name = this.userForm.value.name;
