@@ -33,7 +33,6 @@ export class QuestionComponent implements OnInit {
 
   public ngOnInit(): void {
     this.questions = this.survey.questions;
-    console.log(this.questions);
     this.questionIndex = this.lastQuestionIndex ? this.lastQuestionIndex + 1 : 0;
     this.currentQuestion = this.questions[this.questionIndex];
     this.questionsLength = this.questions.length;
