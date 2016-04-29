@@ -111,11 +111,6 @@ export class EventsPage implements OnInit, OnDestroy {
         },
         (error) => {
           console.log('getting location error:', error);
-          if (this.events) {
-            this.getLocalEvents(this.events);
-          } else {
-            this.getCurrentLocation();
-          }
         }
       );
     }
