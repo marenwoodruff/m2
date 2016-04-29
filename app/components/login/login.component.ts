@@ -11,11 +11,14 @@ import {EventsPage} from '../../pages/events/events.page';
 import {User} from '../../models/user/user';
 import {UserLogin} from '../../models/user/userLogin';
 import {LoaderComponent} from '../loader/loader.component';
+import {ControlMessageComponent} from '../controlMessage/controlMessage.component';
+import {ValidationService} from '../../service/validation.service';
+
 
 @Component({
   selector: 'login',
   templateUrl: 'build/components/login/login.component.html',
-  directives: [Button, List, Item, TextInput, Label, LoaderComponent],
+  directives: [Button, List, Item, TextInput, Label, LoaderComponent, ControlMessageComponent],
   providers: [TwitterService, LinkedInService]
 })
 
@@ -42,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder) {
     this.twitterCredentials = { access_token: null };
     this.userForm = this._formBuilder.group({
-      'email': ['', Validators.required],
+      'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
       'password': ['', Validators.required]
     })
   }

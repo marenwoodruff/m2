@@ -2,9 +2,9 @@ import {Injectable, EventEmitter} from 'angular2/core';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
-
 import MyMatrixApi from '../constants/apiConstants';
 import {User} from '../models/user/user';
+import {UserPasswordChange} from '../models/user/userPasswordChange';
 import {StorageService} from './storage.service';
 import {HttpClient} from './http-client.service';
 
@@ -72,6 +72,22 @@ export class UserService {
       );
   }
 
+  public changePassword(userId: number, userPasswordChange: UserPasswordChange): void {
+    const body = JSON.stringify(userPasswordChange);
+    this.httpClient.put(`users/${userId}/changePassword`, body)
+      .subscribe(
+        () => {
+          const user = this.getUserFromLocalStorage();
+          this.user.emit(user);
+        },
+        err => {
+            console.log(err);
+            this.error.emit(err.json());
+          },
+        () => console.log('Password updated')
+      );
+  }
+
   public deleteUser(userId: number): void {
     this.httpClient.delete(`users/${userId}`)
       .subscribe(
@@ -79,7 +95,7 @@ export class UserService {
             console.log(err);
             this.error.emit(err.json());
           },
-        () => console.log('User updated')
+        () => console.log('User deleted')
       );
   }
 
