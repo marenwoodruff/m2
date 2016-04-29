@@ -6,12 +6,12 @@ import {User} from '../../models/user/user';
 import {EventsPage} from '../../pages/events/events.page';
 import {LoaderComponent} from '../loader/loader.component';
 import {ValidationService} from '../../service/validation.service';
-
+import {ControlMessageComponent} from '../controlMessage/controlMessage.component';
 
 @Component({
   selector: 'changePassword',
   templateUrl: 'build/components/changePassword/changePassword.component.html',
-  directives: [Button, List, Item, TextInput, Label, LoaderComponent]
+  directives: [Button, List, Item, TextInput, Label, LoaderComponent, ControlMessageComponent]
 })
 export class ChangePasswordComponent{
   private updatingPassword: boolean;
@@ -19,7 +19,7 @@ export class ChangePasswordComponent{
   private userSubscription: EventEmitter<User>;
   private errorSubscription: EventEmitter<any>;
   private passwordForm: ControlGroup;
-
+  private passwordGroup: ControlGroup;
   constructor(
     private _userService: UserService,
     private _navController: NavController,
@@ -27,10 +27,10 @@ export class ChangePasswordComponent{
       this.passwordForm = this._formBuilder.group({
         'oldPassword': ['', Validators.required],
         matchingPassword: this._formBuilder.group({
-          password: ['', Validators.required],
-          confirmPassword: ['', Validators.required]
-        }, {validator: this.areEqual})
-      })
+          password: ['', Validators.compose([])],
+          confirmPassword: ['', Validators.compose([])]
+        }, {validator: this.checkPasswords})
+      });
   }
 
   ngOnInit(): any {
@@ -58,33 +58,27 @@ export class ChangePasswordComponent{
   }
 
   private changePassword():void{
+    this.updatingPassword = true;
     if (this.passwordForm.dirty && this.passwordForm.valid){
       console.log("change password");
     }
   }
 
+  private checkPasswords(group):any {
+    let password = group.controls.password;
+    let confirm = group.controls.confirmPassword;
 
-  areEqual(group: ControlGroup) {
-    let val;
-    let valid = true;
-
-    for (name in group.controls) {
-      if (val === undefined) {
-        val = group.controls[name].value
-      } else {
-        if (val !== group.controls[name].value) {
-          valid = false;
-          break;
-        }
-      }
+    if (password.pristine || confirm.pristine) {
+      return null;
     }
+    group.markAsTouched();
 
-    if (valid) {
+    if (password.value === confirm.value) {
       return null;
     }
 
     return {
-      areEqual: true
+      isValid: false
     };
   }
 
