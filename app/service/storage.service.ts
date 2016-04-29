@@ -11,15 +11,21 @@ export class StorageService {
 
   surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
   surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
-  private storage: Storage
+  public storage: Storage
   private surveys = [];
 
     constructor() {
       this.initializeDb();
     }
 
-    private initializeDb() {
-      this.storage = new Storage(SqlStorage, {name: 'MatrixDB'});
+    public initializeDb() {
+      let options = {
+        name: '_ionicstorage',
+        backupFlag: SqlStorage.BACKUP_LOCAL,
+        existingDatabase: true
+      };
+
+      this.storage = new Storage(SqlStorage, options);
 
       this.storage.query('CREATE TABLE IF NOT EXISTS Survey (surveyId, survey)')
         .then((data) => {
@@ -45,13 +51,14 @@ export class StorageService {
 
     public getSurveyProgress(id:any):void {
 
-      this.storage.get('MatrixDB').then((name) => {
+      this.storage.get('_ionicstorage').then((name) => {
         console.log('getting DB:', name);
       });
 
       this.storage.query(`SELECT * FROM Survey WHERE surveyId = '${id}'`)
         .then((data) => {
           let results = data.res.rows;
+          console.log(results);
           for (var i = 0; i < results.length; i++) {
             if (results[i]) {
               this.surveys.push(JSON.parse(results[i].survey));
@@ -75,6 +82,8 @@ export class StorageService {
     public updateSurveyProgress(survey: Survey): void {
       let surveyObject = JSON.stringify(survey);
       let surveyId = JSON.stringify(survey.id);
+
+      console.log(surveyObject);
 
       this.storage.query(`UPDATE Survey SET survey = ? WHERE surveyId = ?`, [surveyObject, surveyId])
         .then((data) => {
