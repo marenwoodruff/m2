@@ -16,7 +16,7 @@ export class UserService {
   updateUserError: EventEmitter<any> = new EventEmitter();
   deleteUserError: EventEmitter<any> = new EventEmitter();
   changePasswordError: EventEmitter<any> = new EventEmitter();
-
+  userDeleted: EventEmitter<boolean> = new EventEmitter();
   constructor(
     private _api: Http,
     private httpClient:HttpClient,
@@ -98,6 +98,9 @@ export class UserService {
   public deleteUser(userId: number): void {
     this.httpClient.delete(`users/${userId}`)
       .subscribe(
+        () => {
+          this.userDeleted.emit(true);
+        },
         err => {
             console.log(err);
             this.deleteUserError.emit(err.json());
