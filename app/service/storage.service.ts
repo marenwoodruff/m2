@@ -12,8 +12,9 @@ export class StorageService {
   surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
   surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
   private surveys = [];
+  public storage: Storage;
 
-    constructor(public platform:Platform, public storage:Storage) {
+    constructor(public platform:Platform) {
       this.initializeDb();
     }
 
@@ -53,12 +54,9 @@ export class StorageService {
       this.storage.query(`SELECT * FROM Survey WHERE surveyId = '${id}'`)
         .then((data) => {
           let results = data.res.rows;
-          if (results.length > 0) {
-            console.log(results.item(1).survey);
-          }
           for (var i = 0; i < results.length; i++) {
-            if (results[i]) {
-              this.surveys.push(JSON.parse(results[i].survey));
+            if (results.length > 0) {
+              this.surveys.push(JSON.parse(results.item(i).survey));
               this.surveyProgress.emit(this.surveys);
             }
           }
