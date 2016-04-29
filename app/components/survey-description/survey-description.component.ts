@@ -25,13 +25,13 @@ export class SurveyDescriptionComponent implements OnChanges {
   viewSurvey(survey, surveyProgress) {
     this.nav.push(BeginSurveyPage, {
       survey,
-      surveyProgress,
+      surveyProgress: this.surveyProgress,
       inProgress: this.inProgress
     });
   }
 
   ngOnChanges() {
-    this.evaluateProgress(this.survey, this.surveysInProgress)
+    this.evaluateProgress(this.survey, this.surveysInProgress);
   }
 
   evaluateProgress(survey, surveysInProgress) {

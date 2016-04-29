@@ -2,6 +2,7 @@ import {Component, forwardRef, OnChanges} from 'angular2/core';
 import {List, Item} from 'ionic-angular';
 import {SurveyDescriptionComponent} from '../survey-description/survey-description.component';
 import {Survey} from '../../models/survey/survey';
+import {SurveyProgress} from '../../models/survey/surveyProgress';
 
 @Component({
   selector: 'surveys',
@@ -13,6 +14,7 @@ import {Survey} from '../../models/survey/survey';
 export class SurveysComponent implements OnChanges {
   surveys: Survey[];
   startedSurveys: Survey[];
+  surveysInProgress: SurveyProgress[];
 
   ngOnChanges() {
     if (this.surveys && this.startedSurveys) {
