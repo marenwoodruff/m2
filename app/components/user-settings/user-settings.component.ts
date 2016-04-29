@@ -1,6 +1,6 @@
 import {EventEmitter, Component, OnInit, OnDestroy, Input} from 'angular2/core';
 import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from 'angular2/common';
-import {Button, List, Item, TextInput, Label, NavController} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, NavController, Alert} from 'ionic-angular';
 import {UserService} from '../../service/user.service';
 import {User} from '../../models/user/user';
 import {ChangePasswordPage} from '../../pages/changePassword/changePassword.page';
@@ -8,6 +8,7 @@ import {LoginPage} from '../../pages/login/login.page';
 import {LoaderComponent} from '../loader/loader.component';
 import {ControlMessageComponent} from '../controlMessage/controlMessage.component';
 import {ValidationService} from '../../service/validation.service';
+import {AuthorizationService} from '../../service/authorization.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ import {ValidationService} from '../../service/validation.service';
 
 export class UserSettingsComponent implements OnInit, OnDestroy {
   private updatingUser: boolean;
+  private deletingUser: boolean;
   private errorMessage: string;
   private userSubscription: EventEmitter<User>;
   private errorSubscription: EventEmitter<any>;
@@ -27,7 +29,8 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   constructor(
     private _userService: UserService,
     private _navController: NavController,
-    private _formBuilder: FormBuilder) {
+    private _formBuilder: FormBuilder,
+    private _authService: AuthorizationService) {
       this.userForm = this._formBuilder.group({
         'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
         'name': ['', Validators.required],
@@ -46,7 +49,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           // this._navController.setRoot(EventsPage);
         }
       )
-    this.errorSubscription = this._userService.error.subscribe(
+    this.errorSubscription = this._userService.updateUserError.subscribe(
       (error) => {
         console.log(error);
         this.updatingUser = false;
@@ -80,13 +83,47 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   }
 
   private goToChangePassword():void {
-    this.userSubscription.unsubscribe();
-    this.errorSubscription.unsubscribe();
     this._navController.push(ChangePasswordPage, this.user);
   }
 
-  private deleteUser():void {
+  private userDeleted(): void {
+    this._authService.logOut();
+     let alert = Alert.create({
+      title: 'Deleted!',
+      subTitle: 'Your account has been deleted. Please note that if you wish to unregister for an event you must do so through the email that which you used to register.',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this._navController.setRoot(LoginPage);
+          }
+        }
+      ]
+    });
+    this._navController.present(alert);
+  }
 
+  private deleteUser():void {
+    let confirm = Alert.create({
+      title: 'Delete your account?',
+      message: 'Are you sure you wish to delete your account? This will not unregister you from any registered events',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.deletingUser = true;
+            this.userDeleted();
+          }
+        }
+      ]
+    });
+    this._navController.present(confirm);
   }
 
 }

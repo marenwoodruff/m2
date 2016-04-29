@@ -12,8 +12,15 @@ import {HttpClient} from './http-client.service';
 export class UserService {
   user: EventEmitter<User> = new EventEmitter();
   error: EventEmitter<any> = new EventEmitter();
+  getUserError: EventEmitter<any> = new EventEmitter();
+  updateUserError: EventEmitter<any> = new EventEmitter();
+  deleteUserError: EventEmitter<any> = new EventEmitter();
+  changePasswordError: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _api: Http, private httpClient:HttpClient, private _storageService:StorageService) { };
+  constructor(
+    private _api: Http,
+    private httpClient:HttpClient,
+    private _storageService:StorageService) { };
 
   public getUser(userId: number): void {
     const user = this.getUserFromLocalStorage();
@@ -26,7 +33,7 @@ export class UserService {
           user => this.emitUser(user),
           err => {
               console.log(err);
-              this.error.emit(err.json());
+              this.getUserError.emit(err.json());
             },
           () => console.log('User retrieval is completed')
         );
@@ -66,7 +73,7 @@ export class UserService {
         },
         err => {
             console.log(err);
-            this.error.emit(err.json());
+            this.updateUserError.emit(err.json());
           },
         () => console.log('User updated')
       );
@@ -82,7 +89,7 @@ export class UserService {
         },
         err => {
             console.log(err);
-            this.error.emit(err.json());
+            this.changePasswordError.emit(err.json());
           },
         () => console.log('Password updated')
       );
@@ -93,7 +100,7 @@ export class UserService {
       .subscribe(
         err => {
             console.log(err);
-            this.error.emit(err.json());
+            this.deleteUserError.emit(err.json());
           },
         () => console.log('User deleted')
       );

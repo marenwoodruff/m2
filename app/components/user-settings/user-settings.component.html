@@ -1,4 +1,4 @@
-<div class="signupEmail">
+<div class="signupEmail" [hidden]="deletingUser">
     <div *ngIf="errorMessage" class="center" style="color: red;">
       {{errorMessage}}
     </div>
@@ -55,4 +55,7 @@
     <ion-row>
       <button block danger class="social-button" (click)="deleteUser()">Delete My Account</button>
     </ion-row>
+</div>
+<div class="page-loader" *ngIf="deletingUser">
+    <loader [isRunning]="isLoading"></loader>
 </div>
