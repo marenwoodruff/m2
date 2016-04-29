@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this._navController.setRoot(EventsPage);
         }
       )
-      this.errorSubscription = this._authService.error.subscribe(
+      this.errorSubscription = this._authService.loginUserError.subscribe(
         (error) => {
           console.log(error);
           this.loggingIn = false;
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.errorSubscription.unsubscribe();
   }
 
-  login(media) {
+  private login(media) {
     this.platform.ready().then(() => {
       if (media === 'LinkedIn') {
         this.linkedInLogin()
