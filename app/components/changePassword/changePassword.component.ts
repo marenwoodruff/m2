@@ -27,8 +27,8 @@ export class ChangePasswordComponent{
       this.passwordForm = this._formBuilder.group({
         'oldPassword': ['', Validators.required],
         matchingPassword: this._formBuilder.group({
-          password: ['', Validators.compose([])],
-          confirmPassword: ['', Validators.compose([])]
+          password: ['', Validators.compose([Validators.required, ValidationService.passwordValidator])],
+          confirmPassword: ['', Validators.compose([Validators.required])]
         }, {validator: this.checkPasswords})
       });
   }
