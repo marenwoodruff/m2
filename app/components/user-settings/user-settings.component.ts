@@ -60,9 +60,9 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
         }
       }
     );
-    this.userDeletedSubscription = this._userService.userDeleted.subscribe(
-      (val) => {
-        if (val) {
+    this.userDeletedSubscription = this._userService.userDeletedSuccess.subscribe(
+      (success) => {
+        if (success) {
           this.userDeleted();
         }
       }
