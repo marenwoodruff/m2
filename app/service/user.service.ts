@@ -16,7 +16,10 @@ export class UserService {
   updateUserError: EventEmitter<any> = new EventEmitter();
   deleteUserError: EventEmitter<any> = new EventEmitter();
   changePasswordError: EventEmitter<any> = new EventEmitter();
-  userDeleted: EventEmitter<boolean> = new EventEmitter();
+  forgotPasswordError: EventEmitter<any> = new EventEmitter();
+  forgotPasswordSuccess: EventEmitter<boolean> = new EventEmitter();
+  userDeletedSuccess: EventEmitter<boolean> = new EventEmitter();
+
   constructor(
     private _api: Http,
     private httpClient:HttpClient,
@@ -95,11 +98,26 @@ export class UserService {
       );
   }
 
+  public forgotPassword(email: string): void {
+    const body = JSON.stringify({email});
+    this.httpClient.post(`users/forgotPassword`, body)
+      .subscribe(
+        () => {
+          this.forgotPasswordSuccess.emit(true);
+        },
+        err => {
+            console.log(err);
+            this.forgotPasswordError.emit(err.json());
+          },
+        () => console.log('Password updated')
+      );
+  }
+
   public deleteUser(userId: number): void {
     this.httpClient.delete(`users/${userId}`)
       .subscribe(
         () => {
-          this.userDeleted.emit(true);
+          this.userDeletedSuccess.emit(true);
         },
         err => {
             console.log(err);
