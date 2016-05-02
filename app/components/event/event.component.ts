@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy, EventEmitter} from 'angular2/core';
-import {NavController, NavParams, List, Item, Button, Platform} from 'ionic-angular';
+import {NavController, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
 import {Survey} from '../../models/survey/survey';
@@ -122,5 +122,40 @@ export class EventComponent implements OnInit, OnDestroy {
     this.platform.ready().then(() => {
       cordova.InAppBrowser.open(url, "_system", "location=true");
     });
+  }
+
+  private save(event:Event): void {
+    let userEvent = {
+      eventId: event.eventId,
+      registered: true,
+      userId: this.userId,
+      title: event.title,
+      startDate: event.startDate,
+      city: event.city,
+      state: event.state,
+      mobileSmall: event.mobileSmall
+    };
+
+    this.saveAlert(userEvent);
+  }
+
+  private saveAlert(userEvent) {
+    let alert = Alert.create({
+      title: 'Saving Event',
+      subTitle: 'Saving this event does not mean that you are registered. Please click the information button for registration instructions.',
+      buttons: [
+        {
+          text: 'Save',
+          handler: () => {
+            this._userEventApi.createUserEvent(this.userId, userEvent);
+            this.registered = true;
+          }
+        },
+        {
+          text: 'Cancel'
+        }
+      ]
+    });
+    this.nav.present(alert);
   }
 }
