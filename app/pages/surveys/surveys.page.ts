@@ -4,9 +4,12 @@
   import {StorageService} from '../../service/storage.service';
   import {SurveyService} from '../../service/survey.service';
   import {EventService} from '../../service/event.service';
+  import {UserEventService} from '../../service/userEvent.service';
+  import {UserService} from '../../service/user.service';
   import {Survey} from '../../models/survey/survey';
   import {SurveyProgress} from '../../models/survey/surveyProgress';
   import {Event} from '../../models/Events/event';
+  import {UserEvent} from '../../models/user/userEvent';
   import {LoaderComponent} from '../../components/loader/loader.component';
 
 
@@ -23,18 +26,35 @@
       private surveySubscription: EventEmitter<Survey[]>;
       private storageSubscription: EventEmitter<Survey[]>;
       private eventSurveySubscription: EventEmitter<any>;
+      private userEventSubscription: EventEmitter<UserEvent[]>;
       private isLoading: boolean = true;
+      private userId: number;
       surveysInProgress: SurveyProgress[];
 
-      constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService) { }
+      constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService, private _userEventApi:UserEventService, private _userApi:UserService) { }
 
-      ngOnInit():any {
+      ngOnInit(): any {
+        this.getUserId();
+
+        this.userEventSubscription = this._userEventApi.userEvents.subscribe(
+          (userEvents) => {
+            userEvents.forEach((event) => {
+              this._surveyApi.getSurveyForEvents(event.eventId);
+            });
+          },
+          (err) => console.log(err),
+          () => console.log('we have user events')
+        );
 
         this.eventSurveySubscription = this._surveyApi.eventSurveys.subscribe(
           (eventSurveys) => {
-            eventSurveys.forEach((survey) => {
-              this._surveyApi.getSurveys(survey.surveyId);
-            });
+            if (eventSurveys.length > 0) {
+              eventSurveys.forEach((survey) => {
+                this._surveyApi.getSurveys(survey.surveyId);
+              });
+            } else {
+              this.isLoading = false;
+            }
           },
           (err) => console.log(err),
           () => console.log('have survey ids based on events')
@@ -66,13 +86,14 @@
           }
         );
 
-        this._surveyApi.getSurveyForEvents();
+        this._userEventApi.getUserEvents(this.userId);
       }
 
       ngOnDestroy() {
         this.surveySubscription.unsubscribe();
         this.storageSubscription.unsubscribe();
         this.eventSurveySubscription.unsubscribe();
+        this.userEventSubscription.unsubscribe();
       }
 
       findQuestionId(survey) {
@@ -102,6 +123,10 @@
           this._storageApi.getSurveyProgress(survey.id);
         });
         this.isLoading = false;
+      }
+
+      getUserId() {
+        this.userId = this._userApi.getUserId();
       }
 
   }

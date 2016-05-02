@@ -1,4 +1,4 @@
-import {App, IonicApp, Platform, NavController, Icon, MenuController} from 'ionic-angular';
+import {App, IonicApp, Platform, NavController, Icon, MenuController, Alert} from 'ionic-angular';
 import {forwardRef, OnInit, EventEmitter} from 'angular2/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
@@ -67,7 +67,7 @@ class MyApp implements OnInit{
                       this.menuController.enable(true);
                       this.setInitialPage(EventsPage);
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
-    		      }
+    		      } 
     	     });
         });
     }
@@ -77,8 +77,14 @@ class MyApp implements OnInit{
     }
 
     private openPage(page) {
+      this.hasLoggedIn((loggedIn) => {
         let nav = this.app.getComponent('nav');
-        nav.setRoot(page.component);
+        if (loggedIn === true) {
+          nav.setRoot(page.component);
+        } else {
+          this.loggedOutAlert();
+        }
+      });
     }
 
     private hasLoggedIn(cb) {
@@ -90,4 +96,20 @@ class MyApp implements OnInit{
       let userId = this.userService.getUserId();
       this.userService.getUser(userId);
     }
-}
+
+    private loggedOutAlert():void {
+      let confirm = Alert.create({
+        title: 'You are not logged in.',
+        message: 'Please login with your user information to view this page.',
+        buttons: [
+          {
+            text: 'Okay',
+            handler: () => {
+              this.nav.setRoot(LoginPage);
+            }
+          }
+        ]
+      });
+      this.nav.present(confirm);
+    }
+ }

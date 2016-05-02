@@ -5,7 +5,14 @@
   <ion-title>Surveys</ion-title>
 </ion-navbar>
 <ion-content padding class="survey-container">
-  <surveys [surveys]="surveys" [surveysInProgress]="surveysInProgress" [startedSurveys]="startedSurveys"></surveys>
+  <ion-card>
+    <ion-card-title style="padding: 1em;">
+      There are no surveys available at this time.
+    </ion-card-title>
+  </ion-card>
+  <div *ngIf="surveys">
+    <surveys [surveys]="surveys" [surveysInProgress]="surveysInProgress" [startedSurveys]="startedSurveys"></surveys>
+  </div>
   <div class="page-loader" *ngIf="isLoading">
       <loader [isRunning]="isLoading"></loader>
   </div>

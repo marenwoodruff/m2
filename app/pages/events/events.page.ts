@@ -7,6 +7,8 @@ import * as moment from 'moment';
 import {Survey} from '../../models/survey/survey';
 import {Event} from '../../models/events/event';
 import {LoaderComponent} from '../../components/loader/loader.component';
+import {UserService} from '../../service/user.service';
+import {LoginPage} from '../login/login.page';
 
 @Page({
     templateUrl: 'build/pages/events/events.page.html',
@@ -17,19 +19,21 @@ export class EventsPage implements OnInit, OnDestroy {
     public upcomingEvents:Event[];
     public pastEvents:Event[];
     public localEvents: Event[];
-    page: string;
-    surveys: Survey[] = [];
+    public page: string;
+    public surveys: Survey[] = [];
     public currentLocation: Array<number>;
     public filteredLocation: Event[];
     private eventSubscription: EventEmitter<Event[]>;
     private isLoading:boolean = true;
+    private loggedIn: boolean;
 
     constructor(
       private _eventsApi:EventService,
       private _menuController: MenuController,
-      public nav:NavController) { }
+      public nav:NavController,
+      private _userApi:UserService) { }
 
-    ngOnInit():any {
+    public ngOnInit():any {
       this.isLoading = true;
       this._menuController.enable(true);
       this.eventSubscription = this._eventsApi.events.subscribe(
@@ -46,7 +50,7 @@ export class EventsPage implements OnInit, OnDestroy {
       this.getCurrentLocation();
     }
 
-    ngOnDestroy():any {
+    public ngOnDestroy():any {
       this.eventSubscription.unsubscribe();
     }
 

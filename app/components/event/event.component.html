@@ -26,12 +26,17 @@
         {{event.city}}, {{event.state}}
       </h6>
     </ion-col>
-    <ion-col class="register-button-col">
+    <ion-col class="register-button-col" *ngIf="!event.nonMatrixEvent">
       <button *ngIf="!registered" (click)="register(event)">Register</button>
       <button *ngIf="registered" outline>Registered</button>
     </ion-col>
   </ion-row>
-  <ion-row class="friend-registration">
+  <ion-row class="friend-registration" *ngIf="event.nonMatrixEvent">
+    <button (click)="nonMatrixInfo(event.detailPage)" full>
+      More Information about Registration
+    </button>
+  </ion-row>
+  <ion-row class="friend-registration" *ngIf="!nonMatrixEvent">
     <button *ngIf="registered" (click)="registerFriend(event)" full>
       Register a Friend
     </button>
@@ -123,7 +128,7 @@
       <!-- end of conditional for displaying icons -->
     </ion-col>
   </ion-row>
-  <ion-row *ngIf="!registered" class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
+  <ion-row *ngIf="!registered && !event.nonMatrixEvent" class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
     <ion-col style="display: flex; justify-content: center;">
       <button (click)="register(event)" full>Register for this Event</button>
     </ion-col>
