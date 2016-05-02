@@ -116,4 +116,11 @@ export class EventComponent implements OnInit, OnDestroy {
       cordova.InAppBrowser.open(url, "_system", "location=true");
     });
   }
+
+  public nonMatrixInfo(link:string):void {
+    let url = 'http://matrixres.com' + link;
+    this.platform.ready().then(() => {
+      cordova.InAppBrowser.open(url, "_system", "location=true");
+    });
+  }
 }
