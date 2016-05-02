@@ -56,9 +56,8 @@ export class SurveyService {
         .map(res => <Survey[]>res.json())
         .subscribe(
           surveys => {
-            if (surveys.length > 0) {
-              this.eventSurveys.emit(surveys);
-            }
+            surveys = eventId ? surveys.filter(s => s.eventId === eventId) : surveys;
+            this.eventSurveys.emit(surveys);
           },
           err => console.log('error:', err),
           () => console.log('retrieved surveys for events')
