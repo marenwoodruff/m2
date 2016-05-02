@@ -22,7 +22,9 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
   private deletingUser: boolean;
   private errorMessage: string;
   private userSubscription: EventEmitter<User>;
+  private userDeletedSubscription: EventEmitter<boolean>;
   private errorSubscription: EventEmitter<any>;
+  private deleteUserErrorSubscription: EventEmitter<any>;
   private userForm: ControlGroup;
   private user: User;
 
@@ -48,7 +50,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           console.log(user);
           // this._navController.setRoot(EventsPage);
         }
-      )
+      );
     this.errorSubscription = this._userService.updateUserError.subscribe(
       (error) => {
         console.log(error);
@@ -57,7 +59,22 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           this.errorMessage = error.message;
         }
       }
-    )
+    );
+    this.userDeletedSubscription = this._userService.userDeletedSuccess.subscribe(
+      (success) => {
+        if (success) {
+          this.userDeleted();
+        }
+      }
+    );
+    this.deleteUserErrorSubscription = this._userService.deleteUserError.subscribe(
+      (err) => {
+        if (err) {
+          console.log(err);
+          this.deleteUserError();
+        }
+      }
+    );
   }
 
   ngOnDestroy():any {
@@ -103,6 +120,22 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this._navController.present(alert);
   }
 
+  private deleteUserError(): void {
+     let alert = Alert.create({
+      title: 'Woops!',
+      subTitle: 'An error occurred and your account cannot be deleted at this time. Please try again later.',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+
+          }
+        }
+      ]
+    });
+    this._navController.present(alert);
+  }
+
   private deleteUser():void {
     let confirm = Alert.create({
       title: 'Delete your account?',
@@ -118,7 +151,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           text: 'Agree',
           handler: () => {
             this.deletingUser = true;
-            this.userDeleted();
+            this._userService.deleteUser(this.user.id);
           }
         }
       ]
