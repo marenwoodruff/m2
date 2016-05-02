@@ -8,6 +8,7 @@ import {Http} from 'angular2/http';
 import {Button, List, Item, TextInput, Label, Platform, NavController, MenuController} from 'ionic-angular';
 import {SignupEmailPage} from '../../pages/signupEmail/signupEmail.page';
 import {EventsPage} from '../../pages/events/events.page';
+import {ForgotPasswordPage} from '../../pages/forgotPassword/forgotPassword.page';
 import {User} from '../../models/user/user';
 import {UserLogin} from '../../models/user/userLogin';
 import {LoaderComponent} from '../loader/loader.component';
@@ -127,6 +128,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private emailSignup() {
     this._navController.push(SignupEmailPage);
+  }
+
+  private forgotPassword() {
+    this._navController.push(ForgotPasswordPage);
   }
 
 }
