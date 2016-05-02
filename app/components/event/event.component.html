@@ -26,9 +26,11 @@
         {{event.city}}, {{event.state}}
       </h6>
     </ion-col>
-    <ion-col class="register-button-col" *ngIf="!event.nonMatrixEvent">
-      <button *ngIf="!registered" (click)="register(event)">Register</button>
-      <button *ngIf="registered" outline>Registered</button>
+    <ion-col class="register-button-col">
+      <button *ngIf="!registered && !event.nonMatrixEvent" (click)="register(event)">Register</button>
+      <button *ngIf="registered && !event.nonMatrixEvent" outline>Registered</button>
+      <button *ngIf="event.nonMatrixEvent && !registered" (click)="save(event)">Save Event</button>
+      <button *ngIf="event.nonMatrixEvent && registered" outline>Saved</button>
     </ion-col>
   </ion-row>
   <ion-row class="friend-registration" *ngIf="event.nonMatrixEvent">
@@ -37,7 +39,7 @@
     </button>
   </ion-row>
   <ion-row class="friend-registration" *ngIf="!nonMatrixEvent">
-    <button *ngIf="registered" (click)="registerFriend(event)" full>
+    <button *ngIf="registered && !event.nonMatrixEvent" (click)="registerFriend(event)" full>
       Register a Friend
     </button>
   </ion-row>
