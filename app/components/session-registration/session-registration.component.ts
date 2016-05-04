@@ -1,4 +1,4 @@
-import {Component, Input, AfterContentInit, OnInit, EventEmitter} from 'angular2/core';
+import {Component, Input, AfterContentInit, OnInit} from 'angular2/core';
 import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
 
 import {UserService} from '../../service/user.service';
@@ -21,7 +21,6 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
   event: Event;
   userId: number;
   user: User;
-  userSubscription: EventEmitter<User>;
 
   constructor(private _userApi:UserService, private _userEventApi:UserEventService, private nav: NavController, private params: NavParams) {}
 
@@ -64,7 +63,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
   registerFriend() {
     MktoForms2.whenReady((form) => {
       let valid = form.validate();
-      if (valid) {
+      if (valid === true) {
         this.confirmRegistration();
       }
     });
@@ -86,17 +85,14 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
           password: this.user.password,
           authenticationProvider: this.user.authenticationProvider
         }
-        console.log(userInfo);
-        this._userEventApi.createUserEvent(this.userId, eventInfo);
-        this._userApi.updateUser(this.userId, userInfo);
-        this.confirmRegistration();
+        this.confirmRegistration(eventInfo, userInfo);
       } else {
         console.log('form invalid');
       }
     });
   }
 
-  confirmRegistration() {
+  confirmRegistration(eventInfo?:any, userInfo?:any) {
     let confirm = Alert.create({
       title: 'Registration Confirmation',
       message: 'Thank you for registering! You will receive an e-mail to confirm your registration for this event.',
@@ -104,20 +100,24 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
         {
           text: 'Confirm',
           handler: () => {
+            this._userEventApi.createUserEvent(this.userId, eventInfo);
+            this._userApi.updateUser(this.userId, userInfo);
             // form.submit();
             this.backToEvents();
           }
         },
         {
           text: 'Cancel',
+          role: 'cancel',
           handler: () => {
             console.log('cancel registration');
           }
         }
       ]
     });
-    this.nav.present(confirm);
+    this.nav.present(confirm);  
   }
+
 
   backToEvents() {
     this.nav.setRoot(EventsPage);
