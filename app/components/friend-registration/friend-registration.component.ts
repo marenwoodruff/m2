@@ -1,5 +1,5 @@
 import {Component, AfterContentInit} from 'angular2/core';
-import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
+import {Button, Label, NavController, NavParams, Alert} from 'ionic-angular';
 
 import {EventsPage} from '../../pages/events/events.page';
 import {Event} from '../../models/Events/event';
@@ -7,7 +7,7 @@ import {Event} from '../../models/Events/event';
 @Component({
   selector: 'friend-registration',
   templateUrl: 'build/components/friend-registration/friend-registration.component.html',
-  directives: [Button, List, Item, TextInput, Label]
+  directives: [Button, Label]
 })
 
 export class FriendRegistrationPage implements AfterContentInit {
@@ -22,8 +22,10 @@ export class FriendRegistrationPage implements AfterContentInit {
   registerFriend() {
     MktoForms2.whenReady((form) => {
       let valid = form.validate();
-      if (valid) {
+      if (valid === true) {
         this.confirmFriendRegistration();
+      } else {
+        console.log('form not valid');
       }
     });
   }
@@ -42,6 +44,7 @@ export class FriendRegistrationPage implements AfterContentInit {
         },
         {
           text: 'Cancel',
+          role: 'cancel',
           handler: () => {
             console.log('cancel registration');
           }
