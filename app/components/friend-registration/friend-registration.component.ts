@@ -1,0 +1,59 @@
+import {Component, AfterContentInit} from 'angular2/core';
+import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
+
+import {EventsPage} from '../../pages/events/events.page';
+import {Event} from '../../models/Events/event';
+
+@Component({
+  selector: 'friend-registration',
+  templateUrl: 'build/components/friend-registration/friend-registration.component.html',
+  directives: [Button, List, Item, TextInput, Label]
+})
+
+export class FriendRegistrationPage implements AfterContentInit {
+  event: Event;
+
+  constructor(private nav: NavController, private params: NavParams) { }
+
+  ngAfterContentInit() {
+    MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862);
+  }
+
+  registerFriend() {
+    MktoForms2.whenReady((form) => {
+      let valid = form.validate();
+      if (valid) {
+        this.confirmFriendRegistration();
+      }
+    });
+  }
+
+  confirmFriendRegistration() {
+    let confirmFriend = Alert.create({
+      title: 'Registration Confirmation',
+      message: 'Thank you for registering! You will receive an e-mail to confirm your registration for this event.',
+      buttons: [
+        {
+          text: 'Confirm',
+          handler: () => {
+            // form.submit();
+            this.backToEvents();
+          }
+        },
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('cancel registration');
+          }
+        }
+      ]
+    });
+    this.nav.present(confirmFriend);
+  }
+
+  backToEvents() {
+    this.nav.setRoot(EventsPage);
+  }
+
+
+}
