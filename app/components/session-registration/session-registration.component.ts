@@ -65,7 +65,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
     MktoForms2.whenReady((form) => {
       let valid = form.validate();
       if (valid) {
-        this.confirmFriendRegistration();
+        this.confirmRegistration();
       }
     });
   }
@@ -86,8 +86,6 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
           password: this.user.password,
           authenticationProvider: this.user.authenticationProvider
         }
-        // this._userEventApi.createUserEvent(this.userId, eventInfo);
-        // this._userApi.updateUser(this.userId, userInfo);
         this.confirmRegistration(eventInfo, userInfo);
       } else {
         console.log('form invalid');
@@ -95,7 +93,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
     });
   }
 
-  confirmRegistration(eventInfo, userInfo) {
+  confirmRegistration(eventInfo?:any, userInfo?:any) {
     let confirm = Alert.create({
       title: 'Registration Confirmation',
       message: 'Thank you for registering! You will receive an e-mail to confirm your registration for this event.',
@@ -117,31 +115,9 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
         }
       ]
     });
-    this.nav.present(confirm);
+    this.nav.present(confirm);  
   }
 
-  confirmFriendRegistration() {
-    let confirm = Alert.create({
-      title: 'Registration Confirmation',
-      message: 'Thank you for registering! You will receive an e-mail to confirm your registration for this event.',
-      buttons: [
-        {
-          text: 'Confirm',
-          handler: () => {
-            // form.submit();
-            this.backToEvents();
-          }
-        },
-        {
-          text: 'Cancel',
-          handler: () => {
-            console.log('cancel registration');
-          }
-        }
-      ]
-    });
-    this.nav.present(confirm);
-  }
 
   backToEvents() {
     this.nav.setRoot(EventsPage);

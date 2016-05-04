@@ -1,11 +1,12 @@
 import {Page, NavParams} from 'ionic-angular';
 import {SessionRegistrationPage} from '../../components/session-registration/session-registration.component';
+import {FriendRegistrationPage} from '../../components/friend-registration/friend-registration.component';
 import {Event} from '../../models/events/event';
 import {User} from '../../models/user/user';
 
 @Page({
   templateUrl: 'build/pages/registration/registration.page.html',
-  directives: [SessionRegistrationPage]
+  directives: [SessionRegistrationPage, FriendRegistrationPage]
 })
 export class RegistrationPage {
   event: Event;
