@@ -152,7 +152,10 @@ export class EventComponent implements OnInit, OnDestroy {
           }
         },
         {
-          text: 'Cancel'
+          text: 'Cancel',
+          handler: () => {
+            this.registered = false;
+          }
         }
       ]
     });
