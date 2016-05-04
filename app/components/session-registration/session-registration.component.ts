@@ -1,4 +1,4 @@
-import {Component, Input, AfterContentInit, OnInit, EventEmitter} from 'angular2/core';
+import {Component, Input, AfterContentInit, OnInit} from 'angular2/core';
 import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
 
 import {UserService} from '../../service/user.service';
@@ -21,7 +21,6 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
   event: Event;
   userId: number;
   user: User;
-  userSubscription: EventEmitter<User>;
 
   constructor(private _userApi:UserService, private _userEventApi:UserEventService, private nav: NavController, private params: NavParams) {}
 
@@ -64,7 +63,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
   registerFriend() {
     MktoForms2.whenReady((form) => {
       let valid = form.validate();
-      if (valid) {
+      if (valid === true) {
         this.confirmRegistration();
       }
     });
@@ -109,6 +108,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
         },
         {
           text: 'Cancel',
+          role: 'cancel',
           handler: () => {
             console.log('cancel registration');
           }
