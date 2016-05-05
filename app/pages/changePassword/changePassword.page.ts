@@ -1,4 +1,4 @@
-import {Page} from 'ionic-angular';
+import {Page, NavController} from 'ionic-angular';
 import {ChangePasswordComponent} from '../../components/changePassword/changePassword.component';
 
 @Page({
@@ -6,4 +6,9 @@ import {ChangePasswordComponent} from '../../components/changePassword/changePas
   directives: [ChangePasswordComponent]
 })
 
-export class ChangePasswordPage {}
+export class ChangePasswordPage {
+
+  constructor(private nav:NavController) {
+    this.nav.swipeBackEnabled = false;
+  }
+}
