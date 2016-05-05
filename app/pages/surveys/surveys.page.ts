@@ -38,9 +38,13 @@
 
         this.userEventSubscription = this._userEventApi.userEvents.subscribe(
           (userEvents) => {
-            userEvents.forEach((event) => {
-              this._surveyApi.getSurveyForEvents(event.eventId);
-            });
+            if (userEvents.length > 0) {
+              userEvents.forEach((event) => {
+                this._surveyApi.getSurveyForEvents(event.eventId);
+              });
+            } else {
+              this.isLoading = false;
+            }
           },
           (err) => console.log(err),
           () => console.log('we have user events')
