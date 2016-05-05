@@ -1,4 +1,4 @@
-<ion-item *ngIf="location" (click)="viewEvent(event)">
+<ion-item *ngIf="!userEvents" (click)="viewEvent(event)">
     <ion-row>
       <ion-col width-33>
         <ion-thumbnail item-left>
@@ -23,7 +23,7 @@
     </ion-row>
 </ion-item>
 
-<ion-item-sliding *ngIf="!location">
+<ion-item-sliding *ngIf="userEvents">
   <ion-item (click)="viewEvent(event)">
     <ion-row>
       <ion-col width-33>
