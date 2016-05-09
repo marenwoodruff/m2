@@ -51,11 +51,7 @@
     "cordova-plugin-email-composer"
   ],
   "cordovaPlatforms": [
-    {
-      "platform": "android",
-      "version": "",
-      "locator": "android"
-    },
+    "android",
     {
       "platform": "ios",
       "version": "4.1.0",
