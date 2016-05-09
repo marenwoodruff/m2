@@ -53,7 +53,7 @@
         this.eventSurveySubscription = this._surveyApi.eventSurveys.subscribe(
           (eventSurveys) => {
             if (eventSurveys.length > 0) {
-              eventSurveys.forEach((survey, index) => {
+              eventSurveys.forEach((survey) => {
                 this._surveyApi.getSurveys(survey.surveyId);
               });
             } else {
