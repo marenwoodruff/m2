@@ -1,12 +1,12 @@
 <ion-item *ngIf="inProgress" (click)="viewSurvey(survey, surveyProgress)">
-    {{survey.name}}
+    {{eventName}}{{survey.name}}
     <button clear surveylight item-right>
       <ion-icon name="arrow-forward"></ion-icon>
     </button>
 </ion-item>
 
 <ion-item *ngIf="!inProgress" style="font-weight: bold;" (click)="viewSurvey(survey, surveyProgress)">
-    {{survey.name}}
+    {{eventName}}{{survey.name}}
     <button clear surveylight item-right>
       <ion-icon name="arrow-forward"></ion-icon>
     </button>
