@@ -11,6 +11,7 @@
   import {Event} from '../../models/Events/event';
   import {UserEvent} from '../../models/user/userEvent';
   import {LoaderComponent} from '../../components/loader/loader.component';
+  import {UserCompletedSurvey} from '../../models/user/userSurvey';
 
 
   @Page({
@@ -25,11 +26,13 @@
       public startedSurveys: Survey[];
       public userEvents: UserEvent[];
       public eventSurveys: Array<any>;
+      public completedSurveys: UserCompletedSurvey[];
       public surveyIds = [];
       private surveySubscription: EventEmitter<Survey[]>;
       private storageSubscription: EventEmitter<Survey[]>;
       private eventSurveySubscription: EventEmitter<any>;
       private userEventSubscription: EventEmitter<UserEvent[]>;
+      private completedSurveysSubscription: EventEmitter<UserCompletedSurvey[]>;
       private isLoading: boolean = true;
       private userId: number;
       private surveysInProgress: SurveyProgress[];
@@ -89,9 +92,16 @@
           }
         );
 
+        this.completedSurveysSubscription = this._surveyApi.completedSurveys.subscribe(
+          (completedSurveys) => this.completedSurveys = completedSurveys,
+          (err) => console.log(err),
+          () => console.log('finished subscribing to completed surveys')
+        );
+
         this._surveyApi.getSurveyForEvents();
         this._surveyApi.getSurveys();
         this._userEventApi.getUserEvents(this.userId);
+        this._surveyApi.getUserCompletedSurveys(this.userId);
       }
 
       ngOnDestroy() {
@@ -99,11 +109,12 @@
         this.storageSubscription.unsubscribe();
         this.eventSurveySubscription.unsubscribe();
         this.userEventSubscription.unsubscribe();
+        this.completedSurveysSubscription.unsubscribe();
       }
 
       ngDoCheck() {
-        if (this.eventSurveys && this.userEvents) {
-          this.filterEventSurveys(this.eventSurveys, this.userEvents);
+        if (this.eventSurveys && this.userEvents && this.completedSurveys) {
+          this.filterEventSurveys(this.eventSurveys, this.userEvents, this.completedSurveys);
         }
       }
 
@@ -140,16 +151,18 @@
         this.userId = this._userApi.getUserId();
       }
 
-      filterEventSurveys(eventSurveys:any, userEvents:UserEvent[]) {
+      filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserCompletedSurvey[]) {
         userEvents.forEach((event) => {
-          this.eventSurveys = eventSurveys.filter((eventSurvey) => {
-            if (eventSurvey.eventId === event.eventId) {
-              return true;
-            }
+          completedSurveys.forEach((completeSurvey) => {
+            this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+              if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
+                return true;
+              }
+            });
           });
         });
 
-        if (this.allSurveys) {
+        if (this.allSurveys && this.eventSurveys.length > 0) {
           this.getSurveysFromEvent(this.eventSurveys, this.allSurveys);
         }
       }
@@ -162,5 +175,8 @@
             }
           });
         });
+      }
+
+      hideCompletedSurveys(surveys: any, completedSurveys: UserCompletedSurvey[]) {
       }
   }
