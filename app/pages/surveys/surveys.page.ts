@@ -1,5 +1,5 @@
   import {Page} from 'ionic-angular';
-  import {EventEmitter, OnInit, OnDestroy} from 'angular2/core';
+  import {EventEmitter, OnInit, OnDestroy, DoCheck} from 'angular2/core';
   import {SurveysComponent} from '../../components/surveys/surveys.component';
   import {StorageService} from '../../service/storage.service';
   import {SurveyService} from '../../service/survey.service';
@@ -18,10 +18,13 @@
     directives: [SurveysComponent, LoaderComponent]
   })
 
-  export class SurveysPage implements OnInit, OnDestroy {
+  export class SurveysPage implements OnInit, OnDestroy, DoCheck {
       public surveys: Survey[];
+      public allSurveys: Survey[];
       public events: Event[];
       public startedSurveys: Survey[];
+      public userEvents: UserEvent[];
+      public eventSurveys: Array<any>;
       public surveyIds = [];
       private surveySubscription: EventEmitter<Survey[]>;
       private storageSubscription: EventEmitter<Survey[]>;
@@ -29,7 +32,7 @@
       private userEventSubscription: EventEmitter<UserEvent[]>;
       private isLoading: boolean = true;
       private userId: number;
-      surveysInProgress: SurveyProgress[];
+      private surveysInProgress: SurveyProgress[];
 
       constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService, private _userEventApi:UserEventService, private _userApi:UserService) { }
 
@@ -39,9 +42,7 @@
         this.userEventSubscription = this._userEventApi.userEvents.subscribe(
           (userEvents) => {
             if (userEvents.length > 0) {
-              userEvents.forEach((event) => {
-                this._surveyApi.getSurveyForEvents(event.eventId);
-              });
+              this.userEvents = userEvents;
             } else {
               this.isLoading = false;
             }
@@ -53,9 +54,7 @@
         this.eventSurveySubscription = this._surveyApi.eventSurveys.subscribe(
           (eventSurveys) => {
             if (eventSurveys.length > 0) {
-              eventSurveys.forEach((survey) => {
-                this._surveyApi.getSurveys(survey.surveyId);
-              });
+              this.eventSurveys = eventSurveys;
             } else {
               this.isLoading = false;
             }
@@ -66,15 +65,15 @@
 
         this.surveySubscription = this._surveyApi.surveys.subscribe(
           (surveys) => {
-            this.surveys = surveys;
-            this.checkSurveyProgress(this.surveys);
+            this.allSurveys = surveys;
+            this.checkSurveyProgress(this.allSurveys);
           },
           err => console.log('SurveysComponent surveyservice subscribe error:', err),
           () =>  console.log('finished subscribing to surveys')
         );
 
         this.storageSubscription = this._storageApi.surveyProgress.subscribe(
-          (progressSurveys) => {
+          (progressSurveys) => { 
             this.startedSurveys = progressSurveys;
             this.surveysInProgress = progressSurveys.map((sip) => {
               let lastQuestionId = this.findQuestionId(sip);
@@ -90,6 +89,8 @@
           }
         );
 
+        this._surveyApi.getSurveyForEvents();
+        this._surveyApi.getSurveys();
         this._userEventApi.getUserEvents(this.userId);
       }
 
@@ -98,6 +99,12 @@
         this.storageSubscription.unsubscribe();
         this.eventSurveySubscription.unsubscribe();
         this.userEventSubscription.unsubscribe();
+      }
+
+      ngDoCheck() {
+        if (this.eventSurveys && this.userEvents) {
+          this.filterEventSurveys(this.eventSurveys, this.userEvents);
+        }
       }
 
       findQuestionId(survey) {
@@ -133,4 +140,27 @@
         this.userId = this._userApi.getUserId();
       }
 
+      filterEventSurveys(eventSurveys:any, userEvents:UserEvent[]) {
+        userEvents.forEach((event) => {
+          this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+            if (eventSurvey.eventId === event.eventId) {
+              return true;
+            }
+          });
+        });
+
+        if (this.allSurveys) {
+          this.getSurveysFromEvent(this.eventSurveys, this.allSurveys);
+        }
+      }
+
+      getSurveysFromEvent(eventSurveys: any, surveys:any) {
+        eventSurveys.forEach((eventSurvey) => {
+          this.surveys = surveys.filter((survey) => {
+            if (eventSurvey.surveyId === survey.id) {
+              return true;
+            }
+          });
+        });
+      }
   }
