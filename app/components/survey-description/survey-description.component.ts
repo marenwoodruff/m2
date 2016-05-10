@@ -9,7 +9,7 @@ import {SurveyService} from '../../service/survey.service';
   selector: 'survey-description',
   templateUrl: 'build/components/survey-description/survey-description.component.html',
   directives: [Item, Icon, Button],
-  inputs:['survey', 'surveysInProgress']
+  inputs:['survey', 'surveysInProgress', 'eventSurveys']
 })
 
 export class SurveyDescriptionComponent implements OnChanges {
@@ -18,7 +18,8 @@ export class SurveyDescriptionComponent implements OnChanges {
   completed: boolean;
   inProgress: boolean;
   surveyProgress: SurveyProgress;
-
+  eventSurveys: Array<any>;
+  eventName: string;
 
   constructor(private _surveyApi: SurveyService, private nav: NavController) { }
 
@@ -31,7 +32,14 @@ export class SurveyDescriptionComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    this.getEventName();
     this.evaluateProgress(this.survey, this.surveysInProgress);
+  }
+
+  getEventName() {
+    let eventSurvey = this.eventSurveys ? this.eventSurveys.filter(eventSurvey => eventSurvey.surveyId === this.survey.id) : null;
+    
+    this.eventName = eventSurvey[0].eventTitle + ' - ';
   }
 
   evaluateProgress(survey, surveysInProgress) {
