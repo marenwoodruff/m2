@@ -1,0 +1,98 @@
+.session-registration{
+
+  form {
+    position: relative;
+  }
+
+  .register-button {
+    position: flex;
+    margin-bottom: 1em;
+  }
+
+  .mktoForm .mktoButtonWrap.mktoSimple button.mktoButton {
+    // position: absolute;
+    // opacity: 0;
+    // top: 1em;
+    // left: 4em;
+    // z-index: 5;
+    display: none;
+  }
+
+  ion-item{
+    padding-left: 0;
+    border-right: 1px solid #C1BFC0;
+    border-left: 1px solid #C1BFC0;
+  }
+  ion-list{
+    margin: 10px;
+    border-bottom: none;
+    border-top: none;
+  }
+  ion-label{
+    margin: 20px 15px;
+    color: #C1BFC0;
+  }
+  .registration-list{
+    padding: 2em 0 0 0;
+  }
+  .register-button{
+    border-radius: 0;
+  }
+  .red-asterix{
+    color: red;
+    padding: .25em 0 2em .25em;
+    margin: 0;
+    border: 0;
+  }
+
+  .form-info {
+    white-space: normal;  
+  }
+
+  .mktoForm {
+    padding: 0;
+
+    input {
+      width: 100%;
+      height: 40px;
+    }
+  }
+
+  .mktoForm input[type="text"], .mktoForm input[type="url"], .mktoForm input[type="email"], .mktoForm input[type="tel"], .mktoForm input[type="number"], .mktoForm input[type="date"], .mktoForm textarea.mktoField, .mktoForm select.mktoField {
+    width: 100%;
+    margin-left: 2em;
+  }
+
+  .mktoForm input[type="radio"] {
+    position: absolute;
+    height: 1em;
+    margin-top: 1em;
+    // right: 8em;
+  }
+
+  .mktoForm .mktoRadioList > label, .mktoForm .mktoCheckboxList > label {
+    margin-left: 2.5em;
+    position: relative;
+    margin-top: 1em;
+  }
+
+  #mktoForm_1862 {
+    width: 100%;
+    margin: 0;
+  }
+
+  .mktoAsterix {
+    position: absolute;
+    left: 0.85em;
+  }
+
+  label[for="agileAdoption"] {
+    border-top: 1px solid black;
+    margin-top: 2em;
+    padding-top: 2em;
+    width: 24em !important;
+  }
+
+  .mktoButton {
+  }
+}
