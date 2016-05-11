@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 
 import {Question} from '../models/survey/question';
 import {Survey} from "../models/survey/survey";
+import {UserCompletedSurvey} from "../models/user/userSurvey";
 
 import {SurveyProgress} from "../models/survey/surveyProgress";
 import {SurveyResponse} from "../models/survey/surveyResponse";
@@ -20,6 +21,7 @@ export class SurveyService {
     eventSurveys: EventEmitter<any> = new EventEmitter();
     surveyComplete: EventEmitter<boolean> = new EventEmitter();
     surveyById: EventEmitter<Survey> = new EventEmitter();
+    completedSurveys: EventEmitter<UserCompletedSurvey[]> = new EventEmitter();
     surveyResponse: SurveyResponse;
     surveysForEvents = [];
 
@@ -67,6 +69,7 @@ export class SurveyService {
     public submitSurvey(survey:Survey, surveyResponse:SurveyResponse):void {
       let surveyAnswers = survey.questions;
       let response = JSON.stringify(surveyResponse);
+      console.log(response);
       this._clientApi.post('surveys/' + survey.id + '/responses', response)
         .subscribe(
           err => console.log(err),
@@ -75,7 +78,16 @@ export class SurveyService {
 
     public surveyCompleted(completed:boolean):void {
       this.surveyComplete.emit(completed);
-      console.log('EMITTEDDDDDDD');
+    }
+
+    public getUserCompletedSurveys(userId:number):void {
+      this._clientApi.get('users/' + userId + '/surveys')
+        .map(res => <UserCompletedSurvey[]>res.json())
+        .subscribe(
+          completedSurveys => this.completedSurveys.emit(completedSurveys),
+          err => console.log('err:', err),
+          () => console.log('we have surveys completed by user')
+        );
     }
 
     // public getSurveyResponses(id:number, userId?:number):void {

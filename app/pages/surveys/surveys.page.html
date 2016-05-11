@@ -11,7 +11,7 @@
     </ion-card-title>
   </ion-card>
   <div *ngIf="surveys">
-    <surveys [surveys]="surveys" [surveysInProgress]="surveysInProgress" [startedSurveys]="startedSurveys"></surveys>
+    <surveys [surveys]="surveys" [surveysInProgress]="surveysInProgress" [startedSurveys]="startedSurveys" [eventSurveys]="eventSurveys"></surveys>
   </div>
   <div class="page-loader" *ngIf="isLoading">
       <loader [isRunning]="isLoading"></loader>

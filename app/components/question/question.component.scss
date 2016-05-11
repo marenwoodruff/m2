@@ -15,6 +15,7 @@ $gray-background: #f6fafb;
 .answer-container {
   min-height: 31%;
   max-height: 31%;
+  overflow: scroll;
 
   textarea {
     border: none;

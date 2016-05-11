@@ -1,7 +1,7 @@
 <ion-menu [content]="content">
 
   <ion-toolbar primary>
-    <ion-title>Welcome, {{userName}}!</ion-title>
+    <ion-title class="user-name">Welcome, {{userName}}!</ion-title>
   </ion-toolbar>
 
   <ion-content>
@@ -17,5 +17,5 @@
 
 </ion-menu>
 
-<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
 
