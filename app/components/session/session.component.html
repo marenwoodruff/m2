@@ -21,7 +21,7 @@
       <ion-list-header>
         Speakers
       </ion-list-header>
-      <ion-item *ngFor="#speaker of session.speakers">
+      <ion-item *ngFor="let speaker of session.speakers">
         <ion-avatar item-left>
           <img src="{{speaker.image}}">
         </ion-avatar>
