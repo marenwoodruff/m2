@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 
 @Component({
   templateUrl: 'build/components/event-location/event-location.component.html',

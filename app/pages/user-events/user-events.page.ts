@@ -1,5 +1,5 @@
 import {Page} from 'ionic-angular';
-import {OnInit, OnDestroy, EventEmitter} from 'angular2/core';
+import {OnInit, OnDestroy, EventEmitter} from '@angular/core';
 import * as moment from 'moment';
 
 import {UserEvent} from '../../models/user/userEvent';

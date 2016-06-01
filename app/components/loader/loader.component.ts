@@ -1,5 +1,5 @@
-import {Input, OnDestroy, Component} from 'angular2/core';
-import {NgClass} from 'angular2/common'
+import {Input, OnDestroy, Component} from '@angular/core';
+import {NgClass} from '@angular/common'
 
 export class BaseSpinner implements OnDestroy {
   private visible: boolean = true;

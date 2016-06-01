@@ -1,5 +1,5 @@
-import {Injectable, EventEmitter} from 'angular2/core';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Injectable, EventEmitter} from '@angular/core';
+import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {UserEvent} from '../models/user/userEvent';

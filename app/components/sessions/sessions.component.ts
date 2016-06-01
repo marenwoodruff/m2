@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {List, Item, Button, Icon, NavController} from 'ionic-angular';
 import {DateFormatPipe} from 'angular2-moment';
 import {Session} from '../../models/events/session';

@@ -1,5 +1,5 @@
 import {Page, NavParams, Platform} from 'ionic-angular';
-import {OnInit, forwardRef} from 'angular2/core';
+import {OnInit, forwardRef} from '@angular/core';
 import {EventComponent} from '../../components/event/event.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {SessionsComponent} from '../../components/sessions/sessions.component';

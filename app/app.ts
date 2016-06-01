@@ -1,5 +1,5 @@
 import {App, IonicApp, Platform, NavController, Icon, MenuController, Alert} from 'ionic-angular';
-import {forwardRef, OnInit, EventEmitter} from 'angular2/core';
+import {forwardRef, OnInit, EventEmitter} from '@angular/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
