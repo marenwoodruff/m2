@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, EventEmitter} from 'angular2/core';
+import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
 import {NavController, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
