@@ -1,4 +1,4 @@
-import {Component, OnChanges} from 'angular2/core';
+import {Component, OnChanges} from '@angular/core';
 import {Item, NavController, Icon, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';

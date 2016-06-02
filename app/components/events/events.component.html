@@ -40,7 +40,7 @@
       </ion-card-title>
     </ion-card-content>
   </ion-card>
-  <eventListItem *ngFor="#event of eventsSearch" [event]="event" [location]="location"></eventListItem>
+  <eventListItem *ngFor="let event of eventsSearch" [event]="event" [location]="location"></eventListItem>
 </ion-list>
 
 <ion-list *ngIf="userEvents" class="events-list">
@@ -51,5 +51,5 @@
       </ion-card-title>
     </ion-card-content>
   </ion-card>
-  <eventListItem *ngFor="#event of eventsSearch" [event]="event" [userEvents]="userEvents"></eventListItem>
+  <eventListItem *ngFor="let event of eventsSearch" [event]="event" [userEvents]="userEvents"></eventListItem>
 </ion-list>

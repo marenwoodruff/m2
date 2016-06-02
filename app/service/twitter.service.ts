@@ -1,5 +1,5 @@
-import {Injectable, EventEmitter} from 'angular2/core';
-import {Http, Headers, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
+import {Injectable, EventEmitter} from '@angular/core';
+import {Http, Headers, RequestOptions, HTTP_PROVIDERS} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {TwitterFeed} from '../models/twitter/twitter';
 import {AuthorizedUser} from '../models/user/authorizedUser';

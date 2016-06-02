@@ -1,5 +1,5 @@
 import {Page, Icon, NavController, ActionSheet, MenuController} from 'ionic-angular';
-import {OnInit, OnDestroy, forwardRef, EventEmitter} from 'angular2/core';
+import {OnInit, OnDestroy, forwardRef, EventEmitter} from '@angular/core';
 import {EventsComponent} from '../../components/events/events.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {EventService} from "../../service/event.service";

@@ -1,5 +1,5 @@
   import {Page} from 'ionic-angular';
-  import {EventEmitter, OnInit, OnDestroy, DoCheck} from 'angular2/core';
+  import {EventEmitter, OnInit, OnDestroy, DoCheck} from '@angular/core';
   import {SurveysComponent} from '../../components/surveys/surveys.component';
   import {StorageService} from '../../service/storage.service';
   import {SurveyService} from '../../service/survey.service';
