@@ -1,4 +1,4 @@
-import {Component, Input, AfterContentInit, OnInit} from 'angular2/core';
+import {Component, Input, AfterContentInit, OnInit} from '@angular/core';
 import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
 
 import {UserService} from '../../service/user.service';

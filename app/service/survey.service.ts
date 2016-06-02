@@ -1,5 +1,5 @@
-import {Injectable, EventEmitter} from 'angular2/core';
-import {Http, HTTP_PROVIDERS, Headers} from 'angular2/http';
+import {Injectable, EventEmitter} from '@angular/core';
+import {Http, HTTP_PROVIDERS, Headers} from '@angular/http';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';

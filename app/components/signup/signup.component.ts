@@ -1,5 +1,5 @@
-import {EventEmitter, Component, OnInit, OnDestroy, Input} from 'angular2/core';
-import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from 'angular2/common';
+import {EventEmitter, Component, OnInit, OnDestroy, Input} from '@angular/core';
+import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from '@angular/common';
 import {Button, List, Item, TextInput, Label, NavController} from 'ionic-angular';
 import {UserService} from '../../service/user.service';
 import {User} from '../../models/user/user';

@@ -1,5 +1,5 @@
-import {App, IonicApp, Platform, NavController, Icon, MenuController, Alert} from 'ionic-angular';
-import {forwardRef, OnInit, EventEmitter} from 'angular2/core';
+import {App, IonicApp, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
+import {forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
@@ -27,7 +27,8 @@ import {User} from './models/user/user';
 class MyApp implements OnInit{
     rootPage: any = LoginPage;
     pages:Array<{title: string, component: any}>;
-    nav:NavController;
+    // nav:NavController;
+     @ViewChild(Nav) nav: Nav;
     userName: string;
     userSubscription: EventEmitter<User>;
 
@@ -59,15 +60,13 @@ class MyApp implements OnInit{
 
     private initializeApp() {
         this.platform.ready().then(() => {
-            var nav:NavController = this.app.getComponent("nav");
-            this.nav = nav;
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
                       this.userInfo();
                       this.menuController.enable(true);
                       this.setInitialPage(EventsPage);
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
-    		      } 
+    		      }
     	     });
         });
     }
@@ -78,9 +77,8 @@ class MyApp implements OnInit{
 
     private openPage(page) {
       this.hasLoggedIn((loggedIn) => {
-        let nav = this.app.getComponent('nav');
         if (loggedIn === true) {
-          nav.setRoot(page.component);
+          this.nav.setRoot(page.component);
         } else {
           this.loggedOutAlert();
         }

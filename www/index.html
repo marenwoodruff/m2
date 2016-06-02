@@ -11,8 +11,6 @@
   <meta http-equiv="Content-Security-Policy" content="default-src *; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; *; style-src  &apos;self&apos; &apos;unsafe-inline&apos; *">
   <link ios-href="build/css/app.ios.css" rel="stylesheet">
   <link md-href="build/css/app.md.css" rel="stylesheet">
-  <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script></head>
-  <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
 
 
@@ -20,8 +18,14 @@
 
   <ion-app></ion-app>
 
-  <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
+  <!-- Polyfill needed for platforms without Promise and Collection support -->
+  <script src="build/js/es6-shim.min.js"></script>
+  <!-- Zone.js and Reflect-metadata  -->
+  <script src="build/js/Reflect.js"></script>
+  <script src="build/js/zone.js"></script>
+  <!-- the bundle which is built from the app's source code -->
   <script src="build/js/app.bundle.js"></script>
 
 </body>

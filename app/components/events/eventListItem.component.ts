@@ -1,4 +1,4 @@
-import {Component, OnChanges} from 'angular2/core';
+import {Component, OnChanges} from '@angular/core';
 import {Event} from '../../models/events/event';
 import {UserEvent} from '../../models/user/userEvent';
 import {EventPage} from '../../pages/event/event.page';

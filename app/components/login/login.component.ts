@@ -1,10 +1,10 @@
-import {EventEmitter, Component, OnInit, OnDestroy, Input, Inject} from 'angular2/core';
-import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from 'angular2/common';
+import {EventEmitter, Component, OnInit, OnDestroy, Input, Inject} from '@angular/core';
+import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from '@angular/common';
 import {TwitterService} from '../../service/twitter.service';
 import {LinkedInService} from '../../service/linkedin.service';
 import {UserService} from '../../service/user.service';
 import {AuthorizationService} from '../../service/authorization.service';
-import {Http} from 'angular2/http';
+import {Http} from '@angular/http';
 import {Button, List, Item, TextInput, Label, Platform, NavController, MenuController} from 'ionic-angular';
 import {SignupEmailPage} from '../../pages/signupEmail/signupEmail.page';
 import {EventsPage} from '../../pages/events/events.page';
