@@ -1,6 +1,5 @@
-import {OnInit} from 'angular2/core';
-import {Page} from 'ionic-angular';
-import {NavController, NavParams, Button} from 'ionic-angular';
+import {OnInit} from '@angular/core';
+import {Page, NavController, NavParams, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {SurveyPage} from '../survey/survey.page';
 import {SurveyCompletedPage} from '../survey-completed/survey-completed.page';

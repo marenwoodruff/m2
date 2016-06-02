@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, EventEmitter} from 'angular2/core';
+import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
 import {NavController, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
@@ -42,7 +42,7 @@ export class EventComponent implements OnInit, OnDestroy {
       err => console.log(err),
       () => console.log('got user info')
     );
-
+    console.log('fuck');
     this.userEventSubscription = this._userEventApi.userEvents.subscribe(
       event => event.length > 0 ? this.registered = true : this.registered = false,
       err => console.log('err: ', err),

@@ -1,5 +1,5 @@
-import {Component, OnChanges, Input} from 'angular2/core';
-import {NgClass} from 'angular2/common';
+import {Component, OnChanges, Input} from '@angular/core';
+import {NgClass} from '@angular/common';
 import {List, Button, Searchbar, Icon} from 'ionic-angular';
 import {EventListItemComponent} from "./eventListItem.component";
 import {Event} from '../../models/events/event';

@@ -1,4 +1,4 @@
-import {Component, forwardRef, OnChanges} from 'angular2/core';
+import {Component, forwardRef, OnChanges} from '@angular/core';
 import {List, Item} from 'ionic-angular';
 import {SurveyDescriptionComponent} from '../survey-description/survey-description.component';
 import {Survey} from '../../models/survey/survey';

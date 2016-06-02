@@ -1,4 +1,4 @@
-import {Injectable, EventEmitter} from 'angular2/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Platform, Storage, SqlStorage} from 'ionic-angular';
 import {Survey} from "../models/survey/survey";
 import {Question} from "../models/survey/question";

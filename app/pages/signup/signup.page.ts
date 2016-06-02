@@ -1,5 +1,5 @@
 import {Page, NavController} from 'ionic-angular';
-import {Inject} from 'angular2/core';
+import {Inject} from '@angular/core';
 import {SignupEmailPage} from '../signupEmail/signupEmail.page';
 
 @Page({

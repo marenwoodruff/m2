@@ -1,33 +1,38 @@
 {
   "dependencies": {
-    "angular2": "2.0.0-beta.6",
-    "angular2-moment": "^0.4.3",
+    "@angular/common": "^2.0.0-rc.1",
+    "@angular/compiler": "^2.0.0-rc.1",
+    "@angular/core": "^2.0.0-rc.1",
+    "@angular/http": "^2.0.0-rc.1",
+    "@angular/platform-browser": "^2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.1",
+    "@angular/router": "^2.0.0-rc.1",
+    "angular2-moment": "^0.8.0",
     "corsproxy": "^1.4.0",
     "es6-promise": "3.0.2",
     "es6-shim": "0.33.13",
     "font-awesome": "^4.5.0",
-    "ionic-angular": "2.0.0-beta.2",
-    "ionic-native": "git+https://github.com/driftyco/ionic-native.git",
-    "ionicons": "3.0.0-alpha.3",
+    "ionic-angular": "^2.0.0-beta.7",
+    "ionic-native": "1.2.4",
+    "ionicons": "3.0.0",
     "moment": "^2.12.0",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.0",
-    "zone.js": "0.5.14"
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.6",
+    "zone.js": "^0.6.12"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "0.15.10",
     "del": "2.2.0",
     "gulp": "3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
     "gulp-flatten": "^0.2.0",
     "gulp-if": "^2.0.0",
-    "gulp-sass": "2.2.0",
-    "gulp-strip-code": "^0.1.4",
     "gulp-watch": "4.3.5",
+    "ionic-gulp-browserify-typescript": "^1.1.0",
+    "ionic-gulp-fonts-copy": "^1.0.0",
+    "ionic-gulp-html-copy": "^1.0.0",
+    "ionic-gulp-sass-build": "^1.0.0",
+    "ionic-gulp-scripts-copy": "^2.0.0",
     "merge-stream": "^1.0.0",
-    "strip-sourcemap-loader": "0.0.1",
-    "typescript": "1.7.5",
-    "webpack": "1.12.14"
+    "run-sequence": "1.1.5"
   },
   "name": "matrix-mobile",
   "description": "matrix-mobile: An Ionic project",
@@ -51,11 +56,7 @@
     "cordova-plugin-email-composer"
   ],
   "cordovaPlatforms": [
-    {
-      "platform": "android",
-      "version": "",
-      "locator": "android"
-    },
+    "android",
     {
       "platform": "ios",
       "version": "4.1.0",
