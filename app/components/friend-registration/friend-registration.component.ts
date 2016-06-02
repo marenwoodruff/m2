@@ -1,4 +1,4 @@
-import {Component, AfterContentInit} from 'angular2/core';
+import {Component, AfterContentInit} from '@angular/core';
 import {Button, Label, NavController, NavParams, Alert} from 'ionic-angular';
 
 import {EventsPage} from '../../pages/events/events.page';

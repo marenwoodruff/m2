@@ -1,5 +1,5 @@
 import {Page, NavController} from 'ionic-angular';
-import {OnInit} from 'angular2/core';
+import {OnInit} from '@angular/core';
 import {LoaderComponent} from '../../components/loader/loader.component';
 import {AuthorizationService} from '../../service/authorization.service';
 import {LoginPage} from '../login/login.page';
