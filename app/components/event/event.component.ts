@@ -42,7 +42,7 @@ export class EventComponent implements OnInit, OnDestroy {
       err => console.log(err),
       () => console.log('got user info')
     );
-
+    console.log('fuck');
     this.userEventSubscription = this._userEventApi.userEvents.subscribe(
       event => event.length > 0 ? this.registered = true : this.registered = false,
       err => console.log('err: ', err),
