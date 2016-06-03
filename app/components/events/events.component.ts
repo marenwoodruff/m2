@@ -67,7 +67,7 @@ export class EventsComponent implements OnChanges {
   private initializeItems():void {
     if (this.events) {
       this.eventsSearch = this.events.filter((event) => {
-        return moment.unix(event.startDate).isSame(this.month, 'month');
+        return (moment.unix(event.startDate).isSame(this.month, 'month') && !event.paidEvent);
       });
     }
   }
