@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Page, NavParams, NavController} from 'ionic-angular';
+import {Page, NavParams, Nav} from 'ionic-angular';
 import {QuestionComponent} from '../../components/question/question.component';
 import {Survey} from '../../models/survey/survey';
 import {StorageService} from '../../service/storage.service';
@@ -14,7 +14,7 @@ export class SurveyPage {
   inProgress: boolean;
   lastQuestionIndex: number;
 
-  constructor(private params: NavParams, private nav: NavController, private storage: StorageService) {
+  constructor(private params: NavParams, private nav: Nav, private storage: StorageService) {
     this.nav.swipeBackEnabled = false;
     this.survey = this.params.get('survey');
     this.inProgress = this.params.get('inProgress');
