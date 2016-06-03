@@ -10,11 +10,11 @@ import {HttpClient} from './http-client.service';
 @Injectable()
 export class UserEventService {
 
-  userEvents: EventEmitter<UserEvent[]> = new EventEmitter();
+  userEvents: EventEmitter<UserEvent[]> = new EventEmitter<UserEvent[]>();
 
   constructor(
     private _api: Http,
-    private httpClient:HttpClient) {  };
+    private httpClient:HttpClient) {};
 
   public getUserEvents(userId: number, eventId?: number): void {
     this.httpClient.get(`users/${userId}/events`)

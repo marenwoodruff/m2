@@ -19,8 +19,11 @@ export class AuthorizationService {
   loginUserError: EventEmitter<any> = new EventEmitter();
   authorizeUserError: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _api: Http, private httpClient:HttpClient, private _userService: UserService, private _storageService: StorageService) {
-  };
+  constructor(
+      private _api: Http,
+      private httpClient:HttpClient,
+      private _userService: UserService,
+      private _storageService: StorageService) {};
 
   public authorizeUser(authorizeUser: AuthorizeUser): void {
     const userLoginBody = JSON.stringify(authorizeUser);
