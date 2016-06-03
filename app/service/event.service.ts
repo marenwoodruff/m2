@@ -11,10 +11,10 @@ import {HttpClient} from './http-client.service';
 @Injectable()
 export class EventService {
 
-    events: EventEmitter<Event[]> = new EventEmitter();
-    eventSurveys: EventEmitter<Survey[]> = new EventEmitter();
+    events: EventEmitter<Event[]> = new EventEmitter<Event[]>();
+    eventSurveys: EventEmitter<Survey[]> = new EventEmitter<Survey[]>();
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {}
 
     public getEvents(): void {
       let headers = new Headers();

@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 
 import {Question} from '../models/survey/question';
 import {Survey} from "../models/survey/survey";
-import {UserCompletedSurvey} from "../models/user/userSurvey";
+import {UserSurvey} from "../models/user/userSurvey";
 
 import {SurveyProgress} from "../models/survey/surveyProgress";
 import {SurveyResponse} from "../models/survey/surveyResponse";
@@ -17,11 +17,11 @@ import {HttpClient} from './http-client.service';
 @Injectable()
 export class SurveyService {
 
-    surveys:EventEmitter<Survey[]> = new EventEmitter();
+    surveys:EventEmitter<Survey[]> = new EventEmitter<Survey[]>();
     eventSurveys: EventEmitter<any> = new EventEmitter();
-    surveyComplete: EventEmitter<boolean> = new EventEmitter();
-    surveyById: EventEmitter<Survey> = new EventEmitter();
-    completedSurveys: EventEmitter<UserCompletedSurvey[]> = new EventEmitter();
+    surveyComplete: EventEmitter<boolean> = new EventEmitter<boolean> ();
+    surveyById: EventEmitter<Survey> = new EventEmitter<Survey>();
+    completedSurveys: EventEmitter<UserSurvey[]> = new EventEmitter<UserSurvey[]>();
     surveyResponse: SurveyResponse;
     surveysForEvents = [];
 
@@ -82,7 +82,7 @@ export class SurveyService {
 
     public getUserCompletedSurveys(userId:number):void {
       this._clientApi.get('users/' + userId + '/surveys')
-        .map(res => <UserCompletedSurvey[]>res.json())
+        .map(res => <UserSurvey[]>res.json())
         .subscribe(
           completedSurveys => this.completedSurveys.emit(completedSurveys),
           err => console.log('err:', err),

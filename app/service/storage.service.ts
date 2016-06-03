@@ -9,8 +9,8 @@ import 'rxjs/Rx';
 @Injectable()
 export class StorageService {
 
-  surveyQuestions:EventEmitter<Question[]> = new EventEmitter();
-  surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter();
+  surveyQuestions:EventEmitter<Question[]> = new EventEmitter<Question[]>();
+  surveyProgress:EventEmitter<SurveyProgress[]> = new EventEmitter<SurveyProgress[]>();
   private surveys = [];
   public storage: Storage;
 

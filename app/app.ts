@@ -27,8 +27,7 @@ import {User} from './models/user/user';
 class MyApp implements OnInit{
     rootPage: any = LoginPage;
     pages:Array<{title: string, component: any}>;
-    // nav:NavController;
-     @ViewChild(Nav) nav: Nav;
+    @ViewChild(Nav) nav: Nav;
     userName: string;
     userSubscription: EventEmitter<User>;
 

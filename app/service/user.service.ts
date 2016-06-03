@@ -10,15 +10,15 @@ import {HttpClient} from './http-client.service';
 
 @Injectable()
 export class UserService {
-  user: EventEmitter<User> = new EventEmitter();
+  user: EventEmitter<User> = new EventEmitter<User>();
   error: EventEmitter<any> = new EventEmitter();
   getUserError: EventEmitter<any> = new EventEmitter();
   updateUserError: EventEmitter<any> = new EventEmitter();
   deleteUserError: EventEmitter<any> = new EventEmitter();
   changePasswordError: EventEmitter<any> = new EventEmitter();
   forgotPasswordError: EventEmitter<any> = new EventEmitter();
-  forgotPasswordSuccess: EventEmitter<boolean> = new EventEmitter();
-  userDeletedSuccess: EventEmitter<boolean> = new EventEmitter();
+  forgotPasswordSuccess: EventEmitter<boolean> = new EventEmitter<boolean>();
+  userDeletedSuccess: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private _api: Http,
