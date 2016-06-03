@@ -20,7 +20,7 @@ export class TwitterService {
     authDataProfileLocation: string;
     userLogin: AuthorizeUser;
     private _api:Http;
-    feed:EventEmitter<TwitterFeed[]> = new EventEmitter();
+    feed:EventEmitter<TwitterFeed[]> = new EventEmitter<TwitterFeed[]> ();
     bearerToken:EventEmitter<any> = new EventEmitter();
     twitterCredentials:EventEmitter<any> = new EventEmitter();
     firebaseUrl: string;
