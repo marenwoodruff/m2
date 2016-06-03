@@ -11,7 +11,7 @@
   import {Event} from '../../models/Events/event';
   import {UserEvent} from '../../models/user/userEvent';
   import {LoaderComponent} from '../../components/loader/loader.component';
-  import {UserCompletedSurvey} from '../../models/user/userSurvey';
+  import {UserSurvey} from '../../models/user/userSurvey';
 
 
   @Page({
@@ -26,13 +26,13 @@
       public startedSurveys: Survey[];
       public userEvents: UserEvent[];
       public eventSurveys: Array<any>;
-      public completedSurveys: UserCompletedSurvey[];
+      public completedSurveys: UserSurvey[];
       public surveyIds = [];
       private surveySubscription: EventEmitter<Survey[]>;
       private storageSubscription: EventEmitter<Survey[]>;
       private eventSurveySubscription: EventEmitter<any>;
       private userEventSubscription: EventEmitter<UserEvent[]>;
-      private completedSurveysSubscription: EventEmitter<UserCompletedSurvey[]>;
+      private completedSurveysSubscription: EventEmitter<UserSurvey[]>;
       private isLoading: boolean = true;
       private userId: number;
       private surveysInProgress: SurveyProgress[];
@@ -76,7 +76,7 @@
         );
 
         this.storageSubscription = this._storageApi.surveyProgress.subscribe(
-          (progressSurveys) => { 
+          (progressSurveys) => {
             this.startedSurveys = progressSurveys;
             this.surveysInProgress = progressSurveys.map((sip) => {
               let lastQuestionId = this.findQuestionId(sip);
@@ -151,7 +151,7 @@
         this.userId = this._userApi.getUserId();
       }
 
-      filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserCompletedSurvey[]) {
+      filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserSurvey[]) {
         userEvents.forEach((event) => {
           completedSurveys.forEach((completeSurvey) => {
             this.eventSurveys = eventSurveys.filter((eventSurvey) => {
@@ -177,6 +177,6 @@
         });
       }
 
-      hideCompletedSurveys(surveys: any, completedSurveys: UserCompletedSurvey[]) {
+      hideCompletedSurveys(surveys: any, completedSurveys: UserSurvey[]) {
       }
   }
