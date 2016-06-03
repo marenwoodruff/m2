@@ -1,4 +1,4 @@
-import {Page, NavController, NavParams, Button} from 'ionic-angular';
+import {Page, Nav, NavParams, Button} from 'ionic-angular';
 import {OnInit} from '@angular/core';
 import {Survey} from '../../models/survey/survey';
 import {EventsPage} from '../events/events.page';
@@ -9,11 +9,11 @@ import {EventsPage} from '../events/events.page';
 })
 
 export class SurveyCompletedPage implements OnInit {
-  nav: NavController
+  nav: Nav
   params: NavParams;
   survey: Survey;
 
-  constructor(nav: NavController, params: NavParams) {
+  constructor(nav: Nav, params: NavParams) {
     this.nav = nav;
     this.params = params;
     this.nav.swipeBackEnabled = false;
