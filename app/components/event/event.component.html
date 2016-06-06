@@ -2,12 +2,22 @@
   <ion-row *ngIf="survey" class="row-padding light">
     <ion-col>
       <h5 class="center">Are you at this event?</h5>
-      <p class="center">
-        Take this questionnaire & be entered to win a prize
-      </p>
-      <ion-row style="display: flex; justify-content: center">
-        <button (click)="takeSurvey()" style="border-radius: 0;">Take Survey</button>
-      </ion-row>
+      <div *ngIf="surveys.length === 1">
+          <p class="center">
+            Take this questionnaire & be entered to win a prize
+          </p>
+          <ion-row style="display: flex; justify-content: center">
+            <button (click)="takeSurvey(survey)" style="border-radius: 0;">Take Survey</button>
+          </ion-row>
+      </div>
+      <div *ngIf="surveys.length > 1">
+          <p class="center">
+            Take a questionnaire & be entered to win a prize
+          </p>
+          <ion-row style="display: flex; justify-content: center">
+            <button (click)="viewSurveys()" style="border-radius: 0;">View Surveys</button>
+          </ion-row>
+      </div>
     </ion-col>
   </ion-row>
   <img src="http://www.matrixres.com/{{event.mobileLarge}}" alt="event image" />

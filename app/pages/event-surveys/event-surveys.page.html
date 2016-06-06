@@ -1,0 +1,19 @@
+<ion-navbar *navbar primary>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Surveys</ion-title>
+</ion-navbar>
+<ion-content padding class="survey-container">
+  <ion-card>
+    <ion-card-title *ngIf="!surveys && !isLoading" style="padding: 1em;">
+      There are no surveys available at this time.
+    </ion-card-title>
+  </ion-card>
+  <div *ngIf="surveys && eventSurveys">
+    <surveys [surveys]="surveys" [surveysInProgress]="surveysInProgress" [startedSurveys]="startedSurveys" [eventSurveys]="eventSurveys"></surveys>
+  </div>
+  <div class="page-loader" *ngIf="isLoading">
+      <loader [isRunning]="isLoading"></loader>
+  </div>
+</ion-content>

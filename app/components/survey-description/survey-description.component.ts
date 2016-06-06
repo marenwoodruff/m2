@@ -38,7 +38,7 @@ export class SurveyDescriptionComponent implements OnChanges {
 
   getEventName() {
     let eventSurvey = this.eventSurveys ? this.eventSurveys.filter(eventSurvey => eventSurvey.surveyId === this.survey.id) : null;
-    
+
     this.eventName = eventSurvey[0].eventTitle + ' - ';
   }
 
@@ -60,4 +60,3 @@ export class SurveyDescriptionComponent implements OnChanges {
   }
 
 }
-
