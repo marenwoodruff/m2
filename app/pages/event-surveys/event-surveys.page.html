@@ -10,9 +10,9 @@
       There are no surveys available at this time.
     </ion-card-title>
   </ion-card>
-  <!-- <div *ngIf="surveys">
+  <div *ngIf="surveys && eventSurveys">
     <surveys [surveys]="surveys" [surveysInProgress]="surveysInProgress" [startedSurveys]="startedSurveys" [eventSurveys]="eventSurveys"></surveys>
-  </div> -->
+  </div>
   <div class="page-loader" *ngIf="isLoading">
       <loader [isRunning]="isLoading"></loader>
   </div>

@@ -58,7 +58,6 @@ export class EventComponent implements OnInit, OnDestroy {
 
     this.surveySubscription = this._eventApi.eventSurveys.subscribe(
       (surveys) => {
-        console.log(surveys);
         this.surveys = surveys;
         this.survey = this.surveys[0];
       },
@@ -108,7 +107,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private viewSurveys(): void {
     this.nav.push(EventSurveysPage, {
       surveys: this.surveys,
-      event
+      event: this.event
     })
   }
 
