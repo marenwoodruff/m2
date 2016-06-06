@@ -9,6 +9,7 @@ import {EventLocationComponent} from '../event-location/event-location.component
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
 import {RegistrationPage} from '../../pages/registration/registration.page';
 import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
+import {EventSurveysPage} from '../../pages/event-surveys/event-surveys.page';
 import {EventService} from '../../service/event.service';
 import {UserEventService} from '../../service/userEvent.service';
 import {UserService} from '../../service/user.service';
@@ -34,7 +35,13 @@ export class EventComponent implements OnInit, OnDestroy {
   private userId: number;
   private user: User;
 
-  constructor(private nav: NavController, private platform: Platform, private _surveyApi: SurveyService, private _eventApi: EventService, private _userEventApi: UserEventService, private _userApi: UserService) { }
+  constructor(
+      private nav: NavController,
+      private platform: Platform,
+      private _surveyApi: SurveyService,
+      private _eventApi: EventService,
+      private _userEventApi: UserEventService,
+      private _userApi: UserService) { }
 
   public ngOnInit() {
     this.userSubscription = this._userApi.user.subscribe(
@@ -42,7 +49,7 @@ export class EventComponent implements OnInit, OnDestroy {
       err => console.log(err),
       () => console.log('got user info')
     );
-    console.log('fuck');
+
     this.userEventSubscription = this._userEventApi.userEvents.subscribe(
       event => event.length > 0 ? this.registered = true : this.registered = false,
       err => console.log('err: ', err),
@@ -91,9 +98,16 @@ export class EventComponent implements OnInit, OnDestroy {
     });
   }
 
-  private takeSurvey(): void {
+  private takeSurvey(survey): void {
     this.nav.push(BeginSurveyPage, {
-      survey: this.survey
+      survey: survey
+    })
+  }
+
+  private viewSurveys(): void {
+    this.nav.push(EventSurveysPage, {
+      surveys: this.surveys,
+      event: this.event
     })
   }
 
