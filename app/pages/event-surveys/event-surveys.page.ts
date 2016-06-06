@@ -1,5 +1,5 @@
-  import {Page} from 'ionic-angular';
-  import {EventEmitter, OnInit, OnDestroy, DoCheck} from '@angular/core';
+  import {Page, NavParams} from 'ionic-angular';
+  import {EventEmitter, OnInit, OnDestroy, DoCheck, forwardRef} from '@angular/core';
   import {SurveysComponent} from '../../components/surveys/surveys.component';
   import {StorageService} from '../../service/storage.service';
   import {SurveyService} from '../../service/survey.service';
@@ -15,31 +15,38 @@
 
   @Page({
     templateUrl: 'build/pages/event-surveys/event-surveys.page.html',
-    directives: [SurveysComponent, LoaderComponent]
+    directives: [forwardRef(() => SurveysComponent), LoaderComponent]
   })
 
   export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
       public surveys: Survey[];
       public allSurveys: Survey[];
-      public events: Event[];
+      public event: Event;
       public startedSurveys: Survey[];
       public userEvents: UserEvent[];
       public eventSurveys: Array<any>;
       public completedSurveys: UserSurvey[];
       public surveyIds = [];
-      private surveySubscription: EventEmitter<Survey[]>;
       private storageSubscription: EventEmitter<Survey[]>;
-      private eventSurveySubscription: EventEmitter<any>;
       private userEventSubscription: EventEmitter<UserEvent[]>;
       private completedSurveysSubscription: EventEmitter<UserSurvey[]>;
       private isLoading: boolean = true;
       private userId: number;
       private surveysInProgress: SurveyProgress[];
 
-      constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService, private _userEventApi:UserEventService, private _userApi:UserService) { }
+      constructor(
+          private _surveyApi: SurveyService,
+          private _storageApi:StorageService,
+          private _eventApi: EventService,
+          private _userEventApi:UserEventService,
+          private _userApi:UserService,
+          private _params: NavParams) { }
 
       ngOnInit(): any {
         this.getUserId();
+        this.surveys = this._params.get('surveys');
+        this.event = this._params.get('event');
+        this.setEventSurveys();
 
         this.userEventSubscription = this._userEventApi.userEvents.subscribe(
           (userEvents) => {
@@ -51,18 +58,6 @@
           },
           (err) => console.log(err),
           () => console.log('we have user events')
-        );
-
-        this.eventSurveySubscription = this._surveyApi.eventSurveys.subscribe(
-          (eventSurveys) => {
-            if (eventSurveys.length > 0) {
-              this.eventSurveys = eventSurveys;
-            } else {
-              this.isLoading = false;
-            }
-          },
-          (err) => console.log(err),
-          () => console.log('have survey ids based on events')
         );
 
         this.storageSubscription = this._storageApi.surveyProgress.subscribe(
@@ -88,16 +83,13 @@
           () => console.log('finished subscribing to completed surveys')
         );
 
-        this._surveyApi.getSurveyForEvents();
         this._userEventApi.getUserEvents(this.userId);
         this.checkSurveyProgress(this.surveys);
         this._surveyApi.getUserCompletedSurveys(this.userId);
       }
 
       ngOnDestroy() {
-        this.surveySubscription.unsubscribe();
         this.storageSubscription.unsubscribe();
-        this.eventSurveySubscription.unsubscribe();
         this.userEventSubscription.unsubscribe();
         this.completedSurveysSubscription.unsubscribe();
       }
@@ -108,7 +100,20 @@
         }
       }
 
+      setEventSurveys() {
+          this.eventSurveys = this.surveys.map((survey) => {
+             return {
+                 eventId: this.event.eventId,
+                 eventTitle: this.event.title,
+                 surveyId: survey.id,
+                 surveyName: survey.name
+             }
+          });
+          console.log(this.eventSurveys);
+      }
+
       findQuestionId(survey) {
+
         let
             lastQuestionAnsweredFound = false,
             questionId = null;
@@ -152,21 +157,5 @@
           });
         });
 
-        if (this.allSurveys && this.eventSurveys.length > 0) {
-          this.getSurveysFromEvent(this.eventSurveys, this.allSurveys);
-        }
-      }
-
-      getSurveysFromEvent(eventSurveys: any, surveys:any) {
-        eventSurveys.forEach((eventSurvey) => {
-          this.surveys = surveys.filter((survey) => {
-            if (eventSurvey.surveyId === survey.id) {
-              return true;
-            }
-          });
-        });
-      }
-
-      hideCompletedSurveys(surveys: any, completedSurveys: UserSurvey[]) {
       }
   }
