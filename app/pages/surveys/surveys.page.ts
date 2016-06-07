@@ -159,7 +159,7 @@
             return true;
           }
         });
-
+        console.log(this.completedSurveys);
         // userEvents.forEach((event) => {
         //   completedSurveys.forEach((completeSurvey) => {
         //     this.eventSurveys = eventSurveys.filter((eventSurvey) => {
