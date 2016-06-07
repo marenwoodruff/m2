@@ -46,6 +46,7 @@
           (userEvents) => {
             if (userEvents.length > 0) {
               this.userEvents = userEvents;
+              console.log(this.userEvents);
             } else {
               this.isLoading = false;
             }
@@ -152,15 +153,22 @@
       }
 
       filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserSurvey[]) {
-        userEvents.forEach((event) => {
-          completedSurveys.forEach((completeSurvey) => {
-            this.eventSurveys = eventSurveys.filter((eventSurvey) => {
-              if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
-                return true;
-              }
-            });
-          });
+        this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+          let registered = userEvents.find(event => event.eventId === eventSurvey.eventId);
+          if (registered) {
+            return true;
+          }
         });
+
+        // userEvents.forEach((event) => {
+        //   completedSurveys.forEach((completeSurvey) => {
+        //     this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+        //       if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
+        //         return true;
+        //       }
+        //     });
+        //   });
+        // });
 
         if (this.allSurveys && this.eventSurveys.length > 0) {
           this.getSurveysFromEvent(this.eventSurveys, this.allSurveys);
@@ -173,14 +181,7 @@
             if (eventSurvey) {
               return true;
             }
-                // if (eventSurvey.surveyId === survey.id) {
-                //   return true;
-                // }
           });
-          console.log(this.surveys);
-      }
-
-      sortEventSurveys() {
       }
 
       hideCompletedSurveys(surveys: any, completedSurveys: UserSurvey[]) {

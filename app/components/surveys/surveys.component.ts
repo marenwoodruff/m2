@@ -8,7 +8,7 @@ import {SurveyProgress} from '../../models/survey/surveyProgress';
   selector: 'surveys',
   templateUrl: 'build/components/surveys/surveys.component.html',
   directives: [List, Item, forwardRef(() => SurveyDescriptionComponent)],
-  inputs:['surveys', 'surveysInProgress', 'startedSurveys', 'eventSurveys']
+  inputs:['surveys', 'surveysInProgress', 'startedSurveys', 'eventSurveys', 'userEvents']
 })
 
 export class SurveysComponent implements OnChanges {
