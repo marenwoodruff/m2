@@ -1,6 +1,6 @@
-<ion-list>
+<ion-list *ngFor="let event of eventSurveys">
   <ion-list-header>
-    Surveys
+    {{event.eventTitle}}
   </ion-list-header>
   <survey-description *ngFor="let survey of surveys" [survey]="survey" [surveysInProgress]="surveysInProgress" [eventSurveys]="eventSurveys"></survey-description>
 </ion-list>

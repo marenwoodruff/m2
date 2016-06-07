@@ -109,7 +109,6 @@
                  surveyName: survey.name
              }
           });
-          console.log(this.eventSurveys);
       }
 
       findQuestionId(survey) {
