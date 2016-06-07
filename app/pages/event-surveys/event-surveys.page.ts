@@ -155,7 +155,5 @@
         //     });
         //   });
         // });
-          console.log(this.surveys);
-
       }
   }
