@@ -146,15 +146,16 @@
       }
 
       filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserSurvey[]) {
-        userEvents.forEach((event) => {
-          completedSurveys.forEach((completeSurvey) => {
-            this.eventSurveys = eventSurveys.filter((eventSurvey) => {
-              if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
-                return true;
-              }
-            });
-          });
-        });
+        // userEvents.forEach((event) => {
+        //   completedSurveys.forEach((completeSurvey) => {
+        //     this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+        //       if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
+        //         return true;
+        //       }
+        //     });
+        //   });
+        // });
+          console.log(this.surveys);
 
       }
   }
