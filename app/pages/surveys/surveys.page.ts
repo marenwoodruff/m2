@@ -46,7 +46,6 @@
           (userEvents) => {
             if (userEvents.length > 0) {
               this.userEvents = userEvents;
-              console.log(this.userEvents);
             } else {
               this.isLoading = false;
             }
