@@ -168,13 +168,19 @@
       }
 
       getSurveysFromEvent(eventSurveys: any, surveys:any) {
-        eventSurveys.forEach((eventSurvey) => {
           this.surveys = surveys.filter((survey) => {
-            if (eventSurvey.surveyId === survey.id) {
+            let eventSurvey = eventSurveys.find(e => e.surveyId === survey.id);
+            if (eventSurvey) {
               return true;
             }
+                // if (eventSurvey.surveyId === survey.id) {
+                //   return true;
+                // }
           });
-        });
+          console.log(this.surveys);
+      }
+
+      sortEventSurveys() {
       }
 
       hideCompletedSurveys(surveys: any, completedSurveys: UserSurvey[]) {
