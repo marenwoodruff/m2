@@ -1,8 +1,9 @@
-import {Component, forwardRef, OnChanges} from '@angular/core';
+import {Component, forwardRef, OnChanges, OnInit} from '@angular/core';
 import {List, Item} from 'ionic-angular';
 import {SurveyDescriptionComponent} from '../survey-description/survey-description.component';
 import {Survey} from '../../models/survey/survey';
 import {SurveyProgress} from '../../models/survey/surveyProgress';
+import * as moment from 'moment';
 
 @Component({
   selector: 'surveys',
@@ -11,10 +12,16 @@ import {SurveyProgress} from '../../models/survey/surveyProgress';
   inputs:['surveys', 'surveysInProgress', 'startedSurveys', 'eventSurveys', 'userEvents', 'eventSurveysPage', 'event']
 })
 
-export class SurveysComponent implements OnChanges {
+export class SurveysComponent implements OnChanges, OnInit {
   surveys: Survey[];
   startedSurveys: Survey[];
   surveysInProgress: SurveyProgress[];
+  preEvents: Array<any>;
+  postEvents: Array<any>;
+
+  ngOnInit() {
+    this.getPrePostEvents(this.userEvents);
+  }
 
   ngOnChanges() {
     if (this.surveys && this.startedSurveys) {
@@ -26,6 +33,41 @@ export class SurveysComponent implements OnChanges {
         });
       });
     }  
+  }
+
+  getPrePostEvents(userEvents:any) {
+    this.preEvents = userEvents.filter((event) => {
+      if (moment.unix(event.startDate).isSameOrAfter()) {
+        return true;
+      }
+    });
+    
+    this.postEvents = userEvents.filter((event) => {
+      if (moment.unix(event.startDate).isSameOrBefore()) {
+        return true;
+      }
+    });
+
+    this.sortPreEventSurveys(this.preEvents, this.eventSurveys, this.surveys);
+  }
+
+  sortPreEventSurveys(preEvents:any, eventSurveys:any, surveys:Survey[]) {
+    if (preEvents.length > 0) {
+      this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+        let preEventMatch = preEvents.find(event => event.eventId === eventSurvey.eventId);
+        if (preEventMatch) {
+          return true;
+        }
+      });
+
+    }
+
+    this.surveys = surveys.filter((survey) => {
+      let match = this.eventSurveys.find(eSurvey => eSurvey.surveyId === survey.id);
+      if (match && survey.preEvent === true) {
+        return true;
+      }
+    });
   }
 
 }
