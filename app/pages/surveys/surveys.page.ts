@@ -208,10 +208,10 @@
           }
         });
 
-        this.sortPreEventSurveys(this.preEvents, this.eventSurveys, this.surveys);
+        this.sortPreEventSurveys(this.preEvents, this.postEvents, this.eventSurveys, this.surveys);
       }
 
-      sortPreEventSurveys(preEvents: any, eventSurveys: any, surveys: Survey[]) {
+      sortPreEventSurveys(preEvents: any, postEvents: any, eventSurveys: any, surveys: Survey[]) {
         if (preEvents.length > 0) {
           this.preEventSurveys = eventSurveys.filter((eventSurvey) => {
             let preEventMatch = preEvents.find(event => event.eventId === eventSurvey.eventId);
@@ -228,11 +228,11 @@
           });
 
           this.sortPostEventSurveys(this.postEvents, this.eventSurveys, this.surveys);
+        } else if (preEvents.length <= 0 && postEvents.length <= 0) {
+          this.surveys = [];
         } else {
           this.sortPostEventSurveys(this.postEvents, this.eventSurveys, this.surveys);
         }
-
-
       }
 
       sortPostEventSurveys(postEvents: any, eventSurveys: any, surveys: Survey[]) {
