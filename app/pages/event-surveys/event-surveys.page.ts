@@ -96,7 +96,7 @@
 
       ngDoCheck() {
         if (this.eventSurveys && this.userEvents && this.completedSurveys) {
-          this.filterEventSurveys(this.eventSurveys, this.userEvents, this.completedSurveys);
+          this.filterEventSurveys(this.eventSurveys, this.completedSurveys);
         }
       }
 
@@ -145,7 +145,14 @@
         this.userId = this._userApi.getUserId();
       }
 
-      filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserSurvey[]) {
+      filterEventSurveys(eventSurveys:any, completedSurveys:UserSurvey[]) {
+          this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+              let completed = completedSurveys.find(survey => survey.surveyId === eventSurvey.surveyId);
+              if (!completed) {
+                  return true;
+              }
+          });
+
         // userEvents.forEach((event) => {
         //   completedSurveys.forEach((completeSurvey) => {
         //     this.eventSurveys = eventSurveys.filter((eventSurvey) => {
