@@ -10,8 +10,12 @@
         border-top: none;
     }
     ion-label {
-        /*margin: 0.75em 0.5em;*/
+        margin: 17px 0px;
         color: #C1BFC0;
+    }
+    ion-input, .text-input {
+        margin: 10px 5px 10px 0px;
+        width: 100%;
     }
     .icon-photo {
         color: #D7D7D7;
@@ -29,6 +33,8 @@
     font-weight: bold;
     border-radius: 0px;
     margin: 0.4rem 0px;
+    text-transform: none;
+    font-size: 1.2em;
 }
 
 .photo-sphere {

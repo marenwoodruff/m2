@@ -33,6 +33,7 @@
     .matrixBlueFont {
         font-weight: bold;
         margin: 20px 0px 5px;
+        font-size: 1.2em;
     }
 }
 
@@ -54,8 +55,11 @@
 }
 
 .social-button {
-    height: 7vh;
-    margin-bottom: 10px;
+    font-weight: bold;
+    border-radius: 0px;
+    margin: 0.4rem 0px;
+    text-transform: none;
+    font-size: 1.2em;
 }
 
 .disclaimer-link {
