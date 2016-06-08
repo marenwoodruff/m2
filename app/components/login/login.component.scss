@@ -1,59 +1,59 @@
 .login {
-  ion-icon {
-    font-size: 8vmin
-  }
-  ion-item{
-    padding-left: 0;
-    border-right: 1px solid #c8c7cc;
-    border-left: 1px solid #c8c7cc;
-  }
-  ion-list{
-    margin: 10px;
-    border-bottom: none;
-    border-top: none;
-  }
-  ion-label{
-    margin: 17px 15px;
-    color: #C1BFC0;
-  }
-  .icon-photo{
-    color: #D7D7D7;
-    font-size: 60px;
-    text-align: center;
-    margin: 15px;
-    display: table-cell;
-    vertical-align: middle;
-    width: 100px;
-    height: 100px;
-  }
+    ion-icon {
+        font-size: 8vmin
+    }
+    ion-item {
+        padding-left: 0;
+        border-right: 1px solid #c8c7cc;
+        border-left: 1px solid #c8c7cc;
+    }
+    ion-list {
+        margin: 10px;
+        border-bottom: none;
+        border-top: none;
+    }
+    ion-label {
+        margin: 17px 15px;
+        color: #C1BFC0;
+    }
+    .icon-photo {
+        color: #D7D7D7;
+        font-size: 60px;
+        text-align: center;
+        margin: 15px;
+        display: table-cell;
+        vertical-align: middle;
+        width: 100px;
+        height: 100px;
+    }
 }
 .login-text {
-  font-size: 4.2vmin;
+    font-size: 4.2vmin;
 }
 
 .disclaimer {
-  // position: absolute;
-  // bottom: 10vh;
+    // position: absolute;
+    // bottom: 10vh;
 }
 
 .linkedin-button {
-  background-color: #0077BA;
+    background-color: #0077BA;
 }
 
 .twitter-button {
-  background-color: #00A9F3;
+    background-color: #00A9F3;
 }
 
 .social-button {
-  height: 7vh;
+    height: 7vh;
 }
 
 .disclaimer-link {
-  color: #0A62B1;
+    color: #0A62B1;
 }
 
 .forgot-password {
-  position: absolute;
-  bottom: 2vh;
-  right: 0;
+    position: absolute;
+    bottom: 2vh;
+    right: 0;
 }

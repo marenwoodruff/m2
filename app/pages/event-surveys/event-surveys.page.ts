@@ -14,8 +14,8 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 import {UserSurvey} from '../../models/user/userSurvey';
 
 @Component({
-  templateUrl: 'build/pages/event-surveys/event-surveys.page.html',
-  directives: [forwardRef(() => SurveysComponent), LoaderComponent]
+    templateUrl: 'build/pages/event-surveys/event-surveys.page.html',
+    directives: [forwardRef(() => SurveysComponent), LoaderComponent]
 })
 
 export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
@@ -33,6 +33,8 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
     private isLoading: boolean = true;
     private userId: number;
     private surveysInProgress: SurveyProgress[];
+    public eventSurveysPage: boolean = true;
+    private updated: boolean = false;
 
     constructor(
         private _surveyApi: SurveyService,
@@ -43,119 +45,116 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
         private _params: NavParams) { }
 
     ngOnInit(): any {
-      this.getUserId();
-      this.surveys = this._params.get('surveys');
-      this.event = this._params.get('event');
-      this.setEventSurveys();
+        this.getUserId();
+        this.surveys = this._params.get('surveys');
+        this.event = this._params.get('event');
+        this.setEventSurveys();
 
-      this.userEventSubscription = this._userEventApi.userEvents.subscribe(
-        (userEvents) => {
-          if (userEvents.length > 0) {
-            this.userEvents = userEvents;
-          } else {
-            this.isLoading = false;
-          }
-        },
-        (err) => console.log(err),
-        () => console.log('we have user events')
-      );
+        this.userEventSubscription = this._userEventApi.userEvents.subscribe(
+          (userEvents) => {
+              if (userEvents.length > 0) {
+                  this.userEvents = userEvents;
+              } else {
+                  this.isLoading = false;
+              }
+          },
+          (err) => console.log(err),
+          () => console.log('we have user events')
+        );
 
-      this.storageSubscription = this._storageApi.surveyProgress.subscribe(
-        (progressSurveys) => {
-          this.startedSurveys = progressSurveys;
-          this.surveysInProgress = progressSurveys.map((sip) => {
-            let lastQuestionId = this.findQuestionId(sip);
-            return {
-              surveyId: sip.id,
-              lastQuestionId,
+        this.storageSubscription = this._storageApi.surveyProgress.subscribe(
+            (progressSurveys) => {
+                this.startedSurveys = progressSurveys;
+                this.surveysInProgress = progressSurveys.map((sip) => {
+                    let lastQuestionId = this.findQuestionId(sip);
+                    return {
+                        surveyId: sip.id,
+                        lastQuestionId,
+                    }
+                });
+            },
+            err => console.log('SurveysComponent storageservice subscribe error:', err),
+            () => {
+                console.log('finished subscribing to storage surveys')
             }
-          });
-        },
-        err => console.log('SurveysComponent storageservice subscribe error:', err),
-        () => {
-          console.log('finished subscribing to storage surveys')
-        }
-      );
+        );
 
-      this.completedSurveysSubscription = this._surveyApi.completedSurveys.subscribe(
-        (completedSurveys) => this.completedSurveys = completedSurveys,
-        (err) => console.log(err),
-        () => console.log('finished subscribing to completed surveys')
-      );
+        this.completedSurveysSubscription = this._surveyApi.completedSurveys.subscribe(
+            (completedSurveys) => this.completedSurveys = completedSurveys,
+            (err) => console.log(err),
+            () => console.log('finished subscribing to completed surveys')
+        );
 
-      this._userEventApi.getUserEvents(this.userId);
-      this.checkSurveyProgress(this.surveys);
-      this._surveyApi.getUserCompletedSurveys(this.userId);
+        this._userEventApi.getUserEvents(this.userId);
+        this.checkSurveyProgress(this.surveys);
+        this._surveyApi.getUserCompletedSurveys(this.userId);
     }
 
     ngOnDestroy() {
-      this.storageSubscription.unsubscribe();
-      this.userEventSubscription.unsubscribe();
-      this.completedSurveysSubscription.unsubscribe();
+        this.storageSubscription.unsubscribe();
+        this.userEventSubscription.unsubscribe();
+        this.completedSurveysSubscription.unsubscribe();
     }
 
     ngDoCheck() {
-      if (this.eventSurveys && this.userEvents && this.completedSurveys) {
-        this.filterEventSurveys(this.eventSurveys, this.userEvents, this.completedSurveys);
-      }
+        if (this.surveys && this.completedSurveys && !this.updated) {
+            this.filterCompletedSurveys(this.surveys, this.completedSurveys);
+        }
     }
 
     setEventSurveys() {
         this.eventSurveys = this.surveys.map((survey) => {
            return {
-               eventId: this.event.eventId,
-               eventTitle: this.event.title,
-               surveyId: survey.id,
-               surveyName: survey.name
+              eventId: this.event.eventId,
+              eventTitle: this.event.title,
+              surveyId: survey.id,
+              surveyName: survey.name
            }
         });
-        console.log(this.eventSurveys);
     }
 
     findQuestionId(survey) {
+        let
+            lastQuestionAnsweredFound = false,
+            questionId = null;
 
-      let
-          lastQuestionAnsweredFound = false,
-          questionId = null;
-
-      survey.questions.forEach((question) => {
-        if (lastQuestionAnsweredFound === false) {
-          let questionAnswered = false;
-          question.answer.options.forEach((option) => {
-            if (option.selected === true && lastQuestionAnsweredFound === false) {
-              questionAnswered = true;
-              questionId = question.id;
+        survey.questions.forEach((question) => {
+            if (lastQuestionAnsweredFound === false) {
+                let questionAnswered = false;
+                question.answer.options.forEach((option) => {
+                    if (option.selected === true && lastQuestionAnsweredFound === false) {
+                        questionAnswered = true;
+                        questionId = question.id;
+                    }
+                });
+                if (questionAnswered === false) {
+                    lastQuestionAnsweredFound = true;
+                }
             }
-          });
-          if (questionAnswered === false) {
-            lastQuestionAnsweredFound = true;
-          }
-        }
-      });
-      return questionId;
+        });
+        return questionId;
     }
 
     checkSurveyProgress(surveys) {
-      surveys.forEach((survey) => {
-        this._storageApi.getSurveyProgress(survey.id);
-      });
-      this.isLoading = false;
+        surveys.forEach((survey) => {
+            this._storageApi.getSurveyProgress(survey.id);
+        });
+        this.isLoading = false;
     }
 
     getUserId() {
-      this.userId = this._userApi.getUserId();
+        this.userId = this._userApi.getUserId();
     }
 
-    filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserSurvey[]) {
-      userEvents.forEach((event) => {
-        completedSurveys.forEach((completeSurvey) => {
-          this.eventSurveys = eventSurveys.filter((eventSurvey) => {
-            if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
-              return true;
-            }
-          });
-        });
-      });
 
+    filterCompletedSurveys(surveys:Survey[], completedSurveys:UserSurvey[]) {
+        this.surveys = surveys.filter((survey) => {
+            let completed = completedSurveys.find(completedSurvey => completedSurvey.surveyId === survey.id);
+            if (!completed) {
+                return true;
+            }
+        });
+
+        this.updated = true;
     }
 }

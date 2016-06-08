@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Nav, NavParams, Button} from 'ionic-angular';
+import {Nav, NavParams, Button} from 'ionic-angular'
 import {Survey} from '../../models/survey/survey';
 import {EventsPage} from '../events/events.page';
 
@@ -8,7 +8,7 @@ import {EventsPage} from '../events/events.page';
   directives: [Button]
 })
 
-export class SurveyCompletedPage implements OnInit {
+export class SurveyCompletedPage {
   nav: Nav
   params: NavParams;
   survey: Survey;
@@ -18,10 +18,6 @@ export class SurveyCompletedPage implements OnInit {
     this.params = params;
     this.nav.swipeBackEnabled = false;
     // this.survey = this.params.get('survey');
-  }
-
-  ngOnInit() {
-    console.log(this.nav.canSwipeBack());
   }
 
   navigateHomepage() {
