@@ -117,6 +117,10 @@
         if (this.eventSurveys && this.userEvents && this.completedSurveys) {
           this.filterEventSurveys(this.eventSurveys, this.userEvents, this.completedSurveys);
         }
+
+        if (this.surveys && this.completedSurveys) {
+          this.hideCompletedSurveys(this.surveys, this.completedSurveys);
+        }
       }
 
       findQuestionId(survey) {
@@ -160,15 +164,6 @@
           }
         });
 
-        // userEvents.forEach((event) => {
-        //   completedSurveys.forEach((completeSurvey) => {
-        //     this.eventSurveys = eventSurveys.filter((eventSurvey) => {
-        //       if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
-        //         return true;
-        //       }
-        //     });
-        //   });
-        // });
 
         if (this.allSurveys && this.eventSurveys.length > 0) {
           this.getSurveysFromEvent(this.eventSurveys, this.allSurveys);
@@ -185,5 +180,11 @@
       }
 
       hideCompletedSurveys(surveys: any, completedSurveys: UserSurvey[]) {
+        this.surveys = surveys.filter((survey) => {
+          let completed = completedSurveys.find(completedSurvey => completedSurvey.surveyId === survey.id);
+          if (!completed) {
+            return true;
+          }
+        });
       }
   }
