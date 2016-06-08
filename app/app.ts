@@ -1,5 +1,5 @@
-import {App, IonicApp, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
-import {forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
+import {Component, forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
+import {IonicApp, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
@@ -18,7 +18,7 @@ import {UserEventService} from './service/userEvent.service';
 import {SupportPage} from './pages/support/support.page';
 import {User} from './models/user/user';
 
-@App({
+@Component({
     templateUrl: 'build/app.html',
     providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService],
     directives: [Icon],

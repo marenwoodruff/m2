@@ -1,7 +1,7 @@
-import {Page} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {LoginComponent} from '../../components/login/login.component';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/login/login.page.html',
   directives: [LoginComponent]
 })
