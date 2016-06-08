@@ -62,9 +62,7 @@ export class QuestionComponent implements OnInit {
 
   private skipQuestion(): void {
     if (this.questionIndex === this.questionsLength - 1) {
-      this.nav.push(SurveyCompletedPage, {
-        survey: this.questions
-      });
+      this.checkSurveyCompletion(this.survey);
     } else {
       this.enabled = true;
       this.questionIndex = this.questionIndex + 1;
