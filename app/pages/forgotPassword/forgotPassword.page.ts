@@ -1,7 +1,7 @@
-import {Page} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {ForgotPasswordComponent} from '../../components/forgotPassword/forgotPassword.component';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/forgotPassword/forgotPassword.page.html',
   directives: [ForgotPasswordComponent]
 })

@@ -24,6 +24,7 @@ export class SurveyService {
     completedSurveys: EventEmitter<UserSurvey[]> = new EventEmitter<UserSurvey[]>();
     surveyResponse: SurveyResponse;
     surveysForEvents = [];
+    userCompletedSurveys: UserSurvey[];
 
     constructor(private _api:Http, private _clientApi:HttpClient) {};
 
@@ -84,9 +85,12 @@ export class SurveyService {
       this._clientApi.get('users/' + userId + '/surveys')
         .map(res => <UserSurvey[]>res.json())
         .subscribe(
-          completedSurveys => this.completedSurveys.emit(completedSurveys),
+          completedSurveys => {
+              this.completedSurveys.emit(completedSurveys);
+              this.userCompletedSurveys = completedSurveys;
+          },
           err => console.log('err:', err),
-          () => console.log('we have surveys completed by user')
+          () => console.log(this.userCompletedSurveys.length + ' surveys completed by user')
         );
     }
 

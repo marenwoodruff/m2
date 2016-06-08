@@ -8,7 +8,7 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
     *  `node -v` (Check version of node installed)
     *  `npm -v` (Check version of npm installed)
         *  To update npm `sudo npm install npm -g`
-    *  `sudo npm install -g ionic@2.0.0-beta.19` (Install Ionic 2 beta 19)
+    *  `sudo npm install -g ionic@beta` (Install Ionic 2 beta 19)
         * `ionic -v` (Check version of ionic installed)
     *  `sudo npm install -g cordova` (Installs Cordova)
         * `cordova -v` (Check version of cordova installed)
@@ -18,6 +18,8 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
     *  `npm install` (Install dependencies)
     *  `gulp build` (Install dependencies)
     *  `typings install` (Install typings package manager)
+
+    
     *  `ionic state reset` (Reset ionic/rebuild state)
 
 * Running on Web Browser

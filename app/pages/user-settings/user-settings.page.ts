@@ -1,7 +1,7 @@
-import {Page} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {UserSettingsComponent} from '../../components/user-settings/user-settings.component';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/user-settings/user-settings.page.html',
   directives: [UserSettingsComponent]
 })
