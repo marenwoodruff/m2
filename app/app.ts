@@ -1,5 +1,5 @@
 import {Component, forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
-import {IonicApp, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
+import {ionicBootstrap, App, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
@@ -32,7 +32,7 @@ class MyApp implements OnInit{
     userSubscription: EventEmitter<User>;
 
     constructor(
-      private app:IonicApp,
+      private app:App,
       private platform:Platform,
       private storageService:StorageService,
       public surveyService:SurveyService,
