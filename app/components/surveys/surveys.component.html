@@ -1,8 +1,22 @@
-<ion-list *ngFor="let userEvent of userEvents">
-  <ion-list-header>
-    {{userEvent.title}}
-  </ion-list-header>
-  <div *ngFor="let survey of surveys; let index=index">
-      <survey-description *ngIf="eventSurveys[index].eventId === userEvent.eventId" [survey]="survey" [surveysInProgress]="surveysInProgress" [eventSurveys]="eventSurveys"></survey-description>
-  </div>
-</ion-list>
+<div *ngIf="!eventSurveysPage">
+    <ion-list *ngFor="let userEvent of userEvents">
+      <ion-list-header>
+        {{userEvent.title}}
+      </ion-list-header>
+      <div *ngFor="let survey of surveys; let index=index">
+          <survey-description *ngIf="eventSurveys[index].eventId === userEvent.eventId" [survey]="survey" [surveysInProgress]="surveysInProgress" [eventSurveys]="eventSurveys"></survey-description>
+      </div>
+    </ion-list>
+</div>
+
+<div *ngIf="eventSurveysPage">
+    <ion-list>
+        <ion-list-header>
+            {{event.title}}
+        </ion-list-header>
+        <div *ngFor="let survey of surveys">
+            <survey-description [survey]="survey" [surveysInProgress]="surveysInProgress" [eventSurveys]="eventSurveys"></survey-description>
+        </div>
+    </ion-list>
+</div>
+ 
