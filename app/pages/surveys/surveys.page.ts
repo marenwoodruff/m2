@@ -1,3 +1,4 @@
+  import * as moment from 'moment';
   import {Page} from 'ionic-angular';
   import {EventEmitter, OnInit, OnDestroy, DoCheck} from '@angular/core';
   import {SurveysComponent} from '../../components/surveys/surveys.component';
@@ -37,6 +38,8 @@
       private userId: number;
       private surveysInProgress: SurveyProgress[];
       public eventSurveysPage: boolean = false;
+      public preEvents: Array<any>;
+      public postEvents: Array<any>;
 
       constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService, private _userEventApi:UserEventService, private _userApi:UserService) { }
 
@@ -177,6 +180,8 @@
               return true;
             }
           });
+
+          this.getPrePostEvents(this.userEvents);
       }
 
       hideCompletedSurveys(surveys: any, completedSurveys: UserSurvey[]) {
@@ -187,4 +192,41 @@
           }
         });
       }
+
+      getPrePostEvents(userEvents: any) {
+        this.preEvents = userEvents.filter((event) => {
+          if (moment.unix(event.startDate).isSameOrAfter()) {
+            return true;
+          }
+        });
+
+        this.postEvents = userEvents.filter((event) => {
+          if (moment.unix(event.startDate).isSameOrBefore()) {
+            return true;
+          }
+        });
+
+        this.sortPreEventSurveys(this.preEvents, this.eventSurveys, this.surveys);
+      }
+
+      sortPreEventSurveys(preEvents: any, eventSurveys: any, surveys: Survey[]) {
+        if (preEvents.length > 0) {
+          this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+            let preEventMatch = preEvents.find(event => event.eventId === eventSurvey.eventId);
+            if (preEventMatch) {
+              return true;
+            }
+          });
+
+        }
+
+        this.surveys = surveys.filter((survey) => {
+          let match = this.eventSurveys.find(eSurvey => eSurvey.surveyId === survey.id);
+          if (match && survey.preEvent === true) {
+            return true;
+          }
+        });
+      }
+
+
   }

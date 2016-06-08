@@ -71,7 +71,6 @@ export class QuestionComponent implements OnInit {
   }
 
   private nextQuestion(): void {
-
     if (this.questionIndex === this.questionsLength - 1) {
       this.checkSurveyCompletion(this.survey);
     } else {
