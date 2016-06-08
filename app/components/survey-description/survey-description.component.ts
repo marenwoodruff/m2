@@ -32,14 +32,13 @@ export class SurveyDescriptionComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.getEventName();
     this.evaluateProgress(this.survey, this.surveysInProgress);
   }
 
   getEventName() {
-    let eventSurvey = this.eventSurveys ? this.eventSurveys.filter(eventSurvey => eventSurvey.surveyId === this.survey.id) : null;
+    // let eventSurvey = this.eventSurveys ? this.eventSurveys.filter(eventSurvey => eventSurvey.surveyId === this.survey.id) : null;
 
-    this.eventName = eventSurvey[0].eventTitle + ' - ';
+    // this.eventName = eventSurvey[0].eventTitle + ' - ';
   }
 
   evaluateProgress(survey, surveysInProgress) {

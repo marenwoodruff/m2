@@ -33,6 +33,8 @@
       private isLoading: boolean = true;
       private userId: number;
       private surveysInProgress: SurveyProgress[];
+      public eventSurveysPage: boolean = true;
+      private updated: boolean = false;
 
       constructor(
           private _surveyApi: SurveyService,
@@ -95,8 +97,8 @@
       }
 
       ngDoCheck() {
-        if (this.eventSurveys && this.userEvents && this.completedSurveys) {
-          this.filterEventSurveys(this.eventSurveys, this.userEvents, this.completedSurveys);
+        if (this.surveys && this.completedSurveys && !this.updated) {
+          this.filterCompletedSurveys(this.surveys, this.completedSurveys);
         }
       }
 
@@ -109,7 +111,6 @@
                  surveyName: survey.name
              }
           });
-          console.log(this.eventSurveys);
       }
 
       findQuestionId(survey) {
@@ -146,16 +147,15 @@
         this.userId = this._userApi.getUserId();
       }
 
-      filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserSurvey[]) {
-        userEvents.forEach((event) => {
-          completedSurveys.forEach((completeSurvey) => {
-            this.eventSurveys = eventSurveys.filter((eventSurvey) => {
-              if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
-                return true;
-              }
-            });
-          });
-        });
 
+      filterCompletedSurveys(surveys:Survey[], completedSurveys:UserSurvey[]) {
+          this.surveys = surveys.filter((survey) => {
+              let completed = completedSurveys.find(completedSurvey => completedSurvey.surveyId === survey.id);
+              if (!completed) {
+                  return true;
+              }
+          });
+
+          this.updated = true;
       }
   }
