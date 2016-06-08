@@ -40,6 +40,8 @@
       public eventSurveysPage: boolean = false;
       public preEvents: Array<any>;
       public postEvents: Array<any>;
+      private preEventSurveys: Array<any>;
+      private postEventSurveys: Array<any>;
 
       constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService, private _userEventApi:UserEventService, private _userApi:UserService) { }
 
@@ -211,21 +213,45 @@
 
       sortPreEventSurveys(preEvents: any, eventSurveys: any, surveys: Survey[]) {
         if (preEvents.length > 0) {
-          this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+          this.preEventSurveys = eventSurveys.filter((eventSurvey) => {
             let preEventMatch = preEvents.find(event => event.eventId === eventSurvey.eventId);
             if (preEventMatch) {
               return true;
             }
           });
 
+          this.surveys = surveys.filter((survey) => {
+            let match = this.preEventSurveys.find(eSurvey => eSurvey.surveyId === survey.id);
+            if (match && survey.preEvent === true) {
+              return true;
+            }
+          });
+
+          this.sortPostEventSurveys(this.postEvents, this.eventSurveys, this.surveys);
+        } else {
+          this.sortPostEventSurveys(this.postEvents, this.eventSurveys, this.surveys);
         }
 
-        this.surveys = surveys.filter((survey) => {
-          let match = this.eventSurveys.find(eSurvey => eSurvey.surveyId === survey.id);
-          if (match && survey.preEvent === true) {
-            return true;
-          }
-        });
+
+      }
+
+      sortPostEventSurveys(postEvents: any, eventSurveys: any, surveys: Survey[]) {
+        if (postEvents.length > 0) {
+          this.postEventSurveys = eventSurveys.filter((eventSurvey) => {
+            let postEventMatch = postEvents.find(event => event.eventId === eventSurvey.eventId);
+            if (postEventMatch) {
+              return true;
+            }
+          });
+
+          surveys.forEach((survey) => {
+            let match = this.postEventSurveys.find(eSurvey => eSurvey.surveyId === survey.id);
+            if (match && survey.preEvent === false) {
+              this.surveys.push(survey);
+            }
+          });
+        }
+
       }
 
 
