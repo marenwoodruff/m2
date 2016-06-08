@@ -13,11 +13,12 @@ import * as moment from 'moment';
 })
 
 export class SurveysComponent implements OnChanges, OnInit {
-  surveys: Survey[];
-  startedSurveys: Survey[];
-  surveysInProgress: SurveyProgress[];
-  preEvents: Array<any>;
-  postEvents: Array<any>;
+  private surveys: Survey[];
+  private startedSurveys: Survey[];
+  private surveysInProgress: SurveyProgress[];
+  private preEvents: Array<any>;
+  private postEvents: Array<any>;
+  private eventSurveysPage: boolean;
 
   ngOnInit() {
     this.getPrePostEvents(this.userEvents);
@@ -36,19 +37,21 @@ export class SurveysComponent implements OnChanges, OnInit {
   }
 
   getPrePostEvents(userEvents:any) {
-    this.preEvents = userEvents.filter((event) => {
-      if (moment.unix(event.startDate).isSameOrAfter()) {
-        return true;
-      }
-    });
-    
-    this.postEvents = userEvents.filter((event) => {
-      if (moment.unix(event.startDate).isSameOrBefore()) {
-        return true;
-      }
-    });
+    if (!this.eventSurveysPage) {
+      this.preEvents = userEvents.filter((event) => {
+        if (moment.unix(event.startDate).isSameOrAfter()) {
+          return true;
+        }
+      });
+      
+      this.postEvents = userEvents.filter((event) => {
+        if (moment.unix(event.startDate).isSameOrBefore()) {
+          return true;
+        }
+      });
 
-    this.sortPreEventSurveys(this.preEvents, this.eventSurveys, this.surveys);
+      this.sortPreEventSurveys(this.preEvents, this.eventSurveys, this.surveys);
+    }
   }
 
   sortPreEventSurveys(preEvents:any, eventSurveys:any, surveys:Survey[]) {
