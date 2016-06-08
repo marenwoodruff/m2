@@ -20,9 +20,7 @@ import {User} from './models/user/user';
 
 @Component({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService],
-    directives: [Icon],
-    config: {} // http://ionicframework.com/docs/v2/api/config/Config/
+    directives: [Icon]
 })
 class MyApp implements OnInit{
     rootPage: any = LoginPage;
@@ -32,19 +30,19 @@ class MyApp implements OnInit{
     userSubscription: EventEmitter<User>;
 
     constructor(
-      private app:App,
-      private platform:Platform,
-      private storageService:StorageService,
-      public surveyService:SurveyService,
-      private userService:UserService,
-      private userEventService:UserEventService,
-      private menuController: MenuController) {}
+        private app:App,
+        private platform:Platform,
+        private storageService:StorageService,
+        public surveyService:SurveyService,
+        private userService:UserService,
+        private userEventService:UserEventService,
+        private menuController: MenuController) {}
 
     ngOnInit(){
         this.userSubscription = this.userService.user.subscribe(
-          user => this.userName = user.name.split(' ')[0],
-          err => console.log(err),
-          () => console.log('we has user name')
+            user => this.userName = user.name.split(' ')[0],
+            err => console.log(err),
+            () => console.log('we has user name')
         )
         this.initializeApp();
         this.pages = [
@@ -60,13 +58,13 @@ class MyApp implements OnInit{
     private initializeApp() {
         this.platform.ready().then(() => {
             this.hasLoggedIn((loggedIn) => {
-        		  if (loggedIn === true) {
-                      this.userInfo();
-                      this.menuController.enable(true);
-                      this.setInitialPage(EventsPage);
-                      this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
-    		      }
-    	     });
+          		if (loggedIn === true) {
+                    this.userInfo();
+                    this.menuController.enable(true);
+                    this.setInitialPage(EventsPage);
+                    this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
+      		    }
+    	    });
         });
     }
 
@@ -77,37 +75,37 @@ class MyApp implements OnInit{
     private openPage(page) {
       this.hasLoggedIn((loggedIn) => {
         if (loggedIn === true) {
-          this.nav.setRoot(page.component);
+            this.nav.setRoot(page.component);
         } else {
-          this.loggedOutAlert();
+            this.loggedOutAlert();
         }
       });
     }
 
     private hasLoggedIn(cb) {
-      var loggedIn = this.userService.isUserLoggedIn();
-      return cb(loggedIn)
+        var loggedIn = this.userService.isUserLoggedIn();
+        return cb(loggedIn)
     }
 
     private userInfo() {
-      let userId = this.userService.getUserId();
-      this.userService.getUser(userId);
+        let userId = this.userService.getUserId();
+        this.userService.getUser(userId);
     }
 
     private loggedOutAlert():void {
-      let confirm = Alert.create({
-        title: 'You are not logged in.',
-        message: 'Please login with your user information to view this page.',
-        buttons: [
-          {
-            text: 'Okay',
-            handler: () => {
-              this.nav.setRoot(LoginPage);
-            }
-          }
-        ]
-      });
-      this.nav.present(confirm);
+        let confirm = Alert.create({
+            title: 'You are not logged in.',
+            message: 'Please login with your user information to view this page.',
+            buttons: [
+                {
+                    text: 'Okay',
+                    handler: () => {
+                        this.nav.setRoot(LoginPage);
+                    }
+                }
+            ]
+        });
+        this.nav.present(confirm);
     }
 }
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService], {});

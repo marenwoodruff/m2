@@ -8,13 +8,17 @@
         border-left: 1px solid #c8c7cc;
     }
     ion-list {
-        margin: 10px;
+        margin-bottom: 10px;
         border-bottom: none;
         border-top: none;
     }
     ion-label {
-        margin: 17px 15px;
+        margin: 17px 0px;
         color: #C1BFC0;
+    }
+    ion-input, .text-input {
+        margin: 10px 5px 10px 0px;
+        width: 100%;
     }
     .icon-photo {
         color: #D7D7D7;
@@ -26,7 +30,12 @@
         width: 100px;
         height: 100px;
     }
+    .matrixBlueFont {
+        font-weight: bold;
+        margin: 20px 0px 5px;
+    }
 }
+
 .login-text {
     font-size: 4.2vmin;
 }
@@ -46,6 +55,7 @@
 
 .social-button {
     height: 7vh;
+    margin-bottom: 10px;
 }
 
 .disclaimer-link {

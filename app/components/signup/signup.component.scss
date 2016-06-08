@@ -10,7 +10,7 @@
         border-top: none;
     }
     ion-label {
-        margin: 0.75em 0.5em;
+        /*margin: 0.75em 0.5em;*/
         color: #C1BFC0;
     }
     .icon-photo {
@@ -26,7 +26,9 @@
 }
 
 .social-button {
-  font-weight: bold;
+    font-weight: bold;
+    border-radius: 0px;
+    margin: 0.4rem 0px;
 }
 
 .photo-sphere {
