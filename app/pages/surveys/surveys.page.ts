@@ -36,6 +36,7 @@
       private isLoading: boolean = true;
       private userId: number;
       private surveysInProgress: SurveyProgress[];
+      public eventSurveysPage: boolean = false;
 
       constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService, private _userEventApi:UserEventService, private _userApi:UserService) { }
 
