@@ -49,7 +49,6 @@
         this.surveys = this._params.get('surveys');
         this.event = this._params.get('event');
         this.setEventSurveys();
-
         this.userEventSubscription = this._userEventApi.userEvents.subscribe(
           (userEvents) => {
             if (userEvents.length > 0) {
