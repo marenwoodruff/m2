@@ -36,6 +36,7 @@
       private isLoading: boolean = true;
       private userId: number;
       private surveysInProgress: SurveyProgress[];
+      public eventSurveysPage: boolean = false;
 
       constructor(private _surveyApi: SurveyService, private _storageApi:StorageService, private _eventApi: EventService, private _userEventApi:UserEventService, private _userApi:UserService) { }
 
@@ -116,6 +117,10 @@
         if (this.eventSurveys && this.userEvents && this.completedSurveys) {
           this.filterEventSurveys(this.eventSurveys, this.userEvents, this.completedSurveys);
         }
+
+        if (this.surveys && this.completedSurveys) {
+          this.hideCompletedSurveys(this.surveys, this.completedSurveys);
+        }
       }
 
       findQuestionId(survey) {
@@ -152,15 +157,13 @@
       }
 
       filterEventSurveys(eventSurveys:any, userEvents:UserEvent[], completedSurveys:UserSurvey[]) {
-        userEvents.forEach((event) => {
-          completedSurveys.forEach((completeSurvey) => {
-            this.eventSurveys = eventSurveys.filter((eventSurvey) => {
-              if ((eventSurvey.eventId === event.eventId) && (eventSurvey.eventId !== completeSurvey.eventId)) {
-                return true;
-              }
-            });
-          });
+        this.eventSurveys = eventSurveys.filter((eventSurvey) => {
+          let registered = userEvents.find(event => event.eventId === eventSurvey.eventId);
+          if (registered) {
+            return true;
+          }
         });
+
 
         if (this.allSurveys && this.eventSurveys.length > 0) {
           this.getSurveysFromEvent(this.eventSurveys, this.allSurveys);
@@ -168,15 +171,20 @@
       }
 
       getSurveysFromEvent(eventSurveys: any, surveys:any) {
-        eventSurveys.forEach((eventSurvey) => {
           this.surveys = surveys.filter((survey) => {
-            if (eventSurvey.surveyId === survey.id) {
+            let eventSurvey = eventSurveys.find(e => e.surveyId === survey.id);
+            if (eventSurvey) {
               return true;
             }
           });
-        });
       }
 
       hideCompletedSurveys(surveys: any, completedSurveys: UserSurvey[]) {
+        this.surveys = surveys.filter((survey) => {
+          let completed = completedSurveys.find(completedSurvey => completedSurvey.surveyId === survey.id);
+          if (!completed) {
+            return true;
+          }
+        });
       }
   }
