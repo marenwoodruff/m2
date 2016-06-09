@@ -17,7 +17,7 @@ import {UserEventService} from '../../service/userEvent.service';
     pipes:[DateFormatPipe, FromUnixPipe]
 })
 export class EventListItemComponent implements OnChanges {
-    event:Event;
+    event: Event;
     currentLocation: Array<number>;
     location: Array<number>;
     userId: number;
@@ -36,9 +36,9 @@ export class EventListItemComponent implements OnChanges {
     deleteEvent(event) {
        this.getUserId();
        let uEvent = this.userEvents.filter((userEvent) => {
-           if (userEvent.eventId === event.eventId) {
-               return true;
-           }
+            if (userEvent.eventId === event.eventId) {
+                return true;
+            }
        });
        this.deleteAlert(uEvent[0].id);
     }
