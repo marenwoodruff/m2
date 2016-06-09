@@ -3,6 +3,8 @@ import {List, Item} from 'ionic-angular';
 import {SurveyDescriptionComponent} from '../survey-description/survey-description.component';
 import {Survey} from '../../models/survey/survey';
 import {SurveyProgress} from '../../models/survey/surveyProgress';
+import {UserEvent} from '../../models/user/userEvent';
+import {Event} from '../../models/Events/event';
 import * as moment from 'moment';
 
 @Component({
@@ -19,9 +21,19 @@ export class SurveysComponent implements OnChanges, OnInit {
   private preEvents: Array<any>;
   private postEvents: Array<any>;
   private eventSurveysPage: boolean;
+  private userEvents: UserEvent[];
+  private eventSurveys: Array<any>;
+  private preEvent: boolean;
+  private event: Event;
 
   ngOnInit() {
-    this.getPrePostEvents(this.userEvents);
+    if (this.userEvents) {
+      this.getPrePostEvents(this.userEvents);
+    }
+
+    if (this.event) {
+      this.findPrePostEvent(this.event);
+    }
   }
 
   ngOnChanges() {
@@ -33,11 +45,38 @@ export class SurveysComponent implements OnChanges, OnInit {
           }
         });
       });
-    }  
+    } 
+
+    if (this.eventSurveysPage) {
+      if (this.surveys && this.preEvent) {
+        this.surveys = this.surveys.filter((survey) => {
+          if (survey.preEvent === true) {
+            return true;
+          }
+        });
+        console.log(this.surveys);
+      } 
+
+      if (this.surveys && !this.preEvent) {
+        this.surveys = this.surveys.filter((survey) => {
+          if (survey.preEvent === false) {
+            return true;
+          }
+        });
+      } 
+    }
+
+  }
+
+  findPrePostEvent(event: Event) {
+    if (moment.unix(event.startDate).isSameOrAfter()) {
+      this.preEvent = true;
+    } else {
+      this.preEvent = false;
+    }
   }
 
   getPrePostEvents(userEvents:any) {
-    if (!this.eventSurveysPage) {
       this.preEvents = userEvents.filter((event) => {
         if (moment.unix(event.startDate).isSameOrAfter()) {
           return true;
@@ -51,7 +90,6 @@ export class SurveysComponent implements OnChanges, OnInit {
       });
 
       this.sortPreEventSurveys(this.preEvents, this.eventSurveys, this.surveys);
-    }
   }
 
   sortPreEventSurveys(preEvents:any, eventSurveys:any, surveys:Survey[]) {
