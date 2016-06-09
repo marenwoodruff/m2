@@ -17,9 +17,7 @@ export class EventService {
     constructor(private httpClient: HttpClient) {}
 
     public getEvents(): void {
-      let headers = new Headers();
-      headers.append('Access-Control-Allow-Origin', '*');
-      this.httpClient.getEvents("www.matrixres.com/apis/eventapi", headers)
+      this.httpClient.get("/events")
         .map(res => {
           return <Event[]>res.json().events;
         })
@@ -31,9 +29,7 @@ export class EventService {
     };
 
     public getUserEvents(userEvents:UserEvent[]) {
-      let headers = new Headers();
-      headers.append('Access-Control-Allow-Origin', '*');
-      this.httpClient.getEvents("www.matrixres.com/apis/eventapi", headers)
+      this.httpClient.get("/events")
         .map(res => {
           return res.json().events;
         })
