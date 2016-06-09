@@ -17,6 +17,7 @@
 @import "../pages/survey-completed/survey-completed.page";
 @import "../pages/login/login.page";
 @import "../pages/survey/survey.page";
+@import "../pages/surveys/surveys.page";
 @import "../components/signup/signup.component";
 @import "../components/login/login.component";
 @import "../components/session-registration/session-registration.component";
@@ -26,6 +27,7 @@
 @import "../pages/event/event.page";
 @import "../pages/support/support.page";
 @import "../components/friend-registration/friend-registration.component";
+@import "../components/user-settings/user-settings.component";
 
 .center {
   text-align: center;

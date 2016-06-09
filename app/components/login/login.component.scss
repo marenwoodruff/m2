@@ -53,13 +53,14 @@
 .twitter-button {
     background-color: #00A9F3;
 }
-
-.social-button {
-    font-weight: bold;
-    border-radius: 0px;
-    margin: 0.4rem 0px;
-    text-transform: none;
-    font-size: 1.2em;
+.signup-page-buttons, .login-page {
+    .social-button {
+        font-weight: bold;
+        border-radius: 0px;
+        margin: 0.4rem 0px;
+        text-transform: none;
+        font-size: 1.2em;
+    }
 }
 
 .disclaimer-link {

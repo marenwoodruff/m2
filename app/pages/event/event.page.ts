@@ -16,7 +16,7 @@ export class EventPage implements OnInit {
   event: Event;
   currentLocation: Array<number>;
   public surveys: Survey[];
-  platform:Platform;
+  platform: Platform;
 
   constructor(navParams: NavParams, platform: Platform) {
     this.params = navParams;

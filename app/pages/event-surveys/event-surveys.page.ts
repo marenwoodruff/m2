@@ -51,15 +51,15 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
         this.setEventSurveys();
 
         this.userEventSubscription = this._userEventApi.userEvents.subscribe(
-          (userEvents) => {
-              if (userEvents.length > 0) {
-                  this.userEvents = userEvents;
-              } else {
-                  this.isLoading = false;
-              }
-          },
-          (err) => console.log(err),
-          () => console.log('we have user events')
+            (userEvents) => {
+                if (userEvents.length > 0) {
+                    this.userEvents = userEvents;
+                } else {
+                    this.isLoading = false;
+                }
+            },
+            (err) => console.log(err),
+            () => console.log('we have user events')
         );
 
         this.storageSubscription = this._storageApi.surveyProgress.subscribe(
@@ -104,12 +104,12 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
 
     setEventSurveys() {
         this.eventSurveys = this.surveys.map((survey) => {
-           return {
-              eventId: this.event.eventId,
-              eventTitle: this.event.title,
-              surveyId: survey.id,
-              surveyName: survey.name
-           }
+            return {
+                eventId: this.event.eventId,
+                eventTitle: this.event.title,
+                surveyId: survey.id,
+                surveyName: survey.name
+            }
         });
     }
 
@@ -145,7 +145,6 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
     getUserId() {
         this.userId = this._userApi.getUserId();
     }
-
 
     filterCompletedSurveys(surveys:Survey[], completedSurveys:UserSurvey[]) {
         this.surveys = surveys.filter((survey) => {
