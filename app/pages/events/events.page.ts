@@ -1,5 +1,5 @@
-import {Page, Icon, NavController, ActionSheet, MenuController} from 'ionic-angular';
-import {OnInit, OnDestroy, forwardRef, EventEmitter} from '@angular/core';
+import {Component, OnInit, OnDestroy, forwardRef, EventEmitter} from '@angular/core';
+import {Icon, NavController, ActionSheet, MenuController} from 'ionic-angular';
 import {EventsComponent} from '../../components/events/events.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {EventService} from "../../service/event.service";
@@ -10,7 +10,7 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 import {UserService} from '../../service/user.service';
 import {LoginPage} from '../login/login.page';
 
-@Page({
+@Component({
     templateUrl: 'build/pages/events/events.page.html',
     directives: [EventsComponent, forwardRef(() => SurveysComponent), Icon, LoaderComponent]
 })

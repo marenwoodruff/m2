@@ -1,7 +1,8 @@
-import {Page, Nav} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Nav} from 'ionic-angular';
 import {ChangePasswordComponent} from '../../components/changePassword/changePassword.component';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/changePassword/changePassword.page.html',
   directives: [ChangePasswordComponent]
 })
