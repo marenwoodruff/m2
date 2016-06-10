@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
-import {NavController, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
+import {Nav, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
 import {Survey} from '../../models/survey/survey';
@@ -36,7 +36,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private user: User;
 
   constructor(
-      private nav: NavController,
+      private nav: Nav,
       private platform: Platform,
       private _surveyApi: SurveyService,
       private _eventApi: EventService,
