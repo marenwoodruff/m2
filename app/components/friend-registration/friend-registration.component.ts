@@ -1,5 +1,5 @@
 import {Component, AfterContentInit} from '@angular/core';
-import {Button, Label, NavController, NavParams, Alert} from 'ionic-angular';
+import {Button, Label, Nav, NavParams, Alert} from 'ionic-angular';
 
 import {EventsPage} from '../../pages/events/events.page';
 import {Event} from '../../models/Events/event';
@@ -13,7 +13,7 @@ import {Event} from '../../models/Events/event';
 export class FriendRegistrationPage implements AfterContentInit {
   event: Event;
 
-  constructor(private nav: NavController, private params: NavParams) { }
+  constructor(private nav: Nav, private params: NavParams) { }
 
   ngAfterContentInit() {
     MktoForms2.loadForm("http://app-abm.marketo.com", "695-WVM-122", 1862);

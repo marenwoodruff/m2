@@ -1,6 +1,6 @@
 import {EventEmitter, Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from '@angular/common';
-import {Button, List, Item, TextInput, Label, NavController} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, Nav} from 'ionic-angular';
 import {UserService} from '../../service/user.service';
 import {LoaderComponent} from '../loader/loader.component';
 import {ValidationService} from '../../service/validation.service';
@@ -23,7 +23,7 @@ export class ForgotPasswordComponent{
 
   constructor(
     private _userService: UserService,
-    private _navController: NavController,
+    private _navController: Nav,
     private _formBuilder: FormBuilder) {
       this.forgotPasswordForm = this._formBuilder.group({
         'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],

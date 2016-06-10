@@ -1,5 +1,5 @@
 import {OnInit} from '@angular/core';
-import {Page, NavController, NavParams, Button} from 'ionic-angular';
+import {Page, Nav, NavParams, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {SurveyPage} from '../survey/survey.page';
 import {SurveyCompletedPage} from '../survey-completed/survey-completed.page';
@@ -18,7 +18,7 @@ export class BeginSurveyPage implements OnInit {
   surveyStartText: String;
   lastQuestionIndex: number;
 
-  constructor(private nav: NavController, private params: NavParams) {
+  constructor(private nav: Nav, private params: NavParams) {
     this.survey = this.params.get('survey');
     this.inProgress = this.params.get('inProgress');
     this.surveyProgress = this.params.get('surveyProgress');
