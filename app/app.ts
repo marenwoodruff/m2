@@ -25,7 +25,7 @@ import {User} from './models/user/user';
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp implements OnInit{
-    rootPage: any = LoginPage;
+    rootPage: any = this.userService.isUserLoggedIn() ? EventsPage : LoginPage;
     pages:Array<{title: string, component: any}>;
     @ViewChild(Nav) nav: Nav;
     userName: string;
@@ -63,7 +63,7 @@ class MyApp implements OnInit{
         		  if (loggedIn === true) {
                       this.userInfo();
                       // this.menuController.enable(true);
-                      this.setInitialPage(EventsPage);
+                      // this.setInitialPage(EventsPage);
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
     		      }
     	     });
