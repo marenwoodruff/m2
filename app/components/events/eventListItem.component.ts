@@ -3,7 +3,7 @@ import {Event} from '../../models/events/event';
 import {UserEvent} from '../../models/user/userEvent';
 import {EventPage} from '../../pages/event/event.page';
 import {EventsPage} from '../../pages/events/events.page';
-import {Item, Nav, Button, ItemSliding, Alert} from 'ionic-angular';
+import {Item, NavController, Button, ItemSliding, Alert} from 'ionic-angular';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
 
 import {UserService} from '../../service/user.service';
@@ -23,7 +23,7 @@ export class EventListItemComponent implements OnChanges {
     userId: number;
     userEvents: UserEvent[];
 
-    constructor(private nav: Nav, private _userApi: UserService, private _userEventApi: UserEventService){ }
+    constructor(private nav: NavController, private _userApi: UserService, private _userEventApi: UserEventService){ }
 
     ngOnChanges() {
       this.currentLocation = this.location;
@@ -69,4 +69,5 @@ export class EventListItemComponent implements OnChanges {
     getUserId() {
        this.userId = this._userApi.getUserId();
     }
+
 }

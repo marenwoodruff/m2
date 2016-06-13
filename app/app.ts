@@ -23,7 +23,7 @@ import {User} from './models/user/user';
     directives: [Icon]
 })
 class MyApp implements OnInit{
-    rootPage: any = LoginPage;
+    rootPage: any = this.userService.isUserLoggedIn() ? EventsPage : LoginPage;
     pages:Array<{title: string, component: any}>;
     @ViewChild(Nav) nav: Nav;
     userName: string;
@@ -60,8 +60,8 @@ class MyApp implements OnInit{
             this.hasLoggedIn((loggedIn) => {
           		if (loggedIn === true) {
                     this.userInfo();
-                    this.menuController.enable(true);
-                    this.setInitialPage(EventsPage);
+                    // this.menuController.enable(true);
+                    // this.setInitialPage(EventsPage);
                     this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
       		    }
     	    });

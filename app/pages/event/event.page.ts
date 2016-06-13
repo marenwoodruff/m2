@@ -28,13 +28,14 @@ export class EventPage implements OnInit {
     this.currentLocation = this.params.get('location');
   }
 
-  // private share(message:string, subject:string, file:string, link:string):void {
-  //   link = `http://matrixres.com${link}`;
-  //   this.platform.ready().then(() => {
-  //           if (window.plugins.socialsharing) {
-  //               window.plugins.socialsharing.share(message, subject, file, link);;
-  //           }
-  //       });
-  // }
+  private share(message:string, subject:string, file:string, link:string):void {
+    link = `http://matrixres.com${link}`;
+    this.platform.ready().then(() => {
+            if (window.plugins.socialsharing) {
+                window.plugins.socialsharing.share(message, subject, file, link);;
+            }
+        });
+  }
+
 
 }
