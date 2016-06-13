@@ -1,5 +1,5 @@
 import {Component, Input, AfterContentInit, OnInit} from '@angular/core';
-import {Button, List, Item, TextInput, Label, NavController, NavParams, Alert} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, Nav, NavParams, Alert} from 'ionic-angular';
 
 import {UserService} from '../../service/user.service';
 import {UserEventService} from '../../service/userEvent.service';
@@ -22,7 +22,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
   userId: number;
   user: User;
 
-  constructor(private _userApi:UserService, private _userEventApi:UserEventService, private nav: NavController, private params: NavParams) {}
+  constructor(private _userApi:UserService, private _userEventApi:UserEventService, private nav: Nav, private params: NavParams) {}
 
   ngOnInit() {
     this.getUserInfo();
