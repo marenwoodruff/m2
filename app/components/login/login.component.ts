@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.userForm = this._formBuilder.group({
       'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
       'password': ['', Validators.required]
-    })
+    });
   }
 
   ngOnInit(): any {
@@ -91,6 +91,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.twitterSubscription.unsubscribe();
       this.userSubscription.unsubscribe();
       this.errorSubscription.unsubscribe();
+      this.linkedInSubscription.unsubscribe();
   }
 
   private login(media) {

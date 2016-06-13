@@ -14,7 +14,7 @@ export class LogoutPage implements OnInit{
 
   ngOnInit(){
     this._authService.logOut();
-    this.nav.setRoot(LoginPage);
+    this.nav.push(LoginPage);
   }
 
 }
