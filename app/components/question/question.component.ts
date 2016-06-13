@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Alert, Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar,  NavController, NavParams} from 'ionic-angular';
+import {Alert, Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar,  Nav, NavParams} from 'ionic-angular';
 import {Question} from '../../models/survey/question';
 import {Survey} from '../../models/survey/survey';
 import {Option} from '../../models/survey/option';
@@ -29,7 +29,7 @@ export class QuestionComponent implements OnInit {
   completed: boolean;
   completedQuestions = [];
 
-  constructor(private _storageApi: StorageService, private _surveyApi: SurveyService, private nav: NavController) { }
+  constructor(private _storageApi: StorageService, private _surveyApi: SurveyService, private nav: Nav) { }
 
   public ngOnInit(): void {
     this.questions = this.survey.questions;
@@ -71,7 +71,6 @@ export class QuestionComponent implements OnInit {
   }
 
   private nextQuestion(): void {
-
     if (this.questionIndex === this.questionsLength - 1) {
       this.checkSurveyCompletion(this.survey);
     } else {

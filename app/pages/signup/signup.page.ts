@@ -1,4 +1,4 @@
-import {Page, NavController} from 'ionic-angular';
+import {Page, Nav} from 'ionic-angular';
 import {Inject} from '@angular/core';
 import {SignupEmailPage} from '../signupEmail/signupEmail.page';
 
@@ -6,9 +6,9 @@ import {SignupEmailPage} from '../signupEmail/signupEmail.page';
   templateUrl: 'build/pages/signup/signup.page.html'
 })
 export class SignupPage {
-  nav: NavController;
+  nav: Nav;
 
-  constructor(@Inject(NavController) nav) {
+  constructor(@Inject(Nav) nav) {
     this.nav = nav;
   }
 
