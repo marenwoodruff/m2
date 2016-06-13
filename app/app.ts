@@ -1,4 +1,4 @@
-import {App, IonicApp, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
+import {IonicApp, App, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
 import {forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
@@ -62,7 +62,7 @@ class MyApp implements OnInit{
             this.hasLoggedIn((loggedIn) => {
         		  if (loggedIn === true) {
                       this.userInfo();
-                      this.menuController.enable(true);
+                      // this.menuController.enable(true);
                       this.setInitialPage(EventsPage);
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
     		      }

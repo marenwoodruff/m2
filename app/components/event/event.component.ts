@@ -34,6 +34,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private registered: boolean;
   private userId: number;
   private user: User;
+  private eventOverview: any;
 
   constructor(
       private nav: Nav,
@@ -68,12 +69,24 @@ export class EventComponent implements OnInit, OnDestroy {
     this.getUserId();
     this.checkRegistration();
     this._eventApi.getEventSurvey(this.event.eventId);
+
+    if (this.event.title === 'Agile2016') {
+      this.eventOverview = this.event.overview;
+      this.updateEventOverview(this.eventOverview);
+    }
   }
 
   public ngOnDestroy() {
     this.surveySubscription.unsubscribe();
     this.userEventSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
+  }
+
+  private updateEventOverview(eventOverview:any): void {
+      let regex = /([..])\.+/;
+      let regex2 = /(#signup)/;
+      this.eventOverview = this.eventOverview.replace(regex2, 'https://agilealliance.org/membership/?rt=Subscriber').replace(regex, 'http://matrixres.com');
+      this.event.overview = this.eventOverview;
   }
 
   private getUserId() {
