@@ -1,6 +1,6 @@
 import {EventEmitter, Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from '@angular/common';
-import {Button, List, Item, TextInput, Label, NavController} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, Nav} from 'ionic-angular';
 import {UserService} from '../../service/user.service';
 import {User} from '../../models/user/user';
 import {UserPasswordChange} from '../../models/user/userPasswordChange';
@@ -27,7 +27,7 @@ export class ChangePasswordComponent{
 
   constructor(
     private _userService: UserService,
-    private _navController: NavController,
+    private _navController: Nav,
     private _formBuilder: FormBuilder) {
       this.passwordForm = this._formBuilder.group({
         'oldPassword': ['', Validators.required],
