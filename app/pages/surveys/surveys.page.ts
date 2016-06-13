@@ -47,7 +47,6 @@
 
       ngOnInit(): any {
         this.getUserId();
-
         this.userEventSubscription = this._userEventApi.userEvents.subscribe(
           (userEvents) => {
             if (userEvents.length > 0) {
