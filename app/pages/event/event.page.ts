@@ -1,5 +1,5 @@
 import {Page, NavParams, Platform} from 'ionic-angular';
-import {OnInit, forwardRef} from '@angular/core';
+import {forwardRef} from '@angular/core';
 import {EventComponent} from '../../components/event/event.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {SessionsComponent} from '../../components/sessions/sessions.component';
@@ -11,21 +11,14 @@ import {Event} from '../../models/events/event';
     directives: [EventComponent, forwardRef(() => SurveysComponent), SessionsComponent],
 
 })
-export class EventPage implements OnInit {
-  params: NavParams;
-  event: Event;
-  currentLocation: Array<number>;
+export class EventPage {
+  private event: Event;
+  private currentLocation: Array<number>;
   public surveys: Survey[];
-  platform:Platform;
 
-  constructor(navParams: NavParams, platform: Platform) {
-    this.params = navParams;
-    this.platform = platform;
-  }
-
-  ngOnInit():any{
+  constructor(private params: NavParams, private platform: Platform) {
     this.event = this.params.get('event');
-    this.currentLocation = this.params.get('location');
+    this.currentLocation = this.params.get('location'); 
   }
 
   private share(message:string, subject:string, file:string, link:string):void {
