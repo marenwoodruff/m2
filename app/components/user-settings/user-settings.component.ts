@@ -34,7 +34,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder,
     private _authService: AuthorizationService) {
       this.userForm = this._formBuilder.group({
-        'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
+        'email': ['', Validators.compose([ValidationService.emailValidator, Validators.required])],
         'name': ['', Validators.required],
         'company': [''],
         'jobTitle': [''],
@@ -47,7 +47,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this.userSubscription = this._userService.user.subscribe(
         (user) => {
           this.updatingUser = false;
-          console.log(user);
           // this._navController.setRoot(EventsPage);
         }
       );

@@ -35,12 +35,6 @@ export class SurveyDescriptionComponent implements OnChanges {
     this.evaluateProgress(this.survey, this.surveysInProgress);
   }
 
-  getEventName() {
-    // let eventSurvey = this.eventSurveys ? this.eventSurveys.filter(eventSurvey => eventSurvey.surveyId === this.survey.id) : null;
-
-    // this.eventName = eventSurvey[0].eventTitle + ' - ';
-  }
-
   evaluateProgress(survey, surveysInProgress) {
     if (surveysInProgress) {
       let surveyProgressFound = false;
