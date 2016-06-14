@@ -9,6 +9,7 @@ plugins/
 *.swp
 .DS_Store
 Thumbs.db
+.io-config.json
 
 
 # cache files for sublime text
