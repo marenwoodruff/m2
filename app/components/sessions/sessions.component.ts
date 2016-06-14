@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {List, Item, Button, Icon, NavController} from 'ionic-angular';
+import {List, Item, Button, Icon, Nav} from 'ionic-angular';
 import {DateFormatPipe} from 'angular2-moment';
 import {Session} from '../../models/events/session';
 import {Location} from '../../models/events/location';
@@ -16,10 +16,7 @@ import {RegistrationPage} from '../../pages/registration/registration.page';
 })
 
 export class SessionsComponent {
-  navController: NavController;
-  constructor(navController: NavController){
-    this.navController = navController;
-  }
+  constructor(private navController: Nav){ }
 
   goToSession(session: Session, location: Location) {
     this.navController.push(SessionPage, { session, location });

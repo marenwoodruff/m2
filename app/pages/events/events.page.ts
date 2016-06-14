@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy, forwardRef, EventEmitter} from '@angular/core';
-import {Icon, NavController, ActionSheet, MenuController} from 'ionic-angular';
+import {Icon, Nav, ActionSheet, MenuController} from 'ionic-angular';
 import {EventsComponent} from '../../components/events/events.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {EventService} from "../../service/event.service";
@@ -30,7 +30,7 @@ export class EventsPage implements OnInit, OnDestroy {
     constructor(
       private _eventsApi:EventService,
       private _menuController: MenuController,
-      public nav:NavController,
+      public nav:Nav,
       private _userApi:UserService) { }
 
     public ngOnInit():any {

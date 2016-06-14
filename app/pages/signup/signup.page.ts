@@ -1,14 +1,14 @@
 import {Component, Inject} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Nav} from 'ionic-angular';
 import {SignupEmailPage} from '../signupEmail/signupEmail.page';
 
 @Component({
   templateUrl: 'build/pages/signup/signup.page.html'
 })
 export class SignupPage {
-  nav: NavController;
+  nav: Nav;
 
-  constructor(@Inject(NavController) nav) {
+  constructor(@Inject(Nav) nav) {
     this.nav = nav;
   }
 

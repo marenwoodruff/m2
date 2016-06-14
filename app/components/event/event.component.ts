@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
-import {NavController, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
+import {Nav, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
 import {Survey} from '../../models/survey/survey';
@@ -34,9 +34,10 @@ export class EventComponent implements OnInit, OnDestroy {
   private registered: boolean;
   private userId: number;
   private user: User;
+  private eventOverview: any;
 
   constructor(
-      private nav: NavController,
+      private nav: Nav,
       private platform: Platform,
       private _surveyApi: SurveyService,
       private _eventApi: EventService,
@@ -69,12 +70,24 @@ export class EventComponent implements OnInit, OnDestroy {
     this.getUserId();
     this.checkRegistration();
     this._eventApi.getEventSurvey(this.event.eventId);
+
+    if (this.event.title === 'Agile2016') {
+      this.eventOverview = this.event.overview;
+      this.updateEventOverview(this.eventOverview);
+    }
   }
 
   public ngOnDestroy() {
     this.surveySubscription.unsubscribe();
     this.userEventSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
+  }
+
+  private updateEventOverview(eventOverview:any): void {
+      let regex = /([..])\.+/;
+      let regex2 = /(#signup)/;
+      this.eventOverview = this.eventOverview.replace(regex2, 'https://agilealliance.org/membership/?rt=Subscriber').replace(regex, 'http://matrixres.com');
+      this.event.overview = this.eventOverview;
   }
 
   private getUserId() {

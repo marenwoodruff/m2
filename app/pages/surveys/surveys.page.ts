@@ -1,5 +1,6 @@
 import * as moment from 'moment';
-import {Component, EventEmitter, OnInit, OnDestroy, DoCheck} from '@angular/core';
+import {Page} from 'ionic-angular';
+import {EventEmitter, OnInit, OnDestroy, DoCheck} from '@angular/core';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {StorageService} from '../../service/storage.service';
 import {SurveyService} from '../../service/survey.service';
@@ -14,7 +15,7 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 import {UserSurvey} from '../../models/user/userSurvey';
 
 
-@Component({
+@Page({
   templateUrl: 'build/pages/surveys/surveys.page.html',
   directives: [SurveysComponent, LoaderComponent]
 })
@@ -46,7 +47,6 @@ export class SurveysPage implements OnInit, OnDestroy, DoCheck {
 
     ngOnInit(): any {
       this.getUserId();
-
       this.userEventSubscription = this._userEventApi.userEvents.subscribe(
         (userEvents) => {
           if (userEvents.length > 0) {
