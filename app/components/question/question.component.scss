@@ -93,6 +93,10 @@ $gray-background: #f6fafb;
   min-width: 46%;
 }
 
+.md .alert-button {
+  margin: 0 3px 0 0;
+}
+
 .alert-button:last-child {
   border-right: 1px solid #1064b1;
   color: white;
