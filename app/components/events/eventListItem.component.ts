@@ -13,7 +13,7 @@ import {UserEventService} from '../../service/userEvent.service';
 @Component({
     selector: "eventListItem",
     templateUrl: 'build/components/events/eventListItem.component.html',
-    directives: [Item, EventPage, Button, ItemSliding],
+    directives: [Item, Button, ItemSliding],
     inputs:['event', 'location', 'userEvents'],
     pipes:[DateFormatPipe, FromUnixPipe]
 })
@@ -31,8 +31,7 @@ export class EventListItemComponent implements OnChanges {
     }
 
     viewEvent(event) {
-      this.nav.push(EventSoloPage, { event, location: this.currentLocation });
-      // this.nav.push(EventPage, { event, location: this.currentLocation });
+      this.nav.push(EventPage, { event, location: this.currentLocation });
     }
 
     deleteEvent(event) {
