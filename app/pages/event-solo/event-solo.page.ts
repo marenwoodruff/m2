@@ -7,10 +7,10 @@ import {Survey} from '../../models/survey/survey';
 import {Event} from '../../models/Events/event';
 
 @Component({
-    templateUrl: 'build/pages/event/event.page.html',
+    templateUrl: 'build/pages/event-solo/event-solo.page.html',
     directives: [EventComponent, forwardRef(() => SurveysComponent), SessionsComponent]
 })
-export class EventPage {
+export class EventSoloPage {
     event: Event;
     currentLocation: Array<number>;
     public surveys: Survey[];

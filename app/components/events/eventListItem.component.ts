@@ -2,6 +2,7 @@ import {Component, OnChanges} from '@angular/core';
 import {Event} from '../../models/events/event';
 import {UserEvent} from '../../models/user/userEvent';
 import {EventPage} from '../../pages/event/event.page';
+import {EventSoloPage} from '../../pages/event-solo/event-solo.page';
 import {EventsPage} from '../../pages/events/events.page';
 import {Item, NavController, Button, ItemSliding, Alert} from 'ionic-angular';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
@@ -30,12 +31,13 @@ export class EventListItemComponent implements OnChanges {
     }
 
     viewEvent(event) {
-      this.nav.push(EventPage, { event, location: this.currentLocation });
+      this.nav.push(EventSoloPage, { event, location: this.currentLocation });
+      // this.nav.push(EventPage, { event, location: this.currentLocation });
     }
 
     deleteEvent(event) {
-       this.getUserId();
-       let uEvent = this.userEvents.filter((userEvent) => {
+    this.getUserId();
+    let uEvent = this.userEvents.filter((userEvent) => {
             if (userEvent.eventId === event.eventId) {
                 return true;
             }
