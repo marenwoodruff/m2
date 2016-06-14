@@ -3,6 +3,7 @@ import {Event} from '../../models/events/event';
 import {UserEvent} from '../../models/user/userEvent';
 import {EventPage} from '../../pages/event/event.page';
 import {EventsPage} from '../../pages/events/events.page';
+import {SurveysPage} from '../../pages/surveys/surveys.page';
 import {Item, NavController, Button, ItemSliding, Alert} from 'ionic-angular';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
 
@@ -30,7 +31,15 @@ export class EventListItemComponent implements OnChanges {
     }
 
     viewEvent(event) {
-      this.nav.push(EventPage, { event, location: this.currentLocation });
+      this.nav.push(EventPage, { event, location: this.currentLocation })
+          .then(
+              response => { console.log('Response ' + response);
+              },
+              error => { console.log('error ' + error);
+              }
+          ).catch(exception => {
+              console.log('Exception ' + exception);
+          })
     }
 
     deleteEvent(event) {

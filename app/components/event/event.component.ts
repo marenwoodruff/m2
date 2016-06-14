@@ -1,9 +1,10 @@
 import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
-import {Nav, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
+import {NavController, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
 import {Survey} from '../../models/survey/survey';
 import {User} from '../../models/user/user';
+import {UserEvent} from '../../models/user/userEvent';
 import {SessionComponent} from '../session/session.component';
 import {EventLocationComponent} from '../event-location/event-location.component';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
@@ -13,7 +14,6 @@ import {EventSurveysPage} from '../../pages/event-surveys/event-surveys.page';
 import {EventService} from '../../service/event.service';
 import {UserEventService} from '../../service/userEvent.service';
 import {UserService} from '../../service/user.service';
-import {UserEvent} from '../../models/user/userEvent';
 
 @Component({
   selector: 'event',
@@ -36,7 +36,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private user: User;
 
   constructor(
-      private nav: Nav,
+      private nav: NavController,
       private platform: Platform,
       private _surveyApi: SurveyService,
       private _eventApi: EventService,
@@ -44,8 +44,7 @@ export class EventComponent implements OnInit, OnDestroy {
       private _userApi: UserService) { }
 
 
-  public ngOnInit() {
-    console.log("pushing ngOnInit");
+  ngOnInit() {
     this.userSubscription = this._userApi.user.subscribe(
       user => this.user = user,
       err => console.log(err),

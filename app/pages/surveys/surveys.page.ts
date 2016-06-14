@@ -1,6 +1,5 @@
 import * as moment from 'moment';
-import {Page} from 'ionic-angular';
-import {EventEmitter, OnInit, OnDestroy, DoCheck} from '@angular/core';
+import {Component, EventEmitter, OnInit, OnDestroy, DoCheck} from '@angular/core';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {StorageService} from '../../service/storage.service';
 import {SurveyService} from '../../service/survey.service';
@@ -15,7 +14,7 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 import {UserSurvey} from '../../models/user/userSurvey';
 
 
-@Page({
+@Component({
   templateUrl: 'build/pages/surveys/surveys.page.html',
   directives: [SurveysComponent, LoaderComponent]
 })
