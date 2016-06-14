@@ -2,6 +2,7 @@ import {Component, OnChanges} from '@angular/core';
 import {Event} from '../../models/events/event';
 import {UserEvent} from '../../models/user/userEvent';
 import {EventPage} from '../../pages/event/event.page';
+import {EventSoloPage} from '../../pages/event-solo/event-solo.page';
 import {EventsPage} from '../../pages/events/events.page';
 import {Item, Nav, Button, ItemSliding, Alert} from 'ionic-angular';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
@@ -12,7 +13,7 @@ import {UserEventService} from '../../service/userEvent.service';
 @Component({
     selector: "eventListItem",
     templateUrl: 'build/components/events/eventListItem.component.html',
-    directives: [Item, EventPage, Button, ItemSliding],
+    directives: [Item, Button, ItemSliding],
     inputs:['event', 'location', 'userEvents'],
     pipes:[DateFormatPipe, FromUnixPipe]
 })
@@ -42,8 +43,8 @@ export class EventListItemComponent implements OnChanges {
     }
 
     deleteEvent(event) {
-       this.getUserId();
-       let uEvent = this.userEvents.filter((userEvent) => {
+    this.getUserId();
+    let uEvent = this.userEvents.filter((userEvent) => {
             if (userEvent.eventId === event.eventId) {
                 return true;
             }
