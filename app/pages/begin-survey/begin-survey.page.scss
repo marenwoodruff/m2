@@ -2,13 +2,9 @@
   padding: 2rem;
   font-size: 20px;
   color: #333333;
-  background: url('../assets/images/BeginSurvey.png') no-repeat center center fixed;
-  background-size: contain;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  // background-position: center;
-  // background-size: auto 100%;
+  background-image: url('../assets/images/BeginSurvey.png');
+  background-position: center;
+  background-size: auto 100%;
 }
 
 .toolbar[transparent] .toolbar-title, .toolbar[transparent] .bar-button-default {
@@ -19,6 +15,8 @@
   border-radius: 0;
   font-size: 18px;
   font-weight: bold;
+  margin: 0px 10px;
+  padding: 25px 0px;
 }
 
 .centerText {
@@ -26,9 +24,10 @@
 }
 
 .surveyTime {
-  padding: 8px 16px;
-  border: 2px solid #333333;
+  padding: 12px 16px;
+  border: 3px solid #333333;
   border-radius: 25px;
+  font-weight: bold;
 }
 
 .conferenceName {
@@ -39,4 +38,12 @@
 
 .beginSurveyRows {
   padding: 2rem 0;
+}
+
+.ion-col {
+  padding: 10px;
+}
+
+.button-inner {
+  text-transform: none;
 }

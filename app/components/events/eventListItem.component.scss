@@ -3,19 +3,26 @@
     border-top: 1px solid #DBDBDB;
     padding-left: 10px;
   }
-  .item-inner{
+  ion-col {
+    padding-left: 0px;
+  }
+  .item-inner {
     border-bottom: none;
   }
-  .event-title{
-    margin-bottom: 10px;
+  .sessions {
+    font-size: .8em;
+  }
+  .sessions.event-title {
+    margin: 5px 0px;
     font-size: 1.8rem;
     font-weight: 500;
   }
   ion-thumbnail img {
       max-width: 9rem;
       max-height: 9rem;
+      border: 1px solid #DBDBDB;
   }
-  .eventListItemCol{
+  .eventListItemCol {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,11 +33,3 @@
     }
   }
 }
-
-.md .alert-button {
-  min-width: 0;
-}
-.alert-button .button-inner {
-  font-size: 1.4rem;
-}
-
