@@ -36,9 +36,9 @@ export class EventsComponent implements OnChanges {
   }
 
   private setDates():void{
+      console.log(this.userEvents);
     this.userEvents ? this.userEventsCount = this.userEvents.length : this.userEventsCount;
     if (this.events) {
-        console.log(this.events);
       this.eventsCount = this.events.length;
       let months:string[] = [];
       this.events.forEach((event) => {
