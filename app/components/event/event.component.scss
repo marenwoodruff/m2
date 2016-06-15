@@ -53,6 +53,12 @@
       font-weight: bold;
       /*font-size: 0.95em;*/
     }
+    .md.alert-button {
+      min-width: 0;
+    }
+    .md.alert-message {
+      text-align: center;
+    }
 }
 
 .about-facilitator {
