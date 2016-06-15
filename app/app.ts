@@ -1,5 +1,5 @@
-import {Component, forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
-import {App, ionicBootstrap, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
+import {IonicApp, App, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
+import {forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
@@ -18,19 +18,21 @@ import {UserEventService} from './service/userEvent.service';
 import {SupportPage} from './pages/support/support.page';
 import {User} from './models/user/user';
 
-@Component({
+@App({
     templateUrl: 'build/app.html',
+    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService],
     directives: [Icon],
+    config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp implements OnInit{
-    rootPage: any = LoginPage;
+    rootPage: any = this.userService.isUserLoggedIn() ? EventsPage : LoginPage;
     pages:Array<{title: string, component: any}>;
     @ViewChild(Nav) nav: Nav;
     userName: string;
     userSubscription: EventEmitter<User>;
 
     constructor(
-      private app:App,
+      private app:IonicApp,
       private platform:Platform,
       private storageService:StorageService,
       public surveyService:SurveyService,
@@ -39,6 +41,8 @@ class MyApp implements OnInit{
       private menuController: MenuController) {}
 
     ngOnInit(){
+      console.log(process.env.NODE_ENV);
+
         this.userSubscription = this.userService.user.subscribe(
           user => this.userName = user.name.split(' ')[0],
           err => console.log(err),
@@ -58,13 +62,13 @@ class MyApp implements OnInit{
     private initializeApp() {
         this.platform.ready().then(() => {
             this.hasLoggedIn((loggedIn) => {
-        		  if (loggedIn === true) {
+              if (loggedIn === true) {
                       this.userInfo();
-                      this.menuController.enable(true);
-                      this.setInitialPage(EventsPage);
+                      // this.menuController.enable(true);
+                      // this.setInitialPage(EventsPage);
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
-    		      }
-    	     });
+              }
+           });
         });
     }
 
@@ -107,6 +111,4 @@ class MyApp implements OnInit{
       });
       this.nav.present(confirm);
     }
-}
-
-ionicBootstrap(MyApp, [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService], {});
+ }

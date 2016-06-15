@@ -1,5 +1,5 @@
 import {Component, OnChanges} from '@angular/core';
-import {Item, NavController, Icon, Button} from 'ionic-angular';
+import {Item, Nav, Icon, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {BeginSurveyPage} from '../../pages/begin-survey/begin-survey.page';
 import {SurveyProgress} from '../../models/survey/surveyProgress';
@@ -21,7 +21,7 @@ export class SurveyDescriptionComponent implements OnChanges {
   eventSurveys: Array<any>;
   eventName: string;
 
-  constructor(private _surveyApi: SurveyService, private nav: NavController) { }
+  constructor(private _surveyApi: SurveyService, private nav: Nav) { }
 
   viewSurvey(survey, surveyProgress) {
     this.nav.push(BeginSurveyPage, {
@@ -33,12 +33,6 @@ export class SurveyDescriptionComponent implements OnChanges {
 
   ngOnChanges() {
     this.evaluateProgress(this.survey, this.surveysInProgress);
-  }
-
-  getEventName() {
-    // let eventSurvey = this.eventSurveys ? this.eventSurveys.filter(eventSurvey => eventSurvey.surveyId === this.survey.id) : null;
-
-    // this.eventName = eventSurvey[0].eventTitle + ' - ';
   }
 
   evaluateProgress(survey, surveysInProgress) {

@@ -5,4 +5,4 @@ import {LoginComponent} from '../../components/login/login.component';
   templateUrl: 'build/pages/login/login.page.html',
   directives: [LoginComponent]
 })
-export class LoginPage {}
+export class LoginPage implements {}

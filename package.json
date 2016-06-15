@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "cross-env NODE_ENV=production ionic serve -l"
+  },
   "dependencies": {
     "@angular/common": "^2.0.0-rc.1",
     "@angular/compiler": "^2.0.0-rc.1",
@@ -21,6 +24,7 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "cross-env": "^1.0.8",
     "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-flatten": "^0.2.0",
