@@ -17,7 +17,7 @@ export class HttpClient {
   // }
 
   public getEvents() {
-      return this._api.get('https://dev.matrixres.com/apis/eventapi');
+      return this._api.get('http://dev.matrixres.com/apis/eventapi');
   }
 
   public post(path:string, data:any) {
