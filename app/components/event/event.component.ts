@@ -18,9 +18,9 @@ import {UserEvent} from '../../models/user/userEvent';
 @Component({
   selector: 'event',
   templateUrl: 'build/components/event/event.component.html',
-  inputs:['event', 'currentLocation'],
+  inputs: ['event', 'currentLocation'],
   directives: [List, Item, SessionComponent, EventLocationComponent, Button],
-  pipes:[DateFormatPipe, FromUnixPipe]
+  pipes: [DateFormatPipe, FromUnixPipe]
 })
 
 export class EventComponent implements OnInit, OnDestroy {
@@ -37,12 +37,12 @@ export class EventComponent implements OnInit, OnDestroy {
   private eventOverview: any;
 
   constructor(
-      private nav: Nav,
-      private platform: Platform,
-      private _surveyApi: SurveyService,
-      private _eventApi: EventService,
-      private _userEventApi: UserEventService,
-      private _userApi: UserService) { }
+    private nav: Nav,
+    private platform: Platform,
+    private _surveyApi: SurveyService,
+    private _eventApi: EventService,
+    private _userEventApi: UserEventService,
+    private _userApi: UserService) { }
 
   public ngOnInit() {
     this.userSubscription = this._userApi.user.subscribe(
@@ -82,11 +82,11 @@ export class EventComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  private updateEventOverview(eventOverview:any): void {
-      let regex = /([..])\.+/;
-      let regex2 = /(#signup)/;
-      this.eventOverview = this.eventOverview.replace(regex2, 'https://agilealliance.org/membership/?rt=Subscriber').replace(regex, 'http://matrixres.com');
-      this.event.overview = this.eventOverview;
+  private updateEventOverview(eventOverview: any): void {
+    let regex = /([..])\.+/;
+    let regex2 = /(#signup)/;
+    this.eventOverview = this.eventOverview.replace(regex2, 'https://agilealliance.org/membership/?rt=Subscriber').replace(regex, 'http://matrixres.com');
+    this.event.overview = this.eventOverview;
   }
 
   private getUserId() {
@@ -101,7 +101,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private register(event): void {
     this.nav.push(RegistrationPage, {
       event: event,
-      user:  this.user
+      user: this.user
     });
   }
 
@@ -144,14 +144,14 @@ export class EventComponent implements OnInit, OnDestroy {
     });
   }
 
-  public nonMatrixInfo(link:string):void {
+  public nonMatrixInfo(link: string): void {
     let url = 'http://matrixres.com' + link;
     this.platform.ready().then(() => {
       cordova.InAppBrowser.open(url, "_system", "location=true");
     });
   }
 
-  private save(event:Event): void {
+  private save(event: Event): void {
     let userEvent = {
       eventId: event.eventId,
       registered: true,

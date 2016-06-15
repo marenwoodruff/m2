@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Page} from 'ionic-angular';
 import {TwitterComponent} from '../../components/twitter/twitter.component';
 
-@Component({
+@Page({
   templateUrl: 'build/pages/twitter/twitter.page.html',
   directives: [TwitterComponent]
 })

@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Page} from 'ionic-angular';
 import {SignupComponent} from '../../components/signup/signup.component';
 
-@Component({
+@Page({
   templateUrl: 'build/pages/signupEmail/signupEmail.page.html',
   directives: [SignupComponent]
 })
