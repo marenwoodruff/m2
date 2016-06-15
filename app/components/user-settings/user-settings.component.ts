@@ -95,7 +95,20 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       this.user.phone = this.userForm.value.phone;
       this.user.admin = false;
       this._userService.updateUser(this.user.id, this.user);
+      this.updateUserAlert();
     }
+  }
+
+  private updateUserAlert():void {
+      let alert = Alert.create({
+          title: 'User Information Updated',
+          buttons: [
+              {
+                  text: 'Okay'
+              }
+          ]
+      });
+      this._navController.present(alert);
   }
 
   private goToChangePassword():void {
@@ -112,7 +125,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           text: 'OK',
           handler: () => {
             this._navController.setRoot(LoginPage);
-          }
+          } 
         }
       ]
     });
