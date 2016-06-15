@@ -17,7 +17,7 @@ export class EventService {
     constructor(private httpClient: HttpClient) {}
 
     public getEvents(): void {
-      this.httpClient.get("/events")
+      this.httpClient.getEvents()
         .map(res => {
           return <Event[]>res.json().events;
         })
