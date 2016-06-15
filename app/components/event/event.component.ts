@@ -152,6 +152,7 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   private save(event:Event): void {
+    let matrixEvent = this.event.nonMatrixEvent ? false : true;
     let userEvent = {
       eventId: event.eventId,
       registered: true,
@@ -160,7 +161,8 @@ export class EventComponent implements OnInit, OnDestroy {
       startDate: event.startDate,
       city: event.city,
       state: event.state,
-      mobileSmall: event.mobileSmall
+      mobileSmall: event.mobileSmall,
+      matrixEvent: matrixEvent
     };
 
     this.saveAlert(userEvent);
