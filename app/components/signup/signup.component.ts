@@ -31,11 +31,14 @@ export class SignupComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder) {
       this.userForm = this._formBuilder.group({
         'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
-        'password': ['', Validators.compose([Validators.required, ValidationService.passwordValidator])],
+        matchingPassword: this._formBuilder.group({
+          password: ['', Validators.compose([Validators.required, ValidationService.passwordValidator])],
+          confirmPassword: ['', Validators.compose([Validators.required])]
+        }, {validator: this.checkPasswords}),
         'name': ['', Validators.required],
         'company': [''],
         'jobTitle': [''],
-        'phone': ['', Validators.compose([ValidationService.phoneNumberValidator])]
+        'phone': ['', Validators.compose([ValidationService.phoneNumberValidator])],
       })
   }
 
@@ -67,7 +70,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.signingUp = true;
       let user = new User();
       user.email = this.userForm.value.email;
-      user.password = this.userForm.value.password;
+      user.password = this.userForm.controls.matchingPassword.controls.password.value;
       user.name = this.userForm.value.name;
       user.company = this.userForm.value.company;
       user.jobTitle = this.userForm.value.jobTitle;
@@ -75,6 +78,24 @@ export class SignupComponent implements OnInit, OnDestroy {
       user.admin = false;
       this._authService.createUser(user);
     }
+  }
+
+  private checkPasswords(group):any {
+    let password = group.controls.password;
+    let confirm = group.controls.confirmPassword;
+
+    if (password.pristine || confirm.pristine) {
+      return null;
+    }
+    group.markAsTouched();
+
+    if (password.value === confirm.value) {
+      return null;
+    }
+
+    return {
+      isValid: false
+    };
   }
 
 }
