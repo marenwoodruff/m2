@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     argv = process.argv,
     flatten = require('gulp-flatten'),
-    merge = require('merge-stream');
+    merge = require('merge-stream'),
+    preprocess = require('gulp-preprocess');
 
 
 var IONIC_DIR = "node_modules/ionic-angular/"
@@ -89,6 +90,18 @@ gulp.task('fonts', function(cb) {
 gulp.task('assets', function(){
   return gulp.src('app/assets/**/*.*')
     .pipe(gulp.dest('www/build/assets'));
+});
+
+gulp.task('dev', function() {
+  gulp.src('./appsettings.ts')
+    .pipe(preprocess({context: { NODE_ENV: 'DEVELOPMENT', DEBUG: true}}))
+    .pipe(gulp.dest('./app'));
+});
+
+gulp.task('prod', function() {
+  gulp.src('./appsettings.ts')
+    .pipe(preprocess({context: { NODE_ENV: 'PRODUCTION'}}))
+    .pipe(gulp.dest('./app'));
 });
 
 gulp.task('set-dev-node-env', function() {
