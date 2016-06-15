@@ -47,6 +47,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
   }
 
   saveEvent() {
+    let matrixEvent = this.event.nonMatrixEvent ? false : true ;
     let eventInfo = {
       eventId: this.event.eventId,
       title: this.event.title,
@@ -54,7 +55,8 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
       mobileSmall: this.event.mobileSmall,
       city: this.event.city,
       state: this.event.state,
-      startDate: this.event.startDate
+      startDate: this.event.startDate,
+      matrixEvent: matrixEvent
     }
     this.getUserInfo();
     this.submitForm(eventInfo);
@@ -93,6 +95,7 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
   }
 
   confirmRegistration(eventInfo?:any, userInfo?:any) {
+      console.log(eventInfo);
     let confirm = Alert.create({
       title: 'Registration Confirmation',
       message: 'Thank you for registering! You will receive an e-mail to confirm your registration for this event.',
