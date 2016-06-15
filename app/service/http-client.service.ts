@@ -12,8 +12,12 @@ export class HttpClient {
     return this._api.get('http://' +  MyMatrixApi + path, { headers: headers });
   }
 
-  public getEvents(url:string, headers?:Headers) {
-    return this._api.get('http://' + url, { headers: headers });
+  // public getEvents(url:string, headers?:Headers) {
+  //   return this._api.get('http://' + url, { headers: headers });
+  // }
+
+  public getEvents() {
+      return this._api.get('https://dev.matrixres.com/apis/eventapi');
   }
 
   public post(path:string, data:any) {
