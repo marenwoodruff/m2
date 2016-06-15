@@ -42,7 +42,7 @@ var isRelease = argv.indexOf('--release') > -1;
 
 gulp.task('watch', ['clean'], function(done){
   runSequence(
-    ['set-dev-node-env', 'sass', 'html', 'fonts', 'assets', 'scripts'],
+    ['sass', 'html', 'fonts', 'assets', 'scripts'],
     function(){
       gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
       gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
@@ -102,8 +102,4 @@ gulp.task('prod', function() {
   gulp.src('./appsettings.ts')
     .pipe(preprocess({context: { NODE_ENV: 'PRODUCTION'}}))
     .pipe(gulp.dest('./app'));
-});
-
-gulp.task('set-dev-node-env', function() {
-  return process.env.NODE_ENV = 'development';
 });
