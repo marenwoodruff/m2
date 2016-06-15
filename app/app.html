@@ -6,9 +6,9 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button id="slide-menu" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-label style="margin-left: 1em; padding: 0.15em;">{{p.title}}</ion-label>
-        <ion-icon style="margin: 8px -5px 8px 8px; width: 1.4rem;" item-right>
+        <ion-icon style="margin: 8px 8px 8px; width: 1.4rem;" item-right>
           <img src="build/assets/icons/SideArrow.png" alt="click here" />
         </ion-icon>
       </button>
