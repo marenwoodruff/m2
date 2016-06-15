@@ -14,6 +14,7 @@ import {EventService} from '../../service/event.service';
 import {UserEventService} from '../../service/userEvent.service';
 import {UserService} from '../../service/user.service';
 import {UserEvent} from '../../models/user/userEvent';
+import * as moment from 'moment';
 
 @Component({
   selector: 'event',
@@ -35,6 +36,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private userId: number;
   private user: User;
   private eventOverview: any;
+  private preEvent: boolean;
 
   constructor(
       private nav: Nav,
@@ -60,7 +62,9 @@ export class EventComponent implements OnInit, OnDestroy {
     this.surveySubscription = this._eventApi.eventSurveys.subscribe(
       (surveys) => {
         this.surveys = surveys;
-        this.survey = this.surveys[0];
+        if (surveys.length === 1) {
+          this.survey = this.surveys[0];
+        }
       },
       err => console.log('error', err),
       () => console.log('finished checking for event surveys')
@@ -69,6 +73,7 @@ export class EventComponent implements OnInit, OnDestroy {
     this.getUserId();
     this.checkRegistration();
     this._eventApi.getEventSurvey(this.event.eventId);
+    this.findPreEvent(this.event);
 
     if (this.event.title === 'Agile2016') {
       this.eventOverview = this.event.overview;
@@ -112,6 +117,7 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   private takeSurvey(survey): void {
+    console.log(survey);
     this.nav.push(BeginSurveyPage, {
       survey: survey
     })
@@ -189,5 +195,21 @@ export class EventComponent implements OnInit, OnDestroy {
       ]
     });
     this.nav.present(alert);
+  }
+
+  private findPreEvent(event:Event) {
+    if (moment.unix(event.startDate).isSameOrAfter()) {
+      this.preEvent = true;
+    } else {
+      this.preEvent = false;
+    }
+  }
+
+  private preEventSurvey() {
+    if (this.survey.preEvent === true) {
+      this.survey;
+    } else {
+      this.survey = null;
+    }
   }
 }
