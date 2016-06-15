@@ -38,9 +38,9 @@
     </ion-col>
     <ion-col class="register-button-col">
       <button *ngIf="!registered && !event.nonMatrixEvent" (click)="register(event)">Register</button>
-      <button *ngIf="registered && !event.nonMatrixEvent" outline>Registered</button>
+      <button *ngIf="registered && !event.nonMatrixEvent" outline disabled>Registered</button>
       <button *ngIf="event.nonMatrixEvent && !registered" (click)="save(event)">Save Event</button>
-      <button *ngIf="event.nonMatrixEvent && registered" outline>Saved</button>
+      <button *ngIf="event.nonMatrixEvent && registered" outline disabled>Saved</button>
     </ion-col>
   </ion-row>
   <ion-row class="friend-registration" *ngIf="event.nonMatrixEvent">
