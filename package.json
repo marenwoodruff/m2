@@ -29,6 +29,7 @@
     "gulp": "3.9.1",
     "gulp-flatten": "^0.2.0",
     "gulp-if": "^2.0.0",
+    "gulp-preprocess": "^2.0.0",
     "gulp-watch": "4.3.5",
     "ionic-gulp-browserify-typescript": "^1.1.0",
     "ionic-gulp-fonts-copy": "^1.0.0",
