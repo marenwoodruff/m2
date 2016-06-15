@@ -29,7 +29,7 @@ export class EventService {
     };
 
     public getUserEvents(userEvents:UserEvent[]) {
-      this.httpClient.get("/events")
+      this.httpClient.getEvents()
         .map(res => {
           return res.json().events;
         })
