@@ -38,6 +38,7 @@ export class EventsComponent implements OnChanges {
   private setDates():void{
     this.userEvents ? this.userEventsCount = this.userEvents.length : this.userEventsCount;
     if (this.events) {
+        console.log(this.events);
       this.eventsCount = this.events.length;
       let months:string[] = [];
       this.events.forEach((event) => {
@@ -97,10 +98,10 @@ export class EventsComponent implements OnChanges {
   }
 
   private showHideArrows():void {
-    if (this.events.length > 1) {
+    // if (this.events.length > 1) {
       this.showLeftButton = this.currentMonthIndex === 0 ? false : true;
       this.showRightButton = this.currentMonthIndex === (this.months.length - 1) ? false : true;
-    }
+    // }
   }
 
   private searchEvents(search:string):boolean {
