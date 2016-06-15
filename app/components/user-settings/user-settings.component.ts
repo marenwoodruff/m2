@@ -1,6 +1,6 @@
 import {EventEmitter, Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from '@angular/common';
-import {Button, List, Item, TextInput, Label, NavController, Alert} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, Nav, Alert} from 'ionic-angular';
 import {UserService} from '../../service/user.service';
 import {User} from '../../models/user/user';
 import {ChangePasswordPage} from '../../pages/changePassword/changePassword.page';
@@ -30,11 +30,11 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _userService: UserService,
-    private _navController: NavController,
+    private _navController: Nav,
     private _formBuilder: FormBuilder,
     private _authService: AuthorizationService) {
       this.userForm = this._formBuilder.group({
-        'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
+        'email': ['', Validators.compose([ValidationService.emailValidator, Validators.required])],
         'name': ['', Validators.required],
         'company': [''],
         'jobTitle': [''],
@@ -47,7 +47,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this.userSubscription = this._userService.user.subscribe(
         (user) => {
           this.updatingUser = false;
-          console.log(user);
           // this._navController.setRoot(EventsPage);
         }
       );

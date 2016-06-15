@@ -28,7 +28,6 @@ $gray-background: #f6fafb;
 }
 
 .ios .radio-checked .radio-inner {
-  border-width: 5px;
   width: 10px;
   height: 21px;
   left: 0;
@@ -92,6 +91,10 @@ $gray-background: #f6fafb;
   border: 1px solid #1064b1;
   margin-left: 0.2em;
   min-width: 46%;
+}
+
+.md .alert-button {
+  margin: 0 3px 0 0;
 }
 
 .alert-button:last-child {

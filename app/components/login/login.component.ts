@@ -5,7 +5,7 @@ import {LinkedInService} from '../../service/linkedin.service';
 import {UserService} from '../../service/user.service';
 import {AuthorizationService} from '../../service/authorization.service';
 import {Http} from '@angular/http';
-import {Button, List, Item, TextInput, Label, Platform, NavController, MenuController} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, Platform, Nav, MenuController} from 'ionic-angular';
 import {SignupEmailPage} from '../../pages/signupEmail/signupEmail.page';
 import {EventsPage} from '../../pages/events/events.page';
 import {ForgotPasswordPage} from '../../pages/forgotPassword/forgotPassword.page';
@@ -41,14 +41,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _linkedInApi: LinkedInService,
     private _userService: UserService,
     private _authService:AuthorizationService,
-    private _navController: NavController,
+    private _navController: Nav,
     private _menuController: MenuController,
     private _formBuilder: FormBuilder) {
     this.twitterCredentials = { access_token: null };
     this.userForm = this._formBuilder.group({
       'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
       'password': ['', Validators.required]
-    })
+    });
   }
 
   ngOnInit(): any {
@@ -91,6 +91,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.twitterSubscription.unsubscribe();
       this.userSubscription.unsubscribe();
       this.errorSubscription.unsubscribe();
+      this.linkedInSubscription.unsubscribe();
   }
 
   private login(media) {
