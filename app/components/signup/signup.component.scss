@@ -1,38 +1,45 @@
-.signupEmail{
-  ion-item{
-    padding-left: 0;
-    border-right: 1px solid #c8c7cc;
-    border-left: 1px solid #c8c7cc;
-  }
-  ion-list{
-    margin: 10px;
-    border-bottom: none;
-    border-top: none;
-  }
-  ion-label{
-    margin: 0.75em 0.5em;
-    color: #C1BFC0;
-  }
-  .icon-photo{
-    color: #D7D7D7;
-    font-size: 60px;
-    text-align: center;
-    margin: 15px;
-    display: table-cell;
-    vertical-align: middle;
-    width: 100px;
-    height: 100px;
-  }
-
+.signupEmail {
+    ion-item {
+        padding-left: 0;
+        border-right: 1px solid #c8c7cc;
+        border-left: 1px solid #c8c7cc;
+    }
+    ion-list {
+        margin: 10px;
+        border-bottom: none;
+        border-top: none;
+    }
+    ion-label {
+        margin: 17px 0px;
+        color: #C1BFC0;
+    }
+    ion-input, .text-input {
+        margin: 10px 5px 10px 0px;
+        width: 100%;
+    }
+    .icon-photo {
+        color: #D7D7D7;
+        font-size: 60px;
+        text-align: center;
+        margin: 15px;
+        display: table-cell;
+        vertical-align: middle;
+        width: 100px;
+        height: 100px;
+    }
 }
 
 .social-button {
-  font-weight: bold;
+    font-weight: bold;
+    border-radius: 0px;
+    margin: 0.4rem 10px;
+    text-transform: none;
+    font-size: 1.2em;
 }
 
-.photo-sphere{
-  background-color: #F6FAFB;
-  display: inline-block;
-  border-radius: 100px;
-  border: 1px solid #D7D7D7;
+.photo-sphere {
+    background-color: #F6FAFB;
+    display: inline-block;
+    border-radius: 100px;
+    border: 1px solid #D7D7D7;
 }
