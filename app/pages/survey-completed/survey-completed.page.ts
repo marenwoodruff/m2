@@ -1,9 +1,8 @@
-import {Component} from '@angular/core';
-import {Nav, NavParams, Button} from 'ionic-angular';
+import {Page, Nav, NavParams, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {EventsPage} from '../events/events.page';
 
-@Component({
+@Page({
   templateUrl: 'build/pages/survey-completed/survey-completed.page.html',
   directives: [Button]
 })

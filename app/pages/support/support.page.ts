@@ -1,7 +1,6 @@
-import {Component} from '@angular/core';
-import {Button} from 'ionic-angular';
+import {Page, Button} from 'ionic-angular';
 
-@Component({
+@Page({
   templateUrl: 'build/pages/support/support.page.html',
   directives: [Button]
 })

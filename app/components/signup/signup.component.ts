@@ -9,8 +9,6 @@ import {LoaderComponent} from '../loader/loader.component';
 import {ControlMessageComponent} from '../controlMessage/controlMessage.component';
 import {ValidationService} from '../../service/validation.service';
 
-
-
 @Component({
   selector: 'signup',
   templateUrl: 'build/components/signup/signup.component.html',

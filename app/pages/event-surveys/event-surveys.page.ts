@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, OnDestroy, DoCheck, forwardRef} from '@angular/core';
-import {NavParams} from 'ionic-angular';
+import {Page, NavParams} from 'ionic-angular';
+import {EventEmitter, OnInit, OnDestroy, DoCheck, forwardRef} from '@angular/core';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {StorageService} from '../../service/storage.service';
 import {SurveyService} from '../../service/survey.service';
@@ -13,7 +13,7 @@ import {UserEvent} from '../../models/user/userEvent';
 import {LoaderComponent} from '../../components/loader/loader.component';
 import {UserSurvey} from '../../models/user/userSurvey';
 
-@Component({
+@Page({
   templateUrl: 'build/pages/event-surveys/event-surveys.page.html',
   directives: [forwardRef(() => SurveysComponent), LoaderComponent]
 })

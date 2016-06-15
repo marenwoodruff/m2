@@ -1,4 +1,5 @@
-import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
+import {Page} from 'ionic-angular';
+import {OnInit, OnDestroy, EventEmitter} from '@angular/core';
 import * as moment from 'moment';
 
 import {UserEvent} from '../../models/user/userEvent';
@@ -11,7 +12,7 @@ import {UserEventService} from '../../service/userEvent.service';
 import {UserService} from '../../service/user.service';
 import {EventService} from '../../service/event.service';
 
-@Component({
+@Page({
   templateUrl: 'build/pages/user-events/user-events.page.html',
   directives: [EventsComponent, LoaderComponent]
 })
