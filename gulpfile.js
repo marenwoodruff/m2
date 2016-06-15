@@ -41,7 +41,7 @@ var isRelease = argv.indexOf('--release') > -1;
 
 gulp.task('watch', ['clean'], function(done){
   runSequence(
-    ['sass', 'html', 'fonts', 'assets', 'scripts'],
+    ['sass', 'html', 'fonts', 'assets', 'scripts', 'set-dev-node-env'],
     function(){
       gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
       gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
@@ -90,3 +90,7 @@ gulp.task('assets', function(){
   return gulp.src('app/assets/**/*.*')
     .pipe(gulp.dest('www/build/assets'));
 });
+
+gulp.task('set-dev-node-env', function() {
+  return process.env.NODE_ENV = 'development';
+})
