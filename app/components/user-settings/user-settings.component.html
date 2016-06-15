@@ -26,19 +26,19 @@
           <ion-input [(ngModel)]="user.name" ngControl="name" id="name" type="text" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Email Address</ion-label>
+          <ion-label>Email</ion-label>
           <ion-input [ngModel]="user.email ? user.email : '' " (ngModelChange)="user.email = $event" ngControl="email" id="email" type="email"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Job Title</ion-label>
+          <ion-label>Job</ion-label>
           <ion-input [ngModel]="user.jobTitle ? user.jobTitle : '' " (ngModelChange)="user.jobTitle = $event" ngControl="jobTitle" id="jobTitle" type="text"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Company Name</ion-label>
+          <ion-label>Company</ion-label>
           <ion-input [ngModel]="user.company ? user.company : '' " (ngModelChange)="user.company = $event" ngControl="company" id="company" type="text"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Phone Number</ion-label>
+          <ion-label>Phone</ion-label>
           <ion-input [ngModel]="user.phone ? user.phone : '' " (ngModelChange)="user.phone = $event" ngControl="phone" id="phone" type="text"></ion-input>
         </ion-item>
       </ion-list>
