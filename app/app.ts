@@ -111,4 +111,4 @@ class MyApp implements OnInit{
       });
       this.nav.present(confirm);
     }
- }
+}
