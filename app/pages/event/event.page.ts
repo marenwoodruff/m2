@@ -25,7 +25,7 @@ export class EventPage {
     link = `http://matrixres.com${link}`;
     this.platform.ready().then(() => {
             if (window.plugins.socialsharing) {
-                window.plugins.socialsharing.share(message, subject, file, link);;
+                window.plugins.socialsharing.share(message, subject, file, link);
             }
         });
   }

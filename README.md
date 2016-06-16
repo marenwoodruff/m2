@@ -1,16 +1,16 @@
 # MyMatrix Mobile App
 #### Usage
 To get the MyMatrix Mobile App running on your local system, please perform the following instructions:
-* Installation
+* Installation (don't sudo any of these commands, as you will run into trouble when you try to emulate/build the app)
     * `git clone <repo location>` (Copy repo to local system)
     *  `cd <repo name>` (Enter repo folder)
     *  Install node at `https://nodejs.org/en/`
     *  `node -v` (Check version of node installed)
     *  `npm -v` (Check version of npm installed)
         *  To update npm `sudo npm install npm -g`
-    *  `sudo npm install -g ionic@2.0.0-beta.19` (Install Ionic 2 beta 19)
+    *  `npm install -g ionic@beta` (Installs Ionic 2 beta 7, because of the package.json)
         * `ionic -v` (Check version of ionic installed)
-    *  `sudo npm install -g cordova` (Installs Cordova)
+    *  `npm install -g cordova` (Installs Cordova)
         * `cordova -v` (Check version of cordova installed)
     *  `npm install -g typescript` (Install Typescript)
     *  `npm install -g typescript@next` (For Typescript nightly builds)
@@ -18,6 +18,8 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
     *  `npm install` (Install dependencies)
     *  `gulp build` (Install dependencies)
     *  `typings install` (Install typings package manager)
+
+* Only run this command if you are having a lot of problems
     *  `ionic state reset` (Reset ionic/rebuild state)
 
 * Running on Web Browser
@@ -39,8 +41,8 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
     * You should see the app download to your device and then launch.
 
 
-  #### Directions to Update Repository
-  To update the master repository, perform the following:
+#### Directions to Update Your Repository
+To update the master repository, perform the following:
 
 * Set Up
   * Fork master repo into personal profile
@@ -52,6 +54,36 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
   * `git merge upstream/master` (Fix conflicts)
   * `git push origin master`
   * Create `pull request` updating master repository
+
+* To Updatee to Ionic 2 beta 8
+    *   you can also look at this link: https://github.com/driftyco/ionic/blob/2.0/CHANGELOG.md#steps-to-upgrade-to-beta-8
+    *   change your package.json to reflect the changes- "ionic-angular": "^2.0.0-beta.8",
+    *  `npm install -g ionic@2.0.0-beta.8` (Install Ionic 2 beta 8)
+        * `ionic -v` (Check version of ionic installed)
+    *  `npm install -g cordova` (Installs Cordova)
+        * `cordova -v` (Check version of cordova installed)
+    *  `npm install -g typescript` (Install Typescript)
+    *  `npm install -g typescript@next` (For Typescript nightly builds)
+    *  `npm install -g typings` (Install Typings- definitions for Typescript)
+    *  `npm install` (Install dependencies)
+    *  `gulp build` (Install dependencies)
+    *  `typings install` (Install typings package manager)
+    *   Change all references to @Page to @Component, which is imported from @angular/core
+    *   In your app.ts, change the @App to @Component, which is imported from @angular/core
+    *   In your app.ts, import IonicBootstrap from ionic-angular
+    *   In your app.ts, delete the references to the providers and config from your @App object
+    *   At the bottom of your app.ts, add 
+          `// Pass the main app component as the first argument
+          // Pass any providers for your app in the second argument
+          // Set any config for your app as the third argument:
+          // http://ionicframework.com/docs/v2/api/config/Config/
+
+          ionicBootstrap(MyApp, [ConferenceData, UserData], {
+            tabbarPlacement: 'bottom'
+          });`
+    *   In your app.ts, instead of IonicApp, you will just import App from ionic-angular, and change the reference in your constructor
+    * If you have used lifecycle events of Ionic events in your app, there are directions about how to update the code in the url above.
+
 
 #### Ionic View
 Ionic view is a downloadable application on Android and iOS that allows for the testing of Ionic applications without the need of the Apple or Play Stores.
