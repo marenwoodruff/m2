@@ -22,7 +22,7 @@ export class EventListItemComponent implements OnChanges, OnInit {
     location: Array<number>;
     userId: number;
     userEvents: UserEvent[];
-    imageThumbnail: boolean;
+    public imageThumbnail: boolean;
 
     constructor(private nav: Nav, private _userApi: UserService, private _userEventApi: UserEventService) { }
 

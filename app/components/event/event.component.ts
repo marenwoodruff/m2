@@ -35,6 +35,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private userId: number;
   private user: User;
   private eventOverview: any;
+  public imageThumbnail: boolean;
 
   constructor(
     private nav: Nav,
@@ -73,6 +74,20 @@ export class EventComponent implements OnInit, OnDestroy {
     if (this.event.title === 'Agile2016') {
       this.eventOverview = this.event.overview;
       this.updateEventOverview(this.eventOverview);
+    }
+
+    let
+      imageThumbnail = true,
+      mobileSmall = this.event.mobileSmall,
+      mobileLarge = this.event.mobileLarge,
+      facilitatorImage = this.event.facilitatorImage;
+
+    if (mobileSmall == "" || mobileLarge == "") {
+      this.imageThumbnail = false;
+    } else if (facilitatorImage == "") { 
+      this.imageThumbnail = false;
+    } else {
+      this.imageThumbnail = true;
     }
   }
 
