@@ -60,13 +60,13 @@ class MyApp implements OnInit{
     private initializeApp() {
         this.platform.ready().then(() => {
             this.hasLoggedIn((loggedIn) => {
-        		  if (loggedIn === true) {
+              if (loggedIn === true) {
                       this.userInfo();
                       // this.menuController.enable(true);
                       // this.setInitialPage(EventsPage);
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
-    		      }
-    	     });
+              }
+           });
         });
     }
 
@@ -109,4 +109,4 @@ class MyApp implements OnInit{
       });
       this.nav.present(confirm);
     }
- }
+}

@@ -122,5 +122,4 @@ export class EventsComponent implements OnChanges {
       return false;
     })
   }
-
 }

@@ -29,3 +29,11 @@
 // App Windows Only Sass
 // --------------------------------------------------
 // CSS that should only apply to the Windows app
+
+.toolbar-title {
+    text-transform: none;
+}
+
+.text-input {
+    border: 0;
+}
