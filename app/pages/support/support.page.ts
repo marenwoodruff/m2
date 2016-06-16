@@ -10,7 +10,7 @@ export class SupportPage {
     window.plugin.email.isAvailable((available) => {
       if (available) {
         window.plugin.email.open({
-          to: 'events@matrixres.com',
+          to: ['events@matrixres.com'],
           subject: 'MyMATRIX Mobile Help'
         });
       }
