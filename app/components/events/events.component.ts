@@ -112,8 +112,7 @@ export class EventsComponent implements OnChanges {
   }
 
   private searchEvents(search:string):boolean {
-    this.filterEventsForMonth();
-
+    this.resetEventsToAll();
     if (search.trim() == '') {
       return;
     }
