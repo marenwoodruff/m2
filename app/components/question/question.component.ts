@@ -39,6 +39,7 @@ export class QuestionComponent implements OnInit {
 
     if (this.questionIndex !== 0) {
       this.enabled = true;
+      this.nav.push(SurveysPage);
     }
 
     if (!this.inProgress) {
