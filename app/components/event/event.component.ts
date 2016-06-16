@@ -19,9 +19,9 @@ import * as moment from 'moment';
 @Component({
   selector: 'event',
   templateUrl: 'build/components/event/event.component.html',
-  inputs:['event', 'currentLocation'],
+  inputs: ['event', 'currentLocation'],
   directives: [List, Item, SessionComponent, EventLocationComponent, Button],
-  pipes:[DateFormatPipe, FromUnixPipe]
+  pipes: [DateFormatPipe, FromUnixPipe]
 })
 
 export class EventComponent implements OnInit, OnDestroy, DoCheck {
@@ -38,19 +38,19 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
   private user: User;
   private eventOverview: any;
   private preEvent: boolean;
+  public imageThumbnail: boolean;
   private completedSurveys: Array<any>;
   private updated: boolean;
 
   constructor(
-      private nav: Nav,
-      private platform: Platform,
-      private _surveyApi: SurveyService,
-      private _eventApi: EventService,
-      private _userEventApi: UserEventService,
-      private _userApi: UserService) { }
+    private nav: Nav,
+    private platform: Platform,
+    private _surveyApi: SurveyService,
+    private _eventApi: EventService,
+    private _userEventApi: UserEventService,
+    private _userApi: UserService) { }
 
   public ngOnInit() {
-      console.log(this.event);
     this.userSubscription = this._userApi.user.subscribe(
       user => this.user = user,
       err => console.log(err),
@@ -88,6 +88,20 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
       this.eventOverview = this.event.overview;
       this.updateEventOverview(this.eventOverview);
     }
+
+    let
+      imageThumbnail = true,
+      mobileSmall = this.event.mobileSmall,
+      mobileLarge = this.event.mobileLarge,
+      facilitatorImage = this.event.facilitatorImage;
+
+    if (mobileSmall == "" || mobileLarge == "") {
+      this.imageThumbnail = false;
+    } else if (facilitatorImage == "") { 
+      this.imageThumbnail = false;
+    } else {
+      this.imageThumbnail = true;
+    }
   }
 
   public ngOnDestroy() {
@@ -104,10 +118,10 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   private updateEventOverview(eventOverview:any): void {
-      let regex = /([..])\.+/;
-      let regex2 = /(#signup)/;
-      this.eventOverview = this.eventOverview.replace(regex2, 'https://agilealliance.org/membership/?rt=Subscriber').replace(regex, 'http://matrixres.com');
-      this.event.overview = this.eventOverview;
+    let regex = /([..])\.+/;
+    let regex2 = /(#signup)/;
+    this.eventOverview = this.eventOverview.replace(regex2, 'https://agilealliance.org/membership/?rt=Subscriber').replace(regex, 'http://matrixres.com');
+    this.event.overview = this.eventOverview;
   }
 
   private getUserId() {
@@ -122,7 +136,7 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
   private register(event): void {
     this.nav.push(RegistrationPage, {
       event: event,
-      user:  this.user
+      user: this.user
     });
   }
 
@@ -165,7 +179,7 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
     });
   }
 
-  public nonMatrixInfo(link:string):void {
+  public nonMatrixInfo(link: string): void {
     let url = 'http://matrixres.com' + link;
     this.platform.ready().then(() => {
       cordova.InAppBrowser.open(url, "_system", "location=true");

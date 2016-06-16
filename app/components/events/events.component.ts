@@ -147,3 +147,7 @@ export class EventsComponent implements OnChanges {
   }
 
 }
+
+
+
+
