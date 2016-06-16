@@ -1,4 +1,4 @@
-import {Component, OnChanges} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Event} from '../../models/events/event';
 import {UserEvent} from '../../models/user/userEvent';
 import {EventPage} from '../../pages/event/event.page';
@@ -16,14 +16,22 @@ import {UserEventService} from '../../service/userEvent.service';
     inputs: ['event', 'location', 'userEvents'],
     pipes: [DateFormatPipe, FromUnixPipe]
 })
-export class EventListItemComponent implements OnChanges {
+export class EventListItemComponent implements OnChanges, OnInit {
     event: Event;
     currentLocation: Array<number>;
     location: Array<number>;
     userId: number;
     userEvents: UserEvent[];
+    eventImage = document.getElementsByTagName('img')[0].getAttribute('src');
+    imageThumbnail: boolean = false;
 
     constructor(private nav: Nav, private _userApi: UserService, private _userEventApi: UserEventService) { }
+
+    ngOnInit() {
+        if (this.eventImage === 'http://matrixres.com') {
+            alert('hi');
+        }
+    }
 
     ngOnChanges() {
         this.currentLocation = this.location;
