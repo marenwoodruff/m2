@@ -36,7 +36,6 @@ export class EventsComponent implements OnChanges {
   }
 
   private setDates():void{
-      console.log(this.userEvents);
     this.userEvents ? this.userEventsCount = this.userEvents.length : this.userEventsCount;
     if (this.events) {
       this.eventsCount = this.events.length;
@@ -62,12 +61,18 @@ export class EventsComponent implements OnChanges {
         }
      });
       this.month = this.months[this.currentMonthIndex];
-      this.initializeItems();
+      this.filterEventsForMonth();
       this.showHideArrows()
     }
   }
 
-  private initializeItems():void {
+  private resetEventsToAll(){
+      if (this.events) {
+          this.eventsSearch = this.events;
+      }
+  }
+
+  private filterEventsForMonth():void {
     if (this.events) {
       this.eventsSearch = this.events.filter((event) => {
         return (moment.unix(event.startDate).isSame(this.month, 'month') && !event.paidEvent);
@@ -81,7 +86,7 @@ export class EventsComponent implements OnChanges {
     if (nextMonthIndex < this.months.length){
       this.month = this.months[nextMonthIndex];
       this.currentMonthIndex = nextMonthIndex;
-      this.initializeItems();
+      this.filterEventsForMonth();
       this.showHideArrows()
     }
 
@@ -93,7 +98,7 @@ export class EventsComponent implements OnChanges {
     if (nextMonthIndex >= 0){
       this.month = this.months[nextMonthIndex];
       this.currentMonthIndex = nextMonthIndex;
-      this.initializeItems();
+      this.filterEventsForMonth();
       this.showHideArrows()
     }
 
@@ -107,7 +112,7 @@ export class EventsComponent implements OnChanges {
   }
 
   private searchEvents(search:string):boolean {
-    this.initializeItems();
+    this.filterEventsForMonth();
 
     if (search.trim() == '') {
       return;
@@ -122,6 +127,23 @@ export class EventsComponent implements OnChanges {
       }
       return false;
     })
+  }
+
+  private openSearch():void {
+      this.eventSearchActive = true;
+      this.resetEventsToAll();
+  }
+
+  private closeSearch():void {
+      this.eventSearchActive = false;
+      this.filterEventsForMonth();
+      this.searchQuery = '';
+  }
+
+  private blurSearch():void {
+      if(!this.searchQuery){
+          this.filterEventsForMonth();
+      }
   }
 
 }
