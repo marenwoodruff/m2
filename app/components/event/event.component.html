@@ -1,8 +1,8 @@
 <div class="event-component">
-  <ion-row *ngIf="survey" class="row-padding light">
+  <ion-row *ngIf="surveys && survey" class="row-padding light">
     <ion-col>
       <h5 class="center">Are you at this event?</h5>
-      <div *ngIf="surveys.length === 1">
+      <div *ngIf="surveys.length === 1 && survey">
           <p class="center">
             Take this questionnaire & be entered to win a prize
           </p>
