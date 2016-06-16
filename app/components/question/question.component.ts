@@ -164,10 +164,8 @@ export class QuestionComponent implements OnInit {
             }
             break;
           case "checkBox":
-            let checkBoxAnswers = [];
             if (option.selected === true) {
-              checkBoxAnswers.push(option.display);
-              surveyAnswers.push({ questionId: question.id, value: checkBoxAnswers });
+              surveyAnswers.push({ questionId: question.id, value: option.display});
             }
             break;
         }
