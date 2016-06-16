@@ -10,6 +10,8 @@ import {EventsPage} from '../../pages/events/events.page';
 import {Event} from '../../models/Events/event';
 import {User} from '../../models/user/user';
 
+import AppSettings from '../../appSettings';
+
 @Component({
   selector: 'session-registration',
   templateUrl: 'build/components/session-registration/session-registration.component.html',
@@ -87,6 +89,9 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
           password: this.user.password,
           authenticationProvider: this.user.authenticationProvider
         }
+        if (AppSettings.marketoRegistration) {
+            form.submit();
+        }
         this.confirmRegistration(eventInfo, userInfo);
       } else {
         console.log('form invalid');
@@ -95,7 +100,6 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
   }
 
   confirmRegistration(eventInfo?:any, userInfo?:any) {
-      console.log(eventInfo);
     let confirm = Alert.create({
       title: 'Registration Confirmation',
       message: 'Thank you for registering! You will receive an e-mail to confirm your registration for this event.',
@@ -105,7 +109,6 @@ export class SessionRegistrationPage implements OnInit, AfterContentInit {
           handler: () => {
             this._userEventApi.createUserEvent(this.userId, eventInfo);
             this._userApi.updateUser(this.userId, userInfo);
-            // form.submit();
             this.backToEvents();
           }
         },

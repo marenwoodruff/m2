@@ -1,4 +1,3 @@
-import {Component} from '@angular/core';
 import {Page, NavParams, Nav} from 'ionic-angular';
 import {QuestionComponent} from '../../components/question/question.component';
 import {Survey} from '../../models/survey/survey';

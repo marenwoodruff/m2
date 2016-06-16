@@ -7,7 +7,7 @@
             Take this questionnaire & be entered to win a prize
           </p>
           <ion-row style="display: flex; justify-content: center">
-            <button (click)="takeSurvey(survey)" style="border-radius: 0;">Take Survey</button>
+            <button class="survey-button" (click)="takeSurvey(survey)" style="border-radius: 0;">Take Survey</button>
           </ion-row>
       </div>
       <div *ngIf="surveys.length > 1">
@@ -15,12 +15,12 @@
             Take a questionnaire & be entered to win a prize
           </p>
           <ion-row style="display: flex; justify-content: center">
-            <button (click)="viewSurveys()" style="border-radius: 0;">View Surveys</button>
+            <button class="survey-button" (click)="viewSurveys()" style="border-radius: 0;">View Surveys</button>
           </ion-row>
       </div>
     </ion-col>
   </ion-row>
-  <img src="http://www.matrixres.com/{{event.mobileLarge}}" alt="event image" />
+  <img src="http://www.matrixres.com/{{event.mobileLarge}}" alt="event image" *ngIf="imageThumbnail"/>
   <ion-row class="row-padding">
     <ion-col>
       <h2>{{event.title}}</h2>
@@ -86,11 +86,11 @@
       <hr/>
       <ion-row>
         <ion-col *ngIf="event.facilitatorImage" width-25>
-          <img src="http://www.matrixres.com/{{event.facilitatorImage}}">
+          <img class="facilitator-image" src="http://www.matrixres.com/{{event.facilitatorImage}}" *ngIf="imageThumbnail">
         </ion-col>
         <ion-col width-75>
           <h4 style="margin-bottom: 0;">About the Facilitator</h4>
-          <h5>{{event.eventFacilitator}}</h5>
+          <h5 class="facilitator-name">{{event.eventFacilitator}}</h5>
         </ion-col>
       </ion-row>
       <!-- ngIf for displaying twitter/linkedIn icons -->
