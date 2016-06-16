@@ -11,7 +11,7 @@ plugins/
 .DS_Store
 Thumbs.db
 .io-config.json
-
+npm-debug.log
 
 # cache files for sublime text
 *.tmlanguage.cache
