@@ -1,4 +1,4 @@
-import {Component, OnChanges} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Event} from '../../models/events/event';
 import {UserEvent} from '../../models/user/userEvent';
 import {EventPage} from '../../pages/event/event.page';
@@ -16,14 +16,28 @@ import {UserEventService} from '../../service/userEvent.service';
     inputs: ['event', 'location', 'userEvents'],
     pipes: [DateFormatPipe, FromUnixPipe]
 })
-export class EventListItemComponent implements OnChanges {
+export class EventListItemComponent implements OnChanges, OnInit {
     event: Event;
     currentLocation: Array<number>;
     location: Array<number>;
     userId: number;
     userEvents: UserEvent[];
+    public imageThumbnail: boolean;
 
     constructor(private nav: Nav, private _userApi: UserService, private _userEventApi: UserEventService) { }
+
+    ngOnInit() {
+        let
+            imageThumbnail = true,
+            mobileSmall = this.event.mobileSmall,
+            mobileLarge = this.event.mobileLarge;
+
+        if (mobileSmall == "" || mobileLarge == "") { 
+            this.imageThumbnail = false;
+        } else {
+            this.imageThumbnail = true;
+        }
+    }
 
     ngOnChanges() {
         this.currentLocation = this.location;
