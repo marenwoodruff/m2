@@ -23,7 +23,7 @@ export class EventsComponent implements OnChanges {
   eventSearchActive:boolean;
   eventsCount: number;
   month:string;
-  months:string[] = [];
+  months:any = [];
   currentMonthIndex:number = 0;
   showLeftButton:boolean;
   showRightButton:boolean;
@@ -49,15 +49,17 @@ export class EventsComponent implements OnChanges {
      });
 
      months.forEach((month) => {
-       if (this.months.length === 0) {
-         this.months.push(month);
-       } else {
-         if (moment(this.months[0]).isBefore(month)) {
-           this.months.push(month);
-         } else {
-           this.months.unshift(month);
-         }
-       }
+        if(!this.months.includes(month)){
+           if (this.months.length === 0) {
+             this.months.push(month);
+           } else {
+             if (moment(this.months[0]).isBefore(month)) {
+               this.months.push(month);
+             } else {
+               this.months.unshift(month);
+             }
+           }
+        }
      });
       this.month = this.months[this.currentMonthIndex];
       this.initializeItems();
