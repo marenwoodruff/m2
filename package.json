@@ -10,7 +10,7 @@
     "android:build": "gulp prod && ionic build android",
     "android:build:dev": "gulp dev && ionic build android",
     "android:emulate:prod": "gulp prod && ionic emulate ios",
-    "android:emulate": "gulp dev && ionic emulate ios",
+    "android:emulate": "gulp dev && ionic emulate ios"
   },
   "dependencies": {
     "@angular/common": "^2.0.0-rc.1",

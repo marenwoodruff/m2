@@ -41,8 +41,6 @@ class MyApp implements OnInit{
       private menuController: MenuController) {}
 
     ngOnInit(){
-      console.log(process.env.NODE_ENV);
-
         this.userSubscription = this.userService.user.subscribe(
           user => this.userName = user.name.split(' ')[0],
           err => console.log(err),
