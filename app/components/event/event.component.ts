@@ -29,6 +29,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private surveySubscription: EventEmitter<Survey[]>;
   private userEventSubscription: EventEmitter<UserEvent>;
   private userSubscription: EventEmitter<User>;
+  private completedSurveysSubscription: EventEmitter<any>;
   public surveys: Survey[];
   public survey: Survey;
   private currentLocation: Array<number>;
@@ -70,10 +71,19 @@ export class EventComponent implements OnInit, OnDestroy {
       () => console.log('finished checking for event surveys')
     );
 
+    this.completedSurveysSubscription = this._surveyApi.completedSurveys.subscribe(
+      (completedSurveys) => {
+        console.log('completed surveys', completedSurveys);
+      },
+      (err) => console.log(err),
+      () => console.log('completed surveys completed')
+    );
+
     this.getUserId();
     this.checkRegistration();
     this._eventApi.getEventSurvey(this.event.eventId);
     this.findPreEvent(this.event);
+    this._surveyApi.getUserCompletedSurveys(this.userId);
 
     if (this.event.title === 'Agile2016') {
       this.eventOverview = this.event.overview;
@@ -117,7 +127,7 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   private takeSurvey(survey): void {
-    console.log(survey);
+    // console.log(survey);
     this.nav.push(BeginSurveyPage, {
       survey: survey
     })
