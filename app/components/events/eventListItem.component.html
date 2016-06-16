@@ -2,7 +2,7 @@
     <ion-row>
       <ion-col width-33>
         <ion-thumbnail item-left>
-            <img class="center-event-image" src="http://matrixres.com/{{event.mobileSmall}}" alt="{{event.title}}"/>
+            <img class="center-event-image" src="http://matrixres.com/{{event.mobileSmall}}" alt="{{event.title}}" *ngIf="imageThumbnail" />
         </ion-thumbnail>
       </ion-col>
       <ion-col style="margin-top: 1.2rem;" width-50>
@@ -28,7 +28,7 @@
     <ion-row>
       <ion-col width-33>
         <ion-thumbnail item-left>
-            <img class="center-event-image" src="http://matrixres.com/{{event.mobileSmall}}" alt="{{event.title}}"/>
+            <img class="center-event-image" src="http://matrixres.com/{{event.mobileSmall}}" alt="{{event.title}}" *ngIf="imageThumbnail" />
         </ion-thumbnail>
       </ion-col>
       <ion-col style="margin-top: 1.2rem;" width-50>
