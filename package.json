@@ -1,6 +1,16 @@
 {
   "scripts": {
-    "start": "ionic serve -l"
+    "start": "npm run serve:dev",
+    "serve:prod": "gulp prod && ionic serve -l",
+    "serve:dev": "gulp dev && ionic serve -l",
+    "ios:build": "gulp dev && ionic build ios",
+    "ios:build:prod": "gulp prod && ionic build ios",
+    "ios:emulate:prod": "gulp prod && ionic emulate ios",
+    "ios:emulate": "gulp dev && ionic emulate ios",
+    "android:build": "gulp prod && ionic build android",
+    "android:build:dev": "gulp dev && ionic build android",
+    "android:emulate:prod": "gulp prod && ionic emulate ios",
+    "android:emulate": "gulp dev && ionic emulate ios",
   },
   "dependencies": {
     "@angular/common": "^2.0.0-rc.1",
