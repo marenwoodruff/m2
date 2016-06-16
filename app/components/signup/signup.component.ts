@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.signingUp = true;
       let user = new User();
       user.email = this.userForm.value.email;
-      user.password = this.userForm.value.password;
+      user.password = this.userForm.controls.matchingPassword.controls.password.value;
       user.name = this.userForm.value.name;
       user.company = this.userForm.value.company;
       user.jobTitle = this.userForm.value.jobTitle;
