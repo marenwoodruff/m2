@@ -12,8 +12,11 @@
     }
     h5 {
         font-family: lato-bold;
-        margin-top: .7em;
+        margin-top: 0;
         margin-bottom: 0.2rem;
+    }
+    .md h5 {
+      margin-top: .7em;
     }
     h6 {
         margin-top: 0;
@@ -21,6 +24,8 @@
     }
     h4 {
       font-family: lato-bold;
+    }
+    .md h4 {
       margin-top: .5em;
     }
     .time {
