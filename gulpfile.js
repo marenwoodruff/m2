@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     argv = process.argv,
     flatten = require('gulp-flatten'),
-    merge = require('merge-stream');
+    merge = require('merge-stream'),
+    preprocess = require('gulp-preprocess');
 
 
 var IONIC_DIR = "node_modules/ionic-angular/"
@@ -41,7 +42,7 @@ var isRelease = argv.indexOf('--release') > -1;
 
 gulp.task('watch', ['clean'], function(done){
   runSequence(
-    ['set-dev-node-env', 'sass', 'html', 'fonts', 'assets', 'scripts'],
+    ['sass', 'html', 'fonts', 'assets', 'scripts'],
     function(){
       gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
       gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
@@ -91,6 +92,14 @@ gulp.task('assets', function(){
     .pipe(gulp.dest('www/build/assets'));
 });
 
-gulp.task('set-dev-node-env', function() {
-  return process.env.NODE_ENV = 'development';
+gulp.task('dev', function() {
+  gulp.src('./appsettings.ts')
+    .pipe(preprocess({context: { NODE_ENV: 'DEVELOPMENT', DEBUG: true}}))
+    .pipe(gulp.dest('./app'));
+});
+
+gulp.task('prod', function() {
+  gulp.src('./appsettings.ts')
+    .pipe(preprocess({context: { NODE_ENV: 'PRODUCTION'}}))
+    .pipe(gulp.dest('./app'));
 });
