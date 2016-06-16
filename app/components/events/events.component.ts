@@ -33,12 +33,13 @@ export class EventsComponent implements OnChanges {
 
   ngOnChanges():void{
     this.setDates();
+    console.log(this.currentMonthIndex);
   }
 
-  private setDates():void{
+  private setDates(): void {
     this.userEvents ? this.userEventsCount = this.userEvents.length : this.userEventsCount;
     if (this.events) {
-        console.log(this.events);
+      
       this.eventsCount = this.events.length;
       let months:string[] = [];
       this.events.forEach((event) => {

@@ -16,28 +16,28 @@ import {UserEventService} from '../../service/userEvent.service';
     inputs: ['event', 'location', 'userEvents'],
     pipes: [DateFormatPipe, FromUnixPipe]
 })
-export class EventListItemComponent implements OnChanges {
+export class EventListItemComponent implements OnChanges, OnInit {
     event: Event;
     currentLocation: Array<number>;
     location: Array<number>;
     userId: number;
     userEvents: UserEvent[];
-    eventThumbnail = document.getElementsByTagName('img')[0].getAttribute('src');
     imageThumbnail: boolean;
 
     constructor(private nav: Nav, private _userApi: UserService, private _userEventApi: UserEventService) { }
 
-    // ngOnInit() {
-    // if(eventThumbnail === "") {
-    //     console.log('hi');
-    //     }
-    // }
-    if (eventThumbnail === 'http://matrixres.com') {
-        imageThumbnail = false;
-    } else {
-        imageThumbnail = true;
-    }
+    ngOnInit() {
+        let
+            imageThumbnail = true,
+            mobileSmall = this.event.mobileSmall,
+            mobileLarge = this.event.mobileLarge;
 
+        if (mobileSmall == "" || mobileLarge == "") { 
+            this.imageThumbnail = false;
+        } else {
+            this.imageThumbnail = true;
+        }
+    }
 
     ngOnChanges() {
         this.currentLocation = this.location;
