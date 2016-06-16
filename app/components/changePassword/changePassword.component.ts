@@ -15,7 +15,7 @@ import {ControlMessageComponent} from '../controlMessage/controlMessage.componen
   templateUrl: 'build/components/changePassword/changePassword.component.html',
   directives: [Button, List, Item, TextInput, Label, LoaderComponent, ControlMessageComponent]
 })
-export class ChangePasswordComponent{
+export class ChangePasswordComponent {
   private updatingPassword: boolean;
   private errorMessage: string;
   private successMessage: string;
@@ -29,32 +29,32 @@ export class ChangePasswordComponent{
     private _userService: UserService,
     private _navController: Nav,
     private _formBuilder: FormBuilder) {
-      this.passwordForm = this._formBuilder.group({
-        'oldPassword': ['', Validators.required],
-        matchingPassword: this._formBuilder.group({
-          password: ['', Validators.compose([Validators.required, ValidationService.passwordValidator])],
-          confirmPassword: ['', Validators.compose([Validators.required])]
-        }, {validator: this.checkPasswords})
-      });
+    this.passwordForm = this._formBuilder.group({
+      'oldPassword': ['', Validators.required],
+      matchingPassword: this._formBuilder.group({
+        password: ['', Validators.compose([Validators.required, ValidationService.passwordValidator])],
+        confirmPassword: ['', Validators.compose([Validators.required])]
+      }, { validator: this.checkPasswords })
+    });
   }
 
   ngOnInit(): any {
     this.initializeUser();
     this.userSubscription = this._userService.user.subscribe(
-        (user) => {
-          this.updatingPassword = false;
-          console.log(user);
-          this.successMessage = "Password updated!";
-          this.errorMessage = null;
-          // this._navController.setRoot(UserSettingsPage);
-        }
-      )
+      (user) => {
+        this.updatingPassword = false;
+        console.log(user);
+        this.successMessage = "Password updated!";
+        this.errorMessage = null;
+        // this._navController.setRoot(UserSettingsPage);
+      }
+    )
     this.errorSubscription = this._userService.changePasswordError.subscribe(
       (error) => {
         console.log(error);
         this.updatingPassword = false;
         this.successMessage = null;
-        if (error.message){
+        if (error.message) {
           this.errorMessage = error.message;
         } else {
           this.errorMessage = "An error has occured please try again later";
@@ -63,14 +63,14 @@ export class ChangePasswordComponent{
     )
   }
 
-  ngOnDestroy():any {
+  ngOnDestroy(): any {
     this.userSubscription.unsubscribe();
     this.errorSubscription.unsubscribe();
   }
 
-  private changePassword():void{
+  private changePassword(): void {
     this.updatingPassword = true;
-    if (this.passwordForm.dirty && this.passwordForm.valid){
+    if (this.passwordForm.dirty && this.passwordForm.valid) {
       let userPasswordChange = new UserPasswordChange();
       userPasswordChange.oldPassword = this.passwordForm.value.oldPassword;
       userPasswordChange.newPassword = this.passwordForm.value.matchingPassword.password;
@@ -78,7 +78,7 @@ export class ChangePasswordComponent{
     }
   }
 
-  private initializeUser():void {
+  private initializeUser(): void {
     const userId = this._userService.getUserId();
     if (!userId) {
       this._navController.setRoot(LoginPage);
@@ -87,7 +87,7 @@ export class ChangePasswordComponent{
     }
   }
 
-  private checkPasswords(group):any {
+  private checkPasswords(group): any {
     let password = group.controls.password;
     let confirm = group.controls.confirmPassword;
 

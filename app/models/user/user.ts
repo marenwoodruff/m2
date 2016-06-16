@@ -1,15 +1,15 @@
 import {AuthorizedUser} from './authorizedUser';
 
 export class User {
-  id: number
-  name: string
-  company: string
-  jobTitle: string
-  email: string
-  admin: boolean
-  password: string
-  phone: string
-  authenticationProvider: boolean
+  id: number;
+  name: string;
+  company: string;
+  jobTitle: string;
+  email: string;
+  admin: boolean;
+  password: string;
+  phone: string;
+  authenticationProvider: boolean;
 
 
   constructor(authorizedUser?: AuthorizedUser) {
