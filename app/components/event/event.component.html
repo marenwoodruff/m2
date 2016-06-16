@@ -20,7 +20,7 @@
       </div>
     </ion-col>
   </ion-row>
-  <img src="http://www.matrixres.com/{{event.mobileLarge}}" alt="event image" />
+  <img src="http://www.matrixres.com/{{event.mobileLarge}}" alt="event image" *ngIf="imageThumbnail"/>
   <ion-row class="row-padding">
     <ion-col>
       <h2>{{event.title}}</h2>
@@ -86,7 +86,7 @@
       <hr/>
       <ion-row>
         <ion-col *ngIf="event.facilitatorImage" width-25>
-          <img src="http://www.matrixres.com/{{event.facilitatorImage}}">
+          <img src="http://www.matrixres.com/{{event.facilitatorImage}}" *ngIf="imageThumbnail">
         </ion-col>
         <ion-col width-75>
           <h4 style="margin-bottom: 0;">About the Facilitator</h4>
