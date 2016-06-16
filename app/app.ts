@@ -41,8 +41,6 @@ class MyApp implements OnInit{
       private menuController: MenuController) {}
 
     ngOnInit(){
-      console.log(process.env.NODE_ENV);
-
         this.userSubscription = this.userService.user.subscribe(
           user => this.userName = user.name.split(' ')[0],
           err => console.log(err),
@@ -62,13 +60,13 @@ class MyApp implements OnInit{
     private initializeApp() {
         this.platform.ready().then(() => {
             this.hasLoggedIn((loggedIn) => {
-        		  if (loggedIn === true) {
+              if (loggedIn === true) {
                       this.userInfo();
                       // this.menuController.enable(true);
                       // this.setInitialPage(EventsPage);
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
-    		      }
-    	     });
+              }
+           });
         });
     }
 
@@ -111,4 +109,4 @@ class MyApp implements OnInit{
       });
       this.nav.present(confirm);
     }
- }
+}
