@@ -39,7 +39,11 @@ export class QuestionComponent implements OnInit {
 
     if (this.questionIndex !== 0) {
       this.enabled = true;
+    }
+
+    if (this.questionsLength === 0) {
       this.nav.push(SurveysPage);
+      alert('sorry. there aren\'t any questions for this survey yet.')
     }
 
     if (!this.inProgress) {
