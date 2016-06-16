@@ -23,7 +23,7 @@ export class EventListItemComponent implements OnChanges {
     userId: number;
     userEvents: UserEvent[];
     eventThumbnail = document.getElementsByTagName('img')[0].getAttribute('src');
-    imageThumbnail: boolean = false;
+    imageThumbnail: boolean;
 
     constructor(private nav: Nav, private _userApi: UserService, private _userEventApi: UserEventService) { }
 
@@ -32,6 +32,11 @@ export class EventListItemComponent implements OnChanges {
     //     console.log('hi');
     //     }
     // }
+    if (eventThumbnail === 'http://matrixres.com') {
+        imageThumbnail = false;
+    } else {
+        imageThumbnail = true;
+    }
 
 
     ngOnChanges() {
