@@ -7,7 +7,7 @@
       <!-- <img class="little-logo" src="build/assets/images/MyMatrix_Little.png" alt="My Matrix"> -->
       MATRIX Calendar
     </ion-title>
-    <ion-buttons end>
+    <ion-buttons *ngIf="currentLocation" end>
       <button (click)="filterLocations()">
         <ion-icon ios="ios-pin" md="md-pin" class="location-icon"></ion-icon>
       </button>
