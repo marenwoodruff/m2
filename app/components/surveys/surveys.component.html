@@ -1,4 +1,4 @@
-<div *ngIf="!eventSurveysPage">
+<div *ngIf="!eventSurveysPage && surveys.length !== 0">
     <ion-list *ngFor="let userEvent of userEvents">
       <ion-list-header>
         {{userEvent.title}}
@@ -7,6 +7,14 @@
           <survey-description *ngIf="eventSurveys[index].eventId === userEvent.eventId" [survey]="survey" [surveysInProgress]="surveysInProgress" [eventSurveys]="eventSurveys"></survey-description>
       </div>
     </ion-list>
+</div>
+
+<div *ngIf="!eventSurveysPage && surveys.length === 0">
+  <ion-card>
+    <ion-card-title>
+      There are no surveys available at this time.
+    </ion-card-title>
+  </ion-card>
 </div>
 
 <div *ngIf="eventSurveysPage">
