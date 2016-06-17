@@ -116,6 +116,8 @@ export class EventsPage implements OnInit, OnDestroy {
         },
         (error) => {
           console.log('getting location error:', error);
+          this.filteredLocation = this.events;
+          this.isLoading = false;
         }
       );
     }

@@ -40,6 +40,13 @@
       </ion-card-title>
     </ion-card-content>
   </ion-card>
+  <ion-card *ngIf="!events">
+    <ion-card-content>
+      <ion-card-title>
+        No events at this time.
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
   <eventListItem *ngFor="let event of eventsSearch" [event]="event" [location]="location"></eventListItem>
 </ion-list>
 
