@@ -13,7 +13,11 @@
   input {
     background-color: white;
   }
+}
 
+.arrow {
+  display: flex;
+  align-items: center;
 }
 
 .ion-ios-search {
