@@ -3,10 +3,10 @@
   height: 200px;
 }
 
-ion-list > .item:last-child, ion-list > ion-item-sliding:last-child .item {
+ion-list > .item:last-child, ion-list > ion-item-sliding:last-child .item, .checkbox-item {
     border-top: 1px solid #dedede;
 }
 
-ion-checkbox .item-inner {
-    border: none;
+ion-checkbox .item-inner, .checkbox-item .item-inner {
+    border-bottom: 0px;
 }
