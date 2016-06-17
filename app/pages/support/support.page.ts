@@ -7,9 +7,9 @@ import {Page, Button} from 'ionic-angular';
 export class SupportPage {
 
   contactSupport() {
-    window.plugin.email.isAvailable((available) => {
+    window.plugins.email.isAvailable((available) => {
       if (available) {
-        window.plugin.email.open({
+        window.plugins.email.open({
           to: ['events@matrixres.com'],
           subject: 'MyMATRIX Mobile Help'
         });
