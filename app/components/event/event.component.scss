@@ -12,7 +12,7 @@
     }
     h5 {
         font-family: lato-bold;
-        margin-top: 0;
+        margin-top: .7;
         margin-bottom: 0.2rem;
     }
     .md h5 {
@@ -28,7 +28,7 @@
     .md h4 {
       margin-top: .5em;
     }
-    .time {
+    .time h4 {
       margin-top: .2em;
     }
     .event-description {
@@ -78,6 +78,10 @@
     }
     .facilitator-image {
       border-radius: 50%;
+    }
+    .about {
+      margin-top: .5em;
+      margin-bottom: 0px;
     }
     .facilitator-name {
       margin-top: .2em;

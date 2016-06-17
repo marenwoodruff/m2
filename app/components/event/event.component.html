@@ -74,7 +74,7 @@
       <hr/>
       <ion-row>
         <ion-col>
-          <span [innerHTML]="event.timeDetails"></span>
+          <span class="time" [innerHTML]="event.timeDetails"></span>
         </ion-col>
       </ion-row>
     </ion-col>
@@ -89,7 +89,7 @@
           <img class="facilitator-image" src="http://www.matrixres.com/{{event.facilitatorImage}}" *ngIf="imageThumbnail">
         </ion-col>
         <ion-col width-75>
-          <h4 style="margin-bottom: 0;">About the Facilitator</h4>
+          <h4 class="about">About the Facilitator</h4>
           <h5 class="facilitator-name">{{event.eventFacilitator}}</h5>
         </ion-col>
       </ion-row>
