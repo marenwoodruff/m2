@@ -48,20 +48,20 @@
       </ion-row>
       <ion-list>
         <ion-item>
-          <ion-label>Name</ion-label>
+          <ion-label>Name *</ion-label>
           <ion-input ngControl="name" id="name" type="text" maxlength="50" required></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Email Address</ion-label>
+          <ion-label>Email *</ion-label>
           <ion-input ngControl="email" id="email" type="email" required></ion-input>
         </ion-item>
         <div ngControlGroup="matchingPassword">
           <ion-item>
-            <ion-label>Password</ion-label>
+            <ion-label>Password *</ion-label>
             <ion-input ngControl="password" id="password" type="password" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label>Confirm Password</ion-label>
+            <ion-label>Confirm Password *</ion-label>
             <ion-input ngControl="confirmPassword" id="confirmPassword" type="password" required></ion-input>
           </ion-item>
         </div>

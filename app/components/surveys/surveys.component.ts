@@ -54,7 +54,6 @@ export class SurveysComponent implements OnChanges, OnInit {
             return true;
           }
         });
-        console.log(this.surveys);
       } 
 
       if (this.surveys && !this.preEvent) {
