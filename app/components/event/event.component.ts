@@ -50,8 +50,7 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
     private _surveyApi: SurveyService,
     private _eventApi: EventService,
     private _userEventApi: UserEventService,
-    private _userApi: UserService,
-    private _storageApi: StorageService) { }
+    private _userApi: UserService) { }
 
   public ngOnInit() {
     this.userSubscription = this._userApi.user.subscribe(
