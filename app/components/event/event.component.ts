@@ -41,6 +41,8 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
   public imageThumbnail: boolean;
   private completedSurveys: Array<any>;
   private updated: boolean;
+  private startedSurveys: Array<any>;
+  private surveysInProgress: Array<any>;
 
   constructor(
     private nav: Nav,
@@ -48,7 +50,8 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
     private _surveyApi: SurveyService,
     private _eventApi: EventService,
     private _userEventApi: UserEventService,
-    private _userApi: UserService) { }
+    private _userApi: UserService,
+    private _storageApi: StorageService) { }
 
   public ngOnInit() {
     this.userSubscription = this._userApi.user.subscribe(
@@ -232,6 +235,7 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
             return true;
         }
     });
+
     if (this.surveys.length !== 0) {
       this.survey = this.surveys[0];
       if (surveys.length === 1) {
