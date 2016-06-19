@@ -12,7 +12,11 @@ export class SupportPage {
         window.plugins.email.open({
           to: ['events@matrixres.com'],
           subject: 'MyMATRIX Mobile Help'
-        });
+        }, 
+        () => {
+          console.log('Email view dismissed');
+        },
+        this);
       }
     });
   }
