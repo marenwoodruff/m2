@@ -7,7 +7,7 @@
       <ion-col class="arrow" width-50>
         <span class="event-month">{{month | amDateFormat:"MMMM YYYY"}}</span>
       </ion-col>
-      <ion-col width-10 (click)="addMonth()">
+      <ion-col class="arrow" width-10 (click)="addMonth()">
         <img *ngIf="showRightButton" class="chevrons" src="build/assets/icons/Gray_RightArrow.png"/>
       </ion-col>
     </ion-row>

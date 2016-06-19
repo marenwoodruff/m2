@@ -4,7 +4,7 @@
 </ion-row>
 <ion-list class="answer-container">
   <div [ngSwitch]="currentQuestion.answer.type">
-    <ion-list *ngSwitchWhen="'radio'" radio-group>
+    <ion-list *ngSwitchCase="'radio'" radio-group>
       <ion-item *ngFor="let option of currentQuestion.answer.options" [class.selected]="option.selected">
         <ion-label>
           <span>
@@ -19,13 +19,13 @@
                   matrixblue></ion-radio>
       </ion-item>
     </ion-list>
-    <ion-list *ngSwitchWhen="'textBox'">
+    <ion-list *ngSwitchCase="'textBox'">
       <ion-item *ngFor="let option of currentQuestion.answer.options">
         <textarea [(ngModel)]="option.value"
                   placeholder="Type response here"></textarea>
       </ion-item>
     </ion-list>
-    <ion-list *ngSwitchWhen="'checkBox'">
+    <ion-list *ngSwitchCase="'checkBox'">
       <ion-item class="checkbox-item" *ngFor="let option of currentQuestion.answer.options" [class.selected]="option.selected">
         <ion-label [class.checkSelected]="option.selected">{{option.display}}</ion-label>
         <ion-checkbox
