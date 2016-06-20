@@ -10,17 +10,17 @@ import {UserService} from '../../service/user.service';
 
 export class SupportPage {
   private user: User;
-  public userEventEmitter: EventEmitter;
+  public userEventEmitter: EventEmitter<User>;
 
-  constructor(private _userApi: UserService) {
-    this.userEventEmitter = this._userApi.subscribe((user) => {
+  constructor(private _userService: UserService) {
+    this.userEventEmitter = this._userService.user.subscribe((user) => {
       this.user = user;
       console.log(this.user);
     })
   }
 
   ngOnInit() {
-    this._userApi.getUser();
+    this._userService.getUser();
   }
 
   contactSupport() {
@@ -29,7 +29,7 @@ export class SupportPage {
         cordova.plugins.email.open({
           to: 'events@matrixres.com',
           subject: 'MyMATRIX Mobile Help',
-          body: 'from: ' + this.user.name
+          body: 'from: ' + this.user.name + '<br />' + this.user.email
         });
       }
     });
