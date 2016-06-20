@@ -250,5 +250,4 @@ export class SurveysPage implements OnInit, OnDestroy, DoCheck {
     }
 
   }
-
 }

@@ -157,5 +157,4 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
 
         this.updated = true;
     }
-
 }

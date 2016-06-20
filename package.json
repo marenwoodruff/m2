@@ -26,7 +26,7 @@
     "es6-shim": "0.33.13",
     "font-awesome": "^4.5.0",
     "ionic": "^2.0.0-beta.30",
-    "ionic-angular": "2.0.0-beta.7",
+    "ionic-angular": "^2.0.0-beta.8",
     "ionic-native": "1.2.4",
     "ionicons": "3.0.0",
     "moment": "^2.12.0",

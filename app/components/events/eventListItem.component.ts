@@ -16,6 +16,7 @@ import {UserEventService} from '../../service/userEvent.service';
     inputs: ['event', 'location', 'userEvents'],
     pipes: [DateFormatPipe, FromUnixPipe]
 })
+
 export class EventListItemComponent implements OnChanges, OnInit {
     event: Event;
     currentLocation: Array<number>;

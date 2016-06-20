@@ -60,12 +60,12 @@ class MyApp implements OnInit{
         this.platform.ready().then(() => {
             this.hasLoggedIn((loggedIn) => {
               if (loggedIn === true) {
-                      this.userInfo();
-                      // this.menuController.enable(true);
-                      // this.setInitialPage(EventsPage);
-                      this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
+                this.userInfo();
+                // this.menuController.enable(true);
+                // this.setInitialPage(EventsPage);
+                this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
               }
-           });
+            });
         });
     }
 
@@ -76,9 +76,9 @@ class MyApp implements OnInit{
     private openPage(page) {
       this.hasLoggedIn((loggedIn) => {
         if (loggedIn === true) {
-          this.nav.setRoot(page.component);
+            this.nav.setRoot(page.component);
         } else {
-          this.loggedOutAlert();
+            this.loggedOutAlert();
         }
       });
     }
