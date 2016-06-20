@@ -151,7 +151,7 @@ export class QuestionComponent implements OnInit {
     survey.eventId ? surveyResponse.eventId = survey.eventId : surveyResponse.eventId;
     survey.eventTitle ? surveyResponse.eventTitle = survey.eventTitle : surveyResponse.eventTitle;
     survey.questions.forEach((question) => {
-      question.answer.options.forEach((option) => {
+      question.answer.options.forEach((option, index) => {
         switch (question.answer.type) {
           case "radio":
             if (option.selected) {
@@ -164,11 +164,9 @@ export class QuestionComponent implements OnInit {
             }
             break;
           case "checkBox":
-            let checkBoxAnswers = [];
-            if (option.selected) {
-              checkBoxAnswers.push(option.display);
+            if (option.selected === true) {
+              surveyAnswers.push({ questionId: question.id, value: option.display});
             }
-            surveyAnswers.push({ questionId: question.id, value: checkBoxAnswers });
             break;
         }
       });

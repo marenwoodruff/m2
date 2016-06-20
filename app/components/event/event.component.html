@@ -1,13 +1,13 @@
 <div class="event-component">
-  <ion-row *ngIf="survey" class="row-padding light">
+  <ion-row *ngIf="surveys && survey" class="row-padding light">
     <ion-col>
       <h5 class="center">Are you at this event?</h5>
-      <div *ngIf="surveys.length === 1">
+      <div *ngIf="surveys.length === 1 && survey">
           <p class="center">
             Take this questionnaire & be entered to win a prize
           </p>
           <ion-row style="display: flex; justify-content: center">
-            <button (click)="takeSurvey(survey)" style="border-radius: 0;">Take Survey</button>
+            <button class="survey-button" (click)="takeSurvey(survey)" style="border-radius: 0;">Take Survey</button>
           </ion-row>
       </div>
       <div *ngIf="surveys.length > 1">
@@ -15,12 +15,12 @@
             Take a questionnaire & be entered to win a prize
           </p>
           <ion-row style="display: flex; justify-content: center">
-            <button (click)="viewSurveys()" style="border-radius: 0;">View Surveys</button>
+            <button class="survey-button" (click)="viewSurveys()" style="border-radius: 0;">View Surveys</button>
           </ion-row>
       </div>
     </ion-col>
   </ion-row>
-  <img src="http://www.matrixres.com/{{event.mobileLarge}}" alt="event image" />
+  <img src="http://www.matrixres.com/{{event.mobileLarge}}" alt="event image" *ngIf="imageThumbnail"/>
   <ion-row class="row-padding">
     <ion-col>
       <h2>{{event.title}}</h2>
@@ -38,9 +38,9 @@
     </ion-col>
     <ion-col class="register-button-col">
       <button *ngIf="!registered && !event.nonMatrixEvent" (click)="register(event)">Register</button>
-      <button *ngIf="registered && !event.nonMatrixEvent" outline>Registered</button>
+      <button *ngIf="registered && !event.nonMatrixEvent" outline disabled>Registered</button>
       <button *ngIf="event.nonMatrixEvent && !registered" (click)="save(event)">Save Event</button>
-      <button *ngIf="event.nonMatrixEvent && registered" outline>Saved</button>
+      <button *ngIf="event.nonMatrixEvent && registered" outline disabled>Saved</button>
     </ion-col>
   </ion-row>
   <ion-row class="friend-registration" *ngIf="event.nonMatrixEvent">
@@ -86,11 +86,11 @@
       <hr/>
       <ion-row>
         <ion-col *ngIf="event.facilitatorImage" width-25>
-          <img src="http://www.matrixres.com/{{event.facilitatorImage}}">
+          <img class="facilitator-image" src="http://www.matrixres.com/{{event.facilitatorImage}}" *ngIf="imageThumbnail">
         </ion-col>
         <ion-col width-75>
           <h4 style="margin-bottom: 0;">About the Facilitator</h4>
-          <h5>{{event.eventFacilitator}}</h5>
+          <h5 class="facilitator-name">{{event.eventFacilitator}}</h5>
         </ion-col>
       </ion-row>
       <!-- ngIf for displaying twitter/linkedIn icons -->
@@ -140,9 +140,9 @@
       <!-- end of conditional for displaying icons -->
     </ion-col>
   </ion-row>
-  <ion-row *ngIf="!registered && !event.nonMatrixEvent" class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
+<!--   <ion-row *ngIf="!registered && !event.nonMatrixEvent" class="row-padding" style="margin-top: 1.2rem; margin-bottom: 1.2rem;">
     <ion-col style="display: flex; justify-content: center;">
       <button (click)="register(event)" full>Register for this Event</button>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 </div>

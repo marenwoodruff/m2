@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
+import {Component, OnInit, OnDestroy, EventEmitter, DoCheck} from '@angular/core';
 import {Nav, NavParams, List, Item, Button, Platform, Alert} from 'ionic-angular';
 import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
@@ -14,20 +14,26 @@ import {EventSurveysPage} from '../../pages/event-surveys/event-surveys.page';
 import {EventService} from '../../service/event.service';
 import {UserEventService} from '../../service/userEvent.service';
 import {UserService} from '../../service/user.service';
+<<<<<<< HEAD
+=======
+import {UserEvent} from '../../models/user/userEvent';
+import * as moment from 'moment';
+>>>>>>> upstream/master
 
 @Component({
   selector: 'event',
   templateUrl: 'build/components/event/event.component.html',
-  inputs:['event', 'currentLocation'],
+  inputs: ['event', 'currentLocation'],
   directives: [List, Item, SessionComponent, EventLocationComponent, Button],
-  pipes:[DateFormatPipe, FromUnixPipe]
+  pipes: [DateFormatPipe, FromUnixPipe]
 })
 
-export class EventComponent implements OnInit, OnDestroy {
+export class EventComponent implements OnInit, OnDestroy, DoCheck {
   public event: Event;
   private surveySubscription: EventEmitter<Survey[]>;
   private userEventSubscription: EventEmitter<UserEvent>;
   private userSubscription: EventEmitter<User>;
+  private completedSurveysSubscription: EventEmitter<any>;
   public surveys: Survey[];
   public survey: Survey;
   private currentLocation: Array<number>;
@@ -35,14 +41,20 @@ export class EventComponent implements OnInit, OnDestroy {
   private userId: number;
   private user: User;
   private eventOverview: any;
+  private preEvent: boolean;
+  public imageThumbnail: boolean;
+  private completedSurveys: Array<any>;
+  private updated: boolean;
+  private startedSurveys: Array<any>;
+  private surveysInProgress: Array<any>;
 
   constructor(
-      private nav: Nav,
-      private platform: Platform,
-      private _surveyApi: SurveyService,
-      private _eventApi: EventService,
-      private _userEventApi: UserEventService,
-      private _userApi: UserService) { }
+    private nav: Nav,
+    private platform: Platform,
+    private _surveyApi: SurveyService,
+    private _eventApi: EventService,
+    private _userEventApi: UserEventService,
+    private _userApi: UserService) { }
 
 
   ngOnInit() {
@@ -61,19 +73,41 @@ export class EventComponent implements OnInit, OnDestroy {
     this.surveySubscription = this._eventApi.eventSurveys.subscribe(
       (surveys) => {
         this.surveys = surveys;
-        this.survey = this.surveys[0];
       },
       err => console.log('error', err),
       () => console.log('finished checking for event surveys')
     );
 
+    this.completedSurveysSubscription = this._surveyApi.completedSurveys.subscribe(
+      (completedSurveys) => {
+          this.completedSurveys = completedSurveys;
+      },
+      (err) => console.log(err),
+      () => console.log('completed surveys completed')
+    );
+
     this.getUserId();
     this.checkRegistration();
     this._eventApi.getEventSurvey(this.event.eventId);
+    this._surveyApi.getUserCompletedSurveys(this.userId);
 
     if (this.event.title === 'Agile2016') {
       this.eventOverview = this.event.overview;
       this.updateEventOverview(this.eventOverview);
+    }
+
+    let
+      imageThumbnail = true,
+      mobileSmall = this.event.mobileSmall,
+      mobileLarge = this.event.mobileLarge,
+      facilitatorImage = this.event.facilitatorImage;
+
+    if (mobileSmall == "" || mobileLarge == "") {
+      this.imageThumbnail = false;
+    } else if (facilitatorImage == "") { 
+      this.imageThumbnail = false;
+    } else {
+      this.imageThumbnail = true;
     }
   }
 
@@ -83,11 +117,18 @@ export class EventComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
+  public ngDoCheck() {
+    if (this.surveys && this.completedSurveys && !this.updated) {
+        this.filterCompletedSurveys(this.surveys, this.completedSurveys);
+        this.updated = true;
+    }
+  }
+
   private updateEventOverview(eventOverview:any): void {
-      let regex = /([..])\.+/;
-      let regex2 = /(#signup)/;
-      this.eventOverview = this.eventOverview.replace(regex2, 'https://agilealliance.org/membership/?rt=Subscriber').replace(regex, 'http://matrixres.com');
-      this.event.overview = this.eventOverview;
+    let regex = /([..])\.+/;
+    let regex2 = /(#signup)/;
+    this.eventOverview = this.eventOverview.replace(regex2, 'https://agilealliance.org/membership/?rt=Subscriber').replace(regex, 'http://matrixres.com');
+    this.event.overview = this.eventOverview;
   }
 
   private getUserId() {
@@ -102,7 +143,7 @@ export class EventComponent implements OnInit, OnDestroy {
   private register(event): void {
     this.nav.push(RegistrationPage, {
       event: event,
-      user:  this.user
+      user: this.user
     });
   }
 
@@ -113,20 +154,19 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   private takeSurvey(survey): void {
-    this.nav.push(BeginSurveyPage, {
-      survey: survey
-    })
+      this.nav.push(BeginSurveyPage, {
+          survey: survey
+      });
   }
 
   private viewSurveys(): void {
-    this.nav.push(EventSurveysPage, {
-      surveys: this.surveys,
-      event: this.event
-    })
+      this.nav.push(EventSurveysPage, {
+          surveys: this.surveys,
+          event: this.event
+      });
   }
 
   public launchNavigator(coordinates: string, city: string): void {
-    console.log(this.currentLocation);
     let navCoordinates = coordinates.split(',').splice(0, 2);
     if (this.currentLocation) {
       launchnavigator.navigate(navCoordinates, {
@@ -145,7 +185,7 @@ export class EventComponent implements OnInit, OnDestroy {
     });
   }
 
-  public nonMatrixInfo(link:string):void {
+  public nonMatrixInfo(link: string): void {
     let url = 'http://matrixres.com' + link;
     this.platform.ready().then(() => {
       cordova.InAppBrowser.open(url, "_system", "location=true");
@@ -153,6 +193,7 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   private save(event:Event): void {
+    let matrixEvent = this.event.nonMatrixEvent ? false : true;
     let userEvent = {
       eventId: event.eventId,
       registered: true,
@@ -161,7 +202,8 @@ export class EventComponent implements OnInit, OnDestroy {
       startDate: event.startDate,
       city: event.city,
       state: event.state,
-      mobileSmall: event.mobileSmall
+      mobileSmall: event.mobileSmall,
+      matrixEvent: matrixEvent
     };
 
     this.saveAlert(userEvent);
@@ -190,4 +232,49 @@ export class EventComponent implements OnInit, OnDestroy {
     this.nav.present(alert);
   }
 
+<<<<<<< HEAD
+=======
+  private filterCompletedSurveys(surveys: Survey[], completedSurveys: Array<any>) {
+    this.surveys = surveys.filter((survey) => {
+        let match = completedSurveys.find(completedSurvey => completedSurvey.surveyId === survey.id);
+        if (!match) {
+            return true;
+        }
+    });
+
+    if (this.surveys.length !== 0) {
+      this.survey = this.surveys[0];
+      if (surveys.length === 1) {
+          debugger
+          this.findPreEvent(this.event);
+      }
+    }
+  }
+
+  private findPreEvent(event:Event) {
+    if (moment.unix(event.startDate).isSameOrAfter() && this.survey) {
+      this.preEvent = true;
+      this.preEventSurvey(this.survey);
+    } else {
+      this.preEvent = false;
+      this.postEventSurvey(this.survey);
+    }
+  }
+
+  private preEventSurvey(survey:Survey) {
+    if (this.survey.preEvent === true) {
+      this.survey;
+    } else {
+      this.survey = null;
+    }
+  }
+
+  private postEventSurvey(survey:Survey) {
+    if (this.survey.preEvent === false) {
+        this.survey;
+    } else {
+        this.survey = null;
+    }
+  }
+>>>>>>> upstream/master
 }

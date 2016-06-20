@@ -34,7 +34,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder,
     private _authService: AuthorizationService) {
       this.userForm = this._formBuilder.group({
-        'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
+        'email': ['', Validators.compose([ValidationService.emailValidator, Validators.required])],
         'name': ['', Validators.required],
         'company': [''],
         'jobTitle': [''],
@@ -47,7 +47,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this.userSubscription = this._userService.user.subscribe(
         (user) => {
           this.updatingUser = false;
-          console.log(user);
           // this._navController.setRoot(EventsPage);
         }
       );
@@ -96,7 +95,20 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       this.user.phone = this.userForm.value.phone;
       this.user.admin = false;
       this._userService.updateUser(this.user.id, this.user);
+      this.updateUserAlert();
     }
+  }
+
+  private updateUserAlert():void {
+      let alert = Alert.create({
+          title: 'User Information Updated',
+          buttons: [
+              {
+                  text: 'Okay'
+              }
+          ]
+      });
+      this._navController.present(alert);
   }
 
   private goToChangePassword():void {
@@ -113,7 +125,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           text: 'OK',
           handler: () => {
             this._navController.setRoot(LoginPage);
-          }
+          } 
         }
       ]
     });

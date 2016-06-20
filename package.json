@@ -1,4 +1,17 @@
 {
+  "scripts": {
+    "start": "npm run serve:dev",
+    "serve:prod": "gulp prod && ionic serve -l",
+    "serve:dev": "gulp dev && ionic serve -l",
+    "ios:build": "gulp dev && ionic build ios",
+    "ios:build:prod": "gulp prod && ionic build ios",
+    "ios:emulate:prod": "gulp prod && ionic emulate ios",
+    "ios:emulate": "gulp dev && ionic emulate ios",
+    "android:build": "gulp prod && ionic build android",
+    "android:build:dev": "gulp dev && ionic build android",
+    "android:emulate:prod": "gulp prod && ionic emulate ios",
+    "android:emulate": "gulp dev && ionic emulate ios"
+  },
   "dependencies": {
     "@angular/common": "^2.0.0-rc.1",
     "@angular/compiler": "^2.0.0-rc.1",
@@ -12,7 +25,12 @@
     "es6-promise": "3.0.2",
     "es6-shim": "0.33.13",
     "font-awesome": "^4.5.0",
+<<<<<<< HEAD
     "ionic-angular": "^2.0.0-beta.8",
+=======
+    "ionic": "^2.0.0-beta.30",
+    "ionic-angular": "2.0.0-beta.7",
+>>>>>>> upstream/master
     "ionic-native": "1.2.4",
     "ionicons": "3.0.0",
     "moment": "^2.12.0",
@@ -21,10 +39,12 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "cross-env": "^1.0.8",
     "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-flatten": "^0.2.0",
     "gulp-if": "^2.0.0",
+    "gulp-preprocess": "^2.0.0",
     "gulp-watch": "4.3.5",
     "ionic-gulp-browserify-typescript": "^1.1.0",
     "ionic-gulp-fonts-copy": "^1.0.0",

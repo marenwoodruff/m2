@@ -1,6 +1,7 @@
 # Specifies files to intentionally ignore when using Git
 # http://git-scm.com/docs/gitignore
 
+app/appsettings.ts
 node_modules/
 bower_components/
 www/build/
@@ -9,7 +10,8 @@ plugins/
 *.swp
 .DS_Store
 Thumbs.db
-
+.io-config.json
+npm-debug.log
 
 # cache files for sublime text
 *.tmlanguage.cache

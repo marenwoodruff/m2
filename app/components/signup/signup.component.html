@@ -21,6 +21,7 @@
         {{signupErrorMessage}}
     </div>
     <form [ngFormModel]="userForm" (submit)="signUp()">
+<<<<<<< HEAD
         <ion-row class="center">
             <ion-col>
                 <control-message
@@ -73,5 +74,70 @@
                 <span *ngIf="!signingUp">Sign Up</span>
             </button>
         </ion-row>
+=======
+      <ion-row class="center errorMsgContainer">
+        <ion-col>
+          <div class="unmatchedPasswords" *ngIf="userForm.controls.matchingPassword.touched && !userForm.controls.matchingPassword.valid">Passwords must match.</div>
+          <control-message
+            control="email"
+            [controlGroup]="userForm"
+            displayName="Email"></control-message>
+          <control-message
+            control="name"
+            [controlGroup]="userForm"
+            displayName="Name"></control-message>
+          <control-message
+            control="phone"
+            [controlGroup]="userForm"
+            displayName="Phone number"></control-message>
+          <control-message
+            control="password"
+            [controlGroup]="userForm.controls.matchingPassword"
+            displayName="Password"></control-message>
+          <control-message
+            control="confirmPassword"
+            [controlGroup]="userForm.controls.matchingPassword"
+            displayName="Confirm Password"></control-message>
+          </ion-col>
+      </ion-row>
+      <ion-list>
+        <ion-item>
+          <ion-label>Name *</ion-label>
+          <ion-input ngControl="name" id="name" type="text" maxlength="50" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Email *</ion-label>
+          <ion-input ngControl="email" id="email" type="email" required></ion-input>
+        </ion-item>
+        <div ngControlGroup="matchingPassword">
+          <ion-item>
+            <ion-label>Password *</ion-label>
+            <ion-input ngControl="password" id="password" type="password" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Confirm Password *</ion-label>
+            <ion-input ngControl="confirmPassword" id="confirmPassword" type="password" required></ion-input>
+          </ion-item>
+        </div>
+        <ion-item>
+          <ion-label>Job Title</ion-label>
+          <ion-input ngControl="jobTitle" id="jobTitle" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Company Name</ion-label>
+          <ion-input ngControl="company" id="company" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Phone Number</ion-label>
+          <ion-input ngControl="phone" id="phone" type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-row>
+        <button block class="social-button" [disabled]="!userForm.valid">
+          <loader [white]="true" *ngIf="signingUp"></loader>
+          <span *ngIf="!signingUp">Sign Up</span>
+        </button>
+      </ion-row>
+>>>>>>> upstream/master
     </form>
 </ion-content>

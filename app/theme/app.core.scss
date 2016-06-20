@@ -27,7 +27,11 @@
 @import "../pages/event/event.page";
 @import "../pages/support/support.page";
 @import "../components/friend-registration/friend-registration.component";
+<<<<<<< HEAD
 @import "../components/user-settings/user-settings.component";
+=======
+@import "../components/surveys/surveys.component";
+>>>>>>> upstream/master
 
 .center {
   text-align: center;
@@ -35,9 +39,8 @@
 .matrixBlueFont {
   color: #005AA3;
 }
-
-.user-name .toolbar-title {
-  overflow: visible;
+.alert-message {
+  text-align: center;
 }
 
 @font-face {
@@ -71,3 +74,16 @@ body {
     font-family: lato-regular;
   }
 }
+
+.user-name .toolbar-title {
+  overflow: visible;
+}
+
+.md ion-navbar.toolbar {
+  padding: 2em 0px;
+}
+
+button.item:not([detail-none]) .item-inner, a.item:not([detail-none]) .item-inner, .item[detail-push] .item-inner {
+  padding-right: 10px;
+}
+

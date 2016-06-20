@@ -1,4 +1,7 @@
 .events-list {
+  ion-label {
+    margin: .2em 8px .2em 0;
+  }
   ion-item {
     border-top: 1px solid #DBDBDB;
     padding-left: 10px;
@@ -6,13 +9,21 @@
   ion-col {
     padding-left: 0px;
   }
+<<<<<<< HEAD
   .item-inner{
+=======
+  .item-inner {
+>>>>>>> upstream/master
     border-bottom: none;
   }
   .sessions {
     font-size: .8em;
   }
+<<<<<<< HEAD
   .sessions.event-title{
+=======
+  .sessions.event-title {
+>>>>>>> upstream/master
     margin: 5px 0px;
     font-size: 1.8rem;
     font-weight: 500;
@@ -22,7 +33,7 @@
       max-height: 9rem;
       border: 1px solid #DBDBDB;
   }
-  .eventListItemCol{
+  .eventListItemCol {
     display: flex;
     align-items: center;
     justify-content: center;

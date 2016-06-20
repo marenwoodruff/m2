@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import {Component, EventEmitter, OnInit, OnDestroy, DoCheck, forwardRef} from '@angular/core';
 import {NavParams} from 'ionic-angular';
+=======
+import {Page, NavParams} from 'ionic-angular';
+import {EventEmitter, OnInit, OnDestroy, DoCheck, forwardRef} from '@angular/core';
+>>>>>>> upstream/master
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {StorageService} from '../../service/storage.service';
 import {SurveyService} from '../../service/survey.service';
@@ -13,9 +18,15 @@ import {UserEvent} from '../../models/user/userEvent';
 import {LoaderComponent} from '../../components/loader/loader.component';
 import {UserSurvey} from '../../models/user/userSurvey';
 
+<<<<<<< HEAD
 @Component({
     templateUrl: 'build/pages/event-surveys/event-surveys.page.html',
     directives: [forwardRef(() => SurveysComponent), LoaderComponent]
+=======
+@Page({
+  templateUrl: 'build/pages/event-surveys/event-surveys.page.html',
+  directives: [forwardRef(() => SurveysComponent), LoaderComponent]
+>>>>>>> upstream/master
 })
 
 export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
@@ -45,6 +56,7 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
         private _params: NavParams) { }
 
     ngOnInit(): any {
+<<<<<<< HEAD
         this.getUserId();
         this.surveys = this._params.get('surveys');
         this.event = this._params.get('event');
@@ -145,6 +157,110 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
         this.userId = this._userApi.getUserId();
     }
 
+=======
+      this.getUserId();
+      this.surveys = this._params.get('surveys');
+      this.event = this._params.get('event');
+      this.setEventSurveys();
+      this.userEventSubscription = this._userEventApi.userEvents.subscribe(
+        (userEvents) => {
+          if (userEvents.length > 0) {
+            this.userEvents = userEvents;
+          } else {
+            this.isLoading = false;
+          }
+        },
+        (err) => console.log(err),
+        () => console.log('we have user events')
+      );
+
+      this.storageSubscription = this._storageApi.surveyProgress.subscribe(
+        (progressSurveys) => {
+          this.startedSurveys = progressSurveys;
+          this.surveysInProgress = progressSurveys.map((sip) => {
+            let lastQuestionId = this.findQuestionId(sip);
+            return {
+              surveyId: sip.id,
+              lastQuestionId,
+            }
+          });
+        },
+        err => console.log('SurveysComponent storageservice subscribe error:', err),
+        () => {
+          console.log('finished subscribing to storage surveys')
+        }
+      );
+
+      this.completedSurveysSubscription = this._surveyApi.completedSurveys.subscribe(
+        (completedSurveys) => this.completedSurveys = completedSurveys,
+        (err) => console.log(err),
+        () => console.log('finished subscribing to completed surveys')
+      );
+
+      this._userEventApi.getUserEvents(this.userId);
+      this.checkSurveyProgress(this.surveys);
+      this._surveyApi.getUserCompletedSurveys(this.userId);
+    }
+
+    ngOnDestroy() {
+      this.storageSubscription.unsubscribe();
+      this.userEventSubscription.unsubscribe();
+      this.completedSurveysSubscription.unsubscribe();
+    }
+
+    ngDoCheck() {
+      if (this.surveys && this.completedSurveys && !this.updated) {
+        this.filterCompletedSurveys(this.surveys, this.completedSurveys);
+      }
+    }
+
+    setEventSurveys() {
+        this.eventSurveys = this.surveys.map((survey) => {
+           return {
+               eventId: this.event.eventId,
+               eventTitle: this.event.title,
+               surveyId: survey.id,
+               surveyName: survey.name
+           }
+        });
+    }
+
+    findQuestionId(survey) {
+
+      let
+          lastQuestionAnsweredFound = false,
+          questionId = null;
+
+      survey.questions.forEach((question) => {
+        if (lastQuestionAnsweredFound === false) {
+          let questionAnswered = false;
+          question.answer.options.forEach((option) => {
+            if (option.selected === true && lastQuestionAnsweredFound === false) {
+              questionAnswered = true;
+              questionId = question.id;
+            }
+          });
+          if (questionAnswered === false) {
+            lastQuestionAnsweredFound = true;
+          }
+        }
+      });
+      return questionId;
+    }
+
+    checkSurveyProgress(surveys) {
+      surveys.forEach((survey) => {
+        this._storageApi.getSurveyProgress(survey.id);
+      });
+      this.isLoading = false;
+    }
+
+    getUserId() {
+      this.userId = this._userApi.getUserId();
+    }
+
+
+>>>>>>> upstream/master
     filterCompletedSurveys(surveys:Survey[], completedSurveys:UserSurvey[]) {
         this.surveys = surveys.filter((survey) => {
             let completed = completedSurveys.find(completedSurvey => completedSurvey.surveyId === survey.id);
@@ -155,4 +271,8 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
 
         this.updated = true;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/master

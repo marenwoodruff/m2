@@ -58,6 +58,7 @@ class MyApp implements OnInit{
     private initializeApp() {
         this.platform.ready().then(() => {
             this.hasLoggedIn((loggedIn) => {
+<<<<<<< HEAD
           		if (loggedIn === true) {
                     this.userInfo();
                     // this.menuController.enable(true);
@@ -65,6 +66,15 @@ class MyApp implements OnInit{
                     this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
       		    }
     	    });
+=======
+              if (loggedIn === true) {
+                      this.userInfo();
+                      // this.menuController.enable(true);
+                      // this.setInitialPage(EventsPage);
+                      this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
+              }
+           });
+>>>>>>> upstream/master
         });
     }
 
@@ -107,5 +117,9 @@ class MyApp implements OnInit{
         });
         this.nav.present(confirm);
     }
+<<<<<<< HEAD
 }
 ionicBootstrap(MyApp, [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService], {});
+=======
+}
+>>>>>>> upstream/master

@@ -79,6 +79,8 @@ $gray-background: #f6fafb;
 
 .alert-title {
   padding: 0.25em;
+  padding-left : 0px;
+  font-weight: 600;
 }
 
 .alert-message {
@@ -90,13 +92,19 @@ $gray-background: #f6fafb;
   font-size: 15px;
   border: 1px solid #1064b1;
   margin-left: 0.2em;
-  min-width: 46%;
+  min-width: 43%;
+  border-radius: 0px;
 }
 
 .alert-button:last-child {
   border-right: 1px solid #1064b1;
   color: white;
   background-color: #1064b1;
+}
+
+.alert-button .button-inner {
+  justify-content: center;
+  font-weight: bold;
 }
 
 .alert-button-group {
