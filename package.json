@@ -69,7 +69,7 @@
       "id": "cordova-plugin-x-socialsharing"
     },
     "cordova-plugin-inappbrowser",
-    "cordova-plugin-email-composer"
+    "cordova-plugin-email"
   ],
   "cordovaPlatforms": [
     "android",

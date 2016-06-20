@@ -10,13 +10,9 @@ export class SupportPage {
     cordova.plugins.email.isAvailable((available) => {
       if (available) {
         cordova.plugins.email.open({
-          to: ['events@matrixres.com'],
+          to: 'events@matrixres.com',
           subject: 'MyMATRIX Mobile Help'
-        }, 
-        () => {
-          console.log('Email view dismissed');
-        },
-        this);
+        });
       }
     });
   }
