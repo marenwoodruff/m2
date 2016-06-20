@@ -22,4 +22,5 @@ export class SessionPage {
     this.session = this.params.get('session');
     this.location = this.params.get('location');
   }
+
 }

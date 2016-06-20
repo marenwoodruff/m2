@@ -10,5 +10,4 @@ import {DateFormatPipe} from 'angular2-moment';
   pipes: [DateFormatPipe]
 })
 
-
 export class SessionComponent {}

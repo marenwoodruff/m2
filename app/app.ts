@@ -76,9 +76,9 @@ class MyApp implements OnInit{
     private openPage(page) {
       this.hasLoggedIn((loggedIn) => {
         if (loggedIn === true) {
-            this.nav.setRoot(page.component);
+          this.nav.setRoot(page.component);
         } else {
-            this.loggedOutAlert();
+          this.loggedOutAlert();
         }
       });
     }

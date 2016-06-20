@@ -65,4 +65,5 @@ export class UserEventsPage implements OnInit, OnDestroy {
     });
     this.isLoading = false;
   }
+
 }

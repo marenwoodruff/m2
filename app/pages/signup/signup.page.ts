@@ -16,4 +16,5 @@ export class SignupPage {
   signUpWithEmail() {
     this.nav.push(SignupEmailPage);
   }
+
 }

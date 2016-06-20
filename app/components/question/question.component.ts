@@ -197,4 +197,5 @@ export class QuestionComponent implements OnInit {
     });
     this.nav.present(confirm);
   }
+
 }

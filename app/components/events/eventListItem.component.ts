@@ -83,4 +83,5 @@ export class EventListItemComponent implements OnChanges, OnInit {
     getUserId() {
         this.userId = this._userApi.getUserId();
     }
+
 }

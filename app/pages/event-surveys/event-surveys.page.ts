@@ -61,9 +61,9 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
         () => console.log('we have user events')
       );
 
-      this.storageSubscript ion = this._storageApi.surveyProgress.subscribe(
-        (progressSurveys) => { 
-          this.startedSur veys = progressSurveys;
+      this.storageSubscription = this._storageApi.surveyProgress.subscribe(
+        (progressSurveys) => {
+          this.startedSurveys = progressSurveys;
           this.surveysInProgress = progressSurveys.map((sip) => {
             let lastQuestionId = this.findQuestionId(sip);
             return {
@@ -157,4 +157,5 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
 
         this.updated = true;
     }
+
 }

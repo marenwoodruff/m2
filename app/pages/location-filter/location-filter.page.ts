@@ -6,6 +6,4 @@ import {Checkbox} from 'ionic-angular';
   directives: [Checkbox]
 })
 
-export class LocationFilterPage {
-
-}
+export class LocationFilterPage {}
