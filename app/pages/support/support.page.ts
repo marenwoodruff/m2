@@ -10,17 +10,18 @@ import {UserService} from '../../service/user.service';
 
 export class SupportPage {
   private user: User;
+  private userId: number;
   public userEventEmitter: EventEmitter<User>;
 
-  constructor(private _userService: UserService) {
+  constructor(private _userService: UserService) { }
+
+  ngOnInit() {
     this.userEventEmitter = this._userService.user.subscribe((user) => {
       this.user = user;
       console.log(this.user);
     })
-  }
-
-  ngOnInit() {
-    this._userService.getUser();
+    
+    // this.userId = this._userService.getUser();
   }
 
   contactSupport() {

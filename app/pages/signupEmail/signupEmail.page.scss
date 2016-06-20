@@ -1,5 +1,15 @@
 .signupEmail {
-    .social-button {
-        margin: 0.4rem 10px;
-    }
+  .social-button {
+    margin: 0.4rem 10px;
+  }
+
+  button {
+    font-weight: bold;
+    height: 7vh;
+    padding: 1.5em 0px;
+  }
+
+  .button-inner {
+    font-size: 1.1em;
+  }
 }
