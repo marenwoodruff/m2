@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Nav, NavParams, Button} from 'ionic-angular';
+import {Page, Nav, NavParams, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {SurveyPage} from '../survey/survey.page';
 import {SurveyCompletedPage} from '../survey-completed/survey-completed.page';
@@ -57,5 +57,4 @@ export class BeginSurveyPage implements OnInit {
       inProgress: this.inProgress
     });
   }
-
 }

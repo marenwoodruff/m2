@@ -22,6 +22,7 @@ import {User} from './models/user/user';
     templateUrl: 'build/app.html',
     directives: [Icon]
 })
+
 class MyApp implements OnInit{
     rootPage: any = this.userService.isUserLoggedIn() ? EventsPage : LoginPage;
     pages:Array<{title: string, component: any}>;
@@ -58,15 +59,6 @@ class MyApp implements OnInit{
     private initializeApp() {
         this.platform.ready().then(() => {
             this.hasLoggedIn((loggedIn) => {
-<<<<<<< HEAD
-          		if (loggedIn === true) {
-                    this.userInfo();
-                    // this.menuController.enable(true);
-                    // this.setInitialPage(EventsPage);
-                    this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
-      		    }
-    	    });
-=======
               if (loggedIn === true) {
                       this.userInfo();
                       // this.menuController.enable(true);
@@ -74,7 +66,6 @@ class MyApp implements OnInit{
                       this.userName = this.userService.getUserFromLocalStorage().name.split(' ')[0];
               }
            });
->>>>>>> upstream/master
         });
     }
 
@@ -117,9 +108,7 @@ class MyApp implements OnInit{
         });
         this.nav.present(confirm);
     }
-<<<<<<< HEAD
+
 }
+
 ionicBootstrap(MyApp, [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService], {});
-=======
-}
->>>>>>> upstream/master

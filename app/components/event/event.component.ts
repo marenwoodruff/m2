@@ -4,7 +4,6 @@ import {SurveyService} from '../../service/survey.service';
 import {Event} from '../../models/events/event';
 import {Survey} from '../../models/survey/survey';
 import {User} from '../../models/user/user';
-import {UserEvent} from '../../models/user/userEvent';
 import {SessionComponent} from '../session/session.component';
 import {EventLocationComponent} from '../event-location/event-location.component';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
@@ -14,11 +13,8 @@ import {EventSurveysPage} from '../../pages/event-surveys/event-surveys.page';
 import {EventService} from '../../service/event.service';
 import {UserEventService} from '../../service/userEvent.service';
 import {UserService} from '../../service/user.service';
-<<<<<<< HEAD
-=======
 import {UserEvent} from '../../models/user/userEvent';
 import * as moment from 'moment';
->>>>>>> upstream/master
 
 @Component({
   selector: 'event',
@@ -56,8 +52,7 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
     private _userEventApi: UserEventService,
     private _userApi: UserService) { }
 
-
-  ngOnInit() {
+  public ngOnInit() {
     this.userSubscription = this._userApi.user.subscribe(
       user => this.user = user,
       err => console.log(err),
@@ -232,8 +227,6 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
     this.nav.present(alert);
   }
 
-<<<<<<< HEAD
-=======
   private filterCompletedSurveys(surveys: Survey[], completedSurveys: Array<any>) {
     this.surveys = surveys.filter((survey) => {
         let match = completedSurveys.find(completedSurvey => completedSurvey.surveyId === survey.id);
@@ -276,5 +269,4 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
         this.survey = null;
     }
   }
->>>>>>> upstream/master
 }

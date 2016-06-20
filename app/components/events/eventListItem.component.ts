@@ -2,7 +2,6 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 import {Event} from '../../models/events/event';
 import {UserEvent} from '../../models/user/userEvent';
 import {EventPage} from '../../pages/event/event.page';
-import {EventSoloPage} from '../../pages/event-solo/event-solo.page';
 import {EventsPage} from '../../pages/events/events.page';
 import {Item, Nav, Button, ItemSliding, Alert} from 'ionic-angular';
 import {DateFormatPipe, FromUnixPipe} from 'angular2-moment';
@@ -14,17 +13,10 @@ import {UserEventService} from '../../service/userEvent.service';
     selector: "eventListItem",
     templateUrl: 'build/components/events/eventListItem.component.html',
     directives: [Item, Button, ItemSliding],
-<<<<<<< HEAD
-    inputs:['event', 'location', 'userEvents'],
-    pipes:[DateFormatPipe, FromUnixPipe]
-})
-export class EventListItemComponent implements OnChanges {
-=======
     inputs: ['event', 'location', 'userEvents'],
     pipes: [DateFormatPipe, FromUnixPipe]
 })
 export class EventListItemComponent implements OnChanges, OnInit {
->>>>>>> upstream/master
     event: Event;
     currentLocation: Array<number>;
     location: Array<number>;
@@ -52,27 +44,6 @@ export class EventListItemComponent implements OnChanges, OnInit {
     }
 
     viewEvent(event) {
-<<<<<<< HEAD
-      this.nav.push(EventPage, { event, location: this.currentLocation })
-          .then(
-              response => { console.log('Response ' + response);
-              },
-              error => { console.log('error ' + error);
-              }
-          ).catch(exception => {
-              console.log('Exception ' + exception);
-          })
-    }
-
-    deleteEvent(event) {
-    this.getUserId();
-    let uEvent = this.userEvents.filter((userEvent) => {
-            if (userEvent.eventId === event.eventId) {
-                return true;
-            }
-       });
-       this.deleteAlert(uEvent[0].id);
-=======
         this.nav.push(EventPage, { event, location: this.currentLocation });
     }
 
@@ -84,7 +55,6 @@ export class EventListItemComponent implements OnChanges, OnInit {
             }
         });
         this.deleteAlert(uEvent[0].id);
->>>>>>> upstream/master
     }
 
     deleteAlert(eventId: number) {
@@ -113,9 +83,4 @@ export class EventListItemComponent implements OnChanges, OnInit {
     getUserId() {
         this.userId = this._userApi.getUserId();
     }
-<<<<<<< HEAD
-
 }
-=======
-}
->>>>>>> upstream/master

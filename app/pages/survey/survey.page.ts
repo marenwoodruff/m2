@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import {Component} from '@angular/core';
 import {NavParams, Nav} from 'ionic-angular';
-=======
-import {Page, NavParams, Nav} from 'ionic-angular';
->>>>>>> upstream/master
 import {QuestionComponent} from '../../components/question/question.component';
 import {Survey} from '../../models/survey/survey';
 import {StorageService} from '../../service/storage.service';

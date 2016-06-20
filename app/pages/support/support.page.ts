@@ -5,8 +5,8 @@ import {Button} from 'ionic-angular';
   templateUrl: 'build/pages/support/support.page.html',
   directives: [Button]
 })
-export class SupportPage {
 
+export class SupportPage {
   contactSupport() {
     cordova.plugins.email.isAvailable((available) => {
       if (available) {
@@ -17,5 +17,4 @@ export class SupportPage {
       } 
     });
   }
-
 }

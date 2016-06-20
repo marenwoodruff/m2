@@ -1,34 +1,18 @@
-<<<<<<< HEAD
 import {Component, forwardRef} from '@angular/core';
-import {NavParams, Nav, Platform} from 'ionic-angular';
-=======
-import {Page, NavParams, Platform} from 'ionic-angular';
-import {forwardRef} from '@angular/core';
->>>>>>> upstream/master
+import {NavParams, Platform} from 'ionic-angular';
 import {EventComponent} from '../../components/event/event.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {SessionsComponent} from '../../components/sessions/sessions.component';
 import {Survey} from '../../models/survey/survey';
-import {Event} from '../../models/Events/event';
+import {Event} from '../../models/events/event';
 
 @Component({
     templateUrl: 'build/pages/event/event.page.html',
-    directives: [EventComponent, forwardRef(() => SurveysComponent), SessionsComponent]
-})
-export class EventPage {
-<<<<<<< HEAD
-    event: Event;
-    currentLocation: Array<number>;
-    public surveys: Survey[];
+    directives: [EventComponent, forwardRef(() => SurveysComponent), SessionsComponent],
 
-    constructor(private params: NavParams, private platform: Platform, private nav: Nav) {
-        this.nav.swipeBackEnabled = false;
-        this.params = params;
-        this.platform = platform;
-        this.event = this.params.get('event');
-        this.currentLocation = this.params.get('location');
-    }
-=======
+})
+
+export class EventPage {
   private event: Event;
   private currentLocation: Array<number>;
   public surveys: Survey[];
@@ -37,14 +21,13 @@ export class EventPage {
     this.event = this.params.get('event');
     this.currentLocation = this.params.get('location'); 
   }
->>>>>>> upstream/master
 
-    private share(message:string, subject:string, file:string, link:string):void {
-        link = `http://matrixres.com${link}`;
-        this.platform.ready().then(() => {
+  private share(message:string, subject:string, file:string, link:string):void {
+    link = `http://matrixres.com${link}`;
+    this.platform.ready().then(() => {
             if (window.plugins.socialsharing) {
                 window.plugins.socialsharing.share(message, subject, file, link);
             }
         });
-    }
+  }
 }

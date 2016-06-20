@@ -12,6 +12,8 @@ plugins/
 Thumbs.db
 .io-config.json
 npm-debug.log
+android-release-unsigned.apk
+matrixApp-signed.apk
 
 # cache files for sublime text
 *.tmlanguage.cache
@@ -71,4 +73,5 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-android-release-unsigned.apk
+
+

@@ -16,5 +16,4 @@ export class LogoutPage implements OnInit{
     this._authService.logOut();
     this.nav.push(LoginPage);
   }
-
 }

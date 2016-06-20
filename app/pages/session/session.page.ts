@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import {Component} from '@angular/core';
-=======
-import {Page, NavParams} from 'ionic-angular';
->>>>>>> upstream/master
+import {NavParams} from 'ionic-angular';
 import {Session} from '../../models/events/session';
 import {Location} from '../../models/events/location';
 import {SessionComponent} from '../../components/session/session.component';

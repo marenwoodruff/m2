@@ -5,6 +5,7 @@ import {SignupEmailPage} from '../signupEmail/signupEmail.page';
 @Component({
   templateUrl: 'build/pages/signup/signup.page.html'
 })
+
 export class SignupPage {
   nav: Nav;
 
@@ -15,5 +16,4 @@ export class SignupPage {
   signUpWithEmail() {
     this.nav.push(SignupEmailPage);
   }
-
 }

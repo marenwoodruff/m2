@@ -21,4 +21,3 @@ try {
     if (err) { console.error(err); }
   });
 } catch (ex) {} // eslint-disable-line no-empty
-

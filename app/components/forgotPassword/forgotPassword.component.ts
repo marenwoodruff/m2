@@ -11,6 +11,7 @@ import {ControlMessageComponent} from '../controlMessage/controlMessage.componen
   templateUrl: 'build/components/forgotPassword/forgotPassword.component.html',
   directives: [Button, List, Item, TextInput, Label, LoaderComponent, ControlMessageComponent]
 })
+
 export class ForgotPasswordComponent{
   private requestingEmail: boolean;
   private errorMessage: string;

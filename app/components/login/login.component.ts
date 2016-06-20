@@ -1,138 +1,200 @@
-import {EventEmitter, Component, OnInit, OnDestroy, Input, Inject} from '@angular/core';
-import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from '@angular/common';
-import {TwitterService} from '../../service/twitter.service';
-import {LinkedInService} from '../../service/linkedin.service';
-import {UserService} from '../../service/user.service';
-import {AuthorizationService} from '../../service/authorization.service';
-import {Http} from '@angular/http';
-import {Button, List, Item, TextInput, Label, Platform, Nav, MenuController} from 'ionic-angular';
-import {SignupEmailPage} from '../../pages/signupEmail/signupEmail.page';
+import {Component, OnInit} from '@angular/core';
+import {Alert, Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar,  Nav, NavParams} from 'ionic-angular';
+import {Question} from '../../models/survey/question';
+import {Survey} from '../../models/survey/survey';
+import {Option} from '../../models/survey/option';
+import {StorageService} from '../../service/storage.service';
+import {SurveyService} from '../../service/survey.service';
+import {SurveyCompletedPage} from '../../pages/survey-completed/survey-completed.page';
 import {EventsPage} from '../../pages/events/events.page';
-import {ForgotPasswordPage} from '../../pages/forgotPassword/forgotPassword.page';
-import {User} from '../../models/user/user';
-import {UserLogin} from '../../models/user/userLogin';
-import {LoaderComponent} from '../loader/loader.component';
-import {ControlMessageComponent} from '../controlMessage/controlMessage.component';
-import {ValidationService} from '../../service/validation.service';
-
+import {SurveyResponse} from '../../models/survey/surveyResponse';
 
 @Component({
-  selector: 'login',
-  templateUrl: 'build/components/login/login.component.html',
-  directives: [Button, List, Item, TextInput, Label, LoaderComponent, ControlMessageComponent],
-  providers: [TwitterService, LinkedInService]
+  selector: 'question',
+  templateUrl: 'build/components/question/question.component.html',
+  directives: [Button, List, Item, Label, RadioButton, RadioGroup, Checkbox, Icon, Toolbar],
+  inputs: ['survey', 'lastQuestionIndex', 'inProgress']
 })
 
-export class LoginComponent implements OnInit, OnDestroy {
-  linkedInCredentials: any;
-  access_token: any;
-  twitterCredentials: any;
-  private userForm: ControlGroup;
-  private loggingIn: boolean;
-  private errorMessage: string;
-  private twitterSubscription: EventEmitter<any>;
-  private linkedInSubscription: EventEmitter<any>;
-  private userSubscription: EventEmitter<User>;
-  private errorSubscription: EventEmitter<any>;
+export class QuestionComponent implements OnInit {
+  questions: Question[];
+  survey: Survey;
+  params: NavParams;
+  currentQuestion: Question;
+  lastQuestionIndex: number;
+  questionIndex: number = 0;
+  questionsLength: number;
+  enabled: boolean;
+  inProgress: boolean;
+  completed: boolean;
+  completedQuestions = [];
 
-  constructor(
-    private platform: Platform,
-    private _twitterApi: TwitterService,
-    private _linkedInApi: LinkedInService,
-    private _userService: UserService,
-    private _authService:AuthorizationService,
-    private _navController: Nav,
-    private _menuController: MenuController,
-    private _formBuilder: FormBuilder) {
-    this.twitterCredentials = { access_token: null };
-    this.userForm = this._formBuilder.group({
-      'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
-      'password': ['', Validators.required]
+  constructor(private _storageApi: StorageService, private _surveyApi: SurveyService, private nav: Nav) { }
+
+  public ngOnInit(): void {
+    this.questions = this.survey.questions;
+    this.questionIndex = this.lastQuestionIndex ? this.lastQuestionIndex + 1 : 0;
+    this.currentQuestion = this.questions[this.questionIndex];
+    this.questionsLength = this.questions.length;
+
+    if (this.questionIndex !== 0) {
+      this.enabled = true;
+    }
+
+    if (!this.inProgress) {
+      this.saveProgress(this.survey);
+    } 
+  }
+
+  private changeSelection(option: Option): void {
+    this.currentQuestion.answer.options.forEach((opt:Option) => {
+      if (option.value === opt.value) {
+        opt.selected = true;
+      } else {
+        opt.selected = false;
+      }
     });
   }
 
-  ngOnInit(): any {
-    this._menuController.enable(false);
-    this.twitterSubscription = this._twitterApi.twitterCredentials.subscribe(
-      (twitterCredentials) => {
-        this.twitterCredentials = twitterCredentials;
-      },
-      err => console.log('twitterService subscribe error:', err),
-      () => {
-        console.log('finished subscribing to twitter service')
-      }
-      );
-    this.linkedInSubscription = this._linkedInApi.linkedInCredentialsEmitter.subscribe(
-      (linkedInCredentials) => {
-        this.access_token = linkedInCredentials.access_token;
-      },
-      err => console.log('LinkedIn Service subscribe error:', err),
-      () => {
-        console.log('finished subscribing to LinkedIn service')
-      }
-      );
-      this.userSubscription = this._userService.user.subscribe(
-        (user) => {
-          this._navController.setRoot(EventsPage);
-        }
-      )
-      this.errorSubscription = this._authService.loginUserError.subscribe(
-        (error) => {
-          console.log(error);
-          this.loggingIn = false;
-          if (error.message){
-            this.errorMessage = error.message;
-          }
-        }
-      )
+  private saveProgress(survey: Survey): void {
+    this._storageApi.saveSurveyProgress(survey);
   }
 
-  ngOnDestroy() {
-      this.twitterSubscription.unsubscribe();
-      this.userSubscription.unsubscribe();
-      this.errorSubscription.unsubscribe();
-      this.linkedInSubscription.unsubscribe();
-  }
-
-  private login(media) {
-    this.platform.ready().then(() => {
-      if (media === 'LinkedIn') {
-        this.linkedInLogin()
-      }
-      if (media === 'Twitter') {
-        this.twitterLogin();
-      }
-      if (media === 'Email') {
-        this.emailLogin();
-      }
-      this._menuController.enable(true);
-    });
-  }
-
-  private linkedInLogin() {
-    this._linkedInApi.auth();
-  }
-
-  private twitterLogin() {
-    this._twitterApi.auth();
-  }
-
-  private emailLogin() {
-    if (this.userForm.dirty && this.userForm.valid) {
-      this.loggingIn = true;
-      const userLogin = new UserLogin();
-      userLogin.email = this.userForm.value.email;
-      userLogin.password = this.userForm.value.password;
-      this._authService.loginUserWithEmail(userLogin);
+  private skipQuestion(): void {
+    if (this.questionIndex === this.questionsLength - 1) {
+      this.checkSurveyCompletion(this.survey);
+    } else {
+      this.enabled = true;
+      this.questionIndex = this.questionIndex + 1;
+      this.currentQuestion = this.questions[this.questionIndex];
     }
   }
 
-  private emailSignup() {
-    this._navController.push(SignupEmailPage);
+  private nextQuestion(): void {
+    if (this.questionIndex === this.questionsLength - 1) {
+      this.checkSurveyCompletion(this.survey);
+    } else {
+      this._storageApi.updateSurveyProgress(this.survey);
+      this.questionIndex = this.questionIndex + 1;
+      this.currentQuestion = this.questions[this.questionIndex];
+    }
+
+    this.evaluateIndex();
   }
 
-  private forgotPassword() {
-    this._navController.push(ForgotPasswordPage);
+  private previousQuestion(): void {
+    if (this.questionIndex > 0) {
+      this.questionIndex = this.questionIndex - 1;
+      this.currentQuestion = this.questions[this.questionIndex];
+    } 
+
+    this.evaluateIndex();
   }
 
+  private evaluateIndex(): void {
+    if (this.questionIndex !== 0) {
+      this.enabled = true;
+    } else {
+      this.enabled = false;
+    }
+  }
+
+  private getAnswers(survey: Survey): void {
+    survey.questions.forEach((question) => {
+      switch (question.answer.type) {
+        case "radio":
+          question.answer.options.forEach((option) => {
+            if (option.selected) {
+              this.completedQuestions.push(question.id);
+            }
+          });
+          break;
+        case "textBox":
+          question.answer.options.forEach((option) => {
+            if (option.value) {
+              this.completedQuestions.push(question.id);
+            }
+          });
+          break;
+        case "checkBox":
+          let checkboxAnswers = [];
+          question.answer.options.forEach((option) => {
+            if (option.selected) {
+              checkboxAnswers.push(option.display);
+            }            
+          });
+          this.completedQuestions.push(checkboxAnswers);
+          break;
+      }
+    }); 
+  }
+
+  private checkSurveyCompletion(survey: Survey): void {
+    this.getAnswers(survey);
+    if (this.completedQuestions.length === this.questionsLength) {
+      this.completed = true;
+      this._storageApi.removeSurveyProgress(this.survey.id);
+      this.processSurvey(survey);
+      console.log('survey complete and deleted from local');
+      this.nav.push(SurveyCompletedPage);
+    } else {
+      this._storageApi.updateSurveyProgress(this.survey);
+      console.log('survey incomplete and updated in local');
+      this.incompleteAlert();
+    }
+    
+  }
+
+  private processSurvey(survey:Survey) {
+    let surveyResponse = new SurveyResponse();
+    let surveyAnswers = [];
+    survey.eventId ? surveyResponse.eventId = survey.eventId : surveyResponse.eventId;
+    survey.eventTitle ? surveyResponse.eventTitle = survey.eventTitle : surveyResponse.eventTitle;
+    survey.questions.forEach((question) => {
+      question.answer.options.forEach((option, index) => {
+        switch (question.answer.type) {
+          case "radio":
+            if (option.selected) {
+              surveyAnswers.push({ questionId: question.id, value: option.display });
+            }
+            break;
+          case "textBox":
+            if (option.value) {
+              surveyAnswers.push({ questionId: question.id, value: option.value });
+            }
+            break;
+          case "checkBox":
+            if (option.selected === true) {
+              surveyAnswers.push({ questionId: question.id, value: option.display});
+            }
+            break;
+        }
+      });
+      surveyResponse.answers = surveyAnswers;
+      return surveyResponse;
+    });  
+    this._surveyApi.submitSurvey(survey, surveyResponse);
+  }
+
+  private incompleteAlert(): void {
+    let confirm = Alert.create({
+      title: 'You are so close to being done!',
+      message: 'Are you sure you want to leave this survey without finishing?',
+      buttons: [
+        {
+          text: 'Yes, Please',
+          handler: () => {
+            this.nav.setRoot(EventsPage);
+          }
+        },
+        {
+          text: 'No, I will finish',
+          handler: () => {
+            console.log('gonna keep going');
+          },
+          buttons: ['Dismiss']
+        }]
+    });
+    this.nav.present(confirm);
+  }
 }

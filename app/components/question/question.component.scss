@@ -28,6 +28,7 @@ $gray-background: #f6fafb;
 }
 
 .ios .radio-checked .radio-inner {
+  border-width: 5px;
   width: 10px;
   height: 21px;
   left: 0;
@@ -78,7 +79,6 @@ $gray-background: #f6fafb;
 }
 
 .alert-title {
-  padding: 0.25em;
   padding-left : 0px;
   font-weight: 600;
 }
