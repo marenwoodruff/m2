@@ -36,6 +36,7 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
     public eventSurveysPage: boolean = true;
     private updated: boolean = false;
 
+
     constructor(
         private _surveyApi: SurveyService,
         private _storageApi:StorageService,
@@ -48,18 +49,8 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
       this.getUserId();
       this.surveys = this._params.get('surveys');
       this.event = this._params.get('event');
+      this.userEvents = this._params.get('userEvents');
       this.setEventSurveys();
-      this.userEventSubscription = this._userEventApi.userEvents.subscribe(
-        (userEvents) => {
-          if (userEvents.length > 0) {
-            this.userEvents = userEvents;
-          } else {
-            this.isLoading = false;
-          }
-        },
-        (err) => console.log(err),
-        () => console.log('we have user events')
-      );
 
       this.storageSubscription = this._storageApi.surveyProgress.subscribe(
         (progressSurveys) => {
@@ -84,14 +75,12 @@ export class EventSurveysPage implements OnInit, OnDestroy, DoCheck {
         () => console.log('finished subscribing to completed surveys')
       );
 
-      this._userEventApi.getUserEvents(this.userId);
       this.checkSurveyProgress(this.surveys);
       this._surveyApi.getUserCompletedSurveys(this.userId);
     }
 
     ngOnDestroy() {
       this.storageSubscription.unsubscribe();
-      this.userEventSubscription.unsubscribe();
       this.completedSurveysSubscription.unsubscribe();
     }
 
