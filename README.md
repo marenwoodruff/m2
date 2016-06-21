@@ -19,8 +19,8 @@ To get the MyMatrix Mobile App running on your local system, please perform the 
     *  `gulp build` (Install dependencies)
     *  `typings install` (Install typings package manager)
 
-* Only run this command if you are having a lot of problems
-    *  `ionic state reset` (Reset ionic/rebuild state)
+* Only run this command if you are having build problems
+    *  `ionic state reset` (Resets ionic/rebuilds state)
 
 * Running on Web Browser
     * `ionic serve` (Start Ionic app)

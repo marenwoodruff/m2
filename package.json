@@ -55,7 +55,6 @@
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
-    "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
@@ -69,7 +68,8 @@
       "id": "cordova-plugin-x-socialsharing"
     },
     "cordova-plugin-inappbrowser",
-    "cordova-plugin-email"
+    "cordova-plugin-email@~1.1.0",
+    "cordova-plugin-whitelist"
   ],
   "cordovaPlatforms": [
     "android",
