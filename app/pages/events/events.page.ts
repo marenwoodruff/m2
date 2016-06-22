@@ -99,7 +99,7 @@ export class EventsPage implements OnInit, OnDestroy {
             return true;
           }
         });
-      } 
+      }
       this.isLoading = false;
     }
 

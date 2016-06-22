@@ -77,7 +77,14 @@ class MyApp implements OnInit{
     private openPage(page) {
       this.hasLoggedIn((loggedIn) => {
         if (loggedIn === true) {
-          this.nav.setRoot(page.component);
+          this.nav.setRoot(page.component)
+            .then(() => {
+                const menuButtons:any = document.querySelectorAll('button[menuToggle]');
+                menuButtons.forEach((button) => {
+                    button.setAttribute('ng-reflect-hidden', 'false');
+                    button.hidden = false;
+                });
+            });
         } else {
           this.loggedOutAlert();
         }
