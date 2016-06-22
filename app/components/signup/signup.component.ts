@@ -74,7 +74,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       user.jobTitle = this.userForm.value.jobTitle;
       user.phone = this.userForm.value.phone;
       user.admin = false;
-    //   this._authService.createUser(user);
+      this._authService.createUser(user);
     }
   }
 
