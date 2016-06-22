@@ -49,7 +49,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           this.updatingUser = false;
           this.errorMessage = null;
           this.updateUserAlert();
-          // this._navController.setRoot(EventsPage);
         }
       );
     this.errorSubscription = this._userService.updateUserError.subscribe(
