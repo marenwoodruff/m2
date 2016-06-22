@@ -68,13 +68,13 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.signingUp = true;
       let user = new User();
       user.email = this.userForm.value.email;
-      user.password = this.userForm.controls.matchingPassword.controls.password.value;
+      user.password = this.userForm.value.matchingPassword.password;
       user.name = this.userForm.value.name;
       user.company = this.userForm.value.company;
       user.jobTitle = this.userForm.value.jobTitle;
       user.phone = this.userForm.value.phone;
       user.admin = false;
-      this._authService.createUser(user);
+    //   this._authService.createUser(user);
     }
   }
 
@@ -83,7 +83,9 @@ export class SignupComponent implements OnInit, OnDestroy {
     let confirm = group.controls.confirmPassword;
 
     if (password.pristine || confirm.pristine) {
-      return null;
+      return {
+        isValid: false
+      };
     }
     group.markAsTouched();
 

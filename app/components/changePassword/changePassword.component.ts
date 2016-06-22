@@ -92,7 +92,9 @@ export class ChangePasswordComponent {
     let confirm = group.controls.confirmPassword;
 
     if (password.pristine || confirm.pristine) {
-      return null;
+      return {
+        isValid: false
+      };
     }
     group.markAsTouched();
 
