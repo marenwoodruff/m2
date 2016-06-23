@@ -38,7 +38,6 @@ class MyApp implements OnInit{
       private userService:UserService,
       private userEventService:UserEventService,
       private menuController: MenuController) {}
-      private swipeBackEnabled:boolean = true;
 
     ngOnInit(){
         this.userSubscription = this.userService.user.subscribe(
@@ -85,7 +84,6 @@ class MyApp implements OnInit{
                     button.setAttribute('ng-reflect-hidden', 'false');
                     button.hidden = false;
                 });
-                this.swipeBackEnabled = pageComponent === LogoutPage ? false : true;
             });
         } else {
           this.loggedOutAlert();
