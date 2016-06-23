@@ -30,7 +30,7 @@ class MyApp implements OnInit, DoCheck{
     @ViewChild(Nav) nav: Nav;
     userName: string;
     userSubscription: EventEmitter<User>;
-
+    ready:boolean;
     constructor(
       private app:IonicApp,
       private platform:Platform,
@@ -58,8 +58,8 @@ class MyApp implements OnInit, DoCheck{
     }
 
     ngDoCheck() {
-        const activeView = this.nav.getActive()
-        if (activeView) {
+        if (this.ready) {
+            const activeView = this.nav.getActive()
             if (activeView.componentType === LoginPage) {
                 StatusBar.styleDefault();
             } else {
@@ -70,6 +70,7 @@ class MyApp implements OnInit, DoCheck{
 
     private initializeApp() {
         this.platform.ready().then(() => {
+            this.ready = true;
             this.hasLoggedIn((loggedIn) => {
               if (loggedIn === true) {
                       this.userInfo();
