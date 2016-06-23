@@ -1,6 +1,6 @@
 import {EventEmitter, Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {FORM_PROVIDERS, FormBuilder, Validators, ControlGroup} from '@angular/common';
-import {Button, List, Item, TextInput, Label, Nav} from 'ionic-angular';
+import {Button, List, Item, TextInput, Label, Nav, MenuController} from 'ionic-angular';
 import {UserService} from '../../service/user.service';
 import {User} from '../../models/user/user';
 import {EventsPage} from '../../pages/events/events.page';
@@ -26,6 +26,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     private _userService: UserService,
     private _navController: Nav,
     private _authService:AuthorizationService,
+    private _menuController: MenuController,
     private _formBuilder: FormBuilder) {
       this.userForm = this._formBuilder.group({
         'email': ['', Validators.compose([Validators.required, ValidationService.emailValidator])],
@@ -41,10 +42,14 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): any {
+    this._menuController.enable(false);
     this.userSubscription = this._userService.user.subscribe(
         (user) => {
-          console.log(user);
-          this._navController.setRoot(EventsPage);
+           if (user) {
+               console.log(user);
+
+               this._navController.setRoot(EventsPage);
+           }
         }
       )
     this.errorSubscription = this._authService.createUserError.subscribe(
@@ -68,13 +73,14 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.signingUp = true;
       let user = new User();
       user.email = this.userForm.value.email;
-      user.password = this.userForm.controls.matchingPassword.controls.password.value;
+      user.password = this.userForm.value.matchingPassword.password;
       user.name = this.userForm.value.name;
       user.company = this.userForm.value.company;
       user.jobTitle = this.userForm.value.jobTitle;
       user.phone = this.userForm.value.phone;
       user.admin = false;
       this._authService.createUser(user);
+      this._menuController.enable(true);
     }
   }
 
@@ -83,7 +89,9 @@ export class SignupComponent implements OnInit, OnDestroy {
     let confirm = group.controls.confirmPassword;
 
     if (password.pristine || confirm.pristine) {
-      return null;
+      return {
+        isValid: false
+      };
     }
     group.markAsTouched();
 

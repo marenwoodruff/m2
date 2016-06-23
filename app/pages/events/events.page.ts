@@ -34,18 +34,19 @@ export class EventsPage implements OnInit, OnDestroy {
     public nav:Nav,
     private _userApi:UserService) { }
 
-  public ngOnInit():any {
-    this.isLoading = true;
-    this._menuController.enable(true);
-    this.eventSubscription = this._eventsApi.events.subscribe(
-        events => {
-          this.events = events;
-          this.filteredLocation = this.events;
-          this.isLoading = false;
-        },
-        err => console.log("EventsComponent events subscribe error: ", err),
-        () => console.log("Finished subscribing to events")
-    );
+    public ngOnInit():any {
+      this.isLoading = true;
+      this._menuController.enable(true);
+      this._menuController.swipeEnable(true);
+      this.eventSubscription = this._eventsApi.events.subscribe(
+          events => {
+            this.events = events;
+            this.filteredLocation = this.events;
+            this.isLoading = false;
+          },
+          err => console.log("EventsComponent events subscribe error: ", err),
+          () => console.log("Finished subscribing to events")
+      );
 
     this._eventsApi.getEvents();
     this.getCurrentLocation();

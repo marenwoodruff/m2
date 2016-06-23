@@ -43,6 +43,7 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
   private updated: boolean;
   private startedSurveys: Array<any>;
   private surveysInProgress: Array<any>;
+  private userEvents:UserEvent[];
 
   constructor(
     private nav: Nav,
@@ -60,7 +61,9 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
     );
 
     this.userEventSubscription = this._userEventApi.userEvents.subscribe(
-      event => event.length > 0 ? this.registered = true : this.registered = false,
+      event =>{
+          this.userEvents = event;
+          event.length > 0 ? this.registered = true : this.registered = false},
       err => console.log('err: ', err),
       () => console.log('user event over')
     );
@@ -99,7 +102,7 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
 
     if (mobileSmall == "" || mobileLarge == "") {
       this.imageThumbnail = false;
-    } else if (facilitatorImage == "") { 
+    } else if (facilitatorImage == "") {
       this.imageThumbnail = false;
     } else {
       this.imageThumbnail = true;
@@ -157,7 +160,8 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
   private viewSurveys(): void {
       this.nav.push(EventSurveysPage, {
           surveys: this.surveys,
-          event: this.event
+          event: this.event,
+          userEvents: this.userEvents
       });
   }
 
@@ -238,7 +242,6 @@ export class EventComponent implements OnInit, OnDestroy, DoCheck {
     if (this.surveys.length !== 0) {
       this.survey = this.surveys[0];
       if (surveys.length === 1) {
-          debugger
           this.findPreEvent(this.event);
       }
     }
