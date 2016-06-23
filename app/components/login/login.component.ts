@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): any {
     this._menuController.enable(false);
+    this._menuController.swipeEnable(false);
     this.twitterSubscription = this._twitterApi.twitterCredentials.subscribe(
       (twitterCredentials) => {
         this.twitterCredentials = twitterCredentials;

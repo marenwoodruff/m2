@@ -36,6 +36,7 @@ export class EventsPage implements OnInit, OnDestroy {
     public ngOnInit():any {
       this.isLoading = true;
       this._menuController.enable(true);
+      this._menuController.swipeEnable(true);
       this.eventSubscription = this._eventsApi.events.subscribe(
           events => {
             this.events = events;
