@@ -58,13 +58,16 @@ class MyApp implements OnInit, DoCheck{
     }
 
     ngDoCheck() {
-        if (this.ready) {
-            const activeView = this.nav.getActive()
-            if (activeView.componentType === LoginPage) {
-                StatusBar.styleDefault();
-            } else {
-                StatusBar.styleLightContent();
+        if (this.ready && this.nav) {
+            const activeView = this.nav.getActive();
+            if (activeView) {
+                if (activeView.componentType === LoginPage) {
+                    StatusBar.styleDefault();
+                } else {
+                    StatusBar.styleLightContent();
+                }
             }
+
         }
     }
 
