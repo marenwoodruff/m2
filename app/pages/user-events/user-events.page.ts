@@ -28,7 +28,7 @@ export class UserEventsPage implements OnInit, OnDestroy {
   private isLoading: boolean = true;
 
   constructor(private _userEventApi:UserEventService, private _userApi:UserService, private _eventApi:EventService) {}
-  
+
   public ngOnInit(): void {
     this.getUserId();
 
@@ -62,7 +62,7 @@ export class UserEventsPage implements OnInit, OnDestroy {
 
   private hideOldEvents(userEvents:UserEvent[]) {
     this.userEvents = userEvents.filter((event) => {
-      return moment.unix(event.startDate).isAfter();
+      return moment.unix(event.startDate).isSameOrAfter(moment().subtract(2, 'days'))
     });
     this.isLoading = false;
   }
