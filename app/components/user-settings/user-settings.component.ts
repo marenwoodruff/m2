@@ -47,7 +47,8 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
     this.userSubscription = this._userService.user.subscribe(
         (user) => {
           this.updatingUser = false;
-          // this._navController.setRoot(EventsPage);
+          this.errorMessage = null;
+          this.updateUserAlert();
         }
       );
     this.errorSubscription = this._userService.updateUserError.subscribe(
@@ -95,7 +96,6 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
       this.user.phone = this.userForm.value.phone;
       this.user.admin = false;
       this._userService.updateUser(this.user.id, this.user);
-      this.updateUserAlert();
     }
   }
 
@@ -125,7 +125,7 @@ export class UserSettingsComponent implements OnInit, OnDestroy {
           text: 'OK',
           handler: () => {
             this._navController.setRoot(LoginPage);
-          } 
+          }
         }
       ]
     });

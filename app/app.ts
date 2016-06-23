@@ -7,7 +7,6 @@ import {EventsPage} from './pages/events/events.page';
 import {EventService} from './service/event.service';
 import {LoginPage} from './pages/login/login.page';
 import {LogoutPage} from './pages/logout/logout.page';
-import {SignupPage} from './pages/signup/signup.page';
 import {UserSettingsPage} from './pages/user-settings/user-settings.page';
 import {RegistrationPage} from './pages/registration/registration.page';
 import {AuthorizationService} from './service/authorization.service';
@@ -77,7 +76,14 @@ class MyApp implements OnInit{
     private openPage(page) {
       this.hasLoggedIn((loggedIn) => {
         if (loggedIn === true) {
-          this.nav.setRoot(page.component);
+          this.nav.setRoot(page.component)
+            .then(() => {
+                const menuButtons:any = document.querySelectorAll('button[menuToggle]');
+                menuButtons.forEach((button) => {
+                    button.setAttribute('ng-reflect-hidden', 'false');
+                    button.hidden = false;
+                });
+            });
         } else {
           this.loggedOutAlert();
         }
