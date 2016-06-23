@@ -20,6 +20,7 @@ import {EventService} from '../../service/event.service';
 export class UserEventsPage implements OnInit, OnDestroy {
 
   userEventSubscription: EventEmitter<UserEvent[]>;
+  userEventDeletedSubscription: EventEmitter<UserEvent[]>;
   eventSubscription: EventEmitter<Event[]>;
   userEvents: UserEvent[];
   events: Event[];
@@ -27,8 +28,11 @@ export class UserEventsPage implements OnInit, OnDestroy {
   location: Array<number>;
   private isLoading: boolean = true;
 
-  constructor(private _userEventApi:UserEventService, private _userApi:UserService, private _eventApi:EventService) {}
-  
+  constructor(
+      private _userEventApi:UserEventService,
+      private _userApi:UserService,
+      private _eventApi:EventService) {}
+
   public ngOnInit(): void {
     this.getUserId();
 
@@ -42,6 +46,21 @@ export class UserEventsPage implements OnInit, OnDestroy {
       () => console.log('finished subscribing to user events')
     );
 
+    this.userEventDeletedSubscription = this._userEventApi.userEventDeleted.subscribe(
+      deletedUserEvent => {
+        if (deletedUserEvent) {
+            this.userEvents = this.userEvents.filter((userEvent) => {
+                if (userEvent.id !== deletedUserEvent) {
+                    return true;
+                }
+            })
+            this._userEventApi.getUserEvents(this.userId);
+        }
+      },
+      err => console.log('user event deleting error', err),
+      () => console.log('finished subscribing to user events Deleting')
+    );
+
     this.eventSubscription = this._eventApi.events.subscribe(
       events => this.events = events,
       err => console.log('events error: ', err),
@@ -53,6 +72,7 @@ export class UserEventsPage implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.userEventSubscription.unsubscribe();
+    this.userEventDeletedSubscription.unsubscribe();
     this.eventSubscription.unsubscribe();
   }
 
@@ -62,8 +82,9 @@ export class UserEventsPage implements OnInit, OnDestroy {
 
   private hideOldEvents(userEvents:UserEvent[]) {
     this.userEvents = userEvents.filter((event) => {
-      return moment.unix(event.startDate).isAfter();
+      return moment.unix(event.startDate).isSameOrAfter(moment().subtract(2, 'days'))
     });
+
     this.isLoading = false;
   }
 }

@@ -1,5 +1,5 @@
 import {IonicApp, App, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
-import {forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
+import {forwardRef, OnInit, EventEmitter, ViewChild, DoCheck} from '@angular/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
@@ -16,6 +16,7 @@ import {UserEventsPage} from './pages/user-events/user-events.page';
 import {UserEventService} from './service/userEvent.service';
 import {SupportPage} from './pages/support/support.page';
 import {User} from './models/user/user';
+import {StatusBar} from 'ionic-native';
 
 @App({
     templateUrl: 'build/app.html',
@@ -23,7 +24,7 @@ import {User} from './models/user/user';
     directives: [Icon],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
-class MyApp implements OnInit{
+class MyApp implements OnInit, DoCheck{
     rootPage: any = this.userService.isUserLoggedIn() ? EventsPage : LoginPage;
     pages:Array<{title: string, component: any}>;
     @ViewChild(Nav) nav: Nav;
@@ -37,7 +38,7 @@ class MyApp implements OnInit{
       public surveyService:SurveyService,
       private userService:UserService,
       private userEventService:UserEventService,
-      private menuController: MenuController) {}
+      private menuController:MenuController) {}
 
     ngOnInit(){
         this.userSubscription = this.userService.user.subscribe(
@@ -54,6 +55,17 @@ class MyApp implements OnInit{
             {title: 'Support', component: SupportPage},
             {title: 'Logout', component: LogoutPage}
         ];
+    }
+
+    ngDoCheck() {
+        const activeView = this.nav.getActive()
+        if (activeView) {
+            if (activeView.componentType === LoginPage) {
+                StatusBar.styleDefault();
+            } else {
+                StatusBar.styleLightContent();
+            }
+        }
     }
 
     private initializeApp() {
@@ -76,7 +88,8 @@ class MyApp implements OnInit{
     private openPage(page) {
       this.hasLoggedIn((loggedIn) => {
         if (loggedIn === true) {
-          this.nav.setRoot(page.component)
+          const pageComponent = page.component;
+          this.nav.setRoot(pageComponent)
             .then(() => {
                 const menuButtons:any = document.querySelectorAll('button[menuToggle]');
                 menuButtons.forEach((button) => {

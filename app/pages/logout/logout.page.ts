@@ -19,7 +19,7 @@ export class LogoutPage implements OnInit{
     this._menuController.swipeEnable(false);
     this._menuController.enable(false);
     this._authService.logOut();
-    this.nav.push(LoginPage);
+    this.nav.setRoot(LoginPage);
   }
 
 }

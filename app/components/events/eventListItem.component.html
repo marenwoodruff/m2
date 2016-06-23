@@ -23,7 +23,7 @@
     </ion-row>
 </ion-item>
 
-<ion-item-sliding *ngIf="userEvents">
+<ion-item-sliding *ngIf="userEvents" #slidingItem>
   <ion-item (click)="viewEvent(event)">
     <ion-row>
       <ion-col width-33>
@@ -49,7 +49,7 @@
     </ion-row>
   </ion-item>
   <ion-item-options>
-    <button (click)="deleteEvent(event)" danger>
+    <button (click)="deleteEvent(event, slidingItem)" danger>
       Delete
     </button>
   </ion-item-options>
