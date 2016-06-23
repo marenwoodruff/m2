@@ -55,8 +55,9 @@ To update the master repository, perform the following:
   * `git push origin master`
   * Create `pull request` updating master repository
 
-* To Updatee to Ionic 2 beta 8
-    *   you can also look at this link: https://github.com/driftyco/ionic/blob/2.0/CHANGELOG.md#steps-to-upgrade-to-beta-8
+
+#### To Updatee to Ionic 2 beta 8
+    *   you can also look at this link for breaking changes: https://github.com/driftyco/ionic/blob/2.0/CHANGELOG.md#steps-to-upgrade-to-beta-8
     *   change your package.json to reflect the changes- "ionic-angular": "^2.0.0-beta.8",
     *  `npm install -g ionic@2.0.0-beta.8` (Install Ionic 2 beta 8)
         * `ionic -v` (Check version of ionic installed)
@@ -73,16 +74,22 @@ To update the master repository, perform the following:
     *   In your app.ts, import IonicBootstrap from ionic-angular
     *   In your app.ts, delete the references to the providers and config from your @App object
     *   At the bottom of your app.ts, add 
-          `// Pass the main app component as the first argument
+          // Pass the main app component as the first argument
           // Pass any providers for your app in the second argument
           // Set any config for your app as the third argument:
           // http://ionicframework.com/docs/v2/api/config/Config/
 
-          ionicBootstrap(MyApp, [ConferenceData, UserData], {
+          `ionicBootstrap(MyApp, [ConferenceData, UserData], {
             tabbarPlacement: 'bottom'
           });`
     *   In your app.ts, instead of IonicApp, you will just import App from ionic-angular, and change the reference in your constructor
     * If you have used lifecycle events of Ionic events in your app, there are directions about how to update the code in the url above.
+
+
+#### To Update to Ionic 2 beta 9
+    *   fix ionic 8 breaking changes (mentioned above)
+    *   check out this link for breaking changes: https://github.com/driftyco/ionic/blob/2.0/CHANGELOG.md
+    *   `npm install -g ionic@beta`
 
 
 #### Ionic View
