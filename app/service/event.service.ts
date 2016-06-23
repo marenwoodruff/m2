@@ -40,10 +40,10 @@ export class EventService {
               userEvents.forEach((userEvent) => {
                 if (event.eventId === userEvent.eventId) {
                   matchingEvents.push(event);
-                  this.events.emit(matchingEvents);
                 }
               })
             })
+            this.events.emit(matchingEvents);
           },
           err => console.log(err),
           () => console.log('UserEvents retrieval is completed')

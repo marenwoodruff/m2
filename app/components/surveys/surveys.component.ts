@@ -67,7 +67,7 @@ export class SurveysComponent implements OnChanges, OnInit {
 
   }
 
-  findPrePostEvent(event: Event) {
+  private findPrePostEvent(event: Event) {
     if (moment.unix(event.startDate).isAfter()) {
       this.preEvent = true;
     } else if (moment.unix(event.startDate).isBefore(moment().subtract(1, 'day'))) {
@@ -77,7 +77,7 @@ export class SurveysComponent implements OnChanges, OnInit {
     }
   }
 
-  getPrePostEvents(userEvents:any) {
+  private getPrePostEvents(userEvents:any) {
       this.preEvents = userEvents.filter((event) => {
         return moment.unix(event.startDate).isSameOrAfter()
       });
@@ -89,7 +89,7 @@ export class SurveysComponent implements OnChanges, OnInit {
       this.sortPreEventSurveys(this.preEvents, this.eventSurveys, this.surveys);
   }
 
-  sortPreEventSurveys(preEvents:any, eventSurveys:any, surveys:Survey[]) {
+  private sortPreEventSurveys(preEvents:any, eventSurveys:any, surveys:Survey[]) {
     if (preEvents.length > 0) {
       this.eventSurveys = eventSurveys.filter((eventSurvey) => {
         let preEventMatch = preEvents.find(event => event.eventId === eventSurvey.eventId);

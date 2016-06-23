@@ -32,7 +32,7 @@ export class EventListItemComponent implements OnChanges, OnInit {
             mobileSmall = this.event.mobileSmall,
             mobileLarge = this.event.mobileLarge;
 
-        if (mobileSmall == "" || mobileLarge == "") { 
+        if (mobileSmall == "" || mobileLarge == "") {
             this.imageThumbnail = false;
         } else {
             this.imageThumbnail = true;
@@ -47,17 +47,17 @@ export class EventListItemComponent implements OnChanges, OnInit {
         this.nav.push(EventPage, { event, location: this.currentLocation });
     }
 
-    deleteEvent(event) {
+    deleteEvent(event:Event, slidingItem: ItemSliding) {
         this.getUserId();
         let uEvent = this.userEvents.filter((userEvent) => {
             if (userEvent.eventId === event.eventId) {
                 return true;
             }
         });
-        this.deleteAlert(uEvent[0].id);
+        this.deleteAlert(uEvent[0].id, slidingItem);
     }
 
-    deleteAlert(eventId: number) {
+    deleteAlert(eventId: number, slidingItem: ItemSliding) {
         let confirm = Alert.create({
             title: 'Are you sure you want to remove this event?',
             message: 'Deleting this event does not remove you from the list of participants. Follow the instructions from your confirmation e-mail.',
@@ -65,8 +65,8 @@ export class EventListItemComponent implements OnChanges, OnInit {
                 {
                     text: 'Remove Event',
                     handler: () => {
+                        slidingItem.close();
                         this._userEventApi.deleteUserEvent(this.userId, eventId);
-                        this.nav.setRoot(EventsPage);
                     }
                 },
                 {
