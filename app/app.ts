@@ -20,7 +20,7 @@ import {StatusBar} from 'ionic-native';
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService, StatusBar],
+    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService],
     directives: [Icon],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
@@ -38,8 +38,7 @@ class MyApp implements OnInit, DoCheck{
       public surveyService:SurveyService,
       private userService:UserService,
       private userEventService:UserEventService,
-      private menuController:MenuController,
-      private statusBar:StatusBar) {}
+      private menuController:MenuController) {}
 
     ngOnInit(){
         this.userSubscription = this.userService.user.subscribe(
@@ -62,9 +61,9 @@ class MyApp implements OnInit, DoCheck{
         const activeView = this.nav.getActive()
         if (activeView) {
             if (activeView.componentType === LoginPage) {
-                this.statusBar.styleDefault();
+                StatusBar.styleDefault();
             } else {
-                this.statusBar.styleLightContent();
+                StatusBar.styleLightContent();
             }
         }
     }
