@@ -1,5 +1,5 @@
 import {IonicApp, App, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
-import {forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
+import {forwardRef, OnInit, EventEmitter, ViewChild, DoCheck} from '@angular/core';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
 import {StorageService} from './service/storage.service';
@@ -16,14 +16,15 @@ import {UserEventsPage} from './pages/user-events/user-events.page';
 import {UserEventService} from './service/userEvent.service';
 import {SupportPage} from './pages/support/support.page';
 import {User} from './models/user/user';
+import {StatusBar} from 'ionic-native';
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService],
+    providers: [SurveyService, StorageService, AuthorizationService, UserService, HttpClient, EventService, UserEventService, StatusBar],
     directives: [Icon],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
-class MyApp implements OnInit{
+class MyApp implements OnInit, DoCheck{
     rootPage: any = this.userService.isUserLoggedIn() ? EventsPage : LoginPage;
     pages:Array<{title: string, component: any}>;
     @ViewChild(Nav) nav: Nav;
@@ -37,7 +38,8 @@ class MyApp implements OnInit{
       public surveyService:SurveyService,
       private userService:UserService,
       private userEventService:UserEventService,
-      private menuController: MenuController) {}
+      private menuController:MenuController,
+      private statusBar:StatusBar) {}
 
     ngOnInit(){
         this.userSubscription = this.userService.user.subscribe(
@@ -54,6 +56,17 @@ class MyApp implements OnInit{
             {title: 'Support', component: SupportPage},
             {title: 'Logout', component: LogoutPage}
         ];
+    }
+
+    ngDoCheck() {
+        const activeView = this.nav.getActive()
+        if (activeView) {
+            if (activeView.componentType === LoginPage) {
+                this.statusBar.styleDefault();
+            } else {
+                this.statusBar.styleLightContent();
+            }
+        }
     }
 
     private initializeApp() {
