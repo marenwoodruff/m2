@@ -7,7 +7,6 @@ import {EventsPage} from './pages/events/events.page';
 import {EventService} from './service/event.service';
 import {LoginPage} from './pages/login/login.page';
 import {LogoutPage} from './pages/logout/logout.page';
-import {SignupPage} from './pages/signup/signup.page';
 import {UserSettingsPage} from './pages/user-settings/user-settings.page';
 import {RegistrationPage} from './pages/registration/registration.page';
 import {AuthorizationService} from './service/authorization.service';
@@ -39,6 +38,7 @@ class MyApp implements OnInit{
       private userService:UserService,
       private userEventService:UserEventService,
       private menuController: MenuController) {}
+      private swipeBackEnabled:boolean = true;
 
     ngOnInit(){
         this.userSubscription = this.userService.user.subscribe(
@@ -77,13 +77,15 @@ class MyApp implements OnInit{
     private openPage(page) {
       this.hasLoggedIn((loggedIn) => {
         if (loggedIn === true) {
-          this.nav.setRoot(page.component)
+          const pageComponent = page.component;
+          this.nav.setRoot(pageComponent)
             .then(() => {
                 const menuButtons:any = document.querySelectorAll('button[menuToggle]');
                 menuButtons.forEach((button) => {
                     button.setAttribute('ng-reflect-hidden', 'false');
                     button.hidden = false;
                 });
+                this.swipeBackEnabled = pageComponent === LogoutPage ? false : true;
             });
         } else {
           this.loggedOutAlert();
