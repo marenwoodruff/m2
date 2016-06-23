@@ -41,11 +41,11 @@ export class SurveysComponent implements OnChanges, OnInit {
       this.surveys.forEach((survey, index) => {
         this.startedSurveys.forEach((startedSurvey, sIndex) => {
           if (survey.id === startedSurvey.id) {
-            this.surveys[index] = startedSurvey;     
+            this.surveys[index] = startedSurvey;
           }
         });
       });
-    } 
+    }
 
     if (this.eventSurveysPage) {
       if (this.surveys && this.preEvent) {
@@ -54,38 +54,36 @@ export class SurveysComponent implements OnChanges, OnInit {
             return true;
           }
         });
-      } 
+      }
 
-      if (this.surveys && !this.preEvent) {
+      if (this.surveys && !this.preEvent && this.preEvent !== null) {
         this.surveys = this.surveys.filter((survey) => {
           if (survey.preEvent === false) {
             return true;
           }
         });
-      } 
+      }
     }
 
   }
 
   findPrePostEvent(event: Event) {
-    if (moment.unix(event.startDate).isSameOrAfter()) {
+    if (moment.unix(event.startDate).isAfter()) {
       this.preEvent = true;
-    } else {
+    } else if (moment.unix(event.startDate).isBefore(moment().subtract(1, 'day'))) {
       this.preEvent = false;
+    } else if (moment.unix(event.startDate).isSameOrAfter(moment().subtract(1, 'day'))){
+        this.preEvent = null;
     }
   }
 
   getPrePostEvents(userEvents:any) {
       this.preEvents = userEvents.filter((event) => {
-        if (moment.unix(event.startDate).isSameOrAfter()) {
-          return true;
-        }
+        return moment.unix(event.startDate).isSameOrAfter()
       });
-      
+
       this.postEvents = userEvents.filter((event) => {
-        if (moment.unix(event.startDate).isSameOrBefore()) {
-          return true;
-        }
+        return moment.unix(event.startDate).isSameOrBefore()
       });
 
       this.sortPreEventSurveys(this.preEvents, this.eventSurveys, this.surveys);
