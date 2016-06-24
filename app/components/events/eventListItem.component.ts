@@ -33,7 +33,9 @@ export class EventListItemComponent implements OnChanges, OnInit {
             mobileSmall = this.event.mobileSmall,
             mobileLarge = this.event.mobileLarge;
 
-        if (mobileSmall == "" || mobileLarge == "") {
+        if (mobileSmall == "") {
+            this.imageThumbnail = false;
+        } else if (mobileLarge == "") {
             this.imageThumbnail = false;
         } else {
             this.imageThumbnail = true;
