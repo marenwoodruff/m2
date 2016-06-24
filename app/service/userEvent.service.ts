@@ -11,6 +11,7 @@ import {HttpClient} from './http-client.service';
 export class UserEventService {
 
   userEvents: EventEmitter<UserEvent[]> = new EventEmitter<UserEvent[]>();
+  userEventDeleted: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private _api: Http,
@@ -52,7 +53,10 @@ export class UserEventService {
   public deleteUserEvent(userId: number, userEventId: number): void {
     this.httpClient.delete(`users/${userId}/events/${userEventId}`)
       .subscribe(
-        res => console.log(res),
+        res => {
+            console.log(res);
+            this.userEventDeleted.emit(userEventId);
+        },
         err => console.log('error: ', err),
         () => console.log('User updated')
       );

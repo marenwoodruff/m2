@@ -1,4 +1,4 @@
-import {Component, forwardRef, OnInit, EventEmitter, ViewChild} from '@angular/core';
+import {Component, forwardRef, OnInit, EventEmitter, ViewChild, DoCheck} from '@angular/core';
 import {ionicBootstrap, App, Platform, Nav, Icon, MenuController, Alert} from 'ionic-angular';
 import {SurveysPage} from './pages/surveys/surveys.page';
 import {SurveyService} from './service/survey.service';
@@ -16,19 +16,20 @@ import {UserEventsPage} from './pages/user-events/user-events.page';
 import {UserEventService} from './service/userEvent.service';
 import {SupportPage} from './pages/support/support.page';
 import {User} from './models/user/user';
+import {StatusBar} from 'ionic-native';
 
 @Component({
     templateUrl: 'build/app.html',
     directives: [Icon]
 })
 
-class MyApp implements OnInit{
+class MyApp implements OnInit, DoCheck {
     rootPage: any = this.userService.isUserLoggedIn() ? EventsPage : LoginPage;
     pages:Array<{title: string, component: any}>;
     @ViewChild(Nav) nav: Nav;
     userName: string;
     userSubscription: EventEmitter<User>;
-
+    ready: boolean;
     constructor(
         private app:App,
         private platform:Platform,
@@ -55,8 +56,23 @@ class MyApp implements OnInit{
         ];
     }
 
+    ngDoCheck() {
+        if (this.ready && this.nav) {
+            const activeView = this.nav.getActive();
+            if (activeView) {
+                if (activeView.componentType === LoginPage) {
+                    StatusBar.styleDefault();
+                } else {
+                    StatusBar.styleLightContent();
+                }
+            }
+
+        }
+    }
+
     private initializeApp() {
         this.platform.ready().then(() => {
+            this.ready = true;
             this.hasLoggedIn((loggedIn) => {
               if (loggedIn === true) {
                 this.userInfo();
