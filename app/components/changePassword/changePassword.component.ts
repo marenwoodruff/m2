@@ -15,6 +15,7 @@ import {ControlMessageComponent} from '../controlMessage/controlMessage.componen
   templateUrl: 'build/components/changePassword/changePassword.component.html',
   directives: [Button, List, Item, TextInput, Label, LoaderComponent, ControlMessageComponent]
 })
+
 export class ChangePasswordComponent {
   private updatingPassword: boolean;
   private errorMessage: string;

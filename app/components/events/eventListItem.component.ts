@@ -16,6 +16,7 @@ import {UserEventService} from '../../service/userEvent.service';
     inputs: ['event', 'location', 'userEvents'],
     pipes: [DateFormatPipe, FromUnixPipe]
 })
+
 export class EventListItemComponent implements OnChanges, OnInit {
     event: Event;
     currentLocation: Array<number>;
@@ -32,7 +33,9 @@ export class EventListItemComponent implements OnChanges, OnInit {
             mobileSmall = this.event.mobileSmall,
             mobileLarge = this.event.mobileLarge;
 
-        if (mobileSmall == "" || mobileLarge == "") {
+        if (mobileSmall == "") {
+            this.imageThumbnail = false;
+        } else if (mobileLarge == "") {
             this.imageThumbnail = false;
         } else {
             this.imageThumbnail = true;
@@ -83,4 +86,5 @@ export class EventListItemComponent implements OnChanges, OnInit {
     getUserId() {
         this.userId = this._userApi.getUserId();
     }
+
 }

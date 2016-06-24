@@ -1,16 +1,17 @@
-import {Page, NavParams, Platform} from 'ionic-angular';
-import {forwardRef} from '@angular/core';
+import {Component, forwardRef} from '@angular/core';
+import {NavParams, Platform} from 'ionic-angular';
 import {EventComponent} from '../../components/event/event.component';
 import {SurveysComponent} from '../../components/surveys/surveys.component';
 import {SessionsComponent} from '../../components/sessions/sessions.component';
 import {Survey} from '../../models/survey/survey';
 import {Event} from '../../models/events/event';
 
-@Page({
+@Component({
     templateUrl: 'build/pages/event/event.page.html',
     directives: [EventComponent, forwardRef(() => SurveysComponent), SessionsComponent],
 
 })
+
 export class EventPage {
   private event: Event;
   private currentLocation: Array<number>;

@@ -1,9 +1,9 @@
-import {EventEmitter, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Page, Button} from 'ionic-angular';
 import {User} from '../../models/user/user';
 import {UserService} from '../../service/user.service';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/support/support.page.html',
   directives: [Button]
 })

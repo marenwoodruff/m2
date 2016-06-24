@@ -1,11 +1,11 @@
-import {OnInit} from '@angular/core';
-import {Page, Nav, NavParams, Button} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {Nav, NavParams, Button} from 'ionic-angular';
 import {Survey} from '../../models/survey/survey';
 import {SurveyPage} from '../survey/survey.page';
 import {SurveyCompletedPage} from '../survey-completed/survey-completed.page';
 import {SurveyProgress} from '../../models/survey/surveyProgress';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/begin-survey/begin-survey.page.html',
   directives: [Button]
 })

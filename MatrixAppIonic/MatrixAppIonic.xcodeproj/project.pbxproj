@@ -1,0 +1,527 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E625C5741D0F39E70015B08F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E625C5731D0F39E70015B08F /* main.m */; };
+		E625C5771D0F39E70015B08F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E625C5761D0F39E70015B08F /* AppDelegate.m */; };
+		E625C57A1D0F39E70015B08F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E625C5791D0F39E70015B08F /* MasterViewController.m */; };
+		E625C57D1D0F39E70015B08F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E625C57C1D0F39E70015B08F /* DetailViewController.m */; };
+		E625C5801D0F39E70015B08F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E625C57E1D0F39E70015B08F /* Main.storyboard */; };
+		E625C5821D0F39E70015B08F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E625C5811D0F39E70015B08F /* Assets.xcassets */; };
+		E625C5851D0F39E70015B08F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E625C5831D0F39E70015B08F /* LaunchScreen.storyboard */; };
+		E625C5901D0F39E80015B08F /* MatrixAppIonicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E625C58F1D0F39E80015B08F /* MatrixAppIonicTests.m */; };
+		E625C59B1D0F39E80015B08F /* MatrixAppIonicUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E625C59A1D0F39E80015B08F /* MatrixAppIonicUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E625C58C1D0F39E80015B08F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E625C5671D0F39E70015B08F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E625C56E1D0F39E70015B08F;
+			remoteInfo = MatrixAppIonic;
+		};
+		E625C5971D0F39E80015B08F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E625C5671D0F39E70015B08F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E625C56E1D0F39E70015B08F;
+			remoteInfo = MatrixAppIonic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E625C56F1D0F39E70015B08F /* MatrixAppIonic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatrixAppIonic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E625C5731D0F39E70015B08F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E625C5751D0F39E70015B08F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E625C5761D0F39E70015B08F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E625C5781D0F39E70015B08F /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		E625C5791D0F39E70015B08F /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		E625C57B1D0F39E70015B08F /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		E625C57C1D0F39E70015B08F /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		E625C57F1D0F39E70015B08F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E625C5811D0F39E70015B08F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E625C5841D0F39E70015B08F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E625C5861D0F39E70015B08F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E625C58B1D0F39E80015B08F /* MatrixAppIonicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatrixAppIonicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E625C58F1D0F39E80015B08F /* MatrixAppIonicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatrixAppIonicTests.m; sourceTree = "<group>"; };
+		E625C5911D0F39E80015B08F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E625C5961D0F39E80015B08F /* MatrixAppIonicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatrixAppIonicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E625C59A1D0F39E80015B08F /* MatrixAppIonicUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatrixAppIonicUITests.m; sourceTree = "<group>"; };
+		E625C59C1D0F39E80015B08F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E625C56C1D0F39E70015B08F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E625C5881D0F39E80015B08F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E625C5931D0F39E80015B08F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E625C5661D0F39E70015B08F = {
+			isa = PBXGroup;
+			children = (
+				E625C5711D0F39E70015B08F /* MatrixAppIonic */,
+				E625C58E1D0F39E80015B08F /* MatrixAppIonicTests */,
+				E625C5991D0F39E80015B08F /* MatrixAppIonicUITests */,
+				E625C5701D0F39E70015B08F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E625C5701D0F39E70015B08F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E625C56F1D0F39E70015B08F /* MatrixAppIonic.app */,
+				E625C58B1D0F39E80015B08F /* MatrixAppIonicTests.xctest */,
+				E625C5961D0F39E80015B08F /* MatrixAppIonicUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E625C5711D0F39E70015B08F /* MatrixAppIonic */ = {
+			isa = PBXGroup;
+			children = (
+				E625C5751D0F39E70015B08F /* AppDelegate.h */,
+				E625C5761D0F39E70015B08F /* AppDelegate.m */,
+				E625C5781D0F39E70015B08F /* MasterViewController.h */,
+				E625C5791D0F39E70015B08F /* MasterViewController.m */,
+				E625C57B1D0F39E70015B08F /* DetailViewController.h */,
+				E625C57C1D0F39E70015B08F /* DetailViewController.m */,
+				E625C57E1D0F39E70015B08F /* Main.storyboard */,
+				E625C5811D0F39E70015B08F /* Assets.xcassets */,
+				E625C5831D0F39E70015B08F /* LaunchScreen.storyboard */,
+				E625C5861D0F39E70015B08F /* Info.plist */,
+				E625C5721D0F39E70015B08F /* Supporting Files */,
+			);
+			path = MatrixAppIonic;
+			sourceTree = "<group>";
+		};
+		E625C5721D0F39E70015B08F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E625C5731D0F39E70015B08F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E625C58E1D0F39E80015B08F /* MatrixAppIonicTests */ = {
+			isa = PBXGroup;
+			children = (
+				E625C58F1D0F39E80015B08F /* MatrixAppIonicTests.m */,
+				E625C5911D0F39E80015B08F /* Info.plist */,
+			);
+			path = MatrixAppIonicTests;
+			sourceTree = "<group>";
+		};
+		E625C5991D0F39E80015B08F /* MatrixAppIonicUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E625C59A1D0F39E80015B08F /* MatrixAppIonicUITests.m */,
+				E625C59C1D0F39E80015B08F /* Info.plist */,
+			);
+			path = MatrixAppIonicUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E625C56E1D0F39E70015B08F /* MatrixAppIonic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E625C59F1D0F39E80015B08F /* Build configuration list for PBXNativeTarget "MatrixAppIonic" */;
+			buildPhases = (
+				E625C56B1D0F39E70015B08F /* Sources */,
+				E625C56C1D0F39E70015B08F /* Frameworks */,
+				E625C56D1D0F39E70015B08F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MatrixAppIonic;
+			productName = MatrixAppIonic;
+			productReference = E625C56F1D0F39E70015B08F /* MatrixAppIonic.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E625C58A1D0F39E80015B08F /* MatrixAppIonicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E625C5A21D0F39E80015B08F /* Build configuration list for PBXNativeTarget "MatrixAppIonicTests" */;
+			buildPhases = (
+				E625C5871D0F39E80015B08F /* Sources */,
+				E625C5881D0F39E80015B08F /* Frameworks */,
+				E625C5891D0F39E80015B08F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E625C58D1D0F39E80015B08F /* PBXTargetDependency */,
+			);
+			name = MatrixAppIonicTests;
+			productName = MatrixAppIonicTests;
+			productReference = E625C58B1D0F39E80015B08F /* MatrixAppIonicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E625C5951D0F39E80015B08F /* MatrixAppIonicUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E625C5A51D0F39E80015B08F /* Build configuration list for PBXNativeTarget "MatrixAppIonicUITests" */;
+			buildPhases = (
+				E625C5921D0F39E80015B08F /* Sources */,
+				E625C5931D0F39E80015B08F /* Frameworks */,
+				E625C5941D0F39E80015B08F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E625C5981D0F39E80015B08F /* PBXTargetDependency */,
+			);
+			name = MatrixAppIonicUITests;
+			productName = MatrixAppIonicUITests;
+			productReference = E625C5961D0F39E80015B08F /* MatrixAppIonicUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E625C5671D0F39E70015B08F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = matrixapp;
+				TargetAttributes = {
+					E625C56E1D0F39E70015B08F = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					E625C58A1D0F39E80015B08F = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = E625C56E1D0F39E70015B08F;
+					};
+					E625C5951D0F39E80015B08F = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = E625C56E1D0F39E70015B08F;
+					};
+				};
+			};
+			buildConfigurationList = E625C56A1D0F39E70015B08F /* Build configuration list for PBXProject "MatrixAppIonic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E625C5661D0F39E70015B08F;
+			productRefGroup = E625C5701D0F39E70015B08F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E625C56E1D0F39E70015B08F /* MatrixAppIonic */,
+				E625C58A1D0F39E80015B08F /* MatrixAppIonicTests */,
+				E625C5951D0F39E80015B08F /* MatrixAppIonicUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E625C56D1D0F39E70015B08F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E625C5851D0F39E70015B08F /* LaunchScreen.storyboard in Resources */,
+				E625C5821D0F39E70015B08F /* Assets.xcassets in Resources */,
+				E625C5801D0F39E70015B08F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E625C5891D0F39E80015B08F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E625C5941D0F39E80015B08F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E625C56B1D0F39E70015B08F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E625C5771D0F39E70015B08F /* AppDelegate.m in Sources */,
+				E625C57A1D0F39E70015B08F /* MasterViewController.m in Sources */,
+				E625C5741D0F39E70015B08F /* main.m in Sources */,
+				E625C57D1D0F39E70015B08F /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E625C5871D0F39E80015B08F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E625C5901D0F39E80015B08F /* MatrixAppIonicTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E625C5921D0F39E80015B08F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E625C59B1D0F39E80015B08F /* MatrixAppIonicUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E625C58D1D0F39E80015B08F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E625C56E1D0F39E70015B08F /* MatrixAppIonic */;
+			targetProxy = E625C58C1D0F39E80015B08F /* PBXContainerItemProxy */;
+		};
+		E625C5981D0F39E80015B08F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E625C56E1D0F39E70015B08F /* MatrixAppIonic */;
+			targetProxy = E625C5971D0F39E80015B08F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E625C57E1D0F39E70015B08F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E625C57F1D0F39E70015B08F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E625C5831D0F39E70015B08F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E625C5841D0F39E70015B08F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E625C59D1D0F39E80015B08F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E625C59E1D0F39E80015B08F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E625C5A01D0F39E80015B08F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MatrixAppIonic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Matrixapp.com.MatrixAppIonic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E625C5A11D0F39E80015B08F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MatrixAppIonic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Matrixapp.com.MatrixAppIonic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E625C5A31D0F39E80015B08F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MatrixAppIonicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Matrixapp.com.MatrixAppIonicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MatrixAppIonic.app/MatrixAppIonic";
+			};
+			name = Debug;
+		};
+		E625C5A41D0F39E80015B08F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MatrixAppIonicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Matrixapp.com.MatrixAppIonicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MatrixAppIonic.app/MatrixAppIonic";
+			};
+			name = Release;
+		};
+		E625C5A61D0F39E80015B08F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MatrixAppIonicUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Matrixapp.com.MatrixAppIonicUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MatrixAppIonic;
+			};
+			name = Debug;
+		};
+		E625C5A71D0F39E80015B08F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MatrixAppIonicUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Matrixapp.com.MatrixAppIonicUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MatrixAppIonic;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E625C56A1D0F39E70015B08F /* Build configuration list for PBXProject "MatrixAppIonic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E625C59D1D0F39E80015B08F /* Debug */,
+				E625C59E1D0F39E80015B08F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E625C59F1D0F39E80015B08F /* Build configuration list for PBXNativeTarget "MatrixAppIonic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E625C5A01D0F39E80015B08F /* Debug */,
+				E625C5A11D0F39E80015B08F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E625C5A21D0F39E80015B08F /* Build configuration list for PBXNativeTarget "MatrixAppIonicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E625C5A31D0F39E80015B08F /* Debug */,
+				E625C5A41D0F39E80015B08F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E625C5A51D0F39E80015B08F /* Build configuration list for PBXNativeTarget "MatrixAppIonicUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E625C5A61D0F39E80015B08F /* Debug */,
+				E625C5A71D0F39E80015B08F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E625C5671D0F39E70015B08F /* Project object */;
+}

@@ -58,5 +58,4 @@ export class FriendRegistrationPage implements AfterContentInit {
     this.nav.setRoot(EventsPage);
   }
 
-
 }

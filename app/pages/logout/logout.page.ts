@@ -1,10 +1,10 @@
-import {Page, Nav, MenuController} from 'ionic-angular';
-import {OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Nav, MenuController} from 'ionic-angular';
 import {LoaderComponent} from '../../components/loader/loader.component';
 import {AuthorizationService} from '../../service/authorization.service';
 import {LoginPage} from '../login/login.page';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/logout/logout.page.html',
   directives: [LoaderComponent]
 })
@@ -21,5 +21,5 @@ export class LogoutPage implements OnInit{
     this._authService.logOut();
     this.nav.setRoot(LoginPage);
   }
-
+  
 }

@@ -11,7 +11,6 @@ export class User {
   phone: string;
   authenticationProvider: boolean;
 
-
   constructor(authorizedUser?: AuthorizedUser) {
     if (authorizedUser) {
       this.id = authorizedUser.id;
