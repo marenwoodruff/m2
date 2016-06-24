@@ -98,6 +98,10 @@ To update the master repository, perform the following:
     *  `npm install -g typescript` (Install Typescript)
     *  `npm install -g typescript@next` (For Typescript nightly builds)
     *  `npm install -g typings` (Install Typings- definitions for Typescript)
+    *   remove caret from the front of ionic-gulp-browserify-typescript ^1.1.0 in package.json,
+            "ionic-gulp-browserify-typescript": "1.1.0"
+        *   if you don't do this, ionic won't add build/app.bundle.js to your app and the app will break, 
+            https://forum.ionicframework.com/t/app-bundle-js-not-being-created-breaking-app/55653
     *  `npm install` (Install dependencies)
     *  `gulp build` (Install dependencies)
     *  `typings install` (Install typings package manager)
