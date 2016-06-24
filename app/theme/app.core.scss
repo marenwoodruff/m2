@@ -13,11 +13,13 @@
 @import "../components/event/event.component";
 @import "../components/sessions/sessions.component";
 @import "../components/question/question.component";
+@import "../pages/surveys/surveys.page";
 @import "../components/signup/signup.component";
 @import "../components/login/login.component";
 @import "../components/session-registration/session-registration.component";
 @import "../components/survey-description/survey-description.component";
 @import "../components/friend-registration/friend-registration.component";
+@import "../components/user-settings/user-settings.component";
 @import "../components/surveys/surveys.component";
 @import '../pages/signupEmail/signupEmail.page';
 @import "../pages/begin-survey/begin-survey.page";
@@ -56,6 +58,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'lato-bold';
   src:url('../fonts/Lato-Bold.ttf') format("truetype");

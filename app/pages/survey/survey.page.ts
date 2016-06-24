@@ -1,9 +1,10 @@
-import {Page, NavParams, Nav} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavParams, Nav} from 'ionic-angular';
 import {QuestionComponent} from '../../components/question/question.component';
 import {Survey} from '../../models/survey/survey';
 import {StorageService} from '../../service/storage.service';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/survey/survey.page.html',
   directives: [QuestionComponent],
 })

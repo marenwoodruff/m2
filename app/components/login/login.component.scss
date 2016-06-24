@@ -8,12 +8,12 @@
         border-left: 1px solid #c8c7cc;
     }
     ion-list {
-        margin-bottom: 10px;
+        /*margin: 10px;*/
         border-bottom: none;
         border-top: none;
     }
     ion-label {
-        margin: 17px 0px;
+        /*margin: 17px 15px;*/
         color: #C1BFC0;
     }
     ion-input, .text-input {
@@ -53,6 +53,7 @@
 .twitter-button {
     background-color: #00A9F3;
 }
+
 .signup-page-buttons, .login-page {
     .social-button {
         font-weight: bold;
@@ -62,6 +63,14 @@
         font-size: 1.2em;
     }
 }
+
+/*.social-button {
+    font-weight: bold;
+    border-radius: 0px;
+    margin: 0.4rem 0px;
+    text-transform: none;
+    font-size: 1.2em;
+}*/
 
 .disclaimer-link {
     color: #0A62B1;

@@ -1,13 +1,13 @@
 <ion-row class="month-filters" center *ngIf="!eventSearchActive">
   <ion-col width-67>
     <ion-row>
-      <ion-col width-10 *ngIf="showLeftButton"  (click)="subtractMonth()">
+      <ion-col class="arrow" width-10 *ngIf="showLeftButton"  (click)="subtractMonth()">
         <img class="chevrons" src="build/assets/icons/Gray_LeftArrow.png"/>
       </ion-col>
-      <ion-col width-50>
+      <ion-col class="arrow" width-50>
         <span class="event-month">{{month | amDateFormat:"MMMM YYYY"}}</span>
       </ion-col>
-      <ion-col width-10 *ngIf="showRightButton" (click)="addMonth()">
+      <ion-col class="arrow" width-10 *ngIf="showRightButton" (click)="addMonth()">
         <img class="chevrons" src="build/assets/icons/Gray_RightArrow.png"/>
       </ion-col>
     </ion-row>
@@ -25,7 +25,7 @@
       (input)="searchEvents($event.value)"
       (blur)="blurSearch()"
       placeholder="Search Events..."
-      hideCancelButton="true"
+      showCancelButton="true"
       ></ion-searchbar>
   </ion-col>
   <ion-col width-10>

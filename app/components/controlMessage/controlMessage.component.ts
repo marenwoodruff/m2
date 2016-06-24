@@ -8,6 +8,7 @@ import {ValidationService} from '../../service/validation.service';
     template: `<div *ngIf="errorMessage !== null" style="color:red;">{{errorMessage}}</div>`,
     providers: [NgFormModel]
 })
+
 export class ControlMessageComponent {
     controlName: string;
     name: string;
@@ -29,4 +30,5 @@ export class ControlMessageComponent {
 
         return null;
     }
+
 }

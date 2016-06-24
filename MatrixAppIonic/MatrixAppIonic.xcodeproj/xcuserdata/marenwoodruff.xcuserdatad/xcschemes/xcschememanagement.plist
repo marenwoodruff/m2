@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>MatrixAppIonic.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>E625C56E1D0F39E70015B08F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E625C58A1D0F39E80015B08F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E625C5951D0F39E80015B08F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

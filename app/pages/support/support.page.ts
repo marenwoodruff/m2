@@ -1,11 +1,12 @@
-import {Page, Button} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Button} from 'ionic-angular';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/support/support.page.html',
   directives: [Button]
 })
-export class SupportPage {
 
+export class SupportPage {
   contactSupport() {
     cordova.plugins.email.isAvailable((available) => {
       if (available) {
